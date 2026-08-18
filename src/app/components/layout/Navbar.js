@@ -72,7 +72,7 @@
 //   useEffect(() => {
 //     const fetchNavbar = async () => {
 //       try {
-//         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/navbar`);
+//         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/navbar`);
         
 //         if (response.ok) {
 //           const data = await response.json();
@@ -226,7 +226,7 @@
 //         }
 //       }
       
-//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/cart`, { headers });
+//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/cart`, { headers });
       
 //       if (response.ok) {
 //         const data = await response.json();
@@ -312,7 +312,7 @@
     
 //     setSearchLoading(true);
 //     try {
-//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
+//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
 //       const data = await response.json();
       
 //       if (data.success && data.data && data.data.length > 0) {
@@ -1091,7 +1091,7 @@ export default function Navbar() {
     const fetchNavbar = async () => {
       try {
         // ✅ PUBLIC endpoint - no token needed
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/navbar`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/navbar`);
         
         if (response.ok) {
           const data = await response.json();
@@ -1248,7 +1248,7 @@ export default function Navbar() {
         }
       }
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/cart`, { headers });
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/cart`, { headers });
       
       if (response.ok) {
         const data = await response.json();
@@ -1334,7 +1334,7 @@ export default function Navbar() {
     
     setSearchLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://smart-gadget-backend-main.vercel.app'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
       const data = await response.json();
       
       if (data.success && data.data && data.data.length > 0) {

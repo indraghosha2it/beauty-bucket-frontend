@@ -1,5 +1,6 @@
 
 
+
 // // app/admin/contact/page.jsx
 // 'use client';
 
@@ -41,15 +42,13 @@
 //   Settings,
 //   Upload,
 //   Image as ImageIcon,
-//   Info
+//   Info,
+//   AlertTriangle
 // } from 'lucide-react';
 // import ProtectedRoute from '@/app/components/ProtectedRoute';
 // import { toast } from 'sonner';
 
-// // ============================================================
-// // IMPORT SOCIAL ICONS FROM REACT-ICONS
-// // ============================================================
-
+// // Import social icons from react-icons
 // import { 
 //   FaFacebookF, 
 //   FaInstagram, 
@@ -281,107 +280,19 @@
 //   { value: 'FaMapMarkerAlt', label: 'Location', icon: MapPin },
 // ];
 
-// // ============================================================
-// // SOCIAL PLATFORMS CONFIGURATION - WITH CORRECT ICONS
-// // ============================================================
-
 // const SOCIAL_PLATFORMS = [
-//   { 
-//     value: 'facebook', 
-//     label: 'Facebook', 
-//     icon: 'FaFacebookF',
-//     component: FaFacebookF,
-//     color: 'hover:bg-[#1877F2] hover:text-white',
-//     bgColor: '#1877F2'
-//   },
-//   { 
-//     value: 'instagram', 
-//     label: 'Instagram', 
-//     icon: 'FaInstagram',
-//     component: FaInstagram,
-//     color: 'hover:bg-[#E4405F] hover:text-white',
-//     bgColor: '#E4405F'
-//   },
-//   { 
-//     value: 'x', 
-//     label: 'X (formerly Twitter)', 
-//     icon: 'FaTwitter',
-//     component: FaTwitter,
-//     color: 'hover:bg-[#000000] hover:text-white',
-//     bgColor: '#000000'
-//   },
-//   { 
-//     value: 'linkedin', 
-//     label: 'LinkedIn', 
-//     icon: 'FaLinkedinIn',
-//     component: FaLinkedinIn,
-//     color: 'hover:bg-[#0A66C2] hover:text-white',
-//     bgColor: '#0A66C2'
-//   },
-//   { 
-//     value: 'youtube', 
-//     label: 'YouTube', 
-//     icon: 'FaYoutube',
-//     component: FaYoutube,
-//     color: 'hover:bg-[#FF0000] hover:text-white',
-//     bgColor: '#FF0000'
-//   },
-//   { 
-//     value: 'tiktok', 
-//     label: 'TikTok', 
-//     icon: 'FaTiktok',
-//     component: FaTiktok,
-//     color: 'hover:bg-[#000000] hover:text-white',
-//     bgColor: '#000000'
-//   },
-//   { 
-//     value: 'pinterest', 
-//     label: 'Pinterest', 
-//     icon: 'FaPinterest',
-//     component: FaPinterest,
-//     color: 'hover:bg-[#E60023] hover:text-white',
-//     bgColor: '#E60023'
-//   },
-//   { 
-//     value: 'snapchat', 
-//     label: 'Snapchat', 
-//     icon: 'FaSnapchat',
-//     component: FaSnapchat,
-//     color: 'hover:bg-[#FFFC00] hover:text-black',
-//     bgColor: '#FFFC00'
-//   },
-//   { 
-//     value: 'telegram', 
-//     label: 'Telegram', 
-//     icon: 'FaTelegram',
-//     component: FaTelegram,
-//     color: 'hover:bg-[#26A5E4] hover:text-white',
-//     bgColor: '#26A5E4'
-//   },
-//   { 
-//     value: 'github', 
-//     label: 'GitHub', 
-//     icon: 'FaGithub',
-//     component: FaGithub,
-//     color: 'hover:bg-[#181717] hover:text-white',
-//     bgColor: '#181717'
-//   },
-//   { 
-//     value: 'viber', 
-//     label: 'Viber', 
-//     icon: 'FaViber',
-//     component: FaViber,
-//     color: 'hover:bg-[#7360F2] hover:text-white',
-//     bgColor: '#7360F2'
-//   },
-//   { 
-//     value: 'messenger', 
-//     label: 'Messenger', 
-//     icon: 'FaFacebookMessenger',
-//     component: FaFacebookMessenger,
-//     color: 'hover:bg-[#00B2FF] hover:text-white',
-//     bgColor: '#00B2FF'
-//   },
+//   { value: 'facebook', label: 'Facebook', icon: 'FaFacebookF', component: FaFacebookF, color: 'hover:bg-[#1877F2] hover:text-white', bgColor: '#1877F2' },
+//   { value: 'instagram', label: 'Instagram', icon: 'FaInstagram', component: FaInstagram, color: 'hover:bg-[#E4405F] hover:text-white', bgColor: '#E4405F' },
+//   { value: 'x', label: 'X (Twitter)', icon: 'FaTwitter', component: FaTwitter, color: 'hover:bg-[#000000] hover:text-white', bgColor: '#000000' },
+//   { value: 'linkedin', label: 'LinkedIn', icon: 'FaLinkedinIn', component: FaLinkedinIn, color: 'hover:bg-[#0A66C2] hover:text-white', bgColor: '#0A66C2' },
+//   { value: 'youtube', label: 'YouTube', icon: 'FaYoutube', component: FaYoutube, color: 'hover:bg-[#FF0000] hover:text-white', bgColor: '#FF0000' },
+//   { value: 'tiktok', label: 'TikTok', icon: 'FaTiktok', component: FaTiktok, color: 'hover:bg-[#000000] hover:text-white', bgColor: '#000000' },
+//   { value: 'pinterest', label: 'Pinterest', icon: 'FaPinterest', component: FaPinterest, color: 'hover:bg-[#E60023] hover:text-white', bgColor: '#E60023' },
+//   { value: 'snapchat', label: 'Snapchat', icon: 'FaSnapchat', component: FaSnapchat, color: 'hover:bg-[#FFFC00] hover:text-black', bgColor: '#FFFC00' },
+//   { value: 'telegram', label: 'Telegram', icon: 'FaTelegram', component: FaTelegram, color: 'hover:bg-[#26A5E4] hover:text-white', bgColor: '#26A5E4' },
+//   { value: 'github', label: 'GitHub', icon: 'FaGithub', component: FaGithub, color: 'hover:bg-[#181717] hover:text-white', bgColor: '#181717' },
+//   { value: 'viber', label: 'Viber', icon: 'FaViber', component: FaViber, color: 'hover:bg-[#7360F2] hover:text-white', bgColor: '#7360F2' },
+//   { value: 'messenger', label: 'Messenger', icon: 'FaFacebookMessenger', component: FaFacebookMessenger, color: 'hover:bg-[#00B2FF] hover:text-white', bgColor: '#00B2FF' },
 // ];
 
 // // ============================================================
@@ -415,6 +326,52 @@
 //             >
 //               <Trash2 className="w-4 h-4" />
 //               Delete
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// // ============================================================
+// // ✅ RESET CONFIRMATION MODAL
+// // ============================================================
+
+// const ResetConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
+//   if (!isOpen) return null;
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+//       <div className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 border border-orange-100">
+//         <div className="p-6">
+//           <div className="flex items-center gap-3 text-orange-600 mb-4">
+//             <RefreshCw className="w-6 h-6" />
+//             <h3 className="text-lg font-semibold">Reset Contact Page</h3>
+//           </div>
+//           <div className="flex items-start gap-3 bg-orange-50 p-3 rounded-lg border border-orange-200 mb-4">
+//             <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+//             <p className="text-sm text-orange-700">
+//               This will <strong>permanently delete</strong> all custom content and restore 
+//               the default settings. This action <strong>cannot be undone</strong>.
+//             </p>
+//           </div>
+//           <p className="text-sm text-gray-600 mb-4">
+//             Are you sure you want to reset the contact page to default configuration?
+//           </p>
+//           <div className="flex gap-3 justify-end">
+//             <button
+//               onClick={onClose}
+//               className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+//             >
+//               Cancel
+//             </button>
+//             <button
+//               onClick={onConfirm}
+//               className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2 shadow-md hover:shadow-lg"
+//             >
+//               <RefreshCw className="w-4 h-4" />
+//               Reset
 //             </button>
 //           </div>
 //         </div>
@@ -473,9 +430,7 @@
 //         </div>
 //         <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Icon <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Icon <span className="text-red-500">*</span></label>
 //             <select
 //               value={item.icon}
 //               onChange={(e) => onUpdate(index, { ...item, icon: e.target.value })}
@@ -487,9 +442,7 @@
 //             </select>
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Label <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Label <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={item.label}
@@ -499,9 +452,7 @@
 //             />
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Value <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Value <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={item.value}
@@ -511,9 +462,7 @@
 //             />
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Link <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Link <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={item.link}
@@ -548,14 +497,14 @@
 // };
 
 // // ============================================================
-// // SOCIAL LINK ITEM COMPONENT - FIXED WITH CORRECT ICONS
+// // SOCIAL LINK ITEM COMPONENT
 // // ============================================================
 
 // const SocialLinkItem = ({ link, index, onUpdate, onRemove, onMove, isFirst, isLast }) => {
 //   const [isDragging, setIsDragging] = useState(false);
 //   const platformData = SOCIAL_PLATFORMS.find(p => p.value === link.platform);
 //   const PlatformIcon = platformData?.component || FaFacebookF;
-  
+
 //   const handleDragStart = (e) => {
 //     setIsDragging(true);
 //     e.dataTransfer.effectAllowed = 'move';
@@ -598,9 +547,7 @@
 //         </div>
 //         <div className="flex-1 grid grid-cols-3 gap-3">
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Platform <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Platform <span className="text-red-500">*</span></label>
 //             <select
 //               value={link.platform}
 //               onChange={(e) => {
@@ -622,9 +569,7 @@
 //             </select>
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               URL <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">URL <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={link.url}
@@ -654,14 +599,12 @@
 //           </div>
 //         </div>
 //       </div>
-//       {/* ✅ Show icon preview with the actual component */}
 //       <div className="mt-2 pt-2 border-t border-gray-200 flex items-center gap-3">
 //         <span className="text-xs text-gray-400">Preview:</span>
 //         <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center">
 //           <PlatformIcon className="w-4 h-4 text-blue-600" />
 //         </div>
 //         <span className="text-xs text-gray-500 font-medium">{link.platform}</span>
-//         <span className="text-xs text-gray-400">({platformData?.label || 'Unknown'})</span>
 //       </div>
 //     </div>
 //   );
@@ -671,15 +614,13 @@
 // // FEATURE ITEM COMPONENT
 // // ============================================================
 
-// const FeatureItem = ({ feature, index, onUpdate, onRemove, isFirst, isLast }) => {
+// const FeatureItem = ({ feature, index, onUpdate, onRemove }) => {
 //   return (
 //     <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
 //       <div className="flex items-center gap-3">
 //         <div className="flex-1 grid grid-cols-3 gap-3">
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Icon <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Icon <span className="text-red-500">*</span></label>
 //             <select
 //               value={feature.icon}
 //               onChange={(e) => onUpdate(index, { ...feature, icon: e.target.value })}
@@ -694,9 +635,7 @@
 //             </select>
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Title <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Title <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={feature.title}
@@ -706,9 +645,7 @@
 //             />
 //           </div>
 //           <div>
-//             <label className="block text-xs font-medium text-gray-700 mb-1">
-//               Description <span className="text-red-500">*</span>
-//             </label>
+//             <label className="block text-xs font-medium text-gray-700 mb-1">Description <span className="text-red-500">*</span></label>
 //             <input
 //               type="text"
 //               value={feature.description}
@@ -744,6 +681,8 @@
 //   const [activeTab, setActiveTab] = useState('hero');
 //   const [showDeleteModal, setShowDeleteModal] = useState(false);
 //   const [deleteTarget, setDeleteTarget] = useState(null);
+//   // ✅ State for reset modal
+//   const [showResetModal, setShowResetModal] = useState(false);
 
 //   // Fetch contact data
 //   useEffect(() => {
@@ -866,12 +805,14 @@
 //     }
 //   };
 
-//   // Reset to default
-//   const handleReset = async () => {
-//     if (!confirm('Are you sure you want to reset to default contact configuration?')) {
-//       return;
-//     }
+//   // ✅ Updated Reset handler - shows modal instead of confirm()
+//   const handleResetClick = () => {
+//     setShowResetModal(true);
+//   };
 
+//   const handleResetConfirm = async () => {
+//     setShowResetModal(false);
+    
 //     try {
 //       const token = localStorage.getItem('token');
       
@@ -1047,14 +988,19 @@
 //           itemType={deleteTarget?.type || ''}
 //         />
 
+//         {/* ✅ Reset Confirmation Modal */}
+//         <ResetConfirmationModal
+//           isOpen={showResetModal}
+//           onClose={() => setShowResetModal(false)}
+//           onConfirm={handleResetConfirm}
+//         />
+
 //         {/* Header */}
 //         <div className="bg-white border-b border-blue-500/20 shadow-lg sticky top-0 z-10">
 //           <div className="px-4 sm:px-6 py-3 sm:py-4">
 //             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 //               <div className="flex items-center gap-2 sm:gap-4">
-//                 <Link href="/admin/dashboard" className="p-1.5 sm:p-2 hover:bg-blue-500/20 rounded-lg transition-colors flex-shrink-0">
-//                   <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white/80 hover:text-white" />
-//                 </Link>
+               
 //                 <div className="min-w-0 flex-1">
 //                   <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
 //                     <div className="flex items-center gap-2">
@@ -1073,9 +1019,10 @@
 //                 </div>
 //               </div>
 //               <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3">
+//                 {/* ✅ Updated Reset button - shows modal */}
 //                 <button
-//                   onClick={handleReset}
-//                   className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm bg-blue-500/10 text-black/80 rounded-lg hover:bg-blue-500/30 transition-colors border border-blue-500/20"
+//                   onClick={handleResetClick}
+//                   className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm bg-orange-500/10 text-orange-600 rounded-lg hover:bg-orange-500/30 transition-colors border border-orange-500/20"
 //                 >
 //                   <RefreshCw className="w-4 h-4" />
 //                   Reset
@@ -1121,427 +1068,483 @@
 //               ))}
 //             </div>
 
-//             {/* Tab Content */}
-//             <div className="space-y-6">
-//               {/* Hero Section Tab */}
-//               {activeTab === 'hero' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-//                     <ImageIcon className="w-5 h-5 text-blue-600" />
-//                     Hero Section Settings
-//                   </h2>
-//                   <div className="grid grid-cols-1 gap-4">
-//                     <ImageUpload
-//                       imageUrl={hero?.bgImage || ''}
-//                       onImageChange={(url) => updateContactData('hero', { ...hero, bgImage: url })}
-//                       onImageRemove={() => updateContactData('hero', { ...hero, bgImage: '' })}
-//                       label="Background Image"
-//                       aspectRatio="16/9"
+//             {/* Hero Section Tab */}
+//             {activeTab === 'hero' && (
+//               <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//                 <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
+//                   <ImageIcon className="w-5 h-5 text-blue-600" />
+//                   Hero Section Settings
+//                 </h2>
+//                 <div className="grid grid-cols-1 gap-4">
+//                   <ImageUpload
+//                     imageUrl={hero?.bgImage || ''}
+//                     onImageChange={(url) => updateContactData('hero', { ...hero, bgImage: url })}
+//                     onImageRemove={() => updateContactData('hero', { ...hero, bgImage: '' })}
+//                     label="Background Image"
+//                     aspectRatio="16/9"
+//                   />
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Badge Text <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={hero?.badge || ''}
+//                       onChange={(e) => updateContactData('hero', { ...hero, badge: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Get in Touch"
 //                     />
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Badge Text <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={hero?.badge || ''}
-//                         onChange={(e) => updateContactData('hero', { ...hero, badge: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Get in Touch"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Title <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={hero?.title || ''}
-//                         onChange={(e) => updateContactData('hero', { ...hero, title: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="We'd Love to"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Highlight Text <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={hero?.highlightText || ''}
-//                         onChange={(e) => updateContactData('hero', { ...hero, highlightText: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Hear From You"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Description <span className="text-red-500">*</span>
-//                       </label>
-//                       <textarea
-//                         value={hero?.description || ''}
-//                         onChange={(e) => updateContactData('hero', { ...hero, description: e.target.value })}
-//                         rows={3}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
-//                         placeholder="Have questions about products, orders, or anything else?"
-//                       />
-//                     </div>
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Title <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={hero?.title || ''}
+//                       onChange={(e) => updateContactData('hero', { ...hero, title: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="We'd Love to"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Highlight Text <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={hero?.highlightText || ''}
+//                       onChange={(e) => updateContactData('hero', { ...hero, highlightText: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Hear From You"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Description <span className="text-red-500">*</span>
+//                     </label>
+//                     <textarea
+//                       value={hero?.description || ''}
+//                       onChange={(e) => updateContactData('hero', { ...hero, description: e.target.value })}
+//                       rows={3}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+//                       placeholder="Have questions about products, orders, or anything else?"
+//                     />
 //                   </div>
 //                 </div>
-//               )}
+//               </div>
+//             )}
 
-//               {/* Quick Contact Tab */}
-//               {activeTab === 'quick' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <div className="flex items-center justify-between mb-4">
-//                     <div>
-//                       <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-//                         <Phone className="w-5 h-5 text-blue-600" />
-//                         Quick Contact <span className="text-xs font-normal text-gray-400">(Max 4)</span>
-//                       </h2>
-//                       <p className="text-sm text-gray-500 mt-1">Manage quick contact cards on the contact page</p>
+//             {/* Quick Contact Tab */}
+//             {activeTab === 'quick' && (
+//               <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//                 <div className="flex items-center justify-between mb-4">
+//                   <div>
+//                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
+//                       <Phone className="w-5 h-5 text-blue-600" />
+//                       Quick Contact <span className="text-xs font-normal text-gray-400">(Max 4)</span>
+//                     </h2>
+//                     <p className="text-sm text-gray-500 mt-1">Manage quick contact cards on the contact page</p>
+//                   </div>
+//                   {quickContacts?.length < 4 && (
+//                     <button
+//                       type="button"
+//                       onClick={addQuickContact}
+//                       className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+//                     >
+//                       <Plus className="w-4 h-4" />
+//                       Add Quick Contact
+//                     </button>
+//                   )}
+//                 </div>
+
+//                 <div className="space-y-3">
+//                   {quickContacts?.map((item, index) => (
+//                     <QuickContactItem
+//                       key={index}
+//                       item={item}
+//                       index={index}
+//                       onUpdate={updateQuickContact}
+//                       onRemove={removeQuickContact}
+//                       onMove={moveQuickContact}
+//                       isFirst={index === 0}
+//                       isLast={index === quickContacts.length - 1}
+//                     />
+//                   ))}
+//                 </div>
+//                 {quickContacts?.length === 0 && (
+//                   <div className="text-center py-8 text-gray-500">
+//                     <Phone className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+//                     <p>No quick contact items added</p>
+//                     <p className="text-sm">Add up to 4 items</p>
+//                   </div>
+//                 )}
+//               </div>
+//             )}
+
+//             {/* Left Side Tab */}
+//             {activeTab === 'left' && (
+//               <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//                 <div className="flex items-center justify-between mb-4">
+//                   <div>
+//                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
+//                       <Settings className="w-5 h-5 text-blue-600" />
+//                       Left Side Content
+//                     </h2>
+//                     <p className="text-sm text-gray-500 mt-1">Manage the left side content on contact page</p>
+//                   </div>
+//                   <button
+//                     type="button"
+//                     onClick={addFeature}
+//                     className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+//                   >
+//                     <Plus className="w-4 h-4" />
+//                     Add Feature
+//                   </button>
+//                 </div>
+//                 <div className="grid grid-cols-1 gap-4">
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Badge Text <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={leftSide?.badge || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, badge: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Why Contact Us"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Title <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={leftSide?.title || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, title: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="We're Here to"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Subtitle <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={leftSide?.subtitle || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, subtitle: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Help You"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Description <span className="text-red-500">*</span>
+//                     </label>
+//                     <textarea
+//                       value={leftSide?.description || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, description: e.target.value })}
+//                       rows={3}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+//                       placeholder="Whether you have questions about a product..."
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Quick Contact Title <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={leftSide?.quickContactTitle || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, quickContactTitle: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Quick Contact"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Social Title <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={leftSide?.socialTitle || ''}
+//                       onChange={(e) => updateContactData('leftSide', { ...leftSide, socialTitle: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Follow Us"
+//                     />
+//                   </div>
+
+//                   <div className="border-t border-gray-200 pt-4">
+//                     <h3 className="text-sm font-semibold text-gray-700 mb-3">Features</h3>
+//                     <div className="space-y-3">
+//                       {leftSide?.features && leftSide.features.map((feature, index) => (
+//                         <FeatureItem
+//                           key={index}
+//                           feature={feature}
+//                           index={index}
+//                           onUpdate={updateFeature}
+//                           onRemove={removeFeature}
+//                         />
+//                       ))}
 //                     </div>
-//                     {quickContacts?.length < 4 && (
-//                       <button
-//                         type="button"
-//                         onClick={addQuickContact}
-//                         className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
-//                       >
-//                         <Plus className="w-4 h-4" />
-//                         Add Quick Contact
-//                       </button>
+//                     {leftSide?.features?.length === 0 && (
+//                       <p className="text-gray-400 text-sm py-4 text-center">No features added</p>
 //                     )}
 //                   </div>
-
-//                   <div className="space-y-3">
-//                     {quickContacts?.map((item, index) => (
-//                       <QuickContactItem
-//                         key={index}
-//                         item={item}
-//                         index={index}
-//                         onUpdate={updateQuickContact}
-//                         onRemove={removeQuickContact}
-//                         onMove={moveQuickContact}
-//                         isFirst={index === 0}
-//                         isLast={index === quickContacts.length - 1}
-//                       />
-//                     ))}
-//                   </div>
-//                   {quickContacts?.length === 0 && (
-//                     <div className="text-center py-8 text-gray-500">
-//                       <Phone className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-//                       <p>No quick contact items added</p>
-//                       <p className="text-sm">Add up to 4 items</p>
-//                     </div>
-//                   )}
 //                 </div>
-//               )}
+//               </div>
+//             )}
 
-//               {/* Left Side Tab */}
-//               {activeTab === 'left' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <div className="flex items-center justify-between mb-4">
-//                     <div>
-//                       <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-//                         <Settings className="w-5 h-5 text-blue-600" />
-//                         Left Side Content
-//                       </h2>
-//                       <p className="text-sm text-gray-500 mt-1">Manage the left side content on contact page</p>
-//                     </div>
-//                     <button
-//                       type="button"
-//                       onClick={addFeature}
-//                       className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
-//                     >
-//                       <Plus className="w-4 h-4" />
-//                       Add Feature
-//                     </button>
+//             {/* Social Links Tab */}
+//             {activeTab === 'social' && (
+//               <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//                 <div className="flex items-center justify-between mb-4">
+//                   <div>
+//                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
+//                       <Globe className="w-5 h-5 text-blue-600" />
+//                       Social Links
+//                     </h2>
+//                     <p className="text-sm text-gray-500 mt-1">Manage social media links - icon preview shows the actual platform icon</p>
 //                   </div>
-//                   <div className="grid grid-cols-1 gap-4">
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Badge Text <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={leftSide?.badge || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, badge: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Why Contact Us"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Title <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={leftSide?.title || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, title: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="We're Here to"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Subtitle <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={leftSide?.subtitle || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, subtitle: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Help You"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Description <span className="text-red-500">*</span>
-//                       </label>
-//                       <textarea
-//                         value={leftSide?.description || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, description: e.target.value })}
-//                         rows={3}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
-//                         placeholder="Whether you have questions about a product..."
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Quick Contact Title <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={leftSide?.quickContactTitle || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, quickContactTitle: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Quick Contact"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Social Title <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={leftSide?.socialTitle || ''}
-//                         onChange={(e) => updateContactData('leftSide', { ...leftSide, socialTitle: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Follow Us"
-//                       />
-//                     </div>
-
-//                     <div className="border-t border-gray-200 pt-4">
-//                       <h3 className="text-sm font-semibold text-gray-700 mb-3">Features</h3>
-//                       <div className="space-y-3">
-//                         {leftSide?.features && leftSide.features.map((feature, index) => (
-//                           <FeatureItem
-//                             key={index}
-//                             feature={feature}
-//                             index={index}
-//                             onUpdate={updateFeature}
-//                             onRemove={removeFeature}
-//                             isFirst={index === 0}
-//                             isLast={index === leftSide.features.length - 1}
-//                           />
-//                         ))}
-//                       </div>
-//                       {leftSide?.features?.length === 0 && (
-//                         <p className="text-gray-400 text-sm py-4 text-center">No features added</p>
-//                       )}
-//                     </div>
-//                   </div>
+//                   <button
+//                     type="button"
+//                     onClick={addSocialLink}
+//                     className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+//                   >
+//                     <Plus className="w-4 h-4" />
+//                     Add Social Link
+//                   </button>
 //                 </div>
-//               )}
 
-//               {/* Social Links Tab - WITH ICON PREVIEW */}
-//               {activeTab === 'social' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <div className="flex items-center justify-between mb-4">
-//                     <div>
-//                       <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-//                         <Globe className="w-5 h-5 text-blue-600" />
-//                         Social Links
-//                       </h2>
-//                       <p className="text-sm text-gray-500 mt-1">Manage social media links - icon preview shows the actual platform icon</p>
-//                     </div>
-//                     <button
-//                       type="button"
-//                       onClick={addSocialLink}
-//                       className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
-//                     >
-//                       <Plus className="w-4 h-4" />
-//                       Add Social Link
-//                     </button>
-//                   </div>
-
-//                   <div className="space-y-3">
-//                     {socialLinks?.map((link, index) => (
-//                       <SocialLinkItem
-//                         key={index}
-//                         link={link}
-//                         index={index}
-//                         onUpdate={updateSocialLink}
-//                         onRemove={removeSocialLink}
-//                         onMove={moveSocialLink}
-//                         isFirst={index === 0}
-//                         isLast={index === socialLinks.length - 1}
-//                       />
-//                     ))}
-//                   </div>
-//                   {socialLinks?.length === 0 && (
-//                     <div className="text-center py-8 text-gray-500">
-//                       <Globe className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-//                       <p>No social links added</p>
-//                     </div>
-//                   )}
-//                 </div>
-//               )}
-
-//               {/* Map Tab */}
-//               {activeTab === 'map' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-//                     <Map className="w-5 h-5 text-blue-600" />
-//                     Map Settings
-//                   </h2>
-//                   <div className="space-y-4">
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Map Title <span className="text-red-500">*</span>
-//                       </label>
-//                       <input
-//                         type="text"
-//                         value={map?.title || ''}
-//                         onChange={(e) => updateContactData('map', { ...map, title: e.target.value })}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Find Us"
-//                       />
-//                     </div>
-//                     <div>
-//                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Google Maps Embed URL <span className="text-red-500">*</span>
-//                       </label>
-//                       <textarea
-//                         value={map?.embedCode || ''}
-//                         onChange={(e) => updateContactData('map', { ...map, embedCode: e.target.value })}
-//                         rows={3}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
-//                         placeholder="https://www.google.com/maps/embed?pb=..."
-//                       />
-//                       <p className="text-xs text-gray-400 mt-1">Paste the full embed URL from Google Maps</p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               )}
-
-//               {/* CTA Tab */}
-//               {activeTab === 'cta' && (
-//                 <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-//                   <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-//                     <Zap className="w-5 h-5 text-blue-600" />
-//                     Call to Action Settings
-//                   </h2>
-//                   <div className="grid grid-cols-1 gap-4">
-//                     <ImageUpload
-//                       imageUrl={cta?.bgImage || ''}
-//                       onImageChange={(url) => updateContactData('cta', { ...cta, bgImage: url })}
-//                       onImageRemove={() => updateContactData('cta', { ...cta, bgImage: '' })}
-//                       label="CTA Background Image"
-//                       aspectRatio="16/9"
+//                 <div className="space-y-3">
+//                   {socialLinks?.map((link, index) => (
+//                     <SocialLinkItem
+//                       key={index}
+//                       link={link}
+//                       index={index}
+//                       onUpdate={updateSocialLink}
+//                       onRemove={removeSocialLink}
+//                       onMove={moveSocialLink}
+//                       isFirst={index === 0}
+//                       isLast={index === socialLinks.length - 1}
 //                     />
+//                   ))}
+//                 </div>
+//                 {socialLinks?.length === 0 && (
+//                   <div className="text-center py-8 text-gray-500">
+//                     <Globe className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+//                     <p>No social links added</p>
+//                   </div>
+//                 )}
+//               </div>
+//             )}
+
+   
+
+// {activeTab === 'map' && (
+//   <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//     <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
+//       <Map className="w-5 h-5 text-blue-600" />
+//       Map Settings
+//     </h2>
+//     <div className="space-y-4">
+//       <div>
+//         <label className="block text-sm font-medium text-gray-700 mb-1">
+//           Map Title <span className="text-red-500">*</span>
+//         </label>
+//         <input
+//           type="text"
+//           value={map?.title || ''}
+//           onChange={(e) => updateContactData('map', { ...map, title: e.target.value })}
+//           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//           placeholder="Find Us"
+//         />
+//       </div>
+//       <div>
+//         <label className="block text-sm font-medium text-gray-700 mb-1">
+//           Google Maps Embed URL <span className="text-red-500">*</span>
+//         </label>
+//         <textarea
+//           value={map?.embedCode || ''}
+//           onChange={(e) => updateContactData('map', { ...map, embedCode: e.target.value })}
+//           rows={4}
+//           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+//           placeholder="https://www.google.com/maps/embed?pb=... or full iframe code"
+//         />
+//         <p className="text-xs text-gray-400 mt-1">
+//           💡 You can paste either the URL or the full iframe code. We'll extract the URL automatically.
+//         </p>
+//       </div>
+//       {/* Preview the map */}
+//       {map?.embedCode && (
+//         <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
+//           <div className="p-2 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+//             <span className="text-xs text-gray-500">Map Preview</span>
+//             <span className="text-xs text-green-600 flex items-center gap-1">
+//               <CheckCircle className="w-3 h-3" />
+//               Valid
+//             </span>
+//           </div>
+//           <div className="p-2 bg-gray-100">
+//             {(() => {
+//               // Extract URL from iframe if full code is provided
+//               let mapSrc = map.embedCode;
+              
+//               // If the embedCode contains iframe, extract the src
+//               if (map.embedCode && map.embedCode.includes('src="')) {
+//                 const srcMatch = map.embedCode.match(/src="([^"]+)"/);
+//                 if (srcMatch && srcMatch[1]) {
+//                   mapSrc = srcMatch[1];
+//                 }
+//               }
+              
+//               // If it's still the full embed code with src, try another pattern
+//               if (mapSrc && mapSrc.includes('iframe') && mapSrc.includes('src=')) {
+//                 const srcMatch = mapSrc.match(/src=["']([^"']+)["']/);
+//                 if (srcMatch && srcMatch[1]) {
+//                   mapSrc = srcMatch[1];
+//                 }
+//               }
+              
+//               // If it's a URL with http/https, use it directly
+//               if (mapSrc && (mapSrc.startsWith('http://') || mapSrc.startsWith('https://'))) {
+//                 return (
+//                   <iframe
+//                     src={mapSrc}
+//                     width="100%"
+//                     height="200"
+//                     style={{ border: 0 }}
+//                     allowFullScreen
+//                     loading="lazy"
+//                     className="rounded"
+//                     title="Map Preview"
+//                   />
+//                 );
+//               } else {
+//                 return (
+//                   <div className="p-4 text-center text-red-500">
+//                     <AlertTriangle className="w-6 h-6 mx-auto mb-2" />
+//                     <p className="text-sm">Invalid map URL format</p>
+//                     <p className="text-xs text-gray-400 mt-1">Please paste a valid Google Maps embed URL or iframe code</p>
+//                   </div>
+//                 );
+//               }
+//             })()}
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   </div>
+// )}
+
+//             {/* CTA Tab */}
+//             {activeTab === 'cta' && (
+//               <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+//                 <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
+//                   <Zap className="w-5 h-5 text-blue-600" />
+//                   Call to Action Settings
+//                 </h2>
+//                 <div className="grid grid-cols-1 gap-4">
+//                   <ImageUpload
+//                     imageUrl={cta?.bgImage || ''}
+//                     onImageChange={(url) => updateContactData('cta', { ...cta, bgImage: url })}
+//                     onImageRemove={() => updateContactData('cta', { ...cta, bgImage: '' })}
+//                     label="CTA Background Image"
+//                     aspectRatio="16/9"
+//                   />
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Badge <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={cta?.badge || ''}
+//                       onChange={(e) => updateContactData('cta', { ...cta, badge: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="Still Have Questions?"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Title <span className="text-red-500">*</span>
+//                     </label>
+//                     <input
+//                       type="text"
+//                       value={cta?.title || ''}
+//                       onChange={(e) => updateContactData('cta', { ...cta, title: e.target.value })}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                       placeholder="We're Here to Help"
+//                     />
+//                   </div>
+//                   <div>
+//                     <label className="block text-sm font-medium text-gray-700 mb-1">
+//                       Description <span className="text-red-500">*</span>
+//                     </label>
+//                     <textarea
+//                       value={cta?.description || ''}
+//                       onChange={(e) => updateContactData('cta', { ...cta, description: e.target.value })}
+//                       rows={2}
+//                       className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+//                       placeholder="Our team is ready to assist you with any questions."
+//                     />
+//                   </div>
+//                   <div className="grid grid-cols-2 gap-4">
 //                     <div>
 //                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Badge <span className="text-red-500">*</span>
+//                         Button Text <span className="text-red-500">*</span>
 //                       </label>
 //                       <input
 //                         type="text"
-//                         value={cta?.badge || ''}
-//                         onChange={(e) => updateContactData('cta', { ...cta, badge: e.target.value })}
+//                         value={cta?.buttonText || ''}
+//                         onChange={(e) => updateContactData('cta', { ...cta, buttonText: e.target.value })}
 //                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="Still Have Questions?"
+//                         placeholder="Call Now"
 //                       />
 //                     </div>
 //                     <div>
 //                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Title <span className="text-red-500">*</span>
+//                         Button Link <span className="text-red-500">*</span>
 //                       </label>
 //                       <input
 //                         type="text"
-//                         value={cta?.title || ''}
-//                         onChange={(e) => updateContactData('cta', { ...cta, title: e.target.value })}
+//                         value={cta?.buttonLink || ''}
+//                         onChange={(e) => updateContactData('cta', { ...cta, buttonLink: e.target.value })}
 //                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                         placeholder="We're Here to Help"
+//                         placeholder="tel:+8801XXXXXXX"
+//                       />
+//                     </div>
+//                   </div>
+//                   <div className="grid grid-cols-2 gap-4">
+//                     <div>
+//                       <label className="block text-sm font-medium text-gray-700 mb-1">
+//                         Secondary Button Text <span className="text-red-500">*</span>
+//                       </label>
+//                       <input
+//                         type="text"
+//                         value={cta?.secondaryButtonText || ''}
+//                         onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonText: e.target.value })}
+//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                         placeholder="Browse Products"
 //                       />
 //                     </div>
 //                     <div>
 //                       <label className="block text-sm font-medium text-gray-700 mb-1">
-//                         Description <span className="text-red-500">*</span>
+//                         Secondary Button Link <span className="text-red-500">*</span>
 //                       </label>
-//                       <textarea
-//                         value={cta?.description || ''}
-//                         onChange={(e) => updateContactData('cta', { ...cta, description: e.target.value })}
-//                         rows={2}
-//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
-//                         placeholder="Our team is ready to assist you with any questions."
+//                       <input
+//                         type="text"
+//                         value={cta?.secondaryButtonLink || ''}
+//                         onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonLink: e.target.value })}
+//                         className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+//                         placeholder="/products"
 //                       />
-//                     </div>
-//                     <div className="grid grid-cols-2 gap-4">
-//                       <div>
-//                         <label className="block text-sm font-medium text-gray-700 mb-1">
-//                           Button Text <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                           type="text"
-//                           value={cta?.buttonText || ''}
-//                           onChange={(e) => updateContactData('cta', { ...cta, buttonText: e.target.value })}
-//                           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                           placeholder="Call Now"
-//                         />
-//                       </div>
-//                       <div>
-//                         <label className="block text-sm font-medium text-gray-700 mb-1">
-//                           Button Link <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                           type="text"
-//                           value={cta?.buttonLink || ''}
-//                           onChange={(e) => updateContactData('cta', { ...cta, buttonLink: e.target.value })}
-//                           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                           placeholder="tel:+8801XXXXXXX"
-//                         />
-//                       </div>
-//                     </div>
-//                     <div className="grid grid-cols-2 gap-4">
-//                       <div>
-//                         <label className="block text-sm font-medium text-gray-700 mb-1">
-//                           Secondary Button Text <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                           type="text"
-//                           value={cta?.secondaryButtonText || ''}
-//                           onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonText: e.target.value })}
-//                           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                           placeholder="Browse Products"
-//                         />
-//                       </div>
-//                       <div>
-//                         <label className="block text-sm font-medium text-gray-700 mb-1">
-//                           Secondary Button Link <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                           type="text"
-//                           value={cta?.secondaryButtonLink || ''}
-//                           onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonLink: e.target.value })}
-//                           className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-//                           placeholder="/products"
-//                         />
-//                       </div>
 //                     </div>
 //                   </div>
 //                 </div>
-//               )}
-//             </div>
+//               </div>
+//             )}
 
 //             {/* Submit Button */}
 //             <div className="flex justify-end pt-4 border-t border-blue-500/20">
@@ -1787,7 +1790,7 @@ const ImageUpload = ({ imageUrl, onImageChange, onImageRemove, label = 'Image', 
       
       {preview ? (
         <div className="relative inline-block">
-          <div className={`rounded-lg overflow-hidden border-2 border-blue-500/30 bg-gray-100`}
+          <div className={`rounded-lg overflow-hidden border-2 border-pink-500/30 bg-gray-100`}
                style={{ width: '200px', aspectRatio: aspectRatio }}>
             <img 
               src={preview} 
@@ -1814,7 +1817,7 @@ const ImageUpload = ({ imageUrl, onImageChange, onImageRemove, label = 'Image', 
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm disabled:opacity-50"
           >
             {isUploading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -1881,12 +1884,12 @@ const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, itemName, itemType }) 
             <h3 className="text-lg font-semibold">Delete {itemType}</h3>
           </div>
           <p className="text-sm text-gray-600 mb-4">
-            Are you sure you want to delete <strong className="text-blue-600">"{itemName}"</strong>? This action cannot be undone.
+            Are you sure you want to delete <strong className="text-pink-600">"{itemName}"</strong>? This action cannot be undone.
           </p>
           <div className="flex gap-3 justify-end">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-500/10 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-pink-500/10 rounded-lg transition-colors"
             >
               Cancel
             </button>
@@ -1905,7 +1908,7 @@ const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, itemName, itemType }) 
 };
 
 // ============================================================
-// ✅ RESET CONFIRMATION MODAL
+// RESET CONFIRMATION MODAL
 // ============================================================
 
 const ResetConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
@@ -2004,7 +2007,7 @@ const QuickContactItem = ({ item, index, onUpdate, onRemove, onMove, isFirst, is
             <select
               value={item.icon}
               onChange={(e) => onUpdate(index, { ...item, icon: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
             >
               {QUICK_CONTACT_ICONS.map(icon => (
                 <option key={icon.value} value={icon.value}>{icon.label}</option>
@@ -2017,7 +2020,7 @@ const QuickContactItem = ({ item, index, onUpdate, onRemove, onMove, isFirst, is
               type="text"
               value={item.label}
               onChange={(e) => onUpdate(index, { ...item, label: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="Phone"
             />
           </div>
@@ -2027,7 +2030,7 @@ const QuickContactItem = ({ item, index, onUpdate, onRemove, onMove, isFirst, is
               type="text"
               value={item.value}
               onChange={(e) => onUpdate(index, { ...item, value: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="+880 1XXXXXXX"
             />
           </div>
@@ -2037,7 +2040,7 @@ const QuickContactItem = ({ item, index, onUpdate, onRemove, onMove, isFirst, is
               type="text"
               value={item.link}
               onChange={(e) => onUpdate(index, { ...item, link: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="tel:+8801XXXXXXX"
             />
           </div>
@@ -2047,7 +2050,7 @@ const QuickContactItem = ({ item, index, onUpdate, onRemove, onMove, isFirst, is
                 type="checkbox"
                 checked={item.isActive}
                 onChange={(e) => onUpdate(index, { ...item, isActive: e.target.checked })}
-                className="w-3.5 h-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                className="w-3.5 h-3.5 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
               />
               <span className="text-xs text-gray-700">Active</span>
             </label>
@@ -2129,7 +2132,7 @@ const SocialLinkItem = ({ link, index, onUpdate, onRemove, onMove, isFirst, isLa
                   color: platform?.color || 'hover:bg-[#1877F2]'
                 });
               }}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
             >
               {SOCIAL_PLATFORMS.map(platform => (
                 <option key={platform.value} value={platform.value}>
@@ -2144,7 +2147,7 @@ const SocialLinkItem = ({ link, index, onUpdate, onRemove, onMove, isFirst, isLa
               type="text"
               value={link.url}
               onChange={(e) => onUpdate(index, { ...link, url: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="https://facebook.com/smartgadget"
             />
           </div>
@@ -2154,7 +2157,7 @@ const SocialLinkItem = ({ link, index, onUpdate, onRemove, onMove, isFirst, isLa
                 type="checkbox"
                 checked={link.isActive}
                 onChange={(e) => onUpdate(index, { ...link, isActive: e.target.checked })}
-                className="w-3.5 h-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                className="w-3.5 h-3.5 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
               />
               <span className="text-xs text-gray-700">Active</span>
             </label>
@@ -2171,8 +2174,8 @@ const SocialLinkItem = ({ link, index, onUpdate, onRemove, onMove, isFirst, isLa
       </div>
       <div className="mt-2 pt-2 border-t border-gray-200 flex items-center gap-3">
         <span className="text-xs text-gray-400">Preview:</span>
-        <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center">
-          <PlatformIcon className="w-4 h-4 text-blue-600" />
+        <div className="w-8 h-8 rounded-lg bg-pink-50 border border-pink-200 flex items-center justify-center">
+          <PlatformIcon className="w-4 h-4 text-pink-600" />
         </div>
         <span className="text-xs text-gray-500 font-medium">{link.platform}</span>
       </div>
@@ -2194,7 +2197,7 @@ const FeatureItem = ({ feature, index, onUpdate, onRemove }) => {
             <select
               value={feature.icon}
               onChange={(e) => onUpdate(index, { ...feature, icon: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
             >
               <option value="CheckCircle">Check Circle</option>
               <option value="Shield">Shield</option>
@@ -2210,7 +2213,7 @@ const FeatureItem = ({ feature, index, onUpdate, onRemove }) => {
               type="text"
               value={feature.title}
               onChange={(e) => onUpdate(index, { ...feature, title: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="Quick Response"
             />
           </div>
@@ -2220,7 +2223,7 @@ const FeatureItem = ({ feature, index, onUpdate, onRemove }) => {
               type="text"
               value={feature.description}
               onChange={(e) => onUpdate(index, { ...feature, description: e.target.value })}
-              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none bg-white"
+              className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white"
               placeholder="We reply within 24 hours"
             />
           </div>
@@ -2251,7 +2254,6 @@ export default function ContactManagement() {
   const [activeTab, setActiveTab] = useState('hero');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
-  // ✅ State for reset modal
   const [showResetModal, setShowResetModal] = useState(false);
 
   // Fetch contact data
@@ -2375,7 +2377,6 @@ export default function ContactManagement() {
     }
   };
 
-  // ✅ Updated Reset handler - shows modal instead of confirm()
   const handleResetClick = () => {
     setShowResetModal(true);
   };
@@ -2427,7 +2428,7 @@ export default function ContactManagement() {
       label: '',
       value: '',
       link: '',
-      color: 'bg-blue-600',
+      color: 'bg-pink-600',
       displayOrder: currentItems.length,
       isActive: true
     };
@@ -2521,7 +2522,7 @@ export default function ContactManagement() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600 mx-auto" />
           <p className="text-gray-500 mt-2">Loading contact data...</p>
         </div>
       </div>
@@ -2558,7 +2559,6 @@ export default function ContactManagement() {
           itemType={deleteTarget?.type || ''}
         />
 
-        {/* ✅ Reset Confirmation Modal */}
         <ResetConfirmationModal
           isOpen={showResetModal}
           onClose={() => setShowResetModal(false)}
@@ -2566,21 +2566,20 @@ export default function ContactManagement() {
         />
 
         {/* Header */}
-        <div className="bg-white border-b border-blue-500/20 shadow-lg sticky top-0 z-10">
+        <div className="bg-white border-b border-pink-500/20 shadow-lg sticky top-0 z-10">
           <div className="px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-2 sm:gap-4">
-               
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     <div className="flex items-center gap-2">
-                      <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+                      <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" />
                       <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-black truncate">
                         Contact Page Management
                       </h1>
                     </div>
-                    <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-medium rounded-full whitespace-nowrap">
-                      Smart Gadget
+                    <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-pink-500/20 text-pink-600 text-[10px] sm:text-xs font-medium rounded-full whitespace-nowrap">
+                      Beauty Bucket
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-black/70 mt-0.5 sm:mt-1 truncate">
@@ -2589,7 +2588,6 @@ export default function ContactManagement() {
                 </div>
               </div>
               <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3">
-                {/* ✅ Updated Reset button - shows modal */}
                 <button
                   onClick={handleResetClick}
                   className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm bg-orange-500/10 text-orange-600 rounded-lg hover:bg-orange-500/30 transition-colors border border-orange-500/20"
@@ -2599,7 +2597,7 @@ export default function ContactManagement() {
                 </button>
                 <button
                   onClick={fetchContactData}
-                  className="p-1.5 sm:p-2 text-black/70 hover:bg-blue-500/20 rounded-lg transition-colors hover:text-black"
+                  className="p-1.5 sm:p-2 text-black/70 hover:bg-pink-500/20 rounded-lg transition-colors hover:text-black"
                   title="Refresh"
                 >
                   <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -2613,7 +2611,7 @@ export default function ContactManagement() {
         <div className="p-4 sm:p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Tabs */}
-            <div className="flex flex-wrap gap-2 border-b border-blue-500/20 pb-2 bg-white rounded-t-xl shadow-sm border border-blue-500/20 p-4">
+            <div className="flex flex-wrap gap-2 border-b border-pink-500/20 pb-2 bg-white rounded-t-xl shadow-sm border border-pink-500/20 p-4">
               {[
                 { id: 'hero', label: 'Hero Section', icon: ImageIcon },
                 { id: 'quick', label: 'Quick Contact', icon: Phone },
@@ -2628,8 +2626,8 @@ export default function ContactManagement() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-2 ${
                     activeTab === tab.id
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:bg-blue-500/10 hover:text-black'
+                      ? 'bg-pink-600 text-white'
+                      : 'text-gray-600 hover:bg-pink-500/10 hover:text-black'
                   }`}
                 >
                   <tab.icon className="w-4 h-4" />
@@ -2640,9 +2638,9 @@ export default function ContactManagement() {
 
             {/* Hero Section Tab */}
             {activeTab === 'hero' && (
-              <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
                 <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-                  <ImageIcon className="w-5 h-5 text-blue-600" />
+                  <ImageIcon className="w-5 h-5 text-pink-600" />
                   Hero Section Settings
                 </h2>
                 <div className="grid grid-cols-1 gap-4">
@@ -2661,7 +2659,7 @@ export default function ContactManagement() {
                       type="text"
                       value={hero?.badge || ''}
                       onChange={(e) => updateContactData('hero', { ...hero, badge: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Get in Touch"
                     />
                   </div>
@@ -2673,7 +2671,7 @@ export default function ContactManagement() {
                       type="text"
                       value={hero?.title || ''}
                       onChange={(e) => updateContactData('hero', { ...hero, title: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="We'd Love to"
                     />
                   </div>
@@ -2685,7 +2683,7 @@ export default function ContactManagement() {
                       type="text"
                       value={hero?.highlightText || ''}
                       onChange={(e) => updateContactData('hero', { ...hero, highlightText: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Hear From You"
                     />
                   </div>
@@ -2697,7 +2695,7 @@ export default function ContactManagement() {
                       value={hero?.description || ''}
                       onChange={(e) => updateContactData('hero', { ...hero, description: e.target.value })}
                       rows={3}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40 resize-none"
                       placeholder="Have questions about products, orders, or anything else?"
                     />
                   </div>
@@ -2707,11 +2705,11 @@ export default function ContactManagement() {
 
             {/* Quick Contact Tab */}
             {activeTab === 'quick' && (
-              <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-                      <Phone className="w-5 h-5 text-blue-600" />
+                      <Phone className="w-5 h-5 text-pink-600" />
                       Quick Contact <span className="text-xs font-normal text-gray-400">(Max 4)</span>
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">Manage quick contact cards on the contact page</p>
@@ -2720,7 +2718,7 @@ export default function ContactManagement() {
                     <button
                       type="button"
                       onClick={addQuickContact}
-                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+                      className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm font-semibold"
                     >
                       <Plus className="w-4 h-4" />
                       Add Quick Contact
@@ -2754,11 +2752,11 @@ export default function ContactManagement() {
 
             {/* Left Side Tab */}
             {activeTab === 'left' && (
-              <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-                      <Settings className="w-5 h-5 text-blue-600" />
+                      <Settings className="w-5 h-5 text-pink-600" />
                       Left Side Content
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">Manage the left side content on contact page</p>
@@ -2766,7 +2764,7 @@ export default function ContactManagement() {
                   <button
                     type="button"
                     onClick={addFeature}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+                    className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm font-semibold"
                   >
                     <Plus className="w-4 h-4" />
                     Add Feature
@@ -2781,7 +2779,7 @@ export default function ContactManagement() {
                       type="text"
                       value={leftSide?.badge || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, badge: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Why Contact Us"
                     />
                   </div>
@@ -2793,7 +2791,7 @@ export default function ContactManagement() {
                       type="text"
                       value={leftSide?.title || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, title: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="We're Here to"
                     />
                   </div>
@@ -2805,7 +2803,7 @@ export default function ContactManagement() {
                       type="text"
                       value={leftSide?.subtitle || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, subtitle: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Help You"
                     />
                   </div>
@@ -2817,7 +2815,7 @@ export default function ContactManagement() {
                       value={leftSide?.description || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, description: e.target.value })}
                       rows={3}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40 resize-none"
                       placeholder="Whether you have questions about a product..."
                     />
                   </div>
@@ -2829,7 +2827,7 @@ export default function ContactManagement() {
                       type="text"
                       value={leftSide?.quickContactTitle || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, quickContactTitle: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Quick Contact"
                     />
                   </div>
@@ -2841,7 +2839,7 @@ export default function ContactManagement() {
                       type="text"
                       value={leftSide?.socialTitle || ''}
                       onChange={(e) => updateContactData('leftSide', { ...leftSide, socialTitle: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Follow Us"
                     />
                   </div>
@@ -2869,11 +2867,11 @@ export default function ContactManagement() {
 
             {/* Social Links Tab */}
             {activeTab === 'social' && (
-              <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h2 className="text-lg font-semibold text-black flex items-center gap-2">
-                      <Globe className="w-5 h-5 text-blue-600" />
+                      <Globe className="w-5 h-5 text-pink-600" />
                       Social Links
                     </h2>
                     <p className="text-sm text-gray-500 mt-1">Manage social media links - icon preview shows the actual platform icon</p>
@@ -2881,7 +2879,7 @@ export default function ContactManagement() {
                   <button
                     type="button"
                     onClick={addSocialLink}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+                    className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm font-semibold"
                   >
                     <Plus className="w-4 h-4" />
                     Add Social Link
@@ -2911,109 +2909,102 @@ export default function ContactManagement() {
               </div>
             )}
 
-   
-
-{activeTab === 'map' && (
-  <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
-    <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-      <Map className="w-5 h-5 text-blue-600" />
-      Map Settings
-    </h2>
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Map Title <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          value={map?.title || ''}
-          onChange={(e) => updateContactData('map', { ...map, title: e.target.value })}
-          className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
-          placeholder="Find Us"
-        />
-      </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Google Maps Embed URL <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          value={map?.embedCode || ''}
-          onChange={(e) => updateContactData('map', { ...map, embedCode: e.target.value })}
-          rows={4}
-          className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
-          placeholder="https://www.google.com/maps/embed?pb=... or full iframe code"
-        />
-        <p className="text-xs text-gray-400 mt-1">
-          💡 You can paste either the URL or the full iframe code. We'll extract the URL automatically.
-        </p>
-      </div>
-      {/* Preview the map */}
-      {map?.embedCode && (
-        <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
-          <div className="p-2 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
-            <span className="text-xs text-gray-500">Map Preview</span>
-            <span className="text-xs text-green-600 flex items-center gap-1">
-              <CheckCircle className="w-3 h-3" />
-              Valid
-            </span>
-          </div>
-          <div className="p-2 bg-gray-100">
-            {(() => {
-              // Extract URL from iframe if full code is provided
-              let mapSrc = map.embedCode;
-              
-              // If the embedCode contains iframe, extract the src
-              if (map.embedCode && map.embedCode.includes('src="')) {
-                const srcMatch = map.embedCode.match(/src="([^"]+)"/);
-                if (srcMatch && srcMatch[1]) {
-                  mapSrc = srcMatch[1];
-                }
-              }
-              
-              // If it's still the full embed code with src, try another pattern
-              if (mapSrc && mapSrc.includes('iframe') && mapSrc.includes('src=')) {
-                const srcMatch = mapSrc.match(/src=["']([^"']+)["']/);
-                if (srcMatch && srcMatch[1]) {
-                  mapSrc = srcMatch[1];
-                }
-              }
-              
-              // If it's a URL with http/https, use it directly
-              if (mapSrc && (mapSrc.startsWith('http://') || mapSrc.startsWith('https://'))) {
-                return (
-                  <iframe
-                    src={mapSrc}
-                    width="100%"
-                    height="200"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    className="rounded"
-                    title="Map Preview"
-                  />
-                );
-              } else {
-                return (
-                  <div className="p-4 text-center text-red-500">
-                    <AlertTriangle className="w-6 h-6 mx-auto mb-2" />
-                    <p className="text-sm">Invalid map URL format</p>
-                    <p className="text-xs text-gray-400 mt-1">Please paste a valid Google Maps embed URL or iframe code</p>
+            {activeTab === 'map' && (
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
+                <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
+                  <Map className="w-5 h-5 text-pink-600" />
+                  Map Settings
+                </h2>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Map Title <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={map?.title || ''}
+                      onChange={(e) => updateContactData('map', { ...map, title: e.target.value })}
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
+                      placeholder="Find Us"
+                    />
                   </div>
-                );
-              }
-            })()}
-          </div>
-        </div>
-      )}
-    </div>
-  </div>
-)}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Google Maps Embed URL <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      value={map?.embedCode || ''}
+                      onChange={(e) => updateContactData('map', { ...map, embedCode: e.target.value })}
+                      rows={4}
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40 resize-none"
+                      placeholder="https://www.google.com/maps/embed?pb=... or full iframe code"
+                    />
+                    <p className="text-xs text-gray-400 mt-1">
+                      💡 You can paste either the URL or the full iframe code. We'll extract the URL automatically.
+                    </p>
+                  </div>
+                  {map?.embedCode && (
+                    <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
+                      <div className="p-2 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+                        <span className="text-xs text-gray-500">Map Preview</span>
+                        <span className="text-xs text-green-600 flex items-center gap-1">
+                          <CheckCircle className="w-3 h-3" />
+                          Valid
+                        </span>
+                      </div>
+                      <div className="p-2 bg-gray-100">
+                        {(() => {
+                          let mapSrc = map.embedCode;
+                          
+                          if (map.embedCode && map.embedCode.includes('src="')) {
+                            const srcMatch = map.embedCode.match(/src="([^"]+)"/);
+                            if (srcMatch && srcMatch[1]) {
+                              mapSrc = srcMatch[1];
+                            }
+                          }
+                          
+                          if (mapSrc && mapSrc.includes('iframe') && mapSrc.includes('src=')) {
+                            const srcMatch = mapSrc.match(/src=["']([^"']+)["']/);
+                            if (srcMatch && srcMatch[1]) {
+                              mapSrc = srcMatch[1];
+                            }
+                          }
+                          
+                          if (mapSrc && (mapSrc.startsWith('http://') || mapSrc.startsWith('https://'))) {
+                            return (
+                              <iframe
+                                src={mapSrc}
+                                width="100%"
+                                height="200"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                className="rounded"
+                                title="Map Preview"
+                              />
+                            );
+                          } else {
+                            return (
+                              <div className="p-4 text-center text-red-500">
+                                <AlertTriangle className="w-6 h-6 mx-auto mb-2" />
+                                <p className="text-sm">Invalid map URL format</p>
+                                <p className="text-xs text-gray-400 mt-1">Please paste a valid Google Maps embed URL or iframe code</p>
+                              </div>
+                            );
+                          }
+                        })()}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* CTA Tab */}
             {activeTab === 'cta' && (
-              <div className="bg-white rounded-xl shadow-sm border border-blue-500/20 p-4 sm:p-6">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-500/20 p-4 sm:p-6">
                 <h2 className="text-lg font-semibold text-black flex items-center gap-2 mb-4">
-                  <Zap className="w-5 h-5 text-blue-600" />
+                  <Zap className="w-5 h-5 text-pink-600" />
                   Call to Action Settings
                 </h2>
                 <div className="grid grid-cols-1 gap-4">
@@ -3032,7 +3023,7 @@ export default function ContactManagement() {
                       type="text"
                       value={cta?.badge || ''}
                       onChange={(e) => updateContactData('cta', { ...cta, badge: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="Still Have Questions?"
                     />
                   </div>
@@ -3044,7 +3035,7 @@ export default function ContactManagement() {
                       type="text"
                       value={cta?.title || ''}
                       onChange={(e) => updateContactData('cta', { ...cta, title: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                       placeholder="We're Here to Help"
                     />
                   </div>
@@ -3056,7 +3047,7 @@ export default function ContactManagement() {
                       value={cta?.description || ''}
                       onChange={(e) => updateContactData('cta', { ...cta, description: e.target.value })}
                       rows={2}
-                      className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40 resize-none"
+                      className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40 resize-none"
                       placeholder="Our team is ready to assist you with any questions."
                     />
                   </div>
@@ -3069,7 +3060,7 @@ export default function ContactManagement() {
                         type="text"
                         value={cta?.buttonText || ''}
                         onChange={(e) => updateContactData('cta', { ...cta, buttonText: e.target.value })}
-                        className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                        className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                         placeholder="Call Now"
                       />
                     </div>
@@ -3081,7 +3072,7 @@ export default function ContactManagement() {
                         type="text"
                         value={cta?.buttonLink || ''}
                         onChange={(e) => updateContactData('cta', { ...cta, buttonLink: e.target.value })}
-                        className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                        className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                         placeholder="tel:+8801XXXXXXX"
                       />
                     </div>
@@ -3095,7 +3086,7 @@ export default function ContactManagement() {
                         type="text"
                         value={cta?.secondaryButtonText || ''}
                         onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonText: e.target.value })}
-                        className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                        className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                         placeholder="Browse Products"
                       />
                     </div>
@@ -3107,7 +3098,7 @@ export default function ContactManagement() {
                         type="text"
                         value={cta?.secondaryButtonLink || ''}
                         onChange={(e) => updateContactData('cta', { ...cta, secondaryButtonLink: e.target.value })}
-                        className="w-full px-3 py-2 text-sm border border-blue-500/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white hover:border-blue-500/40"
+                        className="w-full px-3 py-2 text-sm border border-pink-500/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-white hover:border-pink-500/40"
                         placeholder="/products"
                       />
                     </div>
@@ -3117,11 +3108,11 @@ export default function ContactManagement() {
             )}
 
             {/* Submit Button */}
-            <div className="flex justify-end pt-4 border-t border-blue-500/20">
+            <div className="flex justify-end pt-4 border-t border-pink-500/20">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 text-sm shadow-md hover:shadow-lg"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-600 to-pink-700 text-white font-medium rounded-lg hover:opacity-90 transition-colors disabled:opacity-50 text-sm shadow-md hover:shadow-lg"
               >
                 {isSubmitting ? (
                   <>
