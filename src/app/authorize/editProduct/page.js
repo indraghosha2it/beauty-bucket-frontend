@@ -113,7 +113,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
     setIsUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'power-bank');
+    formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'beauty-bucket');
 
     try {
       const response = await fetch(
@@ -201,7 +201,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
       <div className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 p-6 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-blue-600" />
+            <Building2 className="w-5 h-5 text-pink-600" />
             Add New Brand
           </h3>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-lg transition-colors">
@@ -236,7 +236,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
                 </div>
               ) : (
                 <div 
-                  className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-blue-600 transition-colors"
+                  className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-pink-600 transition-colors"
                   onClick={() => fileInputRef.current?.click()}
                 >
                   <Upload className="w-5 h-5 text-gray-400" />
@@ -265,7 +265,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
               value={brandName}
               onChange={(e) => setBrandName(e.target.value)}
               placeholder="e.g., Apple, Samsung, Sony"
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition"
               autoFocus
             />
           </div>
@@ -279,7 +279,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
               onChange={(e) => setBrandDescription(e.target.value)}
               placeholder="Brief description of the brand"
               rows={2}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-none"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition resize-none"
             />
           </div>
           
@@ -293,7 +293,7 @@ const AddBrandModal = ({ isOpen, onClose, onBrandAdded }) => {
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || isUploading}
-              className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-[#0891B2] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-2 text-sm font-medium text-white bg-pink-600 rounded-lg hover:bg-[#0891B2] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {isSubmitting || isUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
               Add Brand
@@ -371,7 +371,7 @@ const ColorPicker = ({ colors, onChange }) => {
           <div key={index} className="relative">
             <div className="flex items-center gap-2 w-full">
               <div 
-                className="flex-1 flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-200 p-2 cursor-pointer hover:border-blue-600 transition-colors"
+                className="flex-1 flex items-center gap-2 bg-gray-50 rounded-lg border border-gray-200 p-2 cursor-pointer hover:border-pink-600 transition-colors"
                 onClick={(e) => openColorPicker(index, e)}
               >
                 <div 
@@ -411,7 +411,7 @@ const ColorPicker = ({ colors, onChange }) => {
         <button
           type="button"
           onClick={addColor}
-          className="w-full flex items-center justify-center gap-1 px-3 py-2 mt-2 text-xs font-medium text-blue-600 border border-dashed border-blue-600/40 rounded-lg hover:bg-blue-600/5 transition-colors"
+          className="w-full flex items-center justify-center gap-1 px-3 py-2 mt-2 text-xs font-medium text-pink-600 border border-dashed border-pink-600/40 rounded-lg hover:bg-pink-600/5 transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           Add Color
@@ -469,7 +469,7 @@ const uploadToCloudinary = async (file) => {
   
   const formData = new FormData();
   formData.append('file', compressedFile);
-  formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'power-bank');
+  formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'beauty-bucket');
   
   try {
     const response = await fetch(
@@ -498,7 +498,7 @@ const uploadToCloudinary = async (file) => {
 const uploadVideoToCloudinary = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'power-bank');
+  formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'beauty-bucket');
   
   try {
     const response = await fetch(
@@ -538,7 +538,7 @@ const ImageSlotPickerModal = ({ isOpen, onClose, onUploadFromDevice, onChooseFro
   
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 border border-blue-600/20">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 border border-pink-600/20">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-[#004767]">Add Image to Slot</h3>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-lg transition-colors">
@@ -551,30 +551,30 @@ const ImageSlotPickerModal = ({ isOpen, onClose, onUploadFromDevice, onChooseFro
         <div className="space-y-3">
           <button
             onClick={onUploadFromDevice}
-            className="w-full flex items-center gap-4 px-4 py-4 bg-white border-2 border-blue-600/20 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 transition-all group"
+            className="w-full flex items-center gap-4 px-4 py-4 bg-white border-2 border-pink-600/20 rounded-xl hover:border-pink-600 hover:bg-pink-600/5 transition-all group"
           >
-            <div className="w-12 h-12 rounded-full bg-blue-600/10 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-              <Upload className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-full bg-pink-600/10 flex items-center justify-center group-hover:bg-pink-600/20 transition-colors">
+              <Upload className="w-6 h-6 text-pink-600" />
             </div>
             <div className="flex-1 text-left">
               <p className="font-medium text-[#004767]">Upload from Device</p>
               <p className="text-xs text-gray-400">Select an image from your computer</p>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-blue-600 transition-colors" />
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-pink-600 transition-colors" />
           </button>
           
           <button
             onClick={onChooseFromLibrary}
-            className="w-full flex items-center gap-4 px-4 py-4 bg-white border-2 border-blue-600/20 rounded-xl hover:border-blue-600 hover:bg-blue-600/5 transition-all group"
+            className="w-full flex items-center gap-4 px-4 py-4 bg-white border-2 border-pink-600/20 rounded-xl hover:border-pink-600 hover:bg-pink-600/5 transition-all group"
           >
-            <div className="w-12 h-12 rounded-full bg-blue-600/10 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-              <ImageIcon className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-full bg-pink-600/10 flex items-center justify-center group-hover:bg-pink-600/20 transition-colors">
+              <ImageIcon className="w-6 h-6 text-pink-600" />
             </div>
             <div className="flex-1 text-left">
               <p className="font-medium text-[#004767]">Choose from Media Library</p>
               <p className="text-xs text-gray-400">Select an image from your media library</p>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-blue-600 transition-colors" />
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-pink-600 transition-colors" />
           </button>
         </div>
         
@@ -2114,7 +2114,7 @@ const fetchProduct = async () => {
     return (
       <div className="min-h-screen bg-[#f0f7fa] flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 animate-spin text-pink-600 mx-auto mb-4" />
           <p className="text-gray-600">Loading product details...</p>
         </div>
       </div>
@@ -2128,23 +2128,23 @@ const fetchProduct = async () => {
         <AddBrandModal isOpen={showAddBrandModal} onClose={() => setShowAddBrandModal(false)} onBrandAdded={handleBrandAdded} />
 
         {/* Header */}
-        <div className="bg-white border-b border-blue-600/20 shadow-lg sticky top-0 z-10">
+        <div className="bg-white border-b border-pink-600/20 shadow-lg sticky top-0 z-10">
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <a href="/authorize/all-products" className="p-2 hover:bg-blue-600/20 rounded-lg transition-colors">
+                <a href="/authorize/all-products" className="p-2 hover:bg-pink-600/20 rounded-lg transition-colors">
                   <ArrowLeft className="w-5 h-5 text-black/80 hover:text-black" />
                 </a>
                 <div>
                   <div className="flex items-center gap-2">
-                    <Package className="w-6 h-6 text-blue-600" />
+                    <Package className="w-6 h-6 text-pink-600" />
                     <h1 className="text-xl font-bold text-black">Edit Product</h1>
                   </div>
                   <p className="text-sm text-black/70 mt-1">Update product information</p>
                 </div>
               </div>
               {!hasChanges() && originalProduct && (
-                <span className="text-xs text-blue-600 flex items-center gap-1 bg-blue-600/20 px-3 py-1 rounded-full">
+                <span className="text-xs text-pink-600 flex items-center gap-1 bg-pink-600/20 px-3 py-1 rounded-full">
                   <Clock className="w-3 h-3" />
                   No pending changes
                 </span>
@@ -2160,10 +2160,10 @@ const fetchProduct = async () => {
               {/* Left Column */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Basic Information Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Package className="w-5 h-5 text-blue-600" />
+                      <Package className="w-5 h-5 text-pink-600" />
                       Basic Information
                     </h2>
                   </div>
@@ -2171,7 +2171,7 @@ const fetchProduct = async () => {
                     {/* Product Name */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Product Name <span className="text-red-500">*</span></label>
-                      <input type="text" name="productName" value={formData.productName} onChange={handleChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.productName ? 'border-red-500' : 'border-gray-300'}`} placeholder="e.g., Wireless Headphones, Smart Watch Pro" />
+                      <input type="text" name="productName" value={formData.productName} onChange={handleChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.productName ? 'border-red-500' : 'border-gray-300'}`} placeholder="e.g., Wireless Headphones, Smart Watch Pro" />
                       {errors.productName && <p className="text-xs text-red-600 mt-1">{errors.productName}</p>}
                     </div>
 
@@ -2186,7 +2186,7 @@ const fetchProduct = async () => {
                           name="slug" 
                           value={formData.slug || ''} 
                           onChange={handleSlugChange}
-                          className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition font-mono ${
+                          className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition font-mono ${
                             errors.slug ? 'border-red-500' : 
                             isSlugManuallyEdited && isSlugAvailable === true ? 'border-green-500' :
                             isSlugManuallyEdited && isSlugAvailable === false ? 'border-red-500' : 'border-gray-300'
@@ -2224,7 +2224,7 @@ const fetchProduct = async () => {
                         </p>
                       )}
                       {formData.slug && !errors.slug && (
-                        <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
+                        <p className="text-xs text-pink-600 mt-1 flex items-center gap-1">
                           <LinkIcon className="w-3 h-3" />
                           <span>Product URL will be: /product/{formData.slug}</span>
                         </p>
@@ -2243,7 +2243,7 @@ const fetchProduct = async () => {
                             setIsSlugAvailable(null);
                             toast.info('Slug reset to auto-generated value');
                           }}
-                          className="text-xs text-blue-600 hover:text-[#0891B2] mt-1 flex items-center gap-1 transition-colors"
+                          className="text-xs text-pink-600 hover:text-[#0891B2] mt-1 flex items-center gap-1 transition-colors"
                         >
                           <RefreshCw className="w-3 h-3" />
                           Reset to auto-generated
@@ -2280,7 +2280,7 @@ const fetchProduct = async () => {
                               setFormData(prev => ({ ...prev, skuCode: e.target.value }));
                               if (errors.skuCode) setErrors(prev => ({ ...prev, skuCode: null }));
                             }}
-                            className={`w-full pl-10 pr-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.skuCode || isSkuUnique === false ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`w-full pl-10 pr-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.skuCode || isSkuUnique === false ? 'border-red-500' : 'border-gray-300'}`}
                             placeholder="Enter SKU code"
                           />
                         </div>
@@ -2294,7 +2294,7 @@ const fetchProduct = async () => {
                         <p className="text-xs text-green-600 mt-1">✓ SKU is available</p>
                       )}
                       {isSkuUnique === true && formData.skuCode === originalProduct?.skuCode && (
-                        <p className="text-xs text-blue-600 mt-1">✓ Current SKU (no change)</p>
+                        <p className="text-xs text-pink-600 mt-1">✓ Current SKU (no change)</p>
                       )}
                       <p className="text-xs text-gray-500 mt-1">Must be unique across all products. Format: letters, numbers, hyphens (4-20 chars)</p>
                     </div>
@@ -2338,10 +2338,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Categories Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Layers className="w-5 h-5 text-blue-600" />
+                      <Layers className="w-5 h-5 text-pink-600" />
                       Categories & Classification
                     </h2>
                   </div>
@@ -2349,7 +2349,7 @@ const fetchProduct = async () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Category <span className="text-red-500">*</span></label>
-                        <select name="category" value={formData.category} onChange={handleChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.category ? 'border-red-500' : 'border-gray-300'}`}>
+                        <select name="category" value={formData.category} onChange={handleChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.category ? 'border-red-500' : 'border-gray-300'}`}>
                           <option value="">Select Category</option>
                           {categories.map(cat => (<option key={cat._id} value={cat._id}>{cat.name}</option>))}
                         </select>
@@ -2358,7 +2358,7 @@ const fetchProduct = async () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Subcategory <span className="text-gray-400 text-xs">(Optional)</span></label>
-                        <select name="subcategory" value={formData.subcategory} onChange={handleChange} disabled={!formData.category || subcategories.length === 0} className="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition disabled:bg-gray-100 disabled:cursor-not-allowed border-gray-300">
+                        <select name="subcategory" value={formData.subcategory} onChange={handleChange} disabled={!formData.category || subcategories.length === 0} className="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition disabled:bg-gray-100 disabled:cursor-not-allowed border-gray-300">
                           <option value="">Select Subcategory</option>
                           {subcategories.map(sub => (<option key={sub._id} value={sub._id}>{sub.name}</option>))}
                         </select>
@@ -2367,7 +2367,7 @@ const fetchProduct = async () => {
                       {childSubcategories.length > 0 && (
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Child Subcategory <span className="text-gray-400 text-xs">(Optional)</span></label>
-                          <select name="childSubcategory" value={formData.childSubcategory} onChange={handleChange} className="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition border-gray-300">
+                          <select name="childSubcategory" value={formData.childSubcategory} onChange={handleChange} className="w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition border-gray-300">
                             <option value="">Select Child Subcategory</option>
                             {childSubcategories.map(child => (<option key={child._id} value={child._id}>{child.name}</option>))}
                           </select>
@@ -2377,11 +2377,11 @@ const fetchProduct = async () => {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Brand <span className="text-gray-400 text-xs">(Optional)</span></label>
                         <div className="flex gap-2">
-                          <select name="brand" value={formData.brand} onChange={handleChange} className={`flex-1 px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.brand ? 'border-red-500' : 'border-gray-300'}`}>
+                          <select name="brand" value={formData.brand} onChange={handleChange} className={`flex-1 px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.brand ? 'border-red-500' : 'border-gray-300'}`}>
                             <option value="">Select Brand</option>
                             {brands.map(brand => (<option key={brand._id} value={brand.name}>{brand.name}</option>))}
                           </select>
-                          <button type="button" onClick={() => setShowAddBrandModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 whitespace-nowrap font-semibold">
+                          <button type="button" onClick={() => setShowAddBrandModal(true)} className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors flex items-center gap-2 whitespace-nowrap font-semibold">
                             <Plus className="w-4 h-4" /> Add Brand
                           </button>
                         </div>
@@ -2392,10 +2392,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Pricing & Inventory Card - UPDATED with Packaging Cost, Delivery Cost, and Auto-calculated Cost Per Item */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <DollarSign className="w-5 h-5 text-blue-600" />
+                      <DollarSign className="w-5 h-5 text-pink-600" />
                       Pricing & Inventory
                     </h2>
                   </div>
@@ -2403,18 +2403,18 @@ const fetchProduct = async () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Stock Quantity <span className="text-red-500">*</span></label>
-                        <input type="number" name="stockQuantity" value={formData.stockQuantity} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.stockQuantity ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
+                        <input type="number" name="stockQuantity" value={formData.stockQuantity} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.stockQuantity ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Stock Alert Quantity</label>
-                        <input type="number" name="stockAlertQuantity" value={formData.stockAlertQuantity} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" placeholder="Notify when stock reaches this level" />
+                        <input type="number" name="stockAlertQuantity" value={formData.stockAlertQuantity} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" placeholder="Notify when stock reaches this level" />
                         <p className="text-xs text-gray-500 mt-1">You'll be notified when stock reaches this level</p>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Regular Price (৳) <span className="text-red-500">*</span></label>
-                        <input type="number" name="regularPrice" value={formData.regularPrice} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.regularPrice ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
+                        <input type="number" name="regularPrice" value={formData.regularPrice} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.regularPrice ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
                       </div>
 
                       {/* COST PER ITEM - Auto-calculated, Read Only */}
@@ -2427,8 +2427,8 @@ const fetchProduct = async () => {
                             type="text" 
                             name="costPerItem" 
                             value={typeof formData.costPerItem === 'string' ? formData.costPerItem : (formData.costPerItem || '')} 
-                            className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-gray-100 border-gray-300 cursor-not-allowed ${
-                              typeof formData.costPerItem === 'string' && formData.costPerItem.includes('?') ? 'text-blue-600 font-medium' : 'text-gray-700'
+                            className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition bg-gray-100 border-gray-300 cursor-not-allowed ${
+                              typeof formData.costPerItem === 'string' && formData.costPerItem.includes('?') ? 'text-pink-600 font-medium' : 'text-gray-700'
                             }`} 
                             placeholder="Enter values above to calculate" 
                             readOnly 
@@ -2438,7 +2438,7 @@ const fetchProduct = async () => {
                             Auto
                           </div>
                         </div>
-                        <p className="text-xs text-blue-600 mt-1 flex items-center gap-1">
+                        <p className="text-xs text-pink-600 mt-1 flex items-center gap-1">
                           <Info className="w-3 h-3" />
                           {typeof formData.costPerItem === 'string' && formData.costPerItem.includes('?') 
                             ? 'Fill in all three fields above to see the calculated cost' 
@@ -2448,7 +2448,7 @@ const fetchProduct = async () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Discount Price (৳) <span className="text-gray-400 text-xs">(Optional)</span></label>
-                        <input type="number" name="discountPrice" value={formData.discountPrice} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.discountPrice ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
+                        <input type="number" name="discountPrice" value={formData.discountPrice} onChange={handleNumberChange} onWheel={(e) => e.target.blur()} min="0" step="1" className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.discountPrice ? 'border-red-500' : 'border-gray-300'}`} placeholder="0" />
                         {formData.discountPrice > 0 && formData.regularPrice && (
                           <p className="text-xs text-green-600 mt-1">Save: ৳{(formData.regularPrice - formData.discountPrice).toFixed(2)} ({Math.round(((formData.regularPrice - formData.discountPrice) / formData.regularPrice) * 100)}% off)</p>
                         )}
@@ -2468,7 +2468,7 @@ const fetchProduct = async () => {
                             onWheel={(e) => e.target.blur()} 
                             min="0" 
                             step="1" 
-                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" 
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" 
                             placeholder="0" 
                           />
                           <p className="text-xs text-amber-600 mt-1">
@@ -2490,7 +2490,7 @@ const fetchProduct = async () => {
                           onWheel={(e) => e.target.blur()} 
                           min="0" 
                           step="1" 
-                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" 
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" 
                           placeholder="0" 
                         />
                         <p className="text-xs text-gray-500 mt-1">Cost of packaging materials per unit</p>
@@ -2509,7 +2509,7 @@ const fetchProduct = async () => {
                           onWheel={(e) => e.target.blur()} 
                           min="0" 
                           step="1" 
-                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" 
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" 
                           placeholder="0" 
                         />
                         <p className="text-xs text-gray-500 mt-1">Cost of delivery per unit</p>
@@ -2517,7 +2517,7 @@ const fetchProduct = async () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Unit <span className="text-red-500">*</span></label>
-                        <select name="unit" value={formData.unit} onChange={handleUnitChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.unit ? 'border-red-500' : 'border-gray-300'}`}>
+                        <select name="unit" value={formData.unit} onChange={handleUnitChange} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.unit ? 'border-red-500' : 'border-gray-300'}`}>
                           {UNIT_OPTIONS.map(unit => (<option key={unit.value} value={unit.value}>{unit.label}</option>))}
                         </select>
                         {errors.unit && <p className="text-xs text-red-600 mt-1">{errors.unit}</p>}
@@ -2527,7 +2527,7 @@ const fetchProduct = async () => {
                     {showCustomUnit && (
                       <div className="mt-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Custom Unit <span className="text-red-500">*</span></label>
-                        <input type="text" name="customUnit" value={formData.customUnit} onChange={(e) => setFormData(prev => ({ ...prev, customUnit: e.target.value }))} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition ${errors.customUnit ? 'border-red-500' : 'border-gray-300'}`} placeholder="e.g., pair, set, dozen" />
+                        <input type="text" name="customUnit" value={formData.customUnit} onChange={(e) => setFormData(prev => ({ ...prev, customUnit: e.target.value }))} className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition ${errors.customUnit ? 'border-red-500' : 'border-gray-300'}`} placeholder="e.g., pair, set, dozen" />
                         {errors.customUnit && <p className="text-xs text-red-600 mt-1">{errors.customUnit}</p>}
                       </div>
                     )}
@@ -2535,10 +2535,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Additional Information */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowAdditionalInfo(!showAdditionalInfo)}>
-                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Info className="w-5 h-5 text-blue-600" /> Additional Information</h2>
+                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Info className="w-5 h-5 text-pink-600" /> Additional Information</h2>
                       <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showAdditionalInfo ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
@@ -2547,22 +2547,22 @@ const fetchProduct = async () => {
                       <div className="space-y-4">
                         {formData.additionalInfo.map((info, index) => (
                           <div key={index} className="flex gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                            <input type="text" placeholder="Field name" value={info.fieldName} onChange={(e) => updateAdditionalInfo(index, 'fieldName', e.target.value)} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
-                            <input type="text" placeholder="Field value" value={info.fieldValue} onChange={(e) => updateAdditionalInfo(index, 'fieldValue', e.target.value)} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" />
+                            <input type="text" placeholder="Field name" value={info.fieldName} onChange={(e) => updateAdditionalInfo(index, 'fieldName', e.target.value)} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none" />
+                            <input type="text" placeholder="Field value" value={info.fieldValue} onChange={(e) => updateAdditionalInfo(index, 'fieldValue', e.target.value)} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none" />
                             <button type="button" onClick={() => removeAdditionalInfo(index)} className="p-2 text-gray-400 hover:text-red-500"><X className="w-5 h-5" /></button>
                           </div>
                         ))}
-                        <button type="button" onClick={addAdditionalInfo} className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 border-2 border-dashed border-blue-600/40 rounded-lg hover:bg-blue-600/5"><Plus className="w-4 h-4" /> Add Additional Information</button>
+                        <button type="button" onClick={addAdditionalInfo} className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-pink-600 border-2 border-dashed border-pink-600/40 rounded-lg hover:bg-pink-600/5"><Plus className="w-4 h-4" /> Add Additional Information</button>
                       </div>
                     </div>
                   )}
                 </div>
 
                 {/* Delivery Details */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}>
-                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Package className="w-5 h-5 text-blue-600" /> Delivery Details <span className="text-gray-400 text-xs">(Optional)</span></h2>
+                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Package className="w-5 h-5 text-pink-600" /> Delivery Details <span className="text-gray-400 text-xs">(Optional)</span></h2>
                       <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showDeliveryInfo ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
@@ -2586,11 +2586,11 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* FAQ SECTION */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowFaqs(!showFaqs)}>
                       <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                        <HelpCircle className="w-5 h-5 text-blue-600" />
+                        <HelpCircle className="w-5 h-5 text-pink-600" />
                         Frequently Asked Questions <span className="text-gray-400 text-xs">(Optional)</span>
                       </h2>
                       <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showFaqs ? 'rotate-180' : ''}`} />
@@ -2622,7 +2622,7 @@ const fetchProduct = async () => {
                                   value={faq.question}
                                   onChange={(e) => updateFaq(index, 'question', e.target.value)}
                                   placeholder="e.g., What is the warranty period?"
-                                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition"
                                 />
                               </div>
                               
@@ -2635,7 +2635,7 @@ const fetchProduct = async () => {
                                   onChange={(e) => updateFaq(index, 'answer', e.target.value)}
                                   rows="3"
                                   placeholder="e.g., This product comes with a 2-year warranty covering manufacturing defects..."
-                                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-none"
+                                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition resize-none"
                                 />
                               </div>
                             </div>
@@ -2645,7 +2645,7 @@ const fetchProduct = async () => {
                         <button
                           type="button"
                           onClick={addFaq}
-                          className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 border-2 border-dashed border-blue-600/40 rounded-lg hover:bg-blue-600/5 transition-colors"
+                          className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-pink-600 border-2 border-dashed border-pink-600/40 rounded-lg hover:bg-pink-600/5 transition-colors"
                         >
                           <Plus className="w-4 h-4" />
                           Add FAQ
@@ -2662,10 +2662,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* SEO & Meta Settings */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowMeta(!showMeta)}>
-                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Search className="w-5 h-5 text-blue-600" /> SEO & Meta Settings</h2>
+                      <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Search className="w-5 h-5 text-pink-600" /> SEO & Meta Settings</h2>
                       <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showMeta ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
@@ -2674,26 +2674,26 @@ const fetchProduct = async () => {
                       <div className="space-y-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title <span className="text-xs text-gray-400 ml-2">(70 characters max)</span></label>
-                          <input type="text" value={formData.metaSettings.metaTitle} onChange={(e) => handleMetaChange('metaTitle', e.target.value)} maxLength="70" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" placeholder="e.g., Buy Wireless Headphones Online | Smart Gadget" />
+                          <input type="text" value={formData.metaSettings.metaTitle} onChange={(e) => handleMetaChange('metaTitle', e.target.value)} maxLength="70" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" placeholder="e.g., Buy Wireless Headphones Online | Smart Gadget" />
                           <div className="flex justify-end mt-1"><span className={`text-xs ${formData.metaSettings.metaTitle?.length > 70 ? 'text-red-500' : 'text-gray-400'}`}>{formData.metaSettings.metaTitle?.length || 0}/70</span></div>
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description <span className="text-xs text-gray-400 ml-2">(160 characters max)</span></label>
-                          <textarea value={formData.metaSettings.metaDescription} onChange={(e) => handleMetaChange('metaDescription', e.target.value)} maxLength="160" rows="3" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition resize-none" placeholder="Write a compelling description that appears in search engine results..." />
+                          <textarea value={formData.metaSettings.metaDescription} onChange={(e) => handleMetaChange('metaDescription', e.target.value)} maxLength="160" rows="3" className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition resize-none" placeholder="Write a compelling description that appears in search engine results..." />
                           <div className="flex justify-end mt-1"><span className={`text-xs ${formData.metaSettings.metaDescription?.length > 160 ? 'text-red-500' : 'text-gray-400'}`}>{formData.metaSettings.metaDescription?.length || 0}/160</span></div>
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Keywords <span className="text-xs text-gray-400 ml-2">(Comma separated)</span></label>
                           <div className="flex gap-2">
-                            <input type="text" value={keywordInput} onChange={(e) => setKeywordInput(e.target.value)} onKeyPress={(e) => { if (e.key === 'Enter') { e.preventDefault(); addKeyword(); } }} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition" placeholder="e.g., wireless headphones, bluetooth earphones" />
-                            <button type="button" onClick={addKeyword} className="px-4 py-2 text-white rounded-lg bg-blue-600 hover:bg-[#0891B2]"><Plus className="w-4 h-4" /> Add</button>
+                            <input type="text" value={keywordInput} onChange={(e) => setKeywordInput(e.target.value)} onKeyPress={(e) => { if (e.key === 'Enter') { e.preventDefault(); addKeyword(); } }} className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none transition" placeholder="e.g., wireless headphones, bluetooth earphones" />
+                            <button type="button" onClick={addKeyword} className="px-4 py-2 text-white rounded-lg bg-pink-600 hover:bg-[#0891B2]"><Plus className="w-4 h-4" /> Add</button>
                           </div>
                           {formData.metaSettings.metaKeywords?.length > 0 && (
                             <div className="mt-3 flex flex-wrap gap-2">
                               {formData.metaSettings.metaKeywords.map((keyword, index) => (
-                                <div key={index} className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-full bg-blue-600/10 text-[#004767]">
+                                <div key={index} className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-full bg-pink-600/10 text-[#004767]">
                                   <span>{keyword}</span>
                                   <button type="button" onClick={() => removeKeyword(index)} className="hover:text-red-500"><X className="w-3 h-3" /></button>
                                 </div>
@@ -2710,10 +2710,10 @@ const fetchProduct = async () => {
               {/* Right Column */}
               <div className="space-y-6">
                 {/* Product Images Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <ImageIcon className="w-5 h-5 text-blue-600" /> 
+                      <ImageIcon className="w-5 h-5 text-pink-600" /> 
                       Product Images <span className="text-red-500">*</span>
                     </h2>
                     <p className="text-xs text-gray-500 mt-1">Upload up to 6 images (JPG, PNG, WebP, max 5MB each) • Drag to reorder</p>
@@ -2725,7 +2725,7 @@ const fetchProduct = async () => {
                       <button 
                         type="button" 
                         onClick={() => fileInputRefs.current['multiple']?.click()} 
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-blue-600/40 bg-blue-600/5 text-blue-600 hover:bg-blue-600/10 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-pink-600/40 bg-pink-600/5 text-pink-600 hover:bg-pink-600/10 transition-colors"
                       >
                         <Upload className="w-5 h-5" /> Upload from Device
                       </button>
@@ -2733,7 +2733,7 @@ const fetchProduct = async () => {
                       <button 
                         type="button" 
                         onClick={() => setShowMediaPicker(true)} 
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-blue-600/40 bg-blue-600/5 text-blue-600 hover:bg-blue-600/10 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-pink-600/40 bg-pink-600/5 text-pink-600 hover:bg-pink-600/10 transition-colors"
                       >
                         <ImageIcon className="w-5 h-5" /> Choose from Media Library
                       </button>
@@ -2743,9 +2743,9 @@ const fetchProduct = async () => {
 
                     <div className="grid grid-cols-2 gap-4">
                       {productImages.map((img, index) => (
-                        <div key={index} draggable={img.preview !== null && !img.uploading} onDragStart={() => handleDragStart(index)} onDragOver={(e) => handleDragOverWithFeedback(e, index)} onDragLeave={handleDragLeave} onDrop={() => handleDropWithFeedback(index)} onDragEnd={handleDragEnd} className={`transition-all duration-200 ${draggedIndex === index ? 'opacity-50 scale-95' : ''} ${dragOverIndex === index && draggedIndex !== index && draggedIndex !== null ? 'ring-2 ring-blue-600 ring-offset-2 rounded-lg' : ''}`}>
+                        <div key={index} draggable={img.preview !== null && !img.uploading} onDragStart={() => handleDragStart(index)} onDragOver={(e) => handleDragOverWithFeedback(e, index)} onDragLeave={handleDragLeave} onDrop={() => handleDropWithFeedback(index)} onDragEnd={handleDragEnd} className={`transition-all duration-200 ${draggedIndex === index ? 'opacity-50 scale-95' : ''} ${dragOverIndex === index && draggedIndex !== index && draggedIndex !== null ? 'ring-2 ring-pink-600 ring-offset-2 rounded-lg' : ''}`}>
                           {img.preview ? (
-                            <div className="relative rounded-lg overflow-hidden border-2 border-gray-200 h-40 hover:border-blue-600 transition-colors cursor-grab active:cursor-grabbing bg-gray-100">
+                            <div className="relative rounded-lg overflow-hidden border-2 border-gray-200 h-40 hover:border-pink-600 transition-colors cursor-grab active:cursor-grabbing bg-gray-100">
                               <div className="absolute top-1 left-1 bg-black/50 rounded px-1.5 py-0.5 z-10"><GripVertical className="w-3 h-3 text-white" /></div>
                               <img src={img.preview} alt={`Product ${index + 1}`} className="w-full h-full object-contain bg-gray-100" />
                               {img.uploading && <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10"><Loader2 className="w-6 h-6 text-white animate-spin" /></div>}
@@ -2753,7 +2753,7 @@ const fetchProduct = async () => {
                               {index === 0 && img.url && !img.uploading && <span className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-green-500 text-white text-[10px] rounded z-10">Primary</span>}
                             </div>
                           ) : (
-                            <div className={`border-2 border-dashed rounded-lg p-4 text-center h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${img.error ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-gray-50 hover:border-blue-600 hover:bg-blue-600/5'}`} onClick={() => handleSlotClick(index)}>
+                            <div className={`border-2 border-dashed rounded-lg p-4 text-center h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${img.error ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-gray-50 hover:border-pink-600 hover:bg-pink-600/5'}`} onClick={() => handleSlotClick(index)}>
                               <input type="file" ref={el => fileInputRefs.current[index] = el} className="hidden" accept="image/jpeg,image/jpg,image/png,image/webp" onChange={(e) => handleImageChange(e, index)} />
                               <ImageIcon className={`w-8 h-8 mx-auto mb-2 ${img.error ? 'text-red-400' : 'text-gray-400'}`} />
                               <p className={`text-xs ${img.error ? 'text-red-600' : 'text-gray-600'}`}>Slot {index + 1}</p>
@@ -2770,10 +2770,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Video Upload Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Video className="w-5 h-5 text-blue-600" />
+                      <Video className="w-5 h-5 text-pink-600" />
                       Product Video <span className="text-gray-400 text-xs">(Optional)</span>
                     </h2>
                     <p className="text-xs text-gray-500 mt-1">Upload a video or add a YouTube link</p>
@@ -2785,7 +2785,7 @@ const fetchProduct = async () => {
                         onClick={() => setVideoType('upload')}
                         className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
                           videoType === 'upload'
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-pink-600 text-white'
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
@@ -2797,7 +2797,7 @@ const fetchProduct = async () => {
                         onClick={() => setVideoType('youtube')}
                         className={`flex-1 py-2 text-sm font-medium rounded-lg transition-colors ${
                           videoType === 'youtube'
-                            ? 'bg-blue-600 text-[#004767]'
+                            ? 'bg-pink-600 text-[#004767]'
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
@@ -2818,7 +2818,7 @@ const fetchProduct = async () => {
                                 videoInputRef.current.click();
                               }
                             }}
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-blue-600/40 bg-blue-600/5 text-blue-600 hover:bg-blue-600/10 transition-colors"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-pink-600/40 bg-pink-600/5 text-pink-600 hover:bg-pink-600/10 transition-colors"
                           >
                             <Upload className="w-5 h-5" />
                             Upload from Device
@@ -2829,7 +2829,7 @@ const fetchProduct = async () => {
                             onClick={() => {
                               setShowVideoMediaPicker(true);
                             }}
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-blue-600/40 bg-blue-600/5 text-blue-600 hover:bg-blue-600/10 transition-colors"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-lg border-2 border-dashed border-pink-600/40 bg-pink-600/5 text-pink-600 hover:bg-pink-600/10 transition-colors"
                           >
                             <Video className="w-5 h-5" />
                             Choose from Media Library
@@ -2860,7 +2860,7 @@ const fetchProduct = async () => {
                             value={youtubeUrl}
                             onChange={(e) => handleYoutubeUrlChange(e.target.value)}
                             placeholder="https://www.youtube.com/watch?v=..."
-                            className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                            className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none"
                           />
                         </div>
                         <p className="text-xs text-gray-500">
@@ -2876,9 +2876,9 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Colors */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
-                    <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Palette className="w-5 h-5 text-blue-600" /> Colors <span className="text-gray-400 text-xs">(Optional)</span></h2>
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
+                    <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Palette className="w-5 h-5 text-pink-600" /> Colors <span className="text-gray-400 text-xs">(Optional)</span></h2>
                   </div>
                   <div className="p-5">
                     <ColorPicker colors={formData.colors} onChange={(colors) => setFormData(prev => ({ ...prev, colors }))} />
@@ -2886,10 +2886,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Featured Product */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Star className="w-5 h-5 text-blue-600" />
+                      <Star className="w-5 h-5 text-pink-600" />
                       Product Promotion
                     </h2>
                   </div>
@@ -2899,7 +2899,7 @@ const fetchProduct = async () => {
                         type="checkbox" 
                         checked={formData.isFeatured} 
                         onChange={(e) => setFormData(prev => ({ ...prev, isFeatured: e.target.checked }))} 
-                        className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-600" 
+                        className="w-5 h-5 rounded border-gray-300 text-pink-600 focus:ring-pink-600" 
                       />
                       <div>
                         <span className="text-sm font-medium text-gray-700">Mark as Featured Product</span>
@@ -2910,10 +2910,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Product Tag Selection */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Tag className="w-5 h-5 text-blue-600" />
+                      <Tag className="w-5 h-5 text-pink-600" />
                       Product Tag <span className="text-red-500">*</span>
                     </h2>
                     <p className="text-xs text-gray-500 mt-1">Select exactly one tag for your product</p>
@@ -2923,7 +2923,7 @@ const fetchProduct = async () => {
                     
                     {isLoadingTags ? (
                       <div className="flex justify-center py-4">
-                        <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
+                        <Loader2 className="w-6 h-6 animate-spin text-pink-600" />
                       </div>
                     ) : productTags.length === 0 ? (
                       <div className="text-center py-4 bg-gray-50 rounded-lg border border-gray-200">
@@ -2931,7 +2931,7 @@ const fetchProduct = async () => {
                         <button
                           type="button"
                           onClick={() => router.push('/authorize/tags')}
-                          className="mt-2 text-sm text-blue-600 hover:text-[#0891B2] font-medium"
+                          className="mt-2 text-sm text-pink-600 hover:text-[#0891B2] font-medium"
                         >
                           Create Tags →
                         </button>
@@ -2947,7 +2947,7 @@ const fetchProduct = async () => {
                               onClick={() => handleTagSelect(tag._id)}
                               className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-full transition-all border ${
                                 isSelected
-                                  ? 'bg-blue-600 text-white border-blue-600 ring-2 ring-blue-600 ring-offset-2 shadow-md'
+                                  ? 'bg-pink-600 text-white border-pink-600 ring-2 ring-pink-600 ring-offset-2 shadow-md'
                                   : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-300'
                               }`}
                             >
@@ -2976,7 +2976,7 @@ const fetchProduct = async () => {
                           {formData.tags.map(tagId => {
                             const tag = productTags.find(t => t._id === tagId);
                             return tag ? (
-                              <span key={tagId} className="inline-flex items-center gap-1 px-3 py-1.5 text-sm rounded-full bg-blue-600 text-white shadow-sm">
+                              <span key={tagId} className="inline-flex items-center gap-1 px-3 py-1.5 text-sm rounded-full bg-pink-600 text-white shadow-sm">
                                 {tag.image && tag.image.url && (
                                   <img 
                                     src={tag.image.url} 
@@ -3008,10 +3008,10 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Rating Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
                     <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-                      <Star className="w-5 h-5 text-blue-600" />
+                      <Star className="w-5 h-5 text-pink-600" />
                       Product Rating <span className="text-gray-400 text-xs">(Optional)</span>
                     </h2>
                   </div>
@@ -3053,13 +3053,13 @@ const fetchProduct = async () => {
                 </div>
 
                 {/* Status Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-blue-600/20">
-                  <div className="p-5 border-b border-blue-600/20">
-                    <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Box className="w-5 h-5 text-blue-600" /> Product Status</h2>
+                <div className="bg-white rounded-xl shadow-sm border border-pink-600/20">
+                  <div className="p-5 border-b border-pink-600/20">
+                    <h2 className="text-lg font-semibold text-[#004767] flex items-center gap-2"><Box className="w-5 h-5 text-pink-600" /> Product Status</h2>
                   </div>
                   <div className="p-5">
                     <label className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" checked={true} disabled className="w-5 h-5 rounded border-gray-300 text-blue-600" />
+                      <input type="checkbox" checked={true} disabled className="w-5 h-5 rounded border-gray-300 text-pink-600" />
                       <div><span className="text-sm font-medium text-gray-700">Active Product</span><p className="text-xs text-gray-500">Product will be visible to customers</p></div>
                     </label>
                   </div>
@@ -3072,7 +3072,7 @@ const fetchProduct = async () => {
               <a href="/authorize/all-products">
                 <button type="button" className="px-6 py-2.5 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">Cancel</button>
               </a>
-              <button type="submit" disabled={isSubmitting || !hasChanges()} className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-[#004767] text-white font-medium rounded-lg hover:opacity-90 transition-colors disabled:opacity-50 shadow-md hover:shadow-lg">
+              <button type="submit" disabled={isSubmitting || !hasChanges()} className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-pink-600 to-pink-700 text-white font-medium rounded-lg hover:opacity-90 transition-colors disabled:opacity-50 shadow-md hover:shadow-lg">
                 {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 {isSubmitting ? 'Updating...' : 'Update Product'}
               </button>

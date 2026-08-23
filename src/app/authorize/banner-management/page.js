@@ -778,6 +778,7 @@ import {
 import { toast } from 'sonner';
 import ProtectedRoute from '@/app/components/ProtectedRoute';
 
+
 // ============================================================
 // API SERVICE FUNCTIONS
 // ============================================================
@@ -1042,6 +1043,13 @@ const BannerItem = ({ banner, index, onUpdate, onRemove, onMove, isFirst, isLast
           >
             {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
+           <NextLink 
+    href={`/authorize/edit-banner?id=${banner._id}`}
+    className="p-1 rounded transition-colors text-blue-600 hover:bg-blue-100"
+    title="Edit Banner"
+  >
+    <Pencil className="w-4 h-4" />
+  </NextLink>
           
           {/* ✅ FIXED: Pass banner._id and banner.title */}
           <button

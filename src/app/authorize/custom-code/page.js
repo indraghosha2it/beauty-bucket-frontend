@@ -1,3 +1,4 @@
+
 // 'use client';
 
 // import React, { useEffect, useState } from 'react';
@@ -170,26 +171,16 @@
 //     <div className="min-h-screen bg-gray-50 py-8">
 //       <div className="container mx-auto max-w-4xl px-4">
 //         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-//           {/* Header */}
-//           <div className="p-6 bg-black to-[#004767] text-white">
-//             <div className="flex items-center justify-between">
-//               <div>
-//                 <h1 className="text-2xl font-bold flex items-center gap-3">
-//                   <FaCode className="w-7 h-7" />
-//                   Custom Code Snippets
-//                 </h1>
-//                 <p className="text-white/80 text-sm mt-1">
-//                   Inject custom HTML, CSS, and JavaScript into your site
-//                 </p>
-//               </div>
-//               <button
-//                 onClick={handleSave}
-//                 disabled={saving}
-//                 className="px-4 py-2 bg-white text-[#004767] rounded-lg hover:shadow-lg transition-all flex items-center gap-2 font-medium disabled:opacity-50"
-//               >
-//                 {saving ? <FaSpinner className="w-4 h-4 animate-spin" /> : <FaSave className="w-4 h-4" />}
-//                 {saving ? 'Saving...' : saved ? 'Saved ✓' : 'Save Changes'}
-//               </button>
+//           {/* Header - Removed Save Button */}
+//           <div className="p-6 bg-black text-white">
+//             <div>
+//               <h1 className="text-2xl font-bold flex items-center gap-3">
+//                 <FaCode className="w-7 h-7" />
+//                 Custom Code Snippets
+//               </h1>
+//               <p className="text-white/80 text-sm mt-1">
+//                 Inject custom HTML, CSS, and JavaScript into your site
+//               </p>
 //             </div>
 //           </div>
 
@@ -246,22 +237,17 @@
 //               </div>
 //             </div>
 
-//             {/* Info Box */}
-//             {/* <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-//               <div className="flex items-start gap-3">
-//                 <FaInfoCircle className="text-blue-500 w-5 h-5 mt-0.5 flex-shrink-0" />
-//                 <div>
-//                   <h4 className="text-sm font-semibold text-blue-700">How to use</h4>
-//                   <ul className="text-xs text-blue-600 mt-1 space-y-1">
-//                     <li>• <strong>Header Code:</strong> Paste meta tags, verification codes, and tracking scripts</li>
-//                     <li>• <strong>Body Code:</strong> Paste noscript fallbacks and immediate-load scripts</li>
-//                     <li>• <strong>Footer Code:</strong> Paste async scripts, chat widgets, and performance-critical code</li>
-//                     <li>• Use the <strong>Active toggle</strong> to quickly enable/disable all custom code</li>
-//                     <li>• Changes take effect immediately after saving</li>
-//                   </ul>
-//                 </div>
-//               </div>
-//             </div> */}
+//             {/* Save Button - Now at the bottom */}
+//             <div className="flex items-center justify-end pt-4 border-t border-gray-200">
+//               <button
+//                 onClick={handleSave}
+//                 disabled={saving}
+//                 className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg font-medium disabled:opacity-50"
+//               >
+//                 {saving ? <FaSpinner className="w-4 h-4 animate-spin" /> : <FaSave className="w-4 h-4" />}
+//                 {saving ? 'Saving...' : saved ? 'Saved ✓' : 'Save Changes'}
+//               </button>
+//             </div>
 //           </div>
 //         </div>
 //       </div>
@@ -289,7 +275,7 @@ function Toggle({ checked, onChange }) {
         checked={checked}
         onChange={onChange}
       />
-      <div className="h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:after:translate-x-5" />
+      <div className="h-6 w-11 rounded-full bg-[#F7C7D3] transition-colors peer-checked:bg-[#EE4275] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:after:translate-x-5" />
     </label>
   );
 }
@@ -299,7 +285,7 @@ const SLOTS = [
     key: 'headerCode',
     label: 'Header Code',
     badge: '<head>',
-    badgeColor: 'bg-violet-100 text-violet-700',
+    badgeColor: 'bg-[#F7C7D3]/30 text-[#EE4275]',
     hint: 'Injected inside the <head> tag — perfect for meta tags, verification codes, and tracking scripts',
     placeholder: `<!-- Example: Google Analytics -->
 <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
@@ -315,7 +301,7 @@ const SLOTS = [
     key: 'bodyCode',
     label: 'Body Code',
     badge: '<body>',
-    badgeColor: 'bg-blue-100 text-blue-700',
+    badgeColor: 'bg-[#F7C7D3]/30 text-[#EE4275]',
     hint: 'Injected right after <body> opens — ideal for noscript fallbacks',
     placeholder: `<!-- Example: Google Tag Manager noscript -->
 <noscript>
@@ -328,7 +314,7 @@ const SLOTS = [
     key: 'footerCode',
     label: 'Footer Code',
     badge: '</body>',
-    badgeColor: 'bg-green-100 text-green-700',
+    badgeColor: 'bg-[#F7C7D3]/30 text-[#EE4275]',
     hint: 'Injected right before </body> closes — perfect for async tracking scripts',
     placeholder: `<!-- Example: Facebook Pixel -->
 <script>
@@ -429,9 +415,9 @@ export default function CustomCodePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-8 h-8 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500 text-sm">Loading custom code settings...</p>
         </div>
       </div>
@@ -440,11 +426,11 @@ export default function CustomCodePage() {
 
   return (
     <ProtectedRoute pageKey="custom_code">
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-[#FFF5F6] py-8">
       <div className="container mx-auto max-w-4xl px-4">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          {/* Header - Removed Save Button */}
-          <div className="p-6 bg-black text-white">
+        <div className="bg-white rounded-2xl shadow-lg border border-[#F7C7D3]/40 overflow-hidden">
+          {/* Header */}
+          <div className="p-6 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white">
             <div>
               <h1 className="text-2xl font-bold flex items-center gap-3">
                 <FaCode className="w-7 h-7" />
@@ -458,12 +444,12 @@ export default function CustomCodePage() {
 
           <div className="p-6 space-y-6">
             {/* Warning Notice */}
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div className="bg-[#F7C7D3]/20 border border-[#EE4275]/20 rounded-xl p-4">
               <div className="flex items-start gap-3">
-                <FaInfoCircle className="text-amber-500 w-5 h-5 mt-0.5 flex-shrink-0" />
+                <FaInfoCircle className="text-[#EE4275] w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-sm font-semibold text-amber-700">⚠️ Security Warning</h4>
-                  <p className="text-xs text-amber-600 mt-1">
+                  <h4 className="text-sm font-semibold text-[#2D1B2E]">⚠️ Security Warning</h4>
+                  <p className="text-xs text-[#2D1B2E]/70 mt-1">
                     Only paste code from trusted sources. Malicious code can steal user data or break your site.
                     Always test in a staging environment first.
                   </p>
@@ -472,23 +458,23 @@ export default function CustomCodePage() {
             </div>
 
             {/* Code Inputs */}
-            <div className="divide-y divide-gray-200 border rounded-xl border-gray-200">
+            <div className="divide-y divide-[#F7C7D3]/40 border rounded-xl border-[#F7C7D3]/40">
               {SLOTS.map(({ key, label, badge, badgeColor, hint, placeholder }) => (
                 <div key={key} className="px-6 py-5 space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-gray-800">{label}</span>
+                    <span className="text-sm font-semibold text-[#2D1B2E]">{label}</span>
                     <span className={`text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded ${badgeColor}`}>
                       {badge}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400">{hint}</p>
+                  <p className="text-xs text-[#EE4275]/60">{hint}</p>
                   <textarea
                     value={cfg[key]}
                     onChange={(e) => set(key, e.target.value)}
                     rows={7}
                     placeholder={placeholder}
                     spellCheck={false}
-                    className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-xs font-mono text-gray-700 focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 resize-y transition"
+                    className="w-full rounded-lg border border-[#F7C7D3]/50 bg-[#FFF5F6] px-3 py-2.5 text-xs font-mono text-[#2D1B2E] focus:border-[#EE4275] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#EE4275]/20 resize-y transition"
                     disabled={!cfg.active}
                   />
                 </div>
@@ -497,8 +483,8 @@ export default function CustomCodePage() {
               {/* Active Toggle */}
               <div className="flex items-center justify-between px-6 py-4">
                 <div>
-                  <p className="text-sm font-semibold text-gray-800">Active</p>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-sm font-semibold text-[#2D1B2E]">Active</p>
+                  <p className="text-xs text-[#EE4275]/60 mt-0.5">
                     Disable to temporarily remove all custom code from your site
                   </p>
                 </div>
@@ -509,12 +495,12 @@ export default function CustomCodePage() {
               </div>
             </div>
 
-            {/* Save Button - Now at the bottom */}
-            <div className="flex items-center justify-end pt-4 border-t border-gray-200">
+            {/* Save Button */}
+            <div className="flex items-center justify-end pt-4 border-t border-[#F7C7D3]/40">
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg font-medium disabled:opacity-50"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all shadow-md font-medium disabled:opacity-50"
               >
                 {saving ? <FaSpinner className="w-4 h-4 animate-spin" /> : <FaSave className="w-4 h-4" />}
                 {saving ? 'Saving...' : saved ? 'Saved ✓' : 'Save Changes'}

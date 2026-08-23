@@ -1,4 +1,5 @@
-// // app/admin/navbar/page.jsx
+
+// // src/app/authorize/navbar-management/page.js
 // 'use client';
 
 // import { useState, useEffect, useRef } from 'react';
@@ -68,7 +69,7 @@
 // // Helper function to generate unique ID
 // const generateId = () => `id_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
 
-// // Default navbar items for Smart Gadget
+// // Default navbar items for Beauty Bucket
 // const DEFAULT_ITEMS = [
 //   { id: generateId(), name: 'Home', href: '/', icon: 'Home', order: 0, isActive: true, requiredRole: 'all' },
 //   { id: generateId(), name: 'Products', href: '/products', icon: 'Package', order: 1, isActive: true, requiredRole: 'all' },
@@ -192,7 +193,7 @@
 //                 ))}
 //               </select>
 //             </div>
-//             <div>
+//             {/* <div>
 //               <label className="block text-xs font-medium text-gray-700 mb-1">
 //                 Access Role
 //               </label>
@@ -207,7 +208,7 @@
 //                   </option>
 //                 ))}
 //               </select>
-//             </div>
+//             </div> */}
 //           </div>
 
 //           <div className="flex items-center gap-4 pt-2 border-t border-gray-200">
@@ -371,42 +372,109 @@
 //   const [isSubmitting, setIsSubmitting] = useState(false);
 //   const [navbarItems, setNavbarItems] = useState(DEFAULT_ITEMS);
 //   const [logoData, setLogoData] = useState({
-//     text: 'Smart Gadget',
+//     text: 'Beauty Bucket',
 //     highlightText: '',
 //     icon: 'Package',
 //     logoUrl: ''
 //   });
 //   const [isActive, setIsActive] = useState(true);
+//   const [user, setUser] = useState(null);
+//   const [authorized, setAuthorized] = useState(false);
+
+//   // Check user role and authorization
+//   useEffect(() => {
+//     const checkAuthorization = () => {
+//       const token = localStorage.getItem('token');
+//       const userData = localStorage.getItem('user');
+      
+//       if (!token || !userData) {
+//         toast.error('Please login first');
+//         router.push('/login');
+//         return;
+//       }
+
+//       try {
+//         const parsedUser = JSON.parse(userData);
+//         setUser(parsedUser);
+        
+//         // Check if user has authorize role (admin, super_admin, moderator)
+//         const authorizeRoles = ['admin', 'super_admin', 'moderator'];
+//         if (!authorizeRoles.includes(parsedUser.role)) {
+//           toast.error('You do not have permission to access this page');
+//           router.push('/');
+//           return;
+//         }
+        
+//         setAuthorized(true);
+//         fetchNavbarData();
+//       } catch (error) {
+//         console.error('Error parsing user data:', error);
+//         router.push('/login');
+//       }
+//     };
+    
+//     checkAuthorization();
+//   }, [router]);
 
 //   // Fetch navbar data
-//   useEffect(() => {
-//     fetchNavbarData();
-//   }, []);
-
 //   const fetchNavbarData = async () => {
 //     setIsLoading(true);
 //     try {
 //       const token = localStorage.getItem('token');
+      
+//       if (!token) {
+//         toast.error('Please login first');
+//         router.push('/login');
+//         return;
+//       }
+      
 //       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/navbar/admin`, {
-//         headers: { 'Authorization': `Bearer ${token}` }
+//         headers: { 
+//           'Authorization': `Bearer ${token}`,
+//           'Content-Type': 'application/json'
+//         }
 //       });
+
+//       // Handle 401 Unauthorized
+//       if (response.status === 401) {
+//         toast.error('Session expired. Please login again.');
+//         localStorage.removeItem('token');
+//         localStorage.removeItem('user');
+//         router.push('/login');
+//         return;
+//       }
+
+//       // Handle 403 Forbidden
+//       if (response.status === 403) {
+//         toast.error('You do not have permission to manage navbar');
+//         router.push('/authorize/dashboard');
+//         return;
+//       }
 
 //       if (response.ok) {
 //         const data = await response.json();
 //         if (data.success && data.data) {
 //           setNavbarItems(data.data.items || DEFAULT_ITEMS);
 //           setLogoData(data.data.logo || {
-//             text: 'Smart Gadget',
+//             text: 'Beauty Bucket',
 //             highlightText: '',
 //             icon: 'Package',
 //             logoUrl: ''
 //           });
 //           setIsActive(data.data.isActive !== false);
 //           toast.success('Navbar data loaded successfully');
+//         } else {
+//           toast.error(data.error || 'Failed to load navbar data');
 //         }
+//       } else {
+//         const errorData = await response.json().catch(() => ({}));
+//         toast.error(errorData.error || 'Failed to load navbar data');
+//         // Set default items if API fails
+//         setNavbarItems(DEFAULT_ITEMS);
 //       }
 //     } catch (error) {
 //       console.error('Error fetching navbar data:', error);
+//       toast.error('Network error. Please try again.');
 //       setNavbarItems(DEFAULT_ITEMS);
 //     } finally {
 //       setIsLoading(false);
@@ -467,7 +535,7 @@
 //     if (confirm('Are you sure you want to reset to default navbar configuration?')) {
 //       setNavbarItems(DEFAULT_ITEMS);
 //       setLogoData({
-//         text: 'Smart Gadget',
+//         text: 'Beauty Bucket',
 //         highlightText: '',
 //         icon: 'Package',
 //         logoUrl: ''
@@ -488,6 +556,7 @@
 //       if (!token) {
 //         toast.error('Please login first');
 //         setIsSubmitting(false);
+//         router.push('/login');
 //         return;
 //       }
       
@@ -513,14 +582,25 @@
 //         body: JSON.stringify(submitData)
 //       });
 
-//       const responseText = await response.text();
-//       console.log('📡 Raw response:', responseText);
-
-//       if (response.status === 403) {
-//         toast.error('You do not have permission to update navbar. Please contact your administrator.');
+//       // Handle 401 Unauthorized
+//       if (response.status === 401) {
+//         toast.error('Session expired. Please login again.');
+//         localStorage.removeItem('token');
+//         localStorage.removeItem('user');
+//         router.push('/login');
 //         setIsSubmitting(false);
 //         return;
 //       }
+
+//       // Handle 403 Forbidden
+//       if (response.status === 403) {
+//         toast.error('You do not have permission to update navbar.');
+//         setIsSubmitting(false);
+//         return;
+//       }
+
+//       const responseText = await response.text();
+//       console.log('📡 Raw response:', responseText);
 
 //       let data = {};
 //       if (responseText) {
@@ -531,7 +611,7 @@
 //         }
 //       }
 
-//       if (data.success) {
+//       if (response.ok && data.success) {
 //         toast.success('Navbar updated successfully!');
 //         fetchNavbarData();
 //       } else {
@@ -544,6 +624,16 @@
 //       setIsSubmitting(false);
 //     }
 //   };
+
+//   // Go back to dashboard
+//   const goBack = () => {
+//     router.push('/authorize/dashboard');
+//   };
+
+//   // If not authorized, show nothing (will redirect)
+//   if (!authorized && !isLoading) {
+//     return null;
+//   }
 
 //   if (isLoading) {
 //     return (
@@ -561,14 +651,22 @@
 //     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
 //       {/* Header */}
 //       <div className="flex items-center justify-between mb-6">
-//         <div>
-//           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-//             <Menu className="w-6 h-6 text-blue-600" />
-//             Navbar Management
-//           </h1>
-//           <p className="text-sm text-gray-500 mt-1">
-//             Manage navigation menu - Left: Logo, Center: Menu Items, Right: Actions
-//           </p>
+//         <div className="flex items-center gap-3">
+//           <button
+//             onClick={goBack}
+//             className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+//           >
+//             <ArrowLeft className="w-5 h-5" />
+//           </button>
+//           <div>
+//             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+//               <Menu className="w-6 h-6 text-blue-600" />
+//               Navbar Management
+//             </h1>
+//             <p className="text-sm text-gray-500 mt-1">
+//               Manage navigation menu - Left: Logo, Center: Menu Items, Right: Actions
+//             </p>
+//           </div>
 //         </div>
 //         <div className="flex items-center gap-3">
 //           <button
@@ -631,7 +729,7 @@
 //                       value={logoData.text}
 //                       onChange={(e) => setLogoData({ ...logoData, text: e.target.value })}
 //                       className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
-//                       placeholder="e.g., Smart Gadget"
+//                       placeholder="e.g., Beauty Bucket"
 //                     />
 //                   </div>
 //                   <div>
@@ -643,24 +741,24 @@
 //                       value={logoData.highlightText}
 //                       onChange={(e) => setLogoData({ ...logoData, highlightText: e.target.value })}
 //                       className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
-//                       placeholder="e.g., Gadget"
+//                       placeholder="e.g., Bucket"
 //                     />
 //                   </div>
 //                 </div>
 
 //                 {/* Live Preview */}
-//                 <div className="mt-2 p-3 bg-gray-900 rounded-lg flex items-center">
+//                 <div className="mt-2 p-3 bg-gray-200 rounded-lg flex items-center">
 //                   {logoData.logoUrl ? (
 //                     <img src={logoData.logoUrl} alt="Logo Preview" className="h-8 w-auto object-contain" />
 //                   ) : (
 //                     <div className="flex items-center gap-2">
-//                       <Package className="w-5 h-5 text-blue-400" />
+//                       <Package className="w-5 h-5 text-pink-400" />
 //                       <span className="text-sm font-bold text-white">
-//                         {logoData.text || 'Smart'}<span className="text-blue-400">{logoData.highlightText || ' Gadget'}</span>
+//                         {logoData.text || 'Beauty'}<span className="text-pink-400">{logoData.highlightText || ' Bucket'}</span>
 //                       </span>
 //                     </div>
 //                   )}
-//                   <span className="text-xs text-white/40 ml-3">Preview</span>
+//                   <span className="text-xs text-black ml-3">Preview</span>
 //                 </div>
 //               </div>
 //             </div>
@@ -789,6 +887,7 @@
 // }
 
 
+
 // src/app/authorize/navbar-management/page.js
 'use client';
 
@@ -813,7 +912,6 @@ import {
   Package,
   User,
   Heart,
-  Sparkles,
   ChevronDown,
   ChevronUp,
   CheckCircle,
@@ -843,7 +941,7 @@ const ICON_OPTIONS = [
   { value: 'Package', label: 'Package', icon: Package },
   { value: 'User', label: 'User', icon: User },
   { value: 'Heart', label: 'Heart', icon: Heart },
-  { value: 'Sparkles', label: 'Sparkles', icon: Sparkles },
+ 
 ];
 
 // Role options for navbar items
@@ -859,7 +957,7 @@ const ROLE_OPTIONS = [
 // Helper function to generate unique ID
 const generateId = () => `id_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
 
-// Default navbar items for Smart Gadget
+// Default navbar items for Beauty Bucket
 const DEFAULT_ITEMS = [
   { id: generateId(), name: 'Home', href: '/', icon: 'Home', order: 0, isActive: true, requiredRole: 'all' },
   { id: generateId(), name: 'Products', href: '/products', icon: 'Package', order: 1, isActive: true, requiredRole: 'all' },
@@ -873,18 +971,18 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden hover:border-blue-300 transition-colors">
-      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-gray-50">
+    <div className="bg-white rounded-lg border border-[#F7C7D3]/40 shadow-sm overflow-hidden hover:border-[#EE4275]/40 transition-colors">
+      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-[#FFF5F6] to-[#F7C7D3]/10">
         <div className="flex items-center gap-3 flex-1">
-          <div className="flex-shrink-0 text-gray-400">
+          <div className="flex-shrink-0 text-[#EE4275]">
             <GripVertical className="w-4 h-4" />
           </div>
           <div className="flex items-center gap-2 flex-1">
-            <span className="text-sm font-medium text-gray-900">
+            <span className="text-sm font-medium text-[#2D1B2E]">
               {item.name || 'Unnamed Item'}
             </span>
-            <span className="text-xs text-gray-400">|</span>
-            <span className="text-xs text-gray-400">{item.href || '/'}</span>
+            <span className="text-xs text-[#EE4275]">|</span>
+            <span className="text-xs text-[#EE4275]/60">{item.href || '/'}</span>
           </div>
           <div className="flex items-center gap-2">
             {item.isActive ? (
@@ -898,7 +996,7 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
                 Inactive
               </span>
             )}
-            <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
+            <span className="text-xs text-[#EE4275] bg-[#F7C7D3]/20 px-2 py-0.5 rounded">
               {ROLE_OPTIONS.find(r => r.value === item.requiredRole)?.label || 'All Users'}
             </span>
           </div>
@@ -907,7 +1005,7 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
           <button
             type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-1 text-gray-400 hover:text-gray-600 rounded hover:bg-gray-200 transition-colors"
+            className="p-1 text-[#EE4275] hover:text-[#EE4275] rounded hover:bg-[#F7C7D3]/30 transition-colors"
           >
             {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
@@ -915,7 +1013,7 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
             type="button"
             onClick={() => onMoveUp(index)}
             disabled={isFirst}
-            className={`p-1 rounded hover:bg-gray-200 transition-colors ${isFirst ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500'}`}
+            className={`p-1 rounded hover:bg-[#F7C7D3]/30 transition-colors ${isFirst ? 'text-gray-300 cursor-not-allowed' : 'text-[#EE4275]'}`}
           >
             <MoveUp className="w-4 h-4" />
           </button>
@@ -923,7 +1021,7 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
             type="button"
             onClick={() => onMoveDown(index)}
             disabled={isLast}
-            className={`p-1 rounded hover:bg-gray-200 transition-colors ${isLast ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500'}`}
+            className={`p-1 rounded hover:bg-[#F7C7D3]/30 transition-colors ${isLast ? 'text-gray-300 cursor-not-allowed' : 'text-[#EE4275]'}`}
           >
             <MoveDown className="w-4 h-4" />
           </button>
@@ -941,40 +1039,40 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
         <div className="p-4 space-y-3">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                Item Name <span className="text-red-500">*</span>
+              <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
+                Item Name <span className="text-[#EE4275]">*</span>
               </label>
               <input
                 type="text"
                 value={item.name}
                 onChange={(e) => onUpdate(index, { ...item, name: e.target.value })}
                 placeholder="e.g., Products"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
+                className="w-full px-3 py-2 text-sm border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none transition bg-white hover:border-[#EE4275]/30"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                URL <span className="text-red-500">*</span>
+              <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
+                URL <span className="text-[#EE4275]">*</span>
               </label>
               <input
                 type="text"
                 value={item.href}
                 onChange={(e) => onUpdate(index, { ...item, href: e.target.value })}
                 placeholder="e.g., /products"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
+                className="w-full px-3 py-2 text-sm border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none transition bg-white hover:border-[#EE4275]/30"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
                 Icon
               </label>
               <select
                 value={item.icon || 'Home'}
                 onChange={(e) => onUpdate(index, { ...item, icon: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
+                className="w-full px-3 py-2 text-sm border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none transition bg-white hover:border-[#EE4275]/30"
               >
                 {ICON_OPTIONS.map(icon => (
                   <option key={icon.value} value={icon.value}>
@@ -983,35 +1081,19 @@ const NavbarItem = ({ item, index, onUpdate, onRemove, onMoveUp, onMoveDown, isF
                 ))}
               </select>
             </div>
-            {/* <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                Access Role
-              </label>
-              <select
-                value={item.requiredRole || 'all'}
-                onChange={(e) => onUpdate(index, { ...item, requiredRole: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
-              >
-                {ROLE_OPTIONS.map(role => (
-                  <option key={role.value} value={role.value}>
-                    {role.label}
-                  </option>
-                ))}
-              </select>
-            </div> */}
           </div>
 
-          <div className="flex items-center gap-4 pt-2 border-t border-gray-200">
+          <div className="flex items-center gap-4 pt-2 border-t border-[#F7C7D3]/30">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
                 checked={item.isActive}
                 onChange={(e) => onUpdate(index, { ...item, isActive: e.target.checked })}
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-[#F7C7D3]/50 text-[#EE4275] focus:ring-[#EE4275]"
               />
-              <span className="text-sm text-gray-700">Active</span>
+              <span className="text-sm text-[#2D1B2E]">Active</span>
             </label>
-            <span className="text-xs text-gray-400">Order: {item.order || index}</span>
+            <span className="text-xs text-[#EE4275]/60">Order: {item.order || index}</span>
           </div>
         </div>
       )}
@@ -1104,7 +1186,7 @@ const LogoUpload = ({ logoUrl, onLogoChange, onLogoRemove }) => {
     <div className="space-y-2">
       {preview ? (
         <div className="relative inline-block">
-          <div className="w-32 h-16 rounded-lg overflow-hidden border-2 border-blue-300 bg-gray-100 flex items-center justify-center">
+          <div className="w-32 h-16 rounded-lg overflow-hidden border-2 border-[#EE4275]/30 bg-gray-100 flex items-center justify-center">
             <img 
               src={preview} 
               alt="Logo" 
@@ -1131,7 +1213,7 @@ const LogoUpload = ({ logoUrl, onLogoChange, onLogoRemove }) => {
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-[#EE4275] text-white rounded-lg hover:bg-[#EE4275]/80 transition-colors text-sm disabled:opacity-50"
           >
             {isUploading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -1162,7 +1244,7 @@ export default function NavbarManagement() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [navbarItems, setNavbarItems] = useState(DEFAULT_ITEMS);
   const [logoData, setLogoData] = useState({
-    text: 'Smart Gadget',
+    text: 'Beauty Bucket',
     highlightText: '',
     icon: 'Package',
     logoUrl: ''
@@ -1225,7 +1307,6 @@ export default function NavbarManagement() {
         }
       });
 
-      // Handle 401 Unauthorized
       if (response.status === 401) {
         toast.error('Session expired. Please login again.');
         localStorage.removeItem('token');
@@ -1234,7 +1315,6 @@ export default function NavbarManagement() {
         return;
       }
 
-      // Handle 403 Forbidden
       if (response.status === 403) {
         toast.error('You do not have permission to manage navbar');
         router.push('/authorize/dashboard');
@@ -1246,7 +1326,7 @@ export default function NavbarManagement() {
         if (data.success && data.data) {
           setNavbarItems(data.data.items || DEFAULT_ITEMS);
           setLogoData(data.data.logo || {
-            text: 'Smart Gadget',
+            text: 'Beauty Bucket',
             highlightText: '',
             icon: 'Package',
             logoUrl: ''
@@ -1259,7 +1339,6 @@ export default function NavbarManagement() {
       } else {
         const errorData = await response.json().catch(() => ({}));
         toast.error(errorData.error || 'Failed to load navbar data');
-        // Set default items if API fails
         setNavbarItems(DEFAULT_ITEMS);
       }
     } catch (error) {
@@ -1325,7 +1404,7 @@ export default function NavbarManagement() {
     if (confirm('Are you sure you want to reset to default navbar configuration?')) {
       setNavbarItems(DEFAULT_ITEMS);
       setLogoData({
-        text: 'Smart Gadget',
+        text: 'Beauty Bucket',
         highlightText: '',
         icon: 'Package',
         logoUrl: ''
@@ -1372,7 +1451,6 @@ export default function NavbarManagement() {
         body: JSON.stringify(submitData)
       });
 
-      // Handle 401 Unauthorized
       if (response.status === 401) {
         toast.error('Session expired. Please login again.');
         localStorage.removeItem('token');
@@ -1382,7 +1460,6 @@ export default function NavbarManagement() {
         return;
       }
 
-      // Handle 403 Forbidden
       if (response.status === 403) {
         toast.error('You do not have permission to update navbar.');
         setIsSubmitting(false);
@@ -1427,9 +1504,9 @@ export default function NavbarManagement() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#EE4275] mx-auto" />
           <p className="text-gray-500 mt-2">Loading navbar data...</p>
         </div>
       </div>
@@ -1438,22 +1515,22 @@ export default function NavbarManagement() {
 
   return (
     <ProtectedRoute pageKey="manage_navbar">
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+    <div className="min-h-screen bg-[#FFF5F6] p-4 sm:p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <button
             onClick={goBack}
-            className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 text-[#EE4275] hover:bg-[#F7C7D3]/30 rounded-lg transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-              <Menu className="w-6 h-6 text-blue-600" />
+            <h1 className="text-2xl font-bold text-[#2D1B2E] flex items-center gap-2">
+              <Menu className="w-6 h-6 text-[#EE4275]" />
               Navbar Management
             </h1>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-[#EE4275]/60 mt-1">
               Manage navigation menu - Left: Logo, Center: Menu Items, Right: Actions
             </p>
           </div>
@@ -1461,14 +1538,14 @@ export default function NavbarManagement() {
         <div className="flex items-center gap-3">
           <button
             onClick={handleReset}
-            className="flex items-center gap-2 px-4 py-2 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors border border-red-200"
+            className="flex items-center gap-2 px-4 py-2 text-sm bg-[#F7C7D3]/30 text-[#EE4275] rounded-lg hover:bg-[#F7C7D3]/50 transition-colors border border-[#EE4275]/20"
           >
             <RefreshCw className="w-4 h-4" />
             Reset
           </button>
           <button
             onClick={fetchNavbarData}
-            className="p-2 text-gray-600 hover:bg-blue-50 rounded-lg transition-colors"
+            className="p-2 text-[#EE4275] hover:bg-[#F7C7D3]/30 rounded-lg transition-colors"
           >
             <RefreshCw className="w-5 h-5" />
           </button>
@@ -1477,12 +1554,12 @@ export default function NavbarManagement() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Navbar Sections */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-gray-50 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <Menu className="w-5 h-5 text-blue-600" />
+        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 overflow-hidden">
+          <div className="p-4 bg-gradient-to-r from-[#FFF5F6] to-[#F7C7D3]/10 border-b border-[#F7C7D3]/40">
+            <h2 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2">
+              <Menu className="w-5 h-5 text-[#EE4275]" />
               Navbar Structure
-              <span className="text-sm font-normal text-gray-400 ml-2">
+              <span className="text-sm font-normal text-[#EE4275]/60 ml-2">
                 Left | Center | Right
               </span>
             </h2>
@@ -1490,16 +1567,16 @@ export default function NavbarManagement() {
 
           <div className="p-4 space-y-4">
             {/* LEFT - Logo Section */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-[#F7C7D3]/40 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">
-                <AlignLeft className="w-4 h-4 text-blue-600" />
-                <h3 className="text-sm font-semibold text-gray-900">Left Section</h3>
-                <span className="text-xs text-gray-400">Logo & Brand</span>
+                <AlignLeft className="w-4 h-4 text-[#EE4275]" />
+                <h3 className="text-sm font-semibold text-[#2D1B2E]">Left Section</h3>
+                <span className="text-xs text-[#EE4275]/60">Logo & Brand</span>
               </div>
               
               <div className="space-y-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
                     Logo Upload
                   </label>
                   <LogoUpload
@@ -1511,60 +1588,60 @@ export default function NavbarManagement() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
                       Brand Name
                     </label>
                     <input
                       type="text"
                       value={logoData.text}
                       onChange={(e) => setLogoData({ ...logoData, text: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
-                      placeholder="e.g., Smart Gadget"
+                      className="w-full px-3 py-2 text-sm border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none transition bg-white hover:border-[#EE4275]/30"
+                      placeholder="e.g., Beauty Bucket"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-[#2D1B2E] mb-1">
                       Highlight Text (Optional)
                     </label>
                     <input
                       type="text"
                       value={logoData.highlightText}
                       onChange={(e) => setLogoData({ ...logoData, highlightText: e.target.value })}
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white hover:border-gray-400"
-                      placeholder="e.g., Gadget"
+                      className="w-full px-3 py-2 text-sm border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none transition bg-white hover:border-[#EE4275]/30"
+                      placeholder="e.g., Bucket"
                     />
                   </div>
                 </div>
 
                 {/* Live Preview */}
-                <div className="mt-2 p-3 bg-gray-200 rounded-lg flex items-center">
+                <div className="mt-2 p-3 bg-[#FFF5F6] rounded-lg flex items-center border border-[#F7C7D3]/30">
                   {logoData.logoUrl ? (
                     <img src={logoData.logoUrl} alt="Logo Preview" className="h-8 w-auto object-contain" />
                   ) : (
                     <div className="flex items-center gap-2">
-                      <Package className="w-5 h-5 text-blue-400" />
-                      <span className="text-sm font-bold text-white">
-                        {logoData.text || 'Smart'}<span className="text-blue-400">{logoData.highlightText || ' Gadget'}</span>
+                      <Package className="w-5 h-5 text-[#EE4275]" />
+                      <span className="text-sm font-bold text-[#2D1B2E]">
+                        {logoData.text || 'Beauty'}<span className="text-[#EE4275]">{logoData.highlightText || ' Bucket'}</span>
                       </span>
                     </div>
                   )}
-                  <span className="text-xs text-black ml-3">Preview</span>
+                  <span className="text-xs text-[#EE4275]/60 ml-3">Preview</span>
                 </div>
               </div>
             </div>
 
             {/* CENTER - Navigation Items */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-[#F7C7D3]/40 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <AlignCenter className="w-4 h-4 text-blue-600" />
-                  <h3 className="text-sm font-semibold text-gray-900">Center Section</h3>
-                  <span className="text-xs text-gray-400">Navigation Items</span>
+                  <AlignCenter className="w-4 h-4 text-[#EE4275]" />
+                  <h3 className="text-sm font-semibold text-[#2D1B2E]">Center Section</h3>
+                  <span className="text-xs text-[#EE4275]/60">Navigation Items</span>
                 </div>
                 <button
                   type="button"
                   onClick={addItem}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs font-semibold"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#EE4275] text-white rounded-lg hover:bg-[#EE4275]/80 transition-colors text-xs font-semibold"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   Add Item
@@ -1588,44 +1665,44 @@ export default function NavbarManagement() {
               </div>
 
               {navbarItems.length === 0 && (
-                <div className="text-center py-4 text-gray-400 text-sm">
+                <div className="text-center py-4 text-[#EE4275]/60 text-sm">
                   No navigation items added. Click "Add Item" to create one.
                 </div>
               )}
             </div>
 
             {/* RIGHT - Fixed Actions */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-[#F7C7D3]/40 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">
-                <AlignRight className="w-4 h-4 text-blue-600" />
-                <h3 className="text-sm font-semibold text-gray-900">Right Section</h3>
-                <span className="text-xs text-gray-400">Fixed Actions (Always Visible)</span>
+                <AlignRight className="w-4 h-4 text-[#EE4275]" />
+                <h3 className="text-sm font-semibold text-[#2D1B2E]">Right Section</h3>
+                <span className="text-xs text-[#EE4275]/60">Fixed Actions (Always Visible)</span>
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Search className="w-4 h-4 text-blue-600" />
+                <div className="bg-[#FFF5F6] rounded-lg p-3 border border-[#F7C7D3]/30">
+                  <div className="flex items-center gap-2 text-sm text-[#2D1B2E]">
+                    <Search className="w-4 h-4 text-[#EE4275]" />
                     <span>Search</span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">Search products</p>
+                  <p className="text-xs text-[#EE4275]/60 mt-1">Search products</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <ShoppingCart className="w-4 h-4 text-blue-600" />
+                <div className="bg-[#FFF5F6] rounded-lg p-3 border border-[#F7C7D3]/30">
+                  <div className="flex items-center gap-2 text-sm text-[#2D1B2E]">
+                    <ShoppingCart className="w-4 h-4 text-[#EE4275]" />
                     <span>Cart</span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">Shopping cart icon with count</p>
+                  <p className="text-xs text-[#EE4275]/60 mt-1">Shopping cart icon with count</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <UserCircle className="w-4 h-4 text-blue-600" />
+                <div className="bg-[#FFF5F6] rounded-lg p-3 border border-[#F7C7D3]/30">
+                  <div className="flex items-center gap-2 text-sm text-[#2D1B2E]">
+                    <UserCircle className="w-4 h-4 text-[#EE4275]" />
                     <span>User Menu</span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">Sign In / User profile</p>
+                  <p className="text-xs text-[#EE4275]/60 mt-1">Sign In / User profile</p>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 mt-3">
+              <p className="text-xs text-[#EE4275]/60 mt-3">
                 These elements are always visible and managed separately. They cannot be edited here.
               </p>
             </div>
@@ -1633,18 +1710,18 @@ export default function NavbarManagement() {
         </div>
 
         {/* Status */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 p-4">
           <div className="flex items-center gap-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
                 checked={isActive}
                 onChange={(e) => setIsActive(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-[#F7C7D3]/50 text-[#EE4275] focus:ring-[#EE4275]"
               />
-              <span className="text-sm font-medium text-gray-700">Navbar Active</span>
+              <span className="text-sm font-medium text-[#2D1B2E]">Navbar Active</span>
             </label>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-[#EE4275]/60">
               {isActive ? 'Visible on website' : 'Hidden from website'}
             </span>
           </div>
@@ -1655,7 +1732,7 @@ export default function NavbarManagement() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-gray-900 text-white font-medium rounded-lg hover:opacity-90 transition-colors disabled:opacity-50 text-sm shadow-md hover:shadow-lg"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300 disabled:opacity-50 text-sm shadow-md"
           >
             {isSubmitting ? (
               <>

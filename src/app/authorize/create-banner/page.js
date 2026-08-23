@@ -2024,7 +2024,7 @@ export default function CreateBannerPage() {
                       />
                     </div>
 
-                    <div>
+                    {/* <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Badge Text</label>
                       <input
                         type="text"
@@ -2035,7 +2035,7 @@ export default function CreateBannerPage() {
                         placeholder="e.g., Up to 30% off"
                       />
                       <p className="text-xs text-gray-400 mt-1">Shown on the circle badge</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

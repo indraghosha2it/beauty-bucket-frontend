@@ -1,3 +1,4 @@
+
 // 'use client';
 
 // import Link from 'next/link';
@@ -41,10 +42,6 @@
 //   Flower2: Flower2,
 // };
 
-// // Font family constant for easy updates
-// const FONT_FAMILY = "'Courgette', cursive";
-// const FONT_FAMILY_PLAYFAIR = "'Playfair Display', 'Georgia', serif";
-
 // export default function Navbar() {
 //   const [navbarData, setNavbarData] = useState(null);
 //   const [navbarLoading, setNavbarLoading] = useState(true);
@@ -72,6 +69,7 @@
 //   useEffect(() => {
 //     const fetchNavbar = async () => {
 //       try {
+//         // ✅ PUBLIC endpoint - no token needed
 //         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/navbar`);
         
 //         if (response.ok) {
@@ -79,6 +77,7 @@
 //           if (data.success) {
 //             setNavbarData(data.data);
 //           } else {
+//             // Set default values if API fails
 //             setNavbarData({
 //               items: [
 //                 { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
@@ -96,6 +95,7 @@
 //             });
 //           }
 //         } else {
+//           // Fallback to defaults
 //           setNavbarData({
 //             items: [
 //               { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
@@ -114,6 +114,7 @@
 //         }
 //       } catch (error) {
 //         console.error('Error fetching navbar:', error);
+//         // Set default values if API fails
 //         setNavbarData({
 //           items: [
 //             { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
@@ -354,16 +355,19 @@
 //     }
 //   };
 
+//   // ✅ FIXED: Updated handleResultClick with timeout and proper state management
 //   const handleResultClick = (result) => {
 //     const productId = result._id;
 //     const productSlug = result.slug || productId;
     
 //     if (productSlug) {
+//       // Close all search UI first
 //       setSearchOpen(false);
 //       setMobileSearchOpen(false);
 //       setSearchQuery('');
 //       setShowResults(false);
       
+//       // Use setTimeout to ensure state updates complete before navigation
 //       setTimeout(() => {
 //         router.push(`/product/${productSlug}`);
 //       }, 50);
@@ -384,6 +388,7 @@
 //     router.push('/');
 //   };
 
+//   // ========== GET DASHBOARD LINK BASED ON ROLE ==========
 //   const getDashboardLink = () => {
 //     if (!user) return '/';
     
@@ -398,6 +403,7 @@
 //     return '/customer/dashboard';
 //   };
 
+//   // ========== GET SETTINGS LINK BASED ON ROLE ==========
 //   const getSettingsLink = () => {
 //     if (!user) return '/';
     
@@ -427,17 +433,23 @@
 //     return user?.profilePicture || user?.photoURL || null;
 //   };
 
+//   // Get logo URL with proper quality settings
 //   const getLogoUrl = (url) => {
 //     if (!url) return '/logo.png';
     
+//     // If it's a Cloudinary URL, add optimization params for quality
 //     if (url.includes('cloudinary.com')) {
 //       const parts = url.split('/upload/');
 //       if (parts.length === 2) {
+//         // Better quality settings - no forced height
 //         return `${parts[0]}/upload/f_auto,q_auto:good,fl_preserve_transparency/${parts[1]}`;
 //       }
 //     }
 //     return url;
 //   };
+
+//   // Check if user has authorize role
+//   const isAuthorizeRole = user && ['admin', 'super_admin', 'moderator'].includes(user.role);
 
 //   if (authLoading || navbarLoading) {
 //     return (
@@ -461,7 +473,7 @@
 //       {/* Main Navbar */}
 //       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
 //         scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'
-//       }`} style={{ fontFamily: FONT_FAMILY }}>
+//       }`}>
 //       <div className="container mx-auto px-4">
 //   <div className="flex items-center justify-between h-16">
 
@@ -507,7 +519,7 @@
 //                 ? 'text-[#EE4275]'
 //                 : 'text-gray-600 hover:text-[#EE4275]'
 //             }`}
-//             style={{ fontFamily: FONT_FAMILY }}
+//             style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //           >
 //             {item.name}
 //             {isActive(item.href) && (
@@ -540,7 +552,7 @@
 //                   onChange={(e) => setSearchQuery(e.target.value)}
 //                   placeholder="Search beauty products..."
 //                   className="w-80 px-4 py-2 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all shadow-sm"
-//                   style={{ fontFamily: FONT_FAMILY }}
+//                   style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   autoFocus
 //                 />
 //                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
@@ -577,7 +589,6 @@
 //                           handleResultClick(product);
 //                         }}
 //                         className="w-full px-4 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
-//                         style={{ fontFamily: FONT_FAMILY }}
 //                       >
 //                         {product.images && product.images.length > 0 ? (
 //                           <img 
@@ -591,11 +602,11 @@
 //                           </div>
 //                         )}
 //                         <div className="flex-1">
-//                           <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: FONT_FAMILY }}>
+//                           <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
 //                             {product.productName || product.name || product.title}
 //                           </p>
 //                           <div className="flex items-center gap-2 mt-0.5">
-//                             <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+//                             <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
 //                               ৳{product.discountPrice || product.regularPrice || product.price}
 //                             </p>
 //                             {product.discountPrice && product.regularPrice && (
@@ -610,7 +621,7 @@
 //                     <button
 //                       onClick={handleSearchSubmit}
 //                       className="w-full px-4 py-2.5 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30 transition-colors"
-//                       style={{ fontFamily: FONT_FAMILY }}
+//                       style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                     >
 //                       View all results for "{searchQuery}" →
 //                     </button>
@@ -637,7 +648,7 @@
 //       >
 //         <ShoppingCart className="w-4.5 h-4.5 text-[#EE4275] group-hover:scale-105 transition-transform" />
 //         {cartCount > 0 && (
-//           <span className="absolute -top-1 -right-1 bg-[#EE4275] text-white text-[10px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1 shadow-sm" style={{ fontFamily: FONT_FAMILY }}>
+//           <span className="absolute -top-1 -right-1 bg-[#EE4275] text-white text-[10px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1 shadow-sm" style={{ fontFamily: '"Playfair Display"' }}>
 //             {cartCount > 9 ? '9+' : cartCount}
 //           </span>
 //         )}
@@ -649,7 +660,6 @@
 //           <button
 //             onClick={() => setUserMenuOpen(!userMenuOpen)}
 //             className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200 text-sm"
-//             style={{ fontFamily: FONT_FAMILY }}
 //           >
 //             {getProfilePicture() && !profileImageError ? (
 //               <img 
@@ -662,7 +672,7 @@
 //                 {getInitials()}
 //               </div>
 //             )}
-//             <span className="hidden sm:inline text-gray-600 font-medium text-sm max-w-[100px] truncate" style={{ fontFamily: FONT_FAMILY }}>
+//             <span className="hidden sm:inline text-gray-600 font-medium text-sm max-w-[100px] truncate" style={{ fontFamily: '"Playfair Display"' }}>
 //               {getDisplayName()}
 //             </span>
 //             <ChevronDown className={`w-3.5 h-3.5 text-[#EE4275] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
@@ -673,8 +683,8 @@
 //               <div className="fixed inset-0 z-40" onClick={() => setUserMenuOpen(false)} />
 //               <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-[#EE4275]/10 overflow-hidden z-50 animate-fadeIn">
 //                 <div className="px-4 py-3 border-b border-[#F7C7D3]/30 bg-[#F7C7D3]/10">
-//                   <p className="text-gray-700 font-semibold text-sm truncate" style={{ fontFamily: FONT_FAMILY }}>{getDisplayName()}</p>
-//                   <p className="text-[#EE4275] text-xs truncate mt-0.5" style={{ fontFamily: FONT_FAMILY }}>{user.email}</p>
+//                   <p className="text-gray-700 font-semibold text-sm truncate" style={{ fontFamily: '"Playfair Display"' }}>{getDisplayName()}</p>
+//                   <p className="text-[#EE4275] text-xs truncate mt-0.5" style={{ fontFamily: '"Playfair Display"' }}>{user.email}</p>
 //                   <div className="mt-1.5">
 //                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
 //                       user.role === 'super_admin' ? 'bg-yellow-500/20 text-yellow-600' :
@@ -682,7 +692,7 @@
 //                       user.role === 'moderator' ? 'bg-green-500/20 text-green-600' :
 //                       user.role === 'call_center_agent' ? 'bg-purple-500/20 text-purple-600' :
 //                       'bg-[#F7C7D3]/30 text-gray-600'
-//                     }`} style={{ fontFamily: FONT_FAMILY }}>
+//                     }`} style={{ fontFamily: '"Playfair Display"' }}>
 //                       {user.role === 'call_center_agent' ? 'Call Center Agent' :
 //                        user.role === 'super_admin' ? 'Super Admin' :
 //                        user.role === 'admin' ? 'Admin' :
@@ -699,7 +709,7 @@
 //                       window.location.href = getDashboardLink();
 //                     }}
 //                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
 //                     <span>Dashboard</span>
@@ -712,7 +722,7 @@
 //                       window.location.href = getSettingsLink();
 //                     }}
 //                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <Settings className="w-4 h-4 text-[#EE4275]" />
 //                     <span>Settings</span>
@@ -723,7 +733,7 @@
 //                   <button 
 //                     onClick={() => { setUserMenuOpen(false); logout(); }} 
 //                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <LogOut className="w-4 h-4" />
 //                     <span>Logout</span>
@@ -737,7 +747,7 @@
 //         <Link 
 //           href="/login" 
 //           className="hidden sm:block px-5 py-1.5 rounded-lg text-sm font-medium text-white bg-[#EE4275] hover:bg-[#EE4275]/80 transition-all duration-200 shadow-sm hover:shadow-md"
-//           style={{ fontFamily: FONT_FAMILY }}
+//           style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //         >
 //           Sign In
 //         </Link>
@@ -759,7 +769,7 @@
 //                 onChange={(e) => setSearchQuery(e.target.value)}
 //                 placeholder="Search beauty products..."
 //                 className="w-full px-4 py-3 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all"
-//                 style={{ fontFamily: FONT_FAMILY }}
+//                 style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                 autoFocus
 //               />
 //               <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
@@ -795,7 +805,6 @@
 //                       handleResultClick(product);
 //                     }}
 //                     className="w-full px-3 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
-//                     style={{ fontFamily: FONT_FAMILY }}
 //                   >
 //                     {product.images && product.images.length > 0 ? (
 //                       <img 
@@ -809,10 +818,10 @@
 //                       </div>
 //                     )}
 //                     <div className="flex-1">
-//                       <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: FONT_FAMILY }}>
+//                       <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
 //                         {product.productName || product.name || product.title}
 //                       </p>
-//                       <p className="text-sm font-semibold text-[#EE4275] mt-0.5" style={{ fontFamily: FONT_FAMILY }}>
+//                       <p className="text-sm font-semibold text-[#EE4275] mt-0.5" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
 //                         ৳{product.discountPrice || product.regularPrice || product.price}
 //                       </p>
 //                     </div>
@@ -821,7 +830,7 @@
 //                 <button
 //                   onClick={handleSearchSubmit}
 //                   className="w-full px-4 py-3 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30"
-//                   style={{ fontFamily: FONT_FAMILY }}
+//                   style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                 >
 //                   View all results for "{searchQuery}" →
 //                 </button>
@@ -852,13 +861,13 @@
 //                   )}
 //                 </div>
 //                 <div>
-//                   <span className="font-bold text-gray-700 text-base" style={{ fontFamily: FONT_FAMILY }}>
+//                   <span className="font-bold text-gray-700 text-base" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
 //                     {navbarData?.logo?.text || 'Glow&Co'}
 //                     {navbarData?.logo?.highlightText && (
 //                       <span className="text-[#EE4275]">{navbarData.logo.highlightText}</span>
 //                     )}
 //                   </span>
-//                   <span className="text-[10px] text-[#EE4275] block -mt-1 tracking-wider" style={{ fontFamily: FONT_FAMILY }}>BEAUTY</span>
+//                   <span className="text-[10px] text-[#EE4275] block -mt-1 tracking-wider" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>BEAUTY</span>
 //                 </div>
 //               </div>
 //               <button onClick={() => setIsMenuOpen(false)} className="p-2 rounded-lg hover:bg-[#F7C7D3]/20 transition-colors">
@@ -881,7 +890,7 @@
 //                         : 'text-gray-600 hover:text-[#EE4275] hover:bg-[#F7C7D3]/20'
 //                     }`}
 //                     style={{
-//                       fontFamily: FONT_FAMILY,
+//                       fontFamily: '"Playfair Display", "Georgia", serif',
 //                       borderLeft: isActive(item.href) ? '3px solid #EE4275' : 'none',
 //                       paddingLeft: isActive(item.href) ? '17px' : '20px',
 //                     }}
@@ -901,7 +910,7 @@
 //                     href="/login"
 //                     onClick={() => setIsMenuOpen(false)}
 //                     className="flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-[#EE4275] text-white hover:bg-[#EE4275]/80 transition-all shadow-sm"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     Sign In
 //                   </Link>
@@ -917,8 +926,8 @@
 //                       </div>
 //                     )}
 //                     <div className="flex-1">
-//                       <p className="font-semibold text-gray-700 text-sm" style={{ fontFamily: FONT_FAMILY }}>{getDisplayName()}</p>
-//                       <p className="text-[#EE4275] text-xs truncate" style={{ fontFamily: FONT_FAMILY }}>{user.email}</p>
+//                       <p className="font-semibold text-gray-700 text-sm" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{getDisplayName()}</p>
+//                       <p className="text-[#EE4275] text-xs truncate" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{user.email}</p>
 //                     </div>
 //                   </div>
                   
@@ -929,7 +938,7 @@
 //                       window.location.href = getDashboardLink();
 //                     }}
 //                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-1 cursor-pointer"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
 //                     Dashboard
@@ -942,7 +951,7 @@
 //                       window.location.href = getSettingsLink();
 //                     }}
 //                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-2 cursor-pointer"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <Settings className="w-4 h-4 text-[#EE4275]" />
 //                     Settings
@@ -951,7 +960,7 @@
 //                   <button
 //                     onClick={() => { setIsMenuOpen(false); logout(); }}
 //                     className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-all"
-//                     style={{ fontFamily: FONT_FAMILY }}
+//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
 //                   >
 //                     <LogOut className="w-4 h-4" />
 //                     Logout
@@ -965,6 +974,9 @@
 
 //       {/* Cart Sidebar */}
 //       <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+//       {/* Spacer */}
+//       {/* <div className="h-16"></div> */}
 
 //       <style jsx>{`
 //         @keyframes slideLeft {
@@ -1085,6 +1097,9 @@ export default function Navbar() {
   const mobileSearchRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
+
+  // Check if we're on the home page
+  const isHomePage = pathname === '/';
 
   // Fetch navbar data from PUBLIC endpoint (no auth required)
   useEffect(() => {
@@ -1472,9 +1487,12 @@ export default function Navbar() {
   // Check if user has authorize role
   const isAuthorizeRole = user && ['admin', 'super_admin', 'moderator'].includes(user.role);
 
+  // Determine if navbar should be transparent (only on home page when not scrolled)
+  const isTransparent = isHomePage && !scrolled;
+
   if (authLoading || navbarLoading) {
     return (
-      <div className="fixed top-0 z-50 w-full bg-white border-b border-[#F7C7D3]">
+      <div className={`fixed top-0 z-50 w-full ${isHomePage ? 'bg-white/80 backdrop-blur-sm' : 'bg-white'} border-b border-[#F7C7D3]`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="w-10 h-10 bg-[#F7C7D3] rounded animate-pulse"></div>
@@ -1493,7 +1511,11 @@ export default function Navbar() {
     <>
       {/* Main Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'
+        isTransparent 
+          ? 'bg-transparent' 
+          : isHomePage && scrolled
+            ? 'bg-white/80 backdrop-blur-md shadow-lg'
+            : 'bg-white shadow-sm'
       }`}>
       <div className="container mx-auto px-4">
   <div className="flex items-center justify-between h-16">
@@ -1502,9 +1524,11 @@ export default function Navbar() {
     <div className="flex items-center gap-1 md:gap-0">
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden p-2 -ml-1 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
+        className="md:hidden p-2 -ml-1 rounded-lg transition-all duration-200"
       >
-        <Menu className="w-5 h-5 text-[#EE4275]" />
+        <Menu className={`w-5 h-5 ${
+          isTransparent ? 'text-white' : 'text-[#EE4275]'
+        }`} />
       </button>
 
       <Link href="/" className="flex items-center flex-shrink-0 group">
@@ -1537,14 +1561,16 @@ export default function Navbar() {
             href={item.href}
             className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive(item.href)
-                ? 'text-[#EE4275]'
-                : 'text-gray-600 hover:text-[#EE4275]'
+                ? isTransparent ? 'text-white' : 'text-[#EE4275]'
+                : isTransparent ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-[#EE4275]'
             }`}
             style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
           >
             {item.name}
             {isActive(item.href) && (
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-[#EE4275] rounded-full"></span>
+              <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full ${
+                isTransparent ? 'bg-white' : 'bg-[#EE4275]'
+              }`}></span>
             )}
           </Link>
         );
@@ -1560,9 +1586,11 @@ export default function Navbar() {
           {!searchOpen ? (
             <button
               onClick={() => setSearchOpen(true)}
-              className="search-trigger p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
+              className="search-trigger p-2 rounded-lg transition-all duration-200"
             >
-              <Search className="w-4.5 h-4.5 text-[#EE4275]" />
+              <Search className={`w-4.5 h-4.5 ${
+                isTransparent ? 'text-white' : 'text-[#EE4275]'
+              }`} />
             </button>
           ) : (
             <div className="relative">
@@ -1572,7 +1600,7 @@ export default function Navbar() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search beauty products..."
-                  className="w-80 px-4 py-2 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all shadow-sm"
+                  className="w-80 px-4 py-2 pr-20 text-sm text-gray-700 bg-white border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all shadow-lg"
                   style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
                   autoFocus
                 />
@@ -1657,17 +1685,21 @@ export default function Navbar() {
       {/* Mobile Search Trigger */}
       <button
         onClick={() => setMobileSearchOpen(true)}
-        className="mobile-search-trigger md:hidden p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
+        className="mobile-search-trigger md:hidden p-2 rounded-lg transition-all duration-200"
       >
-        <Search className="w-4.5 h-4.5 text-[#EE4275]" />
+        <Search className={`w-4.5 h-4.5 ${
+          isTransparent ? 'text-white' : 'text-[#EE4275]'
+        }`} />
       </button>
 
       {/* Cart Icon - Opens Sidebar */}
       <button 
         onClick={() => setIsCartOpen(true)} 
-        className="relative p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200 group"
+        className="relative p-2 rounded-lg transition-all duration-200 group"
       >
-        <ShoppingCart className="w-4.5 h-4.5 text-[#EE4275] group-hover:scale-105 transition-transform" />
+        <ShoppingCart className={`w-4.5 h-4.5 ${
+          isTransparent ? 'text-white' : 'text-[#EE4275]'
+        } group-hover:scale-105 transition-transform`} />
         {cartCount > 0 && (
           <span className="absolute -top-1 -right-1 bg-[#EE4275] text-white text-[10px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1 shadow-sm" style={{ fontFamily: '"Playfair Display"' }}>
             {cartCount > 9 ? '9+' : cartCount}
@@ -1680,23 +1712,29 @@ export default function Navbar() {
         <div className="relative">
           <button
             onClick={() => setUserMenuOpen(!userMenuOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200 text-sm"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 text-sm"
           >
             {getProfilePicture() && !profileImageError ? (
               <img 
                 src={getProfilePicture()} 
                 alt={getDisplayName()}
-                className="w-7 h-7 rounded-full object-cover border-2 border-[#EE4275]/30"
+                className={`w-7 h-7 rounded-full object-cover border-2 ${
+                  isTransparent ? 'border-white/30' : 'border-[#EE4275]/30'
+                }`}
               />
             ) : (
               <div className="w-7 h-7 rounded-full bg-[#EE4275] flex items-center justify-center text-white font-semibold text-xs shadow-sm">
                 {getInitials()}
               </div>
             )}
-            <span className="hidden sm:inline text-gray-600 font-medium text-sm max-w-[100px] truncate" style={{ fontFamily: '"Playfair Display"' }}>
+            <span className={`hidden sm:inline font-medium text-sm max-w-[100px] truncate ${
+              isTransparent ? 'text-white' : 'text-gray-600'
+            }`} style={{ fontFamily: '"Playfair Display"' }}>
               {getDisplayName()}
             </span>
-            <ChevronDown className={`w-3.5 h-3.5 text-[#EE4275] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''} ${
+              isTransparent ? 'text-white' : 'text-[#EE4275]'
+            }`} />
           </button>
 
           {userMenuOpen && (
@@ -1767,7 +1805,11 @@ export default function Navbar() {
       ) : (
         <Link 
           href="/login" 
-          className="hidden sm:block px-5 py-1.5 rounded-lg text-sm font-medium text-white bg-[#EE4275] hover:bg-[#EE4275]/80 transition-all duration-200 shadow-sm hover:shadow-md"
+          className={`hidden sm:block px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md ${
+            isTransparent 
+              ? 'text-[#EE4275] bg-white/90 backdrop-blur-sm hover:bg-white' 
+              : 'text-white bg-[#EE4275] hover:bg-[#EE4275]/80'
+          }`}
           style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
         >
           Sign In
@@ -1781,7 +1823,7 @@ export default function Navbar() {
 
       {/* Mobile Search Overlay - Opens below navbar */}
       {mobileSearchOpen && (
-        <div className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg border-b border-[#EE4275]/10 animate-slideDown md:hidden">
+        <div className="fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-lg border-b border-[#EE4275]/10 animate-slideDown md:hidden">
           <div className="container mx-auto px-4 py-3" ref={mobileSearchRef}>
             <form onSubmit={handleSearchSubmit} className="relative">
               <input

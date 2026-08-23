@@ -776,8 +776,6 @@
 // }
 
 
-
-
 // app/dashboard/admin/settings/couriers/page.js (Updated)
 
 'use client';
@@ -855,6 +853,10 @@ function CourierSettingsContent() {
     fetchCouriers();
   }, []);
 
+  const togglePasswordVisibility = (field) => {
+    setShowPassword(prev => ({ ...prev, [field]: !prev[field] }));
+  };
+
   const fetchCouriers = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -891,7 +893,7 @@ function CourierSettingsContent() {
         setStoreConfig(courier.storeConfig || {});
         setApiEnabled(courier.apiEnabled || false);
         
-        // ========== 🆕 LOAD WEBHOOK CONFIG ==========
+        // Load webhook config
         setWebhookConfig({
           enabled: courier.webhookConfig?.enabled || false,
           secret: courier.webhookConfig?.secret || '',
@@ -924,7 +926,7 @@ function CourierSettingsContent() {
     }
   };
 
-  // ========== 🆕 GENERATE WEBHOOK SECRET ==========
+  // Generate webhook secret
   const generateWebhookSecret = (type) => {
     const timestamp = Date.now().toString(36);
     const random = Math.random().toString(36).substring(2, 10);
@@ -1001,7 +1003,7 @@ function CourierSettingsContent() {
       }
     }
 
-    // ========== 🆕 VALIDATE WEBHOOK CONFIG ==========
+    // Validate webhook config
     if (webhookConfig.enabled) {
       if (isPathao && !webhookConfig.secret) {
         toast.error('Webhook secret is required for Pathao when webhooks are enabled');
@@ -1115,19 +1117,19 @@ function CourierSettingsContent() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <FaSpinner className="w-8 h-8 animate-spin text-blue-600" />
+        <FaSpinner className="w-8 h-8 animate-spin text-[#EE4275]" />
       </div>
     );
   }
 
   return (
     <ProtectedRoute pageKey="courier_settings">
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 p-6 bg-[#FFF5F6] min-h-screen">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-[#004767] flex items-center gap-3">
-            <FaTruck className="text-blue-600" />
+          <h2 className="text-2xl font-bold text-[#2D1B2E] flex items-center gap-3">
+            <FaTruck className="text-[#EE4275]" />
             Courier Service Settings
-            <span className="text-sm font-normal text-gray-400 ml-2">
+            <span className="text-sm font-normal text-[#EE4275]/60 ml-2">
               ({couriers.length} services)
             </span>
           </h2>
@@ -1144,10 +1146,10 @@ function CourierSettingsContent() {
             const webhookInfo = WEBHOOK_FIELDS[courier.slug] || {};
 
             return (
-              <div key={courier._id} className="bg-white rounded-2xl border border-blue-600/30 p-6 shadow-sm">
+              <div key={courier._id} className="bg-white rounded-2xl border border-[#EE4275]/20 p-6 shadow-sm">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-bold text-[#004767]">{courier.name}</h3>
+                    <h3 className="text-lg font-bold text-[#2D1B2E]">{courier.name}</h3>
                     <div className="flex items-center gap-2 mt-1 flex-wrap">
                       <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${
                         courier.apiEnabled ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
@@ -1164,11 +1166,11 @@ function CourierSettingsContent() {
                         </span>
                       ) : null}
                       {courier.configured ? (
-                        <span className="text-blue-600 text-xs flex items-center gap-1">
+                        <span className="text-[#EE4275] text-xs flex items-center gap-1">
                           <FaCheckCircle className="w-3 h-3" /> Configured
                         </span>
                       ) : (
-                        <span className="text-gray-400 text-xs">Not configured</span>
+                        <span className="text-[#EE4275]/40 text-xs">Not configured</span>
                       )}
                       {courier.webhookConfig?.enabled && (
                         <span className="text-purple-600 text-xs flex items-center gap-1">
@@ -1180,7 +1182,7 @@ function CourierSettingsContent() {
                   {!isEditing && (
                     <button
                       onClick={() => handleEdit(courier)}
-                      className="p-2 text-gray-500 hover:text-blue-600 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="p-2 text-[#EE4275]/60 hover:text-[#EE4275] hover:bg-[#FFF5F6] rounded-lg transition-colors"
                       title="Edit settings"
                     >
                       <FaEdit className="w-4 h-4" />
@@ -1197,9 +1199,9 @@ function CourierSettingsContent() {
                         id={`api-enabled-${courier.slug}`}
                         checked={apiEnabled}
                         onChange={(e) => setApiEnabled(e.target.checked)}
-                        className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                        className="w-4 h-4 rounded border-[#F7C7D3]/50 text-[#EE4275] focus:ring-[#EE4275]"
                       />
-                      <label htmlFor={`api-enabled-${courier.slug}`} className="text-sm font-medium text-[#004767]">
+                      <label htmlFor={`api-enabled-${courier.slug}`} className="text-sm font-medium text-[#2D1B2E]">
                         Enable API Integration
                       </label>
                     </div>
@@ -1213,7 +1215,7 @@ function CourierSettingsContent() {
                         
                         return (
                           <div key={field.name}>
-                            <label className="block text-sm font-medium text-[#004767] mb-1">
+                            <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
                               {field.label}
                             </label>
                             <div className="relative">
@@ -1224,7 +1226,7 @@ function CourierSettingsContent() {
                                   ...prev,
                                   [field.name]: e.target.value
                                 }))}
-                                className={`w-full px-3 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
+                                className={`w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white hover:border-[#EE4275]/30 ${
                                   isPassword ? 'pr-10' : ''
                                 }`}
                                 placeholder={`Enter ${field.label}`}
@@ -1233,7 +1235,7 @@ function CourierSettingsContent() {
                                 <button
                                   type="button"
                                   onClick={() => togglePasswordVisibility(field.name)}
-                                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275]"
                                 >
                                   {isVisible ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
                                 </button>
@@ -1253,8 +1255,8 @@ function CourierSettingsContent() {
                     {/* Store Config */}
                     {isPathao && (
                       <div>
-                        <label className="block text-sm font-medium text-[#004767] mb-1">
-                          Store ID <span className="text-red-500">*</span>
+                        <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                          Store ID <span className="text-[#EE4275]">*</span>
                         </label>
                         <input
                           type="number"
@@ -1263,18 +1265,18 @@ function CourierSettingsContent() {
                             ...prev,
                             pathaoStoreId: e.target.value ? parseInt(e.target.value) : null
                           }))}
-                          className="w-full px-3 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white hover:border-[#EE4275]/30"
                           placeholder="Enter Pathao Store ID"
                         />
-                        <p className="text-xs text-gray-400 mt-1">
+                        <p className="text-xs text-[#EE4275]/40 mt-1">
                           Required for Pathao. Find it in your Pathao merchant dashboard.
                         </p>
                       </div>
                     )}
 
                     {isSteadfast && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
-                        <p className="text-xs text-blue-700">
+                      <div className="bg-[#FFF5F6] border border-[#EE4275]/20 rounded-xl p-3">
+                        <p className="text-xs text-[#EE4275]">
                           <FaCheckCircle className="inline w-3 h-3 mr-1" />
                           Steadfast only requires API Key and Secret Key. No Store ID needed.
                         </p>
@@ -1282,12 +1284,12 @@ function CourierSettingsContent() {
                     )}
 
                     {isRedx && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-3">
+                      <div className="bg-[#FFF5F6] border border-[#EE4275]/20 rounded-xl p-3 mb-3">
                         <div className="flex items-start gap-2">
-                          <FaInfoCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                          <FaInfoCircle className="w-4 h-4 text-[#EE4275] mt-0.5 flex-shrink-0" />
                           <div>
-                            <p className="text-xs text-blue-700 font-medium">API Access Token & Shop ID:</p>
-                            <p className="text-xs text-blue-600 mt-1">
+                            <p className="text-xs text-[#2D1B2E] font-medium">API Access Token & Shop ID:</p>
+                            <p className="text-xs text-[#EE4275]/60 mt-1">
                               Generate the API Access Token from your RedX Merchant Panel → Settings → API/Integration.
                               The Shop ID can be found in your RedX dashboard URL or settings.
                             </p>
@@ -1296,12 +1298,12 @@ function CourierSettingsContent() {
                       </div>
                     )}
 
-                    {/* ========== 🆕 WEBHOOK CONFIGURATION SECTION ========== */}
-                    <div className="border-t border-blue-600/20 pt-4 mt-4">
+                    {/* Webhook Configuration Section */}
+                    <div className="border-t border-[#F7C7D3]/40 pt-4 mt-4">
                       <div className="flex items-center gap-2 mb-3">
                         <FaTencentWeibo className="text-purple-600 w-5 h-5" />
-                        <h4 className="text-sm font-bold text-[#004767]">Webhook Configuration</h4>
-                        <span className="text-xs text-gray-400">(For real-time status updates)</span>
+                        <h4 className="text-sm font-bold text-[#2D1B2E]">Webhook Configuration</h4>
+                        <span className="text-xs text-[#EE4275]/40">(For real-time status updates)</span>
                       </div>
 
                       {/* Webhook Enabled Toggle */}
@@ -1311,9 +1313,9 @@ function CourierSettingsContent() {
                           id={`webhook-enabled-${courier.slug}`}
                           checked={webhookConfig.enabled}
                           onChange={(e) => setWebhookConfig(prev => ({ ...prev, enabled: e.target.checked }))}
-                          className="w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                          className="w-4 h-4 rounded border-[#F7C7D3]/50 text-purple-600 focus:ring-purple-500"
                         />
-                        <label htmlFor={`webhook-enabled-${courier.slug}`} className="text-sm font-medium text-[#004767]">
+                        <label htmlFor={`webhook-enabled-${courier.slug}`} className="text-sm font-medium text-[#2D1B2E]">
                           Enable Webhooks
                         </label>
                       </div>
@@ -1328,22 +1330,22 @@ function CourierSettingsContent() {
                           {/* Pathao Webhook Secret */}
                           {isPathao && (
                             <div>
-                              <label className="block text-sm font-medium text-[#004767] mb-1">
-                                Webhook Secret <span className="text-red-500">*</span>
+                              <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                                Webhook Secret <span className="text-[#EE4275]">*</span>
                               </label>
                               <div className="relative">
                                 <input
                                   type={showWebhookSecrets.secret ? 'text' : 'password'}
                                   value={webhookConfig.secret}
                                   onChange={(e) => setWebhookConfig(prev => ({ ...prev, secret: e.target.value }))}
-                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24"
+                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24 bg-white"
                                   placeholder={webhookInfo.defaultSecret || 'Enter webhook secret'}
                                 />
                                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
                                   <button
                                     type="button"
                                     onClick={() => toggleWebhookSecretVisibility('secret')}
-                                    className="p-1.5 text-gray-400 hover:text-gray-600 rounded"
+                                    className="p-1.5 text-[#EE4275]/40 hover:text-[#EE4275] rounded"
                                   >
                                     {showWebhookSecrets.secret ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
                                   </button>
@@ -1356,9 +1358,9 @@ function CourierSettingsContent() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="text-xs text-gray-500 mt-1">{webhookInfo.secretHelp}</p>
+                              <p className="text-xs text-[#EE4275]/40 mt-1">{webhookInfo.secretHelp}</p>
                               <div className="mt-2 bg-white p-2 rounded border border-purple-200">
-                                <p className="text-xs text-gray-600 font-mono break-all">
+                                <p className="text-xs text-[#2D1B2E] font-mono break-all">
                                   Callback URL: {typeof window !== 'undefined' ? `${window.location.origin}/api/webhooks/courier/pathao` : '/api/webhooks/courier/pathao'}
                                 </p>
                               </div>
@@ -1368,22 +1370,22 @@ function CourierSettingsContent() {
                           {/* Steadfast Bearer Token */}
                           {isSteadfast && (
                             <div>
-                              <label className="block text-sm font-medium text-[#004767] mb-1">
-                                Bearer Token <span className="text-red-500">*</span>
+                              <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                                Bearer Token <span className="text-[#EE4275]">*</span>
                               </label>
                               <div className="relative">
                                 <input
                                   type={showWebhookSecrets.bearerToken ? 'text' : 'password'}
                                   value={webhookConfig.bearerToken}
                                   onChange={(e) => setWebhookConfig(prev => ({ ...prev, bearerToken: e.target.value }))}
-                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24"
+                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24 bg-white"
                                   placeholder="Enter bearer token"
                                 />
                                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
                                   <button
                                     type="button"
                                     onClick={() => toggleWebhookSecretVisibility('bearerToken')}
-                                    className="p-1.5 text-gray-400 hover:text-gray-600 rounded"
+                                    className="p-1.5 text-[#EE4275]/40 hover:text-[#EE4275] rounded"
                                   >
                                     {showWebhookSecrets.bearerToken ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
                                   </button>
@@ -1396,9 +1398,9 @@ function CourierSettingsContent() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="text-xs text-gray-500 mt-1">{webhookInfo.secretHelp}</p>
+                              <p className="text-xs text-[#EE4275]/40 mt-1">{webhookInfo.secretHelp}</p>
                               <div className="mt-2 bg-white p-2 rounded border border-purple-200">
-                                <p className="text-xs text-gray-600 font-mono break-all">
+                                <p className="text-xs text-[#2D1B2E] font-mono break-all">
                                   Callback URL: {typeof window !== 'undefined' ? `${window.location.origin}/api/webhooks/courier/steadfast` : '/api/webhooks/courier/steadfast'}
                                 </p>
                               </div>
@@ -1408,22 +1410,22 @@ function CourierSettingsContent() {
                           {/* RedX Token */}
                           {isRedx && (
                             <div>
-                              <label className="block text-sm font-medium text-[#004767] mb-1">
-                                Webhook Token <span className="text-red-500">*</span>
+                              <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                                Webhook Token <span className="text-[#EE4275]">*</span>
                               </label>
                               <div className="relative">
                                 <input
                                   type={showWebhookSecrets.token ? 'text' : 'password'}
                                   value={webhookConfig.token}
                                   onChange={(e) => setWebhookConfig(prev => ({ ...prev, token: e.target.value }))}
-                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24"
+                                  className="w-full px-3 py-2 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent pr-24 bg-white"
                                   placeholder="Enter webhook token"
                                 />
                                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
                                   <button
                                     type="button"
                                     onClick={() => toggleWebhookSecretVisibility('token')}
-                                    className="p-1.5 text-gray-400 hover:text-gray-600 rounded"
+                                    className="p-1.5 text-[#EE4275]/40 hover:text-[#EE4275] rounded"
                                   >
                                     {showWebhookSecrets.token ? <FaEyeSlash className="w-4 h-4" /> : <FaEye className="w-4 h-4" />}
                                   </button>
@@ -1436,16 +1438,16 @@ function CourierSettingsContent() {
                                   </button>
                                 </div>
                               </div>
-                              <p className="text-xs text-gray-500 mt-1">{webhookInfo.secretHelp}</p>
+                              <p className="text-xs text-[#EE4275]/40 mt-1">{webhookInfo.secretHelp}</p>
                               <div className="mt-2 bg-white p-2 rounded border border-purple-200">
-                                <p className="text-xs text-gray-600 font-mono break-all">
+                                <p className="text-xs text-[#2D1B2E] font-mono break-all">
                                   Callback URL: {typeof window !== 'undefined' ? `${window.location.origin}/api/webhooks/courier/redx?token=${webhookConfig.token || 'YOUR_TOKEN'}` : '/api/webhooks/courier/redx?token=YOUR_TOKEN'}
                                 </p>
                               </div>
                             </div>
                           )}
 
-                          <div className="text-xs text-gray-500 mt-2 border-t border-purple-200 pt-2">
+                          <div className="text-xs text-[#EE4275]/60 mt-2 border-t border-purple-200 pt-2">
                             <FaShieldAlt className="inline w-3 h-3 mr-1" />
                             Keep these secrets secure. They are used to verify incoming webhook requests.
                           </div>
@@ -1458,7 +1460,7 @@ function CourierSettingsContent() {
                       <button
                         onClick={() => handleSave(courier._id)}
                         disabled={saving}
-                        className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-800 disabled:opacity-50 flex items-center justify-center gap-2"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-xl hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                       >
                         {saving ? (
                           <>
@@ -1474,7 +1476,7 @@ function CourierSettingsContent() {
                       </button>
                       <button
                         onClick={handleCancelEdit}
-                        className="px-4 py-2 border border-blue-600/30 text-gray-700 rounded-xl hover:bg-gray-50 flex items-center gap-2"
+                        className="px-4 py-2 border border-[#F7C7D3]/50 text-[#2D1B2E] rounded-xl hover:bg-[#FFF5F6] transition-all flex items-center gap-2"
                       >
                         <FaTimes className="w-4 h-4" />
                         Cancel
@@ -1489,7 +1491,7 @@ function CourierSettingsContent() {
                         Credentials configured
                       </div>
                     ) : (
-                      <div className="text-sm text-gray-400">Not configured</div>
+                      <div className="text-sm text-[#EE4275]/40">Not configured</div>
                     )}
                     
                     {/* Show webhook status */}
@@ -1498,7 +1500,7 @@ function CourierSettingsContent() {
                         <FaWeibo className="w-3 h-3" />
                         Webhooks: Enabled
                         {courier.webhookConfig?.secret && (
-                          <span className="text-xs text-gray-400 ml-2">
+                          <span className="text-xs text-[#EE4275]/40 ml-2">
                             (Secret: {courier.webhookConfig.secret.substring(0, 8)}...)
                           </span>
                         )}
@@ -1508,7 +1510,7 @@ function CourierSettingsContent() {
                     <button
                       onClick={() => handleTest(courier)}
                       disabled={isTesting || !courier.configured}
-                      className="mt-3 px-4 py-2 border border-blue-600 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-colors disabled:opacity-50 flex items-center gap-2"
+                      className="mt-3 px-4 py-2 border border-[#EE4275] text-[#EE4275] rounded-xl hover:bg-[#EE4275] hover:text-white transition-colors disabled:opacity-50 flex items-center gap-2"
                     >
                       {isTesting ? (
                         <>
@@ -1521,7 +1523,7 @@ function CourierSettingsContent() {
                     </button>
                     
                     {courier.integrationStatus?.lastTestedAt && (
-                      <p className="text-xs text-gray-400 mt-2">
+                      <p className="text-xs text-[#EE4275]/40 mt-2">
                         Last tested: {new Date(courier.integrationStatus.lastTestedAt).toLocaleString()}
                         <br />
                         Status: {courier.integrationStatus.lastTestMessage || 'Unknown'}
@@ -1544,7 +1546,7 @@ export default function CourierSettingsPage() {
     <Suspense fallback={
       <div className="flex justify-center items-center py-20">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-8 h-8 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500 text-sm">Loading courier settings...</p>
         </div>
       </div>

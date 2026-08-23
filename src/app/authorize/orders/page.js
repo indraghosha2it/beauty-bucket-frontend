@@ -78,27 +78,27 @@ import ProtectedRoute from '@/app/components/ProtectedRoute';
 // ========== ORDER STATUSES - UPDATED ==========
 const ORDER_STATUSES = [
   // Initial statuses
-  { value: 'placed', label: 'Placed', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaClock, nextStatuses: ['follow_up', 'approved', 'hold', 'processing', 'cancelled'] },
-  { value: 'follow_up', label: 'Follow Up', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaHeadset, nextStatuses: ['accepted', 'rejected', 'cancelled', 'reminder'] },
-  { value: 'reminder', label: 'Reminder', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaClock, nextStatuses: ['accepted', 'rejected', 'cancelled'] },
+  { value: 'placed', label: 'Placed', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaClock, nextStatuses: ['follow_up', 'approved', 'hold', 'processing', 'cancelled'] },
+  { value: 'follow_up', label: 'Follow Up', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaHeadset, nextStatuses: ['accepted', 'rejected', 'cancelled', 'reminder'] },
+  { value: 'reminder', label: 'Reminder', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaClock, nextStatuses: ['accepted', 'rejected', 'cancelled'] },
   
   // Main statuses
-  { value: 'accepted', label: 'Accepted', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaCheckCircle, nextStatuses: ['approved', 'processing', 'hold', 'cancelled'] },
-  { value: 'approved', label: 'Approved', color: 'bg-blue-600/10 text-blue-600 border-blue-600/30', icon: FaCheckDouble, nextStatuses: ['processing', 'hold', 'cancelled', 'courier_assigned'] },
+  { value: 'accepted', label: 'Accepted', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaCheckCircle, nextStatuses: ['approved', 'processing', 'hold', 'cancelled'] },
+  { value: 'approved', label: 'Approved', color: 'bg-pink-600/10 text-pink-600 border-pink-600/30', icon: FaCheckDouble, nextStatuses: ['processing', 'hold', 'cancelled', 'courier_assigned'] },
   
   // HOLD status
   { value: 'hold', label: 'On Hold', color: 'bg-yellow-50 text-yellow-600 border-yellow-200', icon: FaClock, nextStatuses: ['approved', 'processing', 'cancelled', 'courier_assigned'] },
   
   // PROCESSING
-  { value: 'processing', label: 'Processing', color: 'bg-blue-50 text-blue-600 border-blue-200', icon: FaSpinner, nextStatuses: ['hold', 'cancelled', 'courier_assigned'] },
+  { value: 'processing', label: 'Processing', color: 'bg-blue-50 text-pink-600 border-blue-200', icon: FaSpinner, nextStatuses: ['hold', 'cancelled', 'courier_assigned'] },
   
   // COURIER ASSIGNED
-  { value: 'courier_assigned', label: 'Courier Assigned', color: 'bg-blue-600/10 text-blue-600 border-blue-600/30', icon: FaTruck, nextStatuses: ['ready_to_ship', 'partial_delivery', 'delivered', 'returned', 'cancelled'] },
+  { value: 'courier_assigned', label: 'Courier Assigned', color: 'bg-pink-600/10 text-pink-600 border-pink-600/30', icon: FaTruck, nextStatuses: ['ready_to_ship', 'partial_delivery', 'delivered', 'returned', 'cancelled'] },
   
   // PARTIAL DELIVERY
   { value: 'partial_delivery', label: 'Partial Delivery', color: 'bg-yellow-100 text-yellow-800 border-yellow-300', icon: FaCheckDouble, nextStatuses: ['delivered', 'returned', 'cancelled'] },
   
-  { value: 'ready_to_ship', label: 'Ready to Ship', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaBox, nextStatuses: ['partial_delivery', 'delivered', 'returned', 'cancelled'] },
+  { value: 'ready_to_ship', label: 'Ready to Ship', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaBox, nextStatuses: ['partial_delivery', 'delivered', 'returned', 'cancelled'] },
   
   // Terminal statuses - NO nextStatuses allowed
   { value: 'rejected', label: 'Rejected', color: 'bg-orange-50 text-orange-600 border-orange-200', icon: FaTimesCircle, nextStatuses: [] },
@@ -107,21 +107,21 @@ const ORDER_STATUSES = [
   { value: 'returned', label: 'Returned', color: 'bg-purple-50 text-purple-600 border-purple-200', icon: FaUndo, nextStatuses: [] },
   
   // Courier handled - not shown in manual dropdown
-  { value: 'shipped', label: 'Shipped', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaShippingFast, nextStatuses: [] },
-  { value: 'out_for_delivery', label: 'Out for Delivery', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaTruck, nextStatuses: [] },
+  { value: 'shipped', label: 'Shipped', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaShippingFast, nextStatuses: [] },
+  { value: 'out_for_delivery', label: 'Out for Delivery', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaTruck, nextStatuses: [] },
 ];
 
 const PAYMENT_STATUSES = [
-  { value: 'pending', label: 'Pending', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30' },
-  { value: 'paid', label: 'Paid', color: 'bg-blue-600/10 text-blue-600 border-blue-600/30' },
+  { value: 'pending', label: 'Pending', color: 'bg-[#E2E7EA] text-black border-pink-600/30' },
+  { value: 'paid', label: 'Paid', color: 'bg-pink-600/10 text-pink-600 border-pink-600/30' },
   { value: 'failed', label: 'Failed', color: 'bg-red-50 text-red-600 border-red-200' },
-  { value: 'refunded', label: 'Refunded', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30' }
+  { value: 'refunded', label: 'Refunded', color: 'bg-[#E2E7EA] text-black border-pink-600/30' }
 ];
 
 // ========== DELIVERY STATUSES ==========
 const DELIVERY_STATUSES = [
   { value: 'pending', label: 'Pending', color: 'bg-gray-100 text-gray-800' },
-  { value: 'processing', label: 'Processing', color: 'bg-blue-100 text-blue-800' },
+  { value: 'processing', label: 'Processing', color: 'bg-blue-100 text-pink-800' },
   { value: 'picked_up', label: 'Picked Up', color: 'bg-cyan-100 text-cyan-800' },
   { value: 'in_transit', label: 'In Transit', color: 'bg-purple-100 text-purple-800' },
   { value: 'out_for_delivery', label: 'Out for Delivery', color: 'bg-orange-100 text-orange-800' },
@@ -129,10 +129,10 @@ const DELIVERY_STATUSES = [
   { value: 'cancelled', label: 'Cancelled ❌', color: 'bg-red-100 text-red-800' },
   { value: 'failed', label: 'Failed ❌', color: 'bg-red-200 text-red-900' },
   { value: 'returned', label: 'Returned 🔄', color: 'bg-gray-200 text-gray-800' },
-  { value: 'accepted', label: 'Accepted', color: 'bg-blue-100 text-blue-800' },
+  { value: 'accepted', label: 'Accepted', color: 'bg-blue-100 text-pink-800' },
   { value: 'pickup', label: 'Picked Up', color: 'bg-cyan-100 text-cyan-800' },
-  { value: 'pickup.requested', label: 'Pickup Requested', color: 'bg-blue-100 text-blue-800' },
-  { value: 'assigned.for.pickup', label: 'Assigned For Pickup', color: 'bg-blue-100 text-blue-800' },
+  { value: 'pickup.requested', label: 'Pickup Requested', color: 'bg-blue-100 text-pink-800' },
+  { value: 'assigned.for.pickup', label: 'Assigned For Pickup', color: 'bg-blue-100 text-pink-800' },
   { value: 'pickup.failed', label: 'Pickup Failed', color: 'bg-red-100 text-red-800' },
   { value: 'pickup.cancelled', label: 'Pickup Cancelled', color: 'bg-red-100 text-red-800' },
   { value: 'at.the.sorting.hub', label: 'At Sorting Hub', color: 'bg-purple-100 text-purple-800' },
@@ -144,13 +144,13 @@ const DELIVERY_STATUSES = [
   { value: 'on.hold', label: 'On Hold', color: 'bg-yellow-100 text-yellow-800' },
   { value: 'return', label: 'Return', color: 'bg-gray-200 text-gray-800' },
   { value: 'paid.return', label: 'Paid Return', color: 'bg-gray-200 text-gray-800' },
-  { value: 'exchange', label: 'Exchange', color: 'bg-blue-100 text-blue-800' },
+  { value: 'exchange', label: 'Exchange', color: 'bg-blue-100 text-pink-800' },
   { value: 'returned.to.merchant', label: 'Returned To Merchant', color: 'bg-gray-200 text-gray-800' },
-  { value: 'ready-for-delivery', label: 'Ready for Delivery', color: 'bg-blue-100 text-blue-800' },
+  { value: 'ready-for-delivery', label: 'Ready for Delivery', color: 'bg-blue-100 text-pink-800' },
   { value: 'delivery-in-progress', label: 'Delivery In Progress', color: 'bg-orange-100 text-orange-800' },
   { value: 'agent-hold', label: 'Agent Hold', color: 'bg-yellow-100 text-yellow-800' },
   { value: 'agent-returning', label: 'Agent Returning', color: 'bg-gray-200 text-gray-800' },
-  { value: 'agent-area-change', label: 'Agent Area Change', color: 'bg-blue-100 text-blue-800' },
+  { value: 'agent-area-change', label: 'Agent Area Change', color: 'bg-blue-100 text-pink-800' },
   { value: 'partial_delivered', label: 'Partial Delivered', color: 'bg-yellow-100 text-yellow-800' },
   { value: 'unknown', label: 'Unknown', color: 'bg-gray-100 text-gray-800' },
 ];
@@ -193,12 +193,12 @@ const STATUS_DISPLAY = {
 
 // ========== STATUS COLOR MAPPING ==========
 const STATUS_COLORS = {
-  'order.created': 'bg-blue-100 text-blue-800',
-  'order.updated': 'bg-blue-100 text-blue-800',
-  'pickup.requested': 'bg-blue-100 text-blue-800',
-  'assigned.for.pickup': 'bg-blue-100 text-blue-800',
-  'ready-for-delivery': 'bg-blue-100 text-blue-800',
-  'agent-area-change': 'bg-blue-100 text-blue-800',
+  'order.created': 'bg-blue-100 text-pink-800',
+  'order.updated': 'bg-blue-100 text-pink-800',
+  'pickup.requested': 'bg-blue-100 text-pink-800',
+  'assigned.for.pickup': 'bg-blue-100 text-pink-800',
+  'ready-for-delivery': 'bg-blue-100 text-pink-800',
+  'agent-area-change': 'bg-blue-100 text-pink-800',
   'pending': 'bg-gray-100 text-gray-800',
   'unknown': 'bg-gray-100 text-gray-800',
   'pickup': 'bg-cyan-100 text-cyan-800',
@@ -294,12 +294,12 @@ const SearchableSelect = ({ name, value, onChange, options, placeholder, require
   return (
     <div className="relative" ref={dropdownRef}>
       <div
-        className={`w-full px-3 py-2 border rounded-xl focus-within:ring-2 focus-within:ring-blue-600 focus-within:border-transparent cursor-pointer flex items-center justify-between transition-all text-sm ${
+        className={`w-full px-3 py-2 border rounded-xl focus-within:ring-2 focus-within:ring-pink-600 focus-within:border-transparent cursor-pointer flex items-center justify-between transition-all text-sm ${
           disabled ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white'
-        } ${error ? 'border-red-500' : 'border-blue-600/30 hover:border-blue-600/60'}`}
+        } ${error ? 'border-red-500' : 'border-pink-600/30 hover:border-pink-600/60'}`}
         onClick={() => !disabled && setIsOpen(!isOpen)}
       >
-        <span className={`text-sm ${selectedOption ? 'text-[#004767] font-medium' : 'text-[#64748B]'}`}>
+        <span className={`text-sm ${selectedOption ? 'text-black font-medium' : 'text-[#64748B]'}`}>
           {selectedOption || placeholder}
         </span>
         <div className="flex items-center gap-2 flex-shrink-0">
@@ -310,7 +310,7 @@ const SearchableSelect = ({ name, value, onChange, options, placeholder, require
                 e.stopPropagation();
                 handleClear();
               }}
-              className="text-[#64748B] hover:text-blue-600"
+              className="text-[#64748B] hover:text-pink-600"
             >
               <FaTimes className="w-3 h-3" />
             </button>
@@ -320,8 +320,8 @@ const SearchableSelect = ({ name, value, onChange, options, placeholder, require
       </div>
 
       {isOpen && !disabled && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-blue-600/30 rounded-xl shadow-lg max-h-60 overflow-hidden">
-          <div className="p-2 border-b border-blue-600/20">
+        <div className="absolute z-50 w-full mt-1 bg-white border border-pink-600/30 rounded-xl shadow-lg max-h-60 overflow-hidden">
+          <div className="p-2 border-b border-pink-600/20">
             <div className="relative">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#64748B] w-3.5 h-3.5" />
               <input
@@ -329,7 +329,7 @@ const SearchableSelect = ({ name, value, onChange, options, placeholder, require
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search..."
-                className="w-full pl-9 pr-3 py-1.5 border border-blue-600/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm"
+                className="w-full pl-9 pr-3 py-1.5 border border-pink-600/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 text-sm"
                 onClick={(e) => e.stopPropagation()}
               />
             </div>
@@ -341,7 +341,7 @@ const SearchableSelect = ({ name, value, onChange, options, placeholder, require
                   key={idx}
                   type="button"
                   onClick={() => handleSelect(option)}
-                  className="w-full px-4 py-2 text-left hover:bg-[#E2E7EA] transition-colors text-sm text-[#004767]"
+                  className="w-full px-4 py-2 text-left hover:bg-[#E2E7EA] transition-colors text-sm text-black"
                 >
                   {option}
                 </button>
@@ -395,7 +395,7 @@ const DeleteConfirmModal = ({ isOpen, onClose, order, onDelete }) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
         <div className="p-4 bg-gradient-to-r from-red-500 to-red-600 text-white">
           <div className="flex items-center gap-2">
@@ -405,13 +405,13 @@ const DeleteConfirmModal = ({ isOpen, onClose, order, onDelete }) => {
         </div>
 
         <div className="p-5 text-center">
-          <p className="text-[#004767] text-sm mb-2">Are you sure you want to delete this order?</p>
+          <p className="text-black text-sm mb-2">Are you sure you want to delete this order?</p>
           <p className="text-xs text-[#64748B]">Order #{order?.orderNumber || order?._id?.slice(-8).toUpperCase()}</p>
           <p className="text-xs text-red-500 mt-3">⚠️ This action cannot be undone!</p>
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+          <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
             Cancel
           </button>
           <button onClick={handleDelete} disabled={loading} className="flex-1 px-3 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm">
@@ -491,7 +491,7 @@ const BulkDeleteModal = ({ isOpen, onClose, selectedOrders, onDelete }) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
         <div className="p-4 bg-gradient-to-r from-red-500 to-red-600 text-white">
           <div className="flex items-center gap-2">
@@ -501,21 +501,21 @@ const BulkDeleteModal = ({ isOpen, onClose, selectedOrders, onDelete }) => {
         </div>
 
         <div className="p-5 text-center">
-          <p className="text-[#004767] text-sm mb-2">
+          <p className="text-black text-sm mb-2">
             Are you sure you want to delete <span className="font-bold text-red-600">{deleteCount}</span> order(s)?
           </p>
           <p className="text-xs text-[#64748B] mb-2">This action cannot be undone!</p>
           <div className="bg-[#E2E7EA]/50 rounded-lg p-2 max-h-[150px] overflow-y-auto">
             {selectedOrders.map((order, index) => (
-              <p key={order._id} className="text-xs text-[#004767] py-0.5 border-b border-blue-600/10 last:border-0">
+              <p key={order._id} className="text-xs text-black py-0.5 border-b border-pink-600/10 last:border-0">
                 #{order.orderNumber || order._id.slice(-8).toUpperCase()} - {order.customerInfo?.fullName}
               </p>
             ))}
           </div>
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+          <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
             Cancel
           </button>
           <button onClick={handleBulkDelete} disabled={loading} className="flex-1 px-3 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm">
@@ -549,9 +549,9 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
-        <div className="p-4 bg-gradient-to-r from-blue-600 to-[#004767] text-white">
+        <div className="p-4 bg-gradient-to-r from-pink-600 to-black text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaTruck className="w-5 h-5" />
@@ -573,13 +573,13 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-[#64748B]">Tracking Number:</span>
-                <span className="font-mono text-[#004767] font-medium">
+                <span className="font-mono text-black font-medium">
                   {displayData?.trackingNumber || 'N/A'}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#64748B]">Courier:</span>
-                <span className="text-[#004767] font-medium">
+                <span className="text-black font-medium">
                   {displayData?.courierName || 'N/A'}
                 </span>
               </div>
@@ -593,7 +593,7 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
                   <button
                     onClick={onRefreshTracking}
                     disabled={refreshLoading}
-                    className="text-blue-600 hover:text-[#0891B2] transition-colors"
+                    className="text-pink-600 hover:text-[#0891B2] transition-colors"
                     title="Refresh tracking"
                   >
                     {refreshLoading ? (
@@ -612,7 +612,7 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
                     href={displayData.trackingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline flex items-center gap-1"
+                    className="text-pink-600 hover:underline flex items-center gap-1"
                   >
                     <FaExternalLinkAlt className="w-3 h-3" />
                     Track on {displayData?.courierName || 'Courier'}
@@ -624,16 +624,16 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
 
           {displayData?.history && displayData.history.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-[#004767] mb-2 flex items-center gap-2">
-                <FaClock className="w-4 h-4 text-blue-600" />
+              <h3 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
+                <FaClock className="w-4 h-4 text-pink-600" />
                 Tracking History
               </h3>
               <div className="space-y-2 max-h-[200px] overflow-y-auto">
                 {displayData.history.map((entry, index) => (
-                  <div key={index} className="flex items-start gap-3 text-xs border-b border-blue-600/10 pb-2 last:border-0">
-                    <div className="w-2 h-2 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></div>
+                  <div key={index} className="flex items-start gap-3 text-xs border-b border-pink-600/10 pb-2 last:border-0">
+                    <div className="w-2 h-2 rounded-full bg-pink-600 mt-1.5 flex-shrink-0"></div>
                     <div>
-                      <p className="text-[#004767]">{entry.message || entry.status}</p>
+                      <p className="text-black">{entry.message || entry.status}</p>
                       <p className="text-[#64748B] text-[10px]">
                         {entry.timestamp ? new Date(entry.timestamp).toLocaleString('en-BD', {
                           day: '2-digit',
@@ -663,8 +663,8 @@ const TrackingModal = ({ isOpen, onClose, trackingInfo, order, onRefreshTracking
           )}
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex justify-end">
-          <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-[#0891B2] transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex justify-end">
+          <button onClick={onClose} className="px-4 py-2 bg-pink-600 text-white rounded-xl hover:bg-[#0891B2] transition-colors text-sm">
             Close
           </button>
         </div>
@@ -970,20 +970,20 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 
   const getRoleColor = () => {
     const colorMap = {
-      super_admin: 'bg-gradient-to-r from-blue-600 to-[#004767]',
-      admin: 'bg-gradient-to-r from-blue-600 to-[#0891B2]',
-      moderator: 'bg-gradient-to-r from-[#004767] to-blue-600'
+      super_admin: 'bg-gradient-to-r from-pink-600 to-black',
+      admin: 'bg-gradient-to-r from-pink-600 to-[#0891B2]',
+      moderator: 'bg-gradient-to-r from-black to-pink-600'
     };
-    return colorMap[userRole] || 'bg-gradient-to-r from-blue-600 to-[#004767]';
+    return colorMap[userRole] || 'bg-gradient-to-r from-pink-600 to-black';
   };
 
   const getRoleBadgeColor = () => {
     const colorMap = {
-      super_admin: 'bg-blue-600/10 border-blue-600/30 text-blue-600',
-      admin: 'bg-blue-600/10 border-blue-600/30 text-blue-600',
-      moderator: 'bg-[#E2E7EA] border-blue-600/30 text-[#004767]'
+      super_admin: 'bg-pink-600/10 border-pink-600/30 text-pink-600',
+      admin: 'bg-pink-600/10 border-pink-600/30 text-pink-600',
+      moderator: 'bg-[#E2E7EA] border-pink-600/30 text-black'
     };
-    return colorMap[userRole] || 'bg-[#E2E7EA] border-blue-600/30 text-[#004767]';
+    return colorMap[userRole] || 'bg-[#E2E7EA] border-pink-600/30 text-black';
   };
 
   const getPermissionMessage = () => {
@@ -1021,7 +1021,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
         <div className={`p-4 text-white ${getRoleColor()}`}>
           <div className="flex items-center justify-between">
@@ -1052,8 +1052,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[#004767] mb-1">Current Status</label>
-            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentStatusInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'}`}>
+            <label className="block text-xs font-medium text-black mb-1">Current Status</label>
+            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentStatusInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'}`}>
               {currentStatusInfo?.icon && <currentStatusInfo.icon className="w-3 h-3" />}
               <span>{currentStatusInfo?.label || order?.orderStatus}</span>
             </div>
@@ -1065,7 +1065,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           {canChange && (
             <>
               <div>
-                <label className="block text-xs font-medium text-[#004767] mb-1">Change Status To</label>
+                <label className="block text-xs font-medium text-black mb-1">Change Status To</label>
                 <select
                   value={selectedStatus}
                   onChange={(e) => {
@@ -1075,7 +1075,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                       setRejectionReason('');
                     }
                   }}
-                  className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+                  className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
                 >
                   <option value={order.orderStatus}>Current: {currentStatusInfo?.label}</option>
                   {availableNextStatuses.map(statusValue => {
@@ -1090,8 +1090,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
               </div>
 
               {selectedStatus !== order.orderStatus && (
-                <div className="bg-[#E2E7EA]/50 rounded-xl p-2 border border-blue-600/30">
-                  <p className="text-xs text-blue-600">
+                <div className="bg-[#E2E7EA]/50 rounded-xl p-2 border border-pink-600/30">
+                  <p className="text-xs text-pink-600">
                     <span className="font-medium">Will change to:</span> {selectedStatusInfo?.label}
                   </p>
                 </div>
@@ -1099,18 +1099,18 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 
               {/* ========== COURIER ASSIGNMENT SECTION ========== */}
               {showCourierOption() && (
-                <div className="bg-blue-600/10 border border-blue-600/30 rounded-xl p-3 space-y-3">
+                <div className="bg-pink-600/10 border border-pink-600/30 rounded-xl p-3 space-y-3">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <FaTruck className="w-4 h-4 text-blue-600" />
-                      <label className="text-xs font-medium text-[#004767]">
+                      <FaTruck className="w-4 h-4 text-pink-600" />
+                      <label className="text-xs font-medium text-black">
                         Select Courier Service <span className="text-red-500">*</span>
                       </label>
                     </div>
                     
                     {loadingCouriers ? (
                       <div className="flex items-center justify-center py-2">
-                        <FaSpinner className="w-4 h-4 animate-spin text-blue-600" />
+                        <FaSpinner className="w-4 h-4 animate-spin text-pink-600" />
                         <span className="ml-2 text-xs text-[#64748B]">Loading couriers...</span>
                       </div>
                     ) : connectedCouriers.length === 0 ? (
@@ -1122,7 +1122,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                       <select
                         value={courierService}
                         onChange={(e) => setCourierService(e.target.value)}
-                        className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+                        className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
                         required
                       >
                         <option value="">Select a courier...</option>
@@ -1135,7 +1135,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                     )}
                     
                     {connectedCouriers.length > 0 && (
-                      <p className="text-xs text-blue-600 mt-1">
+                      <p className="text-xs text-pink-600 mt-1">
                         <FaCheckCircle className="inline w-3 h-3 mr-1" />
                         {connectedCouriers.length} courier service(s) connected
                       </p>
@@ -1143,7 +1143,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#004767] mb-1">
+                    <label className="block text-xs font-medium text-black mb-1">
                       Weight (kg) <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -1154,7 +1154,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                         onChange={(e) => setWeight(parseFloat(e.target.value) || 0)}
                         min="0.1"
                         step="0.1"
-                        className="w-full pl-10 pr-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+                        className="w-full pl-10 pr-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
                         placeholder="Enter package weight"
                       />
                     </div>
@@ -1167,7 +1167,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#004767] mb-1">
+                    <label className="block text-xs font-medium text-black mb-1">
                       Delivery Note (Optional)
                     </label>
                     <div className="relative">
@@ -1176,7 +1176,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                         value={deliveryNote}
                         onChange={(e) => setDeliveryNote(e.target.value)}
                         rows="2"
-                        className="w-full pl-10 pr-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767] placeholder:text-[#64748B] resize-none"
+                        className="w-full pl-10 pr-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black placeholder:text-[#64748B] resize-none"
                         placeholder="Add any delivery notes or special instructions..."
                       />
                     </div>
@@ -1192,7 +1192,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
               {/* ========== INFO BOX FOR COURIER ASSIGNED → DELIVERED/RETURNED ========== */}
               {order?.orderStatus === 'courier_assigned' && (selectedStatus === 'delivered' || selectedStatus === 'returned' || selectedStatus === 'partial_delivery') && (
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
-                  <p className="text-xs text-blue-600 flex items-center gap-2">
+                  <p className="text-xs text-pink-600 flex items-center gap-2">
                     <FaInfoCircle className="w-3.5 h-3.5" />
                     This order is currently with courier. Marking as {selectedStatusInfo?.label} will update the order status.
                   </p>
@@ -1213,7 +1213,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                 <div className="bg-red-50 border border-red-200 rounded-xl p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <FaExclamationTriangle className="w-4 h-4 text-red-600" />
-                    <label className="text-xs font-medium text-[#004767]">
+                    <label className="text-xs font-medium text-black">
                       Cancellation Reason <span className="text-red-500">*</span>
                     </label>
                   </div>
@@ -1222,7 +1222,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                     onChange={(e) => setCancellationReason(e.target.value)}
                     rows="3"
                     placeholder="Please provide a reason for cancellation..."
-                    className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767] placeholder:text-[#64748B]"
+                    className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black placeholder:text-[#64748B]"
                     required
                   />
                   <p className="text-xs text-red-600 mt-1">This reason will be saved with the order</p>
@@ -1233,7 +1233,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                 <div className="bg-orange-50 border border-orange-200 rounded-xl p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <FaTimesCircle className="w-4 h-4 text-orange-600" />
-                    <label className="text-xs font-medium text-[#004767]">
+                    <label className="text-xs font-medium text-black">
                       Rejection Reason <span className="text-orange-500">*</span>
                     </label>
                   </div>
@@ -1242,7 +1242,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
                     onChange={(e) => setRejectionReason(e.target.value)}
                     rows="3"
                     placeholder="Please provide a reason for rejection..."
-                    className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767] placeholder:text-[#64748B]"
+                    className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black placeholder:text-[#64748B]"
                     required
                   />
                   <p className="text-xs text-orange-600 mt-1">This reason will be saved with the order</p>
@@ -1251,20 +1251,20 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 
               {!isCourierAssign && (
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">Order Delivery Note (Optional)</label>
+                  <label className="block text-xs font-medium text-black mb-1">Order Delivery Note (Optional)</label>
                   <textarea
                     value={deliveryNote}
                     onChange={(e) => setDeliveryNote(e.target.value)}
                     rows="2"
                     placeholder="Add any delivery notes or special instructions"
-                    className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767] placeholder:text-[#64748B]"
+                    className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black placeholder:text-[#64748B]"
                   />
                 </div>
               )}
 
               {isDelivered && order.paymentStatus !== 'paid' && (
-                <div className="bg-blue-600/10 border border-blue-600/30 rounded-xl p-2">
-                  <p className="text-xs text-blue-600 flex items-center gap-2">
+                <div className="bg-pink-600/10 border border-pink-600/30 rounded-xl p-2">
+                  <p className="text-xs text-pink-600 flex items-center gap-2">
                     <FaCheckCircle className="w-3 h-3" />
                     Payment status will be automatically updated to "Paid"
                   </p>
@@ -1274,8 +1274,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           )}
 
           {!canChange && order?.orderStatus === 'delivered' && (
-            <div className="bg-blue-600/10 border border-blue-600/30 rounded-xl p-3">
-              <p className="text-xs text-blue-600 flex items-center gap-2">
+            <div className="bg-pink-600/10 border border-pink-600/30 rounded-xl p-3">
+              <p className="text-xs text-pink-600 flex items-center gap-2">
                 <FaCheckDouble className="w-4 h-4" />
                 This order has been delivered. No further changes allowed.
               </p>
@@ -1310,8 +1310,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           )}
 
           {!canChange && order?.orderStatus === 'courier_assigned' && (
-            <div className="bg-blue-600/10 border border-blue-600/30 rounded-xl p-3">
-              <p className="text-xs text-blue-600 flex items-center gap-2">
+            <div className="bg-pink-600/10 border border-pink-600/30 rounded-xl p-3">
+              <p className="text-xs text-pink-600 flex items-center gap-2">
                 <FaTruck className="w-4 h-4" />
                 This order has been assigned to courier.
               </p>
@@ -1319,8 +1319,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           )}
 
           {!canChange && ['processing', 'shipped', 'out_for_delivery'].includes(order?.orderStatus) && (
-            <div className="bg-blue-600/10 border border-blue-600/30 rounded-xl p-3">
-              <p className="text-xs text-blue-600 flex items-center gap-2">
+            <div className="bg-pink-600/10 border border-pink-600/30 rounded-xl p-3">
+              <p className="text-xs text-pink-600 flex items-center gap-2">
                 <FaShippingFast className="w-4 h-4" />
                 This order is being handled by the courier service.
               </p>
@@ -1328,14 +1328,14 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
           )}
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+          <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading || !canChange || selectedStatus === order?.orderStatus}
-            className="flex-1 px-3 py-2 bg-gradient-to-r from-blue-600 to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+            className="flex-1 px-3 py-2 bg-gradient-to-r from-pink-600 to-black text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
           >
             {loading ? <FaSpinner className="w-3 h-3 animate-spin" /> : 
               isCourierAssign ? <FaTruck className="w-3 h-3" /> : <FaCheckCircle className="w-3 h-3" />
@@ -1445,9 +1445,9 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 //         initial={{ opacity: 0, scale: 0.95 }}
 //         animate={{ opacity: 1, scale: 1 }}
 //         exit={{ opacity: 0, scale: 0.95 }}
-//         className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+//         className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
 //       >
-//         <div className="p-4 bg-gradient-to-r from-blue-600 to-[#004767] text-white">
+//         <div className="p-4 bg-gradient-to-r from-pink-600 to-black text-white">
 //           <div className="flex items-center justify-between">
 //             <div className="flex items-center gap-2">
 //               <FaMoneyBillWave className="w-5 h-5" />
@@ -1462,24 +1462,24 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 
 //         <div className="p-4 space-y-3">
 //           <div>
-//             <label className="block text-xs font-medium text-[#004767] mb-1">Current Payment Status</label>
-//             <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentPaymentInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'}`}>
+//             <label className="block text-xs font-medium text-black mb-1">Current Payment Status</label>
+//             <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentPaymentInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'}`}>
 //               <FaMoneyBillWave className="w-3 h-3" />
 //               <span>{currentPaymentInfo?.label || order?.paymentStatus}</span>
 //             </div>
 //             <div className="mt-1 text-xs text-[#64748B]">
-//               Order Status: <span className="font-medium text-[#004767]">{order?.orderStatus}</span> | 
-//               Payment Method: <span className="font-medium text-[#004767]">{order?.paymentMethod === 'cod' ? 'COD' : 'Online'}</span>
+//               Order Status: <span className="font-medium text-black">{order?.orderStatus}</span> | 
+//               Payment Method: <span className="font-medium text-black">{order?.paymentMethod === 'cod' ? 'COD' : 'Online'}</span>
 //             </div>
 //           </div>
 
 //           <div>
-//             <label className="block text-xs font-medium text-[#004767] mb-1">Change Payment Status To</label>
+//             <label className="block text-xs font-medium text-black mb-1">Change Payment Status To</label>
 //             {canChange ? (
 //               <select
 //                 value={selectedStatus}
 //                 onChange={(e) => setSelectedStatus(e.target.value)}
-//                 className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+//                 className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
 //               >
 //                 <option value={order.paymentStatus}>Current: {currentPaymentInfo?.label}</option>
 //                 {availableStatuses.map(status => (
@@ -1489,21 +1489,21 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate, userRole }) => {
 //                 ))}
 //               </select>
 //             ) : (
-//               <div className="px-3 py-1.5 text-sm bg-[#E2E7EA] text-[#64748B] rounded-xl border border-blue-600/30">
+//               <div className="px-3 py-1.5 text-sm bg-[#E2E7EA] text-[#64748B] rounded-xl border border-pink-600/30">
 //                 No further changes allowed
 //               </div>
 //             )}
 //           </div>
 //         </div>
 
-//         <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-//           <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+//         <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+//           <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
 //             Cancel
 //           </button>
 //           <button
 //             onClick={handleSubmit}
 //             disabled={loading || !canChange || selectedStatus === order?.paymentStatus}
-//             className="flex-1 px-3 py-2 bg-gradient-to-r from-blue-600 to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+//             className="flex-1 px-3 py-2 bg-gradient-to-r from-pink-600 to-black text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
 //           >
 //             {loading ? <FaSpinner className="w-3 h-3 animate-spin" /> : <FaSave className="w-3 h-3" />}
 //             Update Payment
@@ -1626,9 +1626,9 @@ const PaymentStatusModal = ({ isOpen, onClose, order, onUpdate }) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
-        <div className="p-4 bg-gradient-to-r from-blue-600 to-[#004767] text-white">
+        <div className="p-4 bg-gradient-to-r from-pink-600 to-black text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaMoneyBillWave className="w-5 h-5" />
@@ -1643,14 +1643,14 @@ const PaymentStatusModal = ({ isOpen, onClose, order, onUpdate }) => {
 
         <div className="p-4 space-y-3">
           <div>
-            <label className="block text-xs font-medium text-[#004767] mb-1">Current Payment Status</label>
-            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentPaymentInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'}`}>
+            <label className="block text-xs font-medium text-black mb-1">Current Payment Status</label>
+            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentPaymentInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'}`}>
               <FaMoneyBillWave className="w-3 h-3" />
               <span>{currentPaymentInfo?.label || order?.paymentStatus}</span>
             </div>
             <div className="mt-1 text-xs text-[#64748B]">
-              Order Status: <span className="font-medium text-[#004767]">{order?.orderStatus}</span> | 
-              Payment Method: <span className="font-medium text-[#004767]">{order?.paymentMethod === 'cod' ? 'COD' : 'Online'}</span>
+              Order Status: <span className="font-medium text-black">{order?.orderStatus}</span> | 
+              Payment Method: <span className="font-medium text-black">{order?.paymentMethod === 'cod' ? 'COD' : 'Online'}</span>
             </div>
           </div>
 
@@ -1665,12 +1665,12 @@ const PaymentStatusModal = ({ isOpen, onClose, order, onUpdate }) => {
           )}
 
           <div>
-            <label className="block text-xs font-medium text-[#004767] mb-1">Change Payment Status To</label>
+            <label className="block text-xs font-medium text-black mb-1">Change Payment Status To</label>
             {canChange ? (
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+                className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
               >
                 <option value={order.paymentStatus}>Current: {currentPaymentInfo?.label}</option>
                 {availableStatuses.map(status => (
@@ -1680,7 +1680,7 @@ const PaymentStatusModal = ({ isOpen, onClose, order, onUpdate }) => {
                 ))}
               </select>
             ) : (
-              <div className="px-3 py-1.5 text-sm bg-[#E2E7EA] text-[#64748B] rounded-xl border border-blue-600/30">
+              <div className="px-3 py-1.5 text-sm bg-[#E2E7EA] text-[#64748B] rounded-xl border border-pink-600/30">
                 {order?.orderStatus === 'cancelled' 
                   ? 'Payment cannot be changed for cancelled orders' 
                   : 'No further changes allowed'}
@@ -1689,14 +1689,14 @@ const PaymentStatusModal = ({ isOpen, onClose, order, onUpdate }) => {
           </div>
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+          <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading || !canChange || selectedStatus === order?.paymentStatus || order?.orderStatus === 'cancelled'}
-            className="flex-1 px-3 py-2 bg-gradient-to-r from-blue-600 to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+            className="flex-1 px-3 py-2 bg-gradient-to-r from-pink-600 to-black text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
           >
             {loading ? <FaSpinner className="w-3 h-3 animate-spin" /> : <FaSave className="w-3 h-3" />}
             Update Payment
@@ -1833,9 +1833,9 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
       >
-        <div className="p-4 bg-gradient-to-r from-blue-600 to-[#004767] text-white sticky top-0 z-10">
+        <div className="p-4 bg-gradient-to-r from-pink-600 to-pink-700 text-white sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaFileInvoice className="w-5 h-5" />
@@ -1855,7 +1855,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                 onClose();
                 canChangeStatus && onStatusUpdate();
               }}
-              className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border transition-all ${statusInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'} ${canChangeStatus ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
+              className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border transition-all ${statusInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'} ${canChangeStatus ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}`}
               title={canChangeStatus ? 'Click to update status' : 'Status cannot be changed'}
             >
               {statusInfo?.icon && <statusInfo.icon className="w-3 h-3" />}
@@ -1867,7 +1867,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                 onClose();
                 onPaymentUpdate();
               }}
-              className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border transition-all ${paymentInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'} cursor-pointer hover:opacity-80`}
+              className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border transition-all ${paymentInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'} cursor-pointer hover:opacity-80`}
               title="Click to update payment status"
             >
               <FaMoneyBillWave className="w-3 h-3" />
@@ -1877,7 +1877,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
             <button
               onClick={handleDownload}
               disabled={downloading}
-              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border bg-[#E2E7EA] text-blue-600 border-blue-600/30 hover:bg-white transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border bg-[#E2E7EA] text-pink-600 border-pink-600/30 hover:bg-white transition-colors disabled:opacity-50"
             >
               {downloading ? (
                 <FaSpinner className="w-3 h-3 animate-spin" />
@@ -1889,58 +1889,58 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
           </div>
 
           {order.deviceInfo && (
-            <div className="mb-5 bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-              <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-                <FaGlobe className="w-3.5 h-3.5 text-blue-600" />
+            <div className="mb-5 bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+              <h3 className="font-semibold text-black text-sm mb-2 flex items-center gap-1.5">
+                <FaGlobe className="w-3.5 h-3.5 text-pink-600" />
                 Device & Location Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">IP Address:</span>
-                  <span className="font-mono text-[#004767]">{order.deviceInfo.ipAddress || 'N/A'}</span>
+                  <span className="font-mono text-black">{order.deviceInfo.ipAddress || 'N/A'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Device:</span>
-                  <span className="flex items-center gap-1 text-[#004767]">
+                  <span className="flex items-center gap-1 text-black">
                     {getDeviceIcon(order.deviceInfo.deviceType)}
                     {getDeviceInfo(order.deviceInfo) || 'N/A'}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Browser:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.browser || 'N/A'} {order.deviceInfo.browserVersion || ''}</span>
+                  <span className="text-black">{order.deviceInfo.browser || 'N/A'} {order.deviceInfo.browserVersion || ''}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">OS:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.os || 'N/A'} {order.deviceInfo.osVersion || ''}</span>
+                  <span className="text-black">{order.deviceInfo.os || 'N/A'} {order.deviceInfo.osVersion || ''}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Screen:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.screenResolution || 'N/A'}</span>
+                  <span className="text-black">{order.deviceInfo.screenResolution || 'N/A'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Connection:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.connectionType || 'N/A'}</span>
+                  <span className="text-black">{order.deviceInfo.connectionType || 'N/A'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Timezone:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.timezone || 'N/A'}</span>
+                  <span className="text-black">{order.deviceInfo.timezone || 'N/A'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[#64748B]">Language:</span>
-                  <span className="text-[#004767]">{order.deviceInfo.language || 'N/A'}</span>
+                  <span className="text-black">{order.deviceInfo.language || 'N/A'}</span>
                 </div>
               </div>
             </div>
           )}
 
           {isDelivered && order.deliveredAt && (
-            <div className="mb-5 bg-blue-600/10 border-l-4 border-blue-600 rounded-xl p-3">
+            <div className="mb-5 bg-pink-600/10 border-l-4 border-pink-600 rounded-xl p-3">
               <div className="flex items-start gap-2">
-                <FaCheckDouble className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <FaCheckDouble className="w-4 h-4 text-pink-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-sm font-semibold text-blue-600">Order Delivered</h4>
-                  <p className="text-xs text-blue-600/80 mt-1">
+                  <h4 className="text-sm font-semibold text-pink-600">Order Delivered</h4>
+                  <p className="text-xs text-pink-600/80 mt-1">
                     <span className="font-medium">Delivered on:</span> {new Date(order.deliveredAt).toLocaleDateString('en-BD', {
                       day: '2-digit',
                       month: 'long',
@@ -2033,16 +2033,16 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
           )}
 
           {isCourierAssigned && order.deliveryService && (
-            <div className="mb-5 bg-blue-600/10 border-l-4 border-blue-600 rounded-xl p-3">
+            <div className="mb-5 bg-pink-600/10 border-l-4 border-pink-600 rounded-xl p-3">
               <div className="flex items-start gap-2">
-                <FaTruck className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <FaTruck className="w-4 h-4 text-pink-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-sm font-semibold text-blue-600">Courier Assigned</h4>
-                  <p className="text-xs text-blue-600/80 mt-1">
+                  <h4 className="text-sm font-semibold text-pink-600">Courier Assigned</h4>
+                  <p className="text-xs text-pink-600/80 mt-1">
                     <span className="font-medium">Courier:</span> {order.deliveryService.courierName || 'N/A'}
                   </p>
                   {order.deliveryService.trackingNumber && (
-                    <p className="text-xs text-blue-600/80 mt-1">
+                    <p className="text-xs text-pink-600/80 mt-1">
                       <span className="font-medium">Tracking:</span> {order.deliveryService.trackingNumber}
                     </p>
                   )}
@@ -2052,45 +2052,45 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-              <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-                <FaUser className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+              <h3 className="font-semibold text-black text-sm mb-2 flex items-center gap-1.5">
+                <FaUser className="w-3.5 h-3.5 text-pink-600" />
                 Customer Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-[#64748B]">Name:</span> <span className="text-[#004767] font-medium">{order.customerInfo?.fullName}</span></p>
-                <p><span className="text-[#64748B]">Email:</span> <span className="text-[#004767]">{order.customerInfo?.email}</span></p>
-                <p><span className="text-[#64748B]">Phone:</span> <span className="text-[#004767]">{order.customerInfo?.phone}</span></p>
+                <p><span className="text-[#64748B]">Name:</span> <span className="text-black font-medium">{order.customerInfo?.fullName}</span></p>
+                <p><span className="text-[#64748B]">Email:</span> <span className="text-black">{order.customerInfo?.email}</span></p>
+                <p><span className="text-[#64748B]">Phone:</span> <span className="text-black">{order.customerInfo?.phone}</span></p>
                 {order.customerInfo?.note && (
-                  <p><span className="text-[#64748B]">Note:</span> <span className="text-[#004767]">{order.customerInfo.note}</span></p>
+                  <p><span className="text-[#64748B]">Note:</span> <span className="text-black">{order.customerInfo.note}</span></p>
                 )}
               </div>
             </div>
 
-            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-              <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+              <h3 className="font-semibold text-black text-sm mb-2 flex items-center gap-1.5">
+                <FaMapMarkerAlt className="w-3.5 h-3.5 text-pink-600" />
                 Delivery Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-[#64748B]">Division:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.division || 'N/A'}</span></p>
-                <p><span className="text-[#64748B]">District/City:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.city || 'N/A'}</span></p>
-                <p><span className="text-[#64748B]">Upazila/Thana:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.zone || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">Division:</span> <span className="font-medium text-black">{order.customerInfo?.division || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">District/City:</span> <span className="font-medium text-black">{order.customerInfo?.city || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">Upazila/Thana:</span> <span className="font-medium text-black">{order.customerInfo?.zone || 'N/A'}</span></p>
                 {order.customerInfo?.area && (
-                  <p><span className="text-[#64748B]">Union/Area:</span> <span className="font-medium text-[#004767]">{order.customerInfo.area}</span></p>
+                  <p><span className="text-[#64748B]">Union/Area:</span> <span className="font-medium text-black">{order.customerInfo.area}</span></p>
                 )}
-                <p><span className="text-[#64748B]">Address:</span> <span className="text-[#004767]">{order.customerInfo?.address}</span></p>
+                <p><span className="text-[#64748B]">Address:</span> <span className="text-black">{order.customerInfo?.address}</span></p>
                 {order.trackingNumber && (
-                  <p><span className="text-[#64748B]">Tracking:</span> <span className="font-mono text-blue-600">{order.trackingNumber}</span></p>
+                  <p><span className="text-[#64748B]">Tracking:</span> <span className="font-mono text-pink-600">{order.trackingNumber}</span></p>
                 )}
                 {order.deliveryService?.trackingUrl && (
-                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-blue-600/20">
+                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-pink-600/20">
                     <span className="text-[#64748B]">Track Link:</span>
                     <a
                       href={order.deliveryService.trackingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline flex items-center gap-1"
+                      className="text-pink-600 hover:underline flex items-center gap-1"
                     >
                       <FaExternalLinkAlt className="w-3 h-3" />
                       Track on {order.deliveryService.courierName || 'Courier'}
@@ -2098,26 +2098,26 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                   </div>
                 )}
                 {order.deliveryNote && (
-                  <p><span className="text-[#64748B]">Order Note:</span> <span className="text-[#004767]">{order.deliveryNote}</span></p>
+                  <p><span className="text-[#64748B]">Order Note:</span> <span className="text-black">{order.deliveryNote}</span></p>
                 )}
               </div>
             </div>
           </div>
 
           <div className="mb-5">
-            <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-              <FaBox className="w-3.5 h-3.5 text-blue-600" />
+            <h3 className="font-semibold text-black text-sm mb-2 flex items-center gap-1.5">
+              <FaBox className="w-3.5 h-3.5 text-pink-600" />
               Order Items
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead className="bg-[#E2E7EA]">
                   <tr>
-                    <th className="px-2 py-1.5 text-left text-[#004767]">Product</th>
-                    <th className="px-2 py-1.5 text-center text-[#004767]">Color</th>
-                    <th className="px-2 py-1.5 text-center text-[#004767]">Qty</th>
-                    <th className="px-2 py-1.5 text-right text-[#004767]">Price</th>
-                    <th className="px-2 py-1.5 text-right text-[#004767]">Total</th>
+                    <th className="px-2 py-1.5 text-left text-black">Product</th>
+                    <th className="px-2 py-1.5 text-center text-black">Color</th>
+                    <th className="px-2 py-1.5 text-center text-black">Qty</th>
+                    <th className="px-2 py-1.5 text-right text-black">Price</th>
+                    <th className="px-2 py-1.5 text-right text-black">Total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2130,17 +2130,17 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                       const totalPrice = price * colorObj.quantity;
                       
                       return (
-                        <tr key={`${idx}-${colorIdx}`} className="border-t border-blue-600/20">
+                        <tr key={`${idx}-${colorIdx}`} className="border-t border-pink-600/20">
                           {isFirst && (
                             <td className="px-2 py-2" rowSpan={hasMultipleColors ? group.colors.length : 1}>
                               <div className="flex items-center gap-2">
                                 <img 
                                   src={group.image || 'https://via.placeholder.com/30'} 
                                   alt={group.productName}
-                                  className="w-7 h-7 rounded object-cover border border-blue-600/30"
+                                  className="w-7 h-7 rounded object-cover border border-pink-600/30"
                                   onError={(e) => { e.target.src = 'https://via.placeholder.com/30?text=Product'; }}
                                 />
-                                <p className="font-medium text-xs text-[#004767]">{group.productName}</p>
+                                <p className="font-medium text-xs text-black">{group.productName}</p>
                               </div>
                             </td>
                           )}
@@ -2148,7 +2148,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                             {colorObj.color ? (
                               <div className="flex items-center justify-center">
                                 <div 
-                                  className="w-5 h-5 rounded-full border border-blue-600/30 shadow-sm"
+                                  className="w-5 h-5 rounded-full border border-pink-600/30 shadow-sm"
                                   style={{ backgroundColor: colorObj.color }}
                                   title={colorObj.color}
                                 />
@@ -2157,32 +2157,32 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                               <span className="text-xs text-[#64748B]">-</span>
                             )}
                           </td>
-                          <td className="px-2 py-2 text-center text-[#004767]">{colorObj.quantity}</td>
-                          <td className="px-2 py-2 text-right text-[#004767]">৳{price.toFixed(2)}</td>
-                          <td className="px-2 py-2 text-right font-medium text-blue-600">৳{totalPrice.toFixed(2)}</td>
+                          <td className="px-2 py-2 text-center text-black">{colorObj.quantity}</td>
+                          <td className="px-2 py-2 text-right text-black">৳{price.toFixed(2)}</td>
+                          <td className="px-2 py-2 text-right font-medium text-pink-600">৳{totalPrice.toFixed(2)}</td>
                         </tr>
                       );
                     });
                   })}
                 </tbody>
-                <tfoot className="border-t border-blue-600/30">
-                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#004767]">Subtotal:</td><td className="px-2 py-1 text-right text-[#004767]">৳{order.subtotal?.toFixed(2)}</td></tr>
-                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#004767]">Shipping:</td><td className="px-2 py-1 text-right text-[#004767]">৳{order.shippingCost?.toFixed(2)}</td></tr>
+                <tfoot className="border-t border-pink-600/30">
+                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-black">Subtotal:</td><td className="px-2 py-1 text-right text-black">৳{order.subtotal?.toFixed(2)}</td></tr>
+                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-black">Shipping:</td><td className="px-2 py-1 text-right text-black">৳{order.shippingCost?.toFixed(2)}</td></tr>
                   {order.discount > 0 && (
                     <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-green-600">Discount:</td><td className="px-2 py-1 text-right text-green-600">- ৳{order.discount.toFixed(2)}</td></tr>
                   )}
                   <tr className="text-sm font-bold">
-                    <td colSpan="4" className="px-2 py-1 text-right text-[#004767]">Total:</td>
-                    <td className="px-2 py-1 text-right text-blue-600">৳{order.total?.toFixed(2)}</td>
+                    <td colSpan="4" className="px-2 py-1 text-right text-black">Total:</td>
+                    <td className="px-2 py-1 text-right text-pink-600">৳{order.total?.toFixed(2)}</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
           </div>
 
-          <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-            <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-              <FaInfoCircle className="w-3.5 h-3.5 text-blue-600" />
+          <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+            <h3 className="font-semibold text-black text-sm mb-2 flex items-center gap-1.5">
+              <FaInfoCircle className="w-3.5 h-3.5 text-pink-600" />
               Additional Information
             </h3>
             
@@ -2190,7 +2190,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
               <div className="mb-2">
                 <p className="text-xs">
                   <span className="text-[#64748B]">Coupon Applied:</span> 
-                  <span className="text-blue-600 font-medium ml-1">{order.couponCode}</span>
+                  <span className="text-pink-600 font-medium ml-1">{order.couponCode}</span>
                 </p>
               </div>
             )}
@@ -2199,15 +2199,15 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
               <div className="mb-2">
                 <p className="text-xs">
                   <span className="text-[#64748B]">Order Note:</span>
-                  <span className="text-[#004767] font-medium ml-1 whitespace-pre-wrap">{order.deliveryNote}</span>
+                  <span className="text-black font-medium ml-1 whitespace-pre-wrap">{order.deliveryNote}</span>
                 </p>
               </div>
             )}
 
             {statusNotes.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-[#004767] mb-1.5 flex items-center gap-1">
-                  <FaClipboardList className="w-3 h-3 text-blue-600" />
+                <p className="text-xs font-medium text-black mb-1.5 flex items-center gap-1">
+                  <FaClipboardList className="w-3 h-3 text-pink-600" />
                   Status History Notes
                 </p>
                 <div className="space-y-1.5 max-h-[150px] overflow-y-auto pr-1">
@@ -2231,9 +2231,9 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
                     }
                     
                     return (
-                      <div key={index} className="bg-white rounded-lg p-2 border border-blue-600/20">
+                      <div key={index} className="bg-white rounded-lg p-2 border border-pink-600/20">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-medium text-[#004767]">
+                          <span className="text-xs font-medium text-black">
                             {statusLabel}
                           </span>
                           <span className="text-[10px] text-[#64748B]">
@@ -2261,9 +2261,9 @@ const OrderDetailsModal = ({ isOpen, onClose, order, onStatusUpdate, onPaymentUp
           </div>
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex justify-end gap-2">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex justify-end gap-2">
          
-          <button onClick={onClose} className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all text-sm">
+          <button onClick={onClose} className="px-3 py-1.5 bg-gradient-to-r from-pink-600 to-pink-700 text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all text-sm">
             Close
           </button>
         </div>
@@ -3229,9 +3229,9 @@ const handleSaveChanges = async () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
+          className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
         >
-          <div className="p-4 bg-gradient-to-r from-blue-600 to-[#004767] text-white sticky top-0 z-10">
+          <div className="p-4 bg-gradient-to-r from-pink-600 to-pink-800 text-white sticky top-0 z-10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <FaEdit className="w-5 h-5" />
@@ -3279,8 +3279,8 @@ const handleSaveChanges = async () => {
             )}
             
             {isEditable && (
-              <div className="mb-4 bg-blue-600/10 border-l-4 border-blue-600 p-3 rounded-xl">
-                <p className="text-xs text-blue-600">
+              <div className="mb-4 bg-pink-600/10 border-l-4 border-pink-600 p-3 rounded-xl">
+                <p className="text-xs text-pink-600">
                   ✅ Order is <strong>{getStatusLabel(order?.orderStatus)}</strong>. 
                   <span className="block text-[11px] mt-1">
                     🔒 <strong>Full Name & Phone:</strong> Only Super Admin & Admin can edit
@@ -3306,13 +3306,13 @@ const handleSaveChanges = async () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* ===== FULL NAME ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Full Name *
                     {!canEditSensitiveInfo && isEditable && (
                       <span className="ml-1 text-[10px] text-[#64748B] font-normal">(read-only)</span>
                     )}
                     {canEditSensitiveInfo && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <input
@@ -3321,9 +3321,9 @@ const handleSaveChanges = async () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     readOnly={!canEditSensitiveInfo || !isEditable}
-                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      !canEditSensitiveInfo || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                    } border-blue-600/30 text-[#004767]`}
+                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                      !canEditSensitiveInfo || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                    } border-pink-600/30 text-black`}
                   />
                   {!canEditSensitiveInfo && isEditable && (
                     <p className="text-[10px] text-[#64748B] mt-0.5">Only Super Admin & Admin can edit name</p>
@@ -3332,13 +3332,13 @@ const handleSaveChanges = async () => {
 
                 {/* ===== PHONE ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Phone *
                     {!canEditSensitiveInfo && isEditable && (
                       <span className="ml-1 text-[10px] text-[#64748B] font-normal">(read-only)</span>
                     )}
                     {canEditSensitiveInfo && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <input
@@ -3347,9 +3347,9 @@ const handleSaveChanges = async () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     readOnly={!canEditSensitiveInfo || !isEditable}
-                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      !canEditSensitiveInfo || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                    } border-blue-600/30 text-[#004767]`}
+                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                      !canEditSensitiveInfo || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                    } border-pink-600/30 text-black`}
                   />
                   {!canEditSensitiveInfo && isEditable && (
                     <p className="text-[10px] text-[#64748B] mt-0.5">Only Super Admin & Admin can edit phone</p>
@@ -3358,10 +3358,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== EMAIL ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Email
                     {isSuperAdmin && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                     {!isSuperAdmin && isEditable && (
                       <span className="ml-1 text-[10px] text-[#64748B] font-normal">(read-only)</span>
@@ -3373,9 +3373,9 @@ const handleSaveChanges = async () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     readOnly={!isSuperAdmin || !isEditable}
-                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      !isSuperAdmin || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                    } border-blue-600/30 text-[#004767]`}
+                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                      !isSuperAdmin || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                    } border-pink-600/30 text-black`}
                   />
                   {!isSuperAdmin && isEditable && (
                     <p className="text-[10px] text-[#64748B] mt-0.5">Only Super Admin can edit email</p>
@@ -3384,10 +3384,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== DIVISION ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Division *
                     {canEditAddress && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <SearchableSelect
@@ -3403,10 +3403,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== DISTRICT/CITY ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     District/City *
                     {canEditAddress && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <SearchableSelect
@@ -3422,10 +3422,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== UPAZILA/THANA ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Upazila/Thana *
                     {canEditAddress && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <SearchableSelect
@@ -3441,10 +3441,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== UNION/AREA ===== */}
                 <div>
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Union/Area
                     {canEditAddress && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <SearchableSelect
@@ -3459,10 +3459,10 @@ const handleSaveChanges = async () => {
 
                 {/* ===== ADDRESS ===== */}
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-medium text-[#004767] mb-1">
+                  <label className="block text-xs font-medium text-black mb-1">
                     Address *
                     {canEditAddress && isEditable && (
-                      <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                   <textarea
@@ -3471,27 +3471,27 @@ const handleSaveChanges = async () => {
                     onChange={handleInputChange}
                     readOnly={!canEditAddress || !isEditable}
                     rows="2"
-                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      !canEditAddress || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                    } border-blue-600/30 text-[#004767]`}
+                    className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                      !canEditAddress || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                    } border-pink-600/30 text-black`}
                   />
                 </div>
               </div>
 
               {/* ========== ORDER ITEMS ========== */}
-              <div className="border-t border-blue-600/30 pt-4 mt-2">
+              <div className="border-t border-pink-600/30 pt-4 mt-2">
                 <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-medium text-[#004767] flex items-center gap-2">
-                    <FaBox className="w-4 h-4 text-blue-600" />
+                  <label className="text-sm font-medium text-black flex items-center gap-2">
+                    <FaBox className="w-4 h-4 text-pink-600" />
                     Order Items ({localItems.length})
                     {canEditProducts && isEditable && (
-                      <span className="text-[10px] text-blue-600 font-normal">(add/remove products)</span>
+                      <span className="text-[10px] text-pink-600 font-normal">(add/remove products)</span>
                     )}
                   </label>
                   {canEditProducts && isEditable && (
                     <button
                       onClick={() => setShowAddProduct(!showAddProduct)}
-                      className="px-3 py-1.5 bg-blue-600/10 text-blue-600 rounded-xl hover:bg-blue-600/20 transition-colors text-sm flex items-center gap-1.5 border border-blue-600/30"
+                      className="px-3 py-1.5 bg-pink-600/10 text-pink-600 rounded-xl hover:bg-pink-600/20 transition-colors text-sm flex items-center gap-1.5 border border-pink-600/30"
                     >
                       <FaPlus className="w-3 h-3" />
                       Add Product
@@ -3501,8 +3501,8 @@ const handleSaveChanges = async () => {
 
                 {/* ========== ADD PRODUCT SECTION ========== */}
                 {showAddProduct && canEditProducts && isEditable && (
-                  <div className="mb-4 p-4 bg-[#E2E7EA]/30 rounded-xl border border-blue-600/30">
-                    <h4 className="text-sm font-medium text-[#004767] mb-3">Add Product to Order</h4>
+                  <div className="mb-4 p-4 bg-[#E2E7EA]/30 rounded-xl border border-pink-600/30">
+                    <h4 className="text-sm font-medium text-black mb-3">Add Product to Order</h4>
                     
                     <div className="relative mb-3">
                       <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] w-4 h-4" />
@@ -3511,16 +3511,16 @@ const handleSaveChanges = async () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Start typing product name, SKU, or barcode..."
-                        className="w-full pl-10 pr-3 py-2 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-[#004767]"
+                        className="w-full pl-10 pr-3 py-2 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-black"
                         autoFocus
                       />
                       {searching && (
-                        <FaSpinner className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 animate-spin text-blue-600" />
+                        <FaSpinner className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 animate-spin text-pink-600" />
                       )}
                       {searchQuery && !searching && (
                         <button
                           onClick={() => setSearchQuery('')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-blue-600"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-pink-600"
                         >
                           <FaTimes className="w-3 h-3" />
                         </button>
@@ -3528,10 +3528,10 @@ const handleSaveChanges = async () => {
                     </div>
 
                     {searchQuery.length > 0 && (
-                      <div className="mb-3 max-h-48 overflow-y-auto border border-blue-600/20 rounded-xl bg-white">
+                      <div className="mb-3 max-h-48 overflow-y-auto border border-pink-600/20 rounded-xl bg-white">
                         {searching ? (
                           <div className="flex items-center justify-center py-4">
-                            <FaSpinner className="w-4 h-4 animate-spin text-blue-600" />
+                            <FaSpinner className="w-4 h-4 animate-spin text-pink-600" />
                             <span className="ml-2 text-xs text-[#64748B]">Searching...</span>
                           </div>
                         ) : searchResults.length > 0 ? (
@@ -3543,33 +3543,33 @@ const handleSaveChanges = async () => {
                                 setSelectedColorsWithQty([]);
                                 setAddQuantity(1);
                               }}
-                              className={`p-2 border-b border-blue-600/10 cursor-pointer hover:bg-[#E2E7EA]/50 transition-colors flex items-center gap-3 ${
-                                selectedProduct?._id === product._id ? 'bg-blue-600/10 border-l-4 border-l-blue-600' : ''
+                              className={`p-2 border-b border-pink-600/10 cursor-pointer hover:bg-[#E2E7EA]/50 transition-colors flex items-center gap-3 ${
+                                selectedProduct?._id === product._id ? 'bg-pink-600/10 border-l-4 border-l-pink-600' : ''
                               }`}
                             >
                               <img
                                 src={product.images?.[0]?.url || 'https://via.placeholder.com/40'}
                                 alt={product.productName}
-                                className="w-10 h-10 rounded-lg object-cover border border-blue-600/20 flex-shrink-0"
+                                className="w-10 h-10 rounded-lg object-cover border border-pink-600/20 flex-shrink-0"
                                 onError={(e) => { e.target.src = 'https://via.placeholder.com/40?text=Product'; }}
                               />
                               <div className="flex-1 min-w-0">
-                                <p className="text-xs font-medium text-[#004767] truncate">{product.productName}</p>
+                                <p className="text-xs font-medium text-black truncate">{product.productName}</p>
                                 <div className="flex items-center gap-2 text-xs flex-wrap">
-                                  <span className="text-blue-600 font-bold">৳{(product.discountPrice || product.regularPrice).toFixed(2)}</span>
+                                  <span className="text-pink-600 font-bold">৳{(product.discountPrice || product.regularPrice).toFixed(2)}</span>
                                   {product.discountPrice > 0 && (
                                     <span className="text-[#64748B] line-through">৳{product.regularPrice.toFixed(2)}</span>
                                   )}
                                   <span className="text-[#64748B]">Stock: {product.stockQuantity}</span>
                                   {product.colors && product.colors.length > 0 && (
-                                    <span className="text-[10px] text-blue-600 bg-blue-600/10 px-1.5 py-0.5 rounded-full">
+                                    <span className="text-[10px] text-pink-600 bg-pink-600/10 px-1.5 py-0.5 rounded-full">
                                       {product.colors.length} colors
                                     </span>
                                   )}
                                 </div>
                               </div>
                               {selectedProduct?._id === product._id && (
-                                <FaCheckCircle className="w-4 h-4 text-blue-600" />
+                                <FaCheckCircle className="w-4 h-4 text-pink-600" />
                               )}
                             </div>
                           ))
@@ -3583,8 +3583,8 @@ const handleSaveChanges = async () => {
                     )}
 
                     {selectedProduct && (
-                      <div className="p-3 bg-white rounded-xl border border-blue-600/20">
-                        <p className="text-xs font-medium text-[#004767] mb-2">
+                      <div className="p-3 bg-white rounded-xl border border-pink-600/20">
+                        <p className="text-xs font-medium text-black mb-2">
                           Selected: {selectedProduct.productName}
                           <span className="ml-2 text-[10px] text-[#64748B]">(Stock: {selectedProduct.stockQuantity})</span>
                         </p>
@@ -3607,8 +3607,8 @@ const handleSaveChanges = async () => {
                               return (
                                 <div key={color} className={`flex items-center gap-3 p-2 rounded-lg border transition-all ${
                                   isSelected 
-                                    ? 'bg-blue-600/5 border-blue-600' 
-                                    : 'bg-[#E2E7EA]/30 border-blue-600/15 hover:border-blue-600/30'
+                                    ? 'bg-pink-600/5 border-pink-600' 
+                                    : 'bg-[#E2E7EA]/30 border-pink-600/15 hover:border-pink-600/30'
                                 }`}>
                                   <div 
                                     className="w-8 h-8 rounded-full border-2 flex-shrink-0"
@@ -3617,14 +3617,14 @@ const handleSaveChanges = async () => {
                                       borderColor: isSelected ? '#06B6D4' : '#E2E7EA'
                                     }}
                                   />
-                                  <span className="text-xs font-medium text-[#004767] min-w-[60px]">{color}</span>
+                                  <span className="text-xs font-medium text-black min-w-[60px]">{color}</span>
                                   
                                   <button
                                     onClick={() => toggleColorSelection(color)}
                                     className={`px-3 py-1 text-xs rounded-lg transition-colors ${
                                       isSelected 
                                         ? 'bg-red-500 text-white hover:bg-red-600' 
-                                        : 'bg-blue-600 text-white hover:bg-[#0891B2]'
+                                        : 'bg-pink-600 text-white hover:bg-[#0891B2]'
                                     }`}
                                   >
                                     {isSelected ? 'Deselect' : 'Select'}
@@ -3645,7 +3645,7 @@ const handleSaveChanges = async () => {
                                         max={maxAllowed}
                                         value={quantity}
                                         onChange={(e) => handleColorQuantityInputChange(color, e.target.value)}
-                                        className="w-12 text-center text-sm font-medium text-[#004767] border border-blue-600/20 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white py-1"
+                                        className="w-12 text-center text-sm font-medium text-black border border-pink-600/20 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white py-1"
                                       />
                                       <button
                                         onClick={() => updateSelectedColorQuantity(color, quantity + 1)}
@@ -3662,7 +3662,7 @@ const handleSaveChanges = async () => {
                             
                             <div className="mt-2 text-[10px] text-[#64748B]">
                               {selectedColorsWithQty.length > 0 ? (
-                                <span className="text-blue-600">
+                                <span className="text-pink-600">
                                   ✓ {selectedColorsWithQty.length} color{selectedColorsWithQty.length > 1 ? 's' : ''} selected
                                   {' | Total: '}
                                   {selectedColorsWithQty.reduce((sum, c) => sum + Number(c.quantity || 0), 0)} / {selectedProduct.stockQuantity}
@@ -3675,7 +3675,7 @@ const handleSaveChanges = async () => {
                         ) : (
                           <div className="flex items-center gap-3">
                             <span className="text-xs text-[#64748B]">Quantity:</span>
-                            <div className="flex items-center border border-blue-600/30 rounded-lg overflow-hidden">
+                            <div className="flex items-center border border-pink-600/30 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => setAddQuantity(prev => Math.max(1, prev - 1))}
                                 className="px-2 py-1 hover:bg-[#E2E7EA] transition-colors"
@@ -3688,7 +3688,7 @@ const handleSaveChanges = async () => {
                                 onChange={(e) => setAddQuantity(Math.max(1, Math.min(selectedProduct.stockQuantity, parseInt(e.target.value) || 1)))}
                                 min="1"
                                 max={selectedProduct.stockQuantity}
-                                className="w-12 text-center text-xs py-1 bg-white focus:outline-none text-[#004767]"
+                                className="w-12 text-center text-xs py-1 bg-white focus:outline-none text-black"
                               />
                               <button
                                 onClick={() => setAddQuantity(prev => Math.min(selectedProduct.stockQuantity, prev + 1))}
@@ -3705,7 +3705,7 @@ const handleSaveChanges = async () => {
                         <button
                           onClick={handleAddProduct}
                           disabled={addingProduct || (selectedProduct.colors?.length > 0 && selectedColorsWithQty.length === 0)}
-                          className="mt-3 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors text-sm disabled:opacity-50 flex items-center justify-center gap-2"
+                          className="mt-3 w-full px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-800 transition-colors text-sm disabled:opacity-50 flex items-center justify-center gap-2"
                         >
                           {addingProduct ? <FaSpinner className="w-3 h-3 animate-spin" /> : <FaPlus className="w-3 h-3" />}
                           Add to Order
@@ -3720,12 +3720,12 @@ const handleSaveChanges = async () => {
                   <table className="w-full text-xs">
                     <thead className="bg-[#E2E7EA]">
                       <tr>
-                        <th className="px-2 py-1.5 text-left text-[#004767]">Product</th>
-                        <th className="px-2 py-1.5 text-center text-[#004767]">Color</th>
-                        <th className="px-2 py-1.5 text-center text-[#004767]">Qty</th>
-                        <th className="px-2 py-1.5 text-right text-[#004767]">Price</th>
-                        <th className="px-2 py-1.5 text-right text-[#004767]">Total</th>
-                        {canEditProducts && isEditable && <th className="px-2 py-1.5 text-center text-[#004767]">Action</th>}
+                        <th className="px-2 py-1.5 text-left text-black">Product</th>
+                        <th className="px-2 py-1.5 text-center text-black">Color</th>
+                        <th className="px-2 py-1.5 text-center text-black">Qty</th>
+                        <th className="px-2 py-1.5 text-right text-black">Price</th>
+                        <th className="px-2 py-1.5 text-right text-black">Total</th>
+                        {canEditProducts && isEditable && <th className="px-2 py-1.5 text-center text-black">Action</th>}
                       </tr>
                     </thead>
                     <tbody>
@@ -3755,18 +3755,18 @@ const handleSaveChanges = async () => {
                             const maxAllowed = group.stockQuantity - usedByOthers;
                             
                             return (
-                              <tr key={colorInfo.itemId || `color-${colorIdx}`} className={`border-t border-blue-600/20 ${isTempItem ? 'bg-blue-600/5' : ''} ${isOverStock ? 'bg-red-50' : ''}`}>
+                              <tr key={colorInfo.itemId || `color-${colorIdx}`} className={`border-t border-pink-600/20 ${isTempItem ? 'bg-pink-600/5' : ''} ${isOverStock ? 'bg-red-50' : ''}`}>
                                 {isFirst && (
                                   <td className="px-2 py-2" rowSpan={hasMultipleColors ? group.colors.length : 1}>
                                     <div className="flex items-center gap-2">
                                       <img 
                                         src={group.image || 'https://via.placeholder.com/30'} 
                                         alt={group.productName}
-                                        className="w-7 h-7 rounded object-cover border border-blue-600/30 flex-shrink-0"
+                                        className="w-7 h-7 rounded object-cover border border-pink-600/30 flex-shrink-0"
                                         onError={(e) => { e.target.src = 'https://via.placeholder.com/30?text=Product'; }}
                                       />
                                       <div>
-                                        <p className="font-medium text-xs text-[#004767] truncate max-w-[120px]" title={group.productName}>
+                                        <p className="font-medium text-xs text-black truncate max-w-[120px]" title={group.productName}>
                                           {group.productName}
                                           {isTempItem && (
                                             <span className="ml-1 text-[10px] text-green-500 font-normal">(new)</span>
@@ -3792,7 +3792,7 @@ const handleSaveChanges = async () => {
                                   {hasColor ? (
                                     <div className="flex items-center justify-center">
                                       <div 
-                                        className="w-5 h-5 rounded-full border border-blue-600/30 shadow-sm"
+                                        className="w-5 h-5 rounded-full border border-pink-600/30 shadow-sm"
                                         style={{ backgroundColor: colorInfo.color }}
                                         title={colorInfo.color}
                                       />
@@ -3818,8 +3818,8 @@ const handleSaveChanges = async () => {
                                         max={maxAllowed}
                                         value={colorInfo.quantity}
                                         onChange={(e) => handleItemQuantityInputChange(colorInfo.itemId, e.target.value)}
-                                        className={`w-10 text-center text-xs font-medium border rounded focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white py-0.5 ${
-                                          isOverStock ? 'border-red-500 text-red-600' : 'border-blue-600/30 text-[#004767]'
+                                        className={`w-10 text-center text-xs font-medium border rounded focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white py-0.5 ${
+                                          isOverStock ? 'border-red-500 text-red-600' : 'border-pink-600/30 text-black'
                                         }`}
                                       />
                                       <button
@@ -3831,11 +3831,11 @@ const handleSaveChanges = async () => {
                                       </button>
                                     </div>
                                   ) : (
-                                    <span className={`font-medium ${isOverStock ? 'text-red-600' : 'text-[#004767]'}`}>{colorInfo.quantity}</span>
+                                    <span className={`font-medium ${isOverStock ? 'text-red-600' : 'text-black'}`}>{colorInfo.quantity}</span>
                                   )}
                                 </td>
-                                <td className="px-2 py-2 text-right text-[#004767]">৳{price.toFixed(2)}</td>
-                                <td className="px-2 py-2 text-right font-medium text-blue-600">৳{totalPrice.toFixed(2)}</td>
+                                <td className="px-2 py-2 text-right text-black">৳{price.toFixed(2)}</td>
+                                <td className="px-2 py-2 text-right font-medium text-pink-600">৳{totalPrice.toFixed(2)}</td>
                                 {canEditProducts && isEditable && (
                                   <td className="px-2 py-2 text-center">
                                     <button
@@ -3858,15 +3858,15 @@ const handleSaveChanges = async () => {
                         })
                       )}
                     </tbody>
-                    <tfoot className="border-t border-blue-600/30 bg-[#E2E7EA]/30">
+                    <tfoot className="border-t border-pink-600/30 bg-[#E2E7EA]/30">
                       <tr>
-                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right font-medium text-[#004767]">Subtotal:</td>
-                        <td className="px-2 py-1 text-right font-medium text-[#004767]">৳{localSubtotal.toFixed(2)}</td>
+                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right font-medium text-black">Subtotal:</td>
+                        <td className="px-2 py-1 text-right font-medium text-black">৳{localSubtotal.toFixed(2)}</td>
                         {canEditProducts && isEditable && <td></td>}
                       </tr>
                       <tr>
-                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right font-medium text-[#004767]">Shipping:</td>
-                        <td className="px-2 py-1 text-right text-[#004767]">৳{shippingCost.toFixed(2)}</td>
+                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right font-medium text-black">Shipping:</td>
+                        <td className="px-2 py-1 text-right text-black">৳{shippingCost.toFixed(2)}</td>
                         {canEditProducts && isEditable && <td></td>}
                       </tr>
                       <tr className="text-green-600">
@@ -3874,9 +3874,9 @@ const handleSaveChanges = async () => {
                         <td className="px-2 py-1 text-right font-medium">- ৳{localDiscount.toFixed(2)}</td>
                         {canEditProducts && isEditable && <td></td>}
                       </tr>
-                      <tr className="text-sm font-bold text-blue-600">
-                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right text-[#004767]">Total:</td>
-                        <td className="px-2 py-1 text-right text-blue-600">৳{localTotal.toFixed(2)}</td>
+                      <tr className="text-sm font-bold text-pink-600">
+                        <td colSpan={canEditProducts && isEditable ? 4 : 3} className="px-2 py-1 text-right text-black">Total:</td>
+                        <td className="px-2 py-1 text-right text-pink-600">৳{localTotal.toFixed(2)}</td>
                         {canEditProducts && isEditable && <td></td>}
                       </tr>
                     </tfoot>
@@ -3885,13 +3885,13 @@ const handleSaveChanges = async () => {
               </div>
 
               {/* ========== DISCOUNT SECTION ========== */}
-              <div className="border-t border-blue-600/30 pt-4 mt-2">
+              <div className="border-t border-pink-600/30 pt-4 mt-2">
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-[#004767] flex items-center gap-2">
+                  <label className="text-sm font-medium text-black flex items-center gap-2">
              
                     Order Discount amount
                     {canEditDiscount && isEditable && (
-                      <span className="text-[10px] text-blue-600 font-normal">(editable)</span>
+                      <span className="text-[10px] text-pink-600 font-normal">(editable)</span>
                     )}
                   </label>
                 </div>
@@ -3905,9 +3905,9 @@ const handleSaveChanges = async () => {
                       disabled={!canEditDiscount || !isEditable}
                       min="0"
                       step="0.5"
-                      className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                        !canEditDiscount || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                      } border-blue-600/30 text-[#004767]`}
+                      className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                        !canEditDiscount || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                      } border-pink-600/30 text-black`}
                       placeholder="0.00"
                     />
                   </div>
@@ -3919,16 +3919,16 @@ const handleSaveChanges = async () => {
                       onChange={handleInputChange}
                       disabled={!canEditDiscount || !isEditable}
                       placeholder="Discount reason (optional)"
-                      className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                        !canEditDiscount || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                      } border-blue-600/30 text-[#004767]`}
+                      className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                        !canEditDiscount || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                      } border-pink-600/30 text-black`}
                     />
                   </div>
                 </div>
-                <div className="mt-2 p-2 bg-[#E2E7EA]/30 rounded-lg border border-blue-600/20">
+                <div className="mt-2 p-2 bg-[#E2E7EA]/30 rounded-lg border border-pink-600/20">
                   <div className="flex justify-between text-sm">
                     <span className="text-[#64748B]">After Discount:</span>
-                    <span className="font-bold text-blue-600">৳{localTotal.toFixed(2)}</span>
+                    <span className="font-bold text-pink-600">৳{localTotal.toFixed(2)}</span>
                   </div>
                   {localDiscount > 0 && (
                     <div className="flex justify-between text-xs text-green-600">
@@ -3940,11 +3940,11 @@ const handleSaveChanges = async () => {
               </div>
 
               {/* ========== DELIVERY NOTE ========== */}
-              <div className="border-t border-blue-600/30 pt-4 mt-2">
-                <label className="block text-xs font-medium text-[#004767] mb-1">
+              <div className="border-t border-pink-600/30 pt-4 mt-2">
+                <label className="block text-xs font-medium text-black mb-1">
                   Delivery Note
                   {canEditDeliveryNote && isEditable && (
-                    <span className="ml-1 text-[10px] text-blue-600 font-normal">(editable)</span>
+                    <span className="ml-1 text-[10px] text-pink-600 font-normal">(editable)</span>
                   )}
                 </label>
                 <textarea
@@ -3953,17 +3953,17 @@ const handleSaveChanges = async () => {
                   onChange={handleInputChange}
                   readOnly={!canEditDeliveryNote || !isEditable}
                   rows="2"
-                  className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                    !canEditDeliveryNote || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-blue-600/60'
-                  } border-blue-600/30 text-[#004767]`}
+                  className={`w-full px-3 py-1.5 text-sm border rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent ${
+                    !canEditDeliveryNote || !isEditable ? 'bg-[#E2E7EA] cursor-not-allowed' : 'bg-white hover:border-pink-600/60'
+                  } border-pink-600/30 text-black`}
                   placeholder="Add delivery notes or special instructions"
                 />
               </div>
             </div>
           </div>
 
-          <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-            <button onClick={handleModalClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+          <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+            <button onClick={handleModalClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
               Cancel
             </button>
             <button
@@ -3971,7 +3971,7 @@ const handleSaveChanges = async () => {
               disabled={loading || !isEditable}
               className={`flex-1 px-3 py-2 rounded-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm ${
                 hasChanges && isEditable
-                  ? 'bg-gradient-to-r from-blue-600 to-[#004767] text-white hover:shadow-lg hover:shadow-blue-600/25'
+                  ? 'bg-gradient-to-r from-pink-600 to-black text-white hover:shadow-lg hover:shadow-pink-600/25'
                   : 'bg-[#E2E7EA] text-[#64748B] cursor-not-allowed'
               }`}
             >
@@ -3989,12 +3989,12 @@ const handleSaveChanges = async () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-blue-600/20"
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-pink-600/20"
           >
             <div className={`p-4 ${
               confirmConfig.type === 'danger' ? 'bg-gradient-to-r from-red-500 to-red-600' :
               confirmConfig.type === 'warning' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' :
-              'bg-gradient-to-r from-blue-600 to-[#004767]'
+              'bg-gradient-to-r from-pink-600 to-black'
             } text-white`}>
               <div className="flex items-center gap-3">
                 {confirmConfig.type === 'danger' && <FaExclamationTriangle className="w-5 h-5" />}
@@ -4007,13 +4007,13 @@ const handleSaveChanges = async () => {
             </div>
 
             <div className="p-6">
-              <p className="text-[#004767] text-sm">{confirmConfig.message}</p>
+              <p className="text-black text-sm">{confirmConfig.message}</p>
             </div>
 
-            <div className="p-4 border-t border-blue-600/20 bg-[#E2E7EA]/20 flex gap-3">
+            <div className="p-4 border-t border-pink-600/20 bg-[#E2E7EA]/20 flex gap-3">
               <button
                 onClick={() => setShowConfirmModal(false)}
-                className="flex-1 px-4 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm"
+                className="flex-1 px-4 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm"
               >
                 {confirmConfig.cancelText || 'Cancel'}
               </button>
@@ -4024,7 +4024,7 @@ const handleSaveChanges = async () => {
                     ? 'bg-gradient-to-r from-red-500 to-red-600 hover:shadow-red-500/25' 
                     : confirmConfig.type === 'warning'
                     ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:shadow-yellow-500/25'
-                    : 'bg-gradient-to-r from-blue-600 to-[#004767] hover:shadow-blue-600/25'
+                    : 'bg-gradient-to-r from-pink-600 to-black hover:shadow-pink-600/25'
                 }`}
               >
                 {confirmConfig.confirmText || 'Confirm'}
@@ -4102,19 +4102,19 @@ export default function AdminOrdersPage() {
   }, [selectAll, orders]);
 
   const statusTabs = [
-    { value: 'all', label: 'All', count: stats?.totalOrders || 0, color: 'bg-blue-600' },
-    { value: 'placed', label: 'Placed', count: stats?.placedOrders || 0, color: 'bg-blue-600' },
-    { value: 'follow_up', label: 'Follow Up', count: stats?.followUpOrders || 0, color: 'bg-blue-600' },
+    { value: 'all', label: 'All', count: stats?.totalOrders || 0, color: 'bg-pink-600' },
+    { value: 'placed', label: 'Placed', count: stats?.placedOrders || 0, color: 'bg-pink-600' },
+    { value: 'follow_up', label: 'Follow Up', count: stats?.followUpOrders || 0, color: 'bg-pink-600' },
     { value: 'reminder', label: 'Reminder', count: stats?.reminderOrders || 0, color: 'bg-[#FFC107]' },
-    { value: 'accepted', label: 'Accepted', count: stats?.acceptedOrders || 0, color: 'bg-blue-600' },
-    { value: 'approved', label: 'Approved', count: stats?.approvedOrders || 0, color: 'bg-blue-600' },
+    { value: 'accepted', label: 'Accepted', count: stats?.acceptedOrders || 0, color: 'bg-pink-600' },
+    { value: 'approved', label: 'Approved', count: stats?.approvedOrders || 0, color: 'bg-pink-600' },
     { value: 'hold', label: 'On Hold', count: stats?.holdOrders || 0, color: 'bg-yellow-500' },
     { value: 'processing', label: 'Processing', count: stats?.processingOrders || 0, color: 'bg-blue-500' },
-    { value: 'courier_assigned', label: 'Courier Assigned', count: stats?.courierAssignedOrders || 0, color: 'bg-blue-600' },
+    { value: 'courier_assigned', label: 'Courier Assigned', count: stats?.courierAssignedOrders || 0, color: 'bg-pink-600' },
     { value: 'partial_delivery', label: 'Partial Delivery', count: stats?.partialDeliveryOrders || 0, color: 'bg-yellow-500' },
-    { value: 'ready_to_ship', label: 'Ready to Ship', count: stats?.readyToShipOrders || 0, color: 'bg-blue-600' },
+    { value: 'ready_to_ship', label: 'Ready to Ship', count: stats?.readyToShipOrders || 0, color: 'bg-pink-600' },
     { value: 'rejected', label: 'Rejected', count: stats?.rejectedOrders || 0, color: 'bg-orange-500' },
-    { value: 'delivered', label: 'Delivered', count: stats?.deliveredOrders || 0, color: 'bg-blue-600' },
+    { value: 'delivered', label: 'Delivered', count: stats?.deliveredOrders || 0, color: 'bg-pink-600' },
     { value: 'returned', label: 'Returned', count: stats?.returnedOrders || 0, color: 'bg-purple-500' },
     { value: 'cancelled', label: 'Cancelled', count: stats?.cancelledOrders || 0, color: 'bg-red-500' }
   ];
@@ -4473,7 +4473,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
 
   const getStatusBadge = (status) => {
     const statusInfo = ORDER_STATUSES.find(s => s.value === status);
-    if (!statusInfo) return <span className="px-1.5 py-0.5 rounded-full text-xs bg-[#E2E7EA] text-[#004767] border border-blue-600/30">{status}</span>;
+    if (!statusInfo) return <span className="px-1.5 py-0.5 rounded-full text-xs bg-[#E2E7EA] text-black border border-pink-600/30">{status}</span>;
     return (
       <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${statusInfo.color}`}>
         <statusInfo.icon className="w-2.5 h-2.5" />
@@ -4485,7 +4485,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
   const getPaymentBadge = (status) => {
     const paymentInfo = PAYMENT_STATUSES.find(p => p.value === status);
     return (
-      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-[#004767] border-blue-600/30'}`}>
+      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-black border-pink-600/30'}`}>
         <FaMoneyBillWave className="w-2.5 h-2.5" />
         {paymentInfo?.label || status}
       </span>
@@ -4494,13 +4494,13 @@ const refreshSingleOrderDelivery = async (orderId) => {
 
   const getPaymentMethodBadge = (method) => {
     const methods = {
-      'cod': { label: 'COD', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaMoneyBillWave },
-      'online': { label: 'Online', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaCreditCard },
-      'bkash': { label: 'bKash', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaMobileAlt },
-      'nagad': { label: 'Nagad', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaMobileAlt }
+      'cod': { label: 'COD', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaMoneyBillWave },
+      'online': { label: 'Online', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaCreditCard },
+      'bkash': { label: 'bKash', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaMobileAlt },
+      'nagad': { label: 'Nagad', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaMobileAlt }
     };
     
-    const info = methods[method] || { label: method || 'Unknown', color: 'bg-[#E2E7EA] text-[#004767] border-blue-600/30', icon: FaMoneyBillWave };
+    const info = methods[method] || { label: method || 'Unknown', color: 'bg-[#E2E7EA] text-black border-pink-600/30', icon: FaMoneyBillWave };
     const Icon = info.icon;
     
     return (
@@ -4512,11 +4512,11 @@ const refreshSingleOrderDelivery = async (orderId) => {
   };
 
   const StatCard = ({ title, value, icon, color }) => (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-blue-600/20">
+    <div className="bg-white rounded-2xl p-4 shadow-sm border border-pink-600/20">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs text-[#64748B] font-medium">{title}</p>
-          <p className="text-xl font-bold text-[#004767]">{value?.toLocaleString() || 0}</p>
+          <p className="text-xl font-bold text-black">{value?.toLocaleString() || 0}</p>
         </div>
         <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center`}>
           {icon}
@@ -4528,16 +4528,16 @@ const refreshSingleOrderDelivery = async (orderId) => {
   return (
     <ProtectedRoute pageKey="all_orders">
     <>
-      <div className="min-h-screen bg-[#E2E7EA]/20 pb-12 pt-6">
+      <div className="min-h-screen bg-pink-100/20 pb-12 pt-6">
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/25">
+              <div className="w-10 h-10 bg-pink-600 rounded-xl flex items-center justify-center shadow-lg shadow-pink-600/25">
                 <FaBox className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-[#004767]" style={{ fontFamily: '"Playfair Display"' }}>
+                <h1 className="text-2xl md:text-3xl font-bold text-black" style={{ fontFamily: '"Playfair Display"' }}>
                   Order Management
                 </h1>
                 <p className="text-sm text-[#64748B] mt-0.5">Manage and track all orders</p>
@@ -4546,7 +4546,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={exportToCSV}
-                className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all text-sm font-medium shadow-sm"
+                className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-pink-600 to-pink-800 text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all text-sm font-medium shadow-sm"
               >
                 <FaDownload className="w-4 h-4" />
                 Export CSV
@@ -4557,24 +4557,24 @@ const refreshSingleOrderDelivery = async (orderId) => {
           {/* Stats Cards */}
           {stats ? (
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
-              <StatCard title="Total Orders" value={stats.totalOrders} icon={<FaBox className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
-              <StatCard title="Placed" value={stats.placedOrders || 0} icon={<FaClock className="w-5 h-5 text-[#004767]" />} color="bg-[#E2E7EA]" />
-              <StatCard title="Follow Up" value={stats.followUpOrders || 0} icon={<FaHeadset className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
-              <StatCard title="Accepted" value={stats.acceptedOrders || 0} icon={<FaCheckCircle className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
-              <StatCard title="Approved" value={stats.approvedOrders || 0} icon={<FaCheckDouble className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
+              <StatCard title="Total Orders" value={stats.totalOrders} icon={<FaBox className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
+              <StatCard title="Placed" value={stats.placedOrders || 0} icon={<FaClock className="w-5 h-5 text-black" />} color="bg-[#E2E7EA]" />
+              <StatCard title="Follow Up" value={stats.followUpOrders || 0} icon={<FaHeadset className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
+              <StatCard title="Accepted" value={stats.acceptedOrders || 0} icon={<FaCheckCircle className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
+              <StatCard title="Approved" value={stats.approvedOrders || 0} icon={<FaCheckDouble className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
               <StatCard title="On Hold" value={stats.holdOrders || 0} icon={<FaClock className="w-5 h-5 text-yellow-600" />} color="bg-yellow-100" />
-              <StatCard title="Processing" value={stats.processingOrders || 0} icon={<FaSpinner className="w-5 h-5 text-blue-600" />} color="bg-blue-100" />
-              <StatCard title="Courier Assigned" value={stats.courierAssignedOrders || 0} icon={<FaTruck className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
+              <StatCard title="Processing" value={stats.processingOrders || 0} icon={<FaSpinner className="w-5 h-5 text-pink-600" />} color="bg-blue-100" />
+              <StatCard title="Courier Assigned" value={stats.courierAssignedOrders || 0} icon={<FaTruck className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
               <StatCard title="Partial Delivery" value={stats.partialDeliveryOrders || 0} icon={<FaCheckDouble className="w-5 h-5 text-yellow-600" />} color="bg-yellow-100" />
-              <StatCard title="Delivered" value={stats.deliveredOrders || 0} icon={<FaCheckDouble className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
+              <StatCard title="Delivered" value={stats.deliveredOrders || 0} icon={<FaCheckDouble className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
               <StatCard title="Cancelled" value={stats.cancelledOrders || 0} icon={<FaBan className="w-5 h-5 text-red-500" />} color="bg-red-50" />
               <StatCard title="Returned" value={stats.returnedOrders || 0} icon={<FaUndo className="w-5 h-5 text-purple-500" />} color="bg-purple-50" />
-              <StatCard title="Revenue" value={stats.totalRevenue} icon={<FaMoneyBillWave className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
+              <StatCard title="Revenue" value={stats.totalRevenue} icon={<FaMoneyBillWave className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-13 gap-4 mb-6">
               {[...Array(13)].map((_, i) => (
-                <div key={i} className="bg-white rounded-2xl p-4 shadow-sm border border-blue-600/20 animate-pulse">
+                <div key={i} className="bg-white rounded-2xl p-4 shadow-sm border border-pink-600/20 animate-pulse">
                   <div className="h-4 bg-[#E2E7EA] rounded w-1/2 mb-2"></div>
                   <div className="h-8 bg-[#E2E7EA] rounded w-3/4"></div>
                 </div>
@@ -4583,7 +4583,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
           )}
 
           {/* Filters */}
-          <div className="bg-white rounded-2xl border border-blue-600/30 p-4 mb-6 shadow-sm">
+          <div className="bg-white rounded-2xl border border-pink-600/30 p-4 mb-6 shadow-sm">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#64748B] w-4 h-4" />
@@ -4595,7 +4595,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                     setSearchTerm(e.target.value);
                     setCurrentPage(1);
                   }}
-                  className="w-full pl-10 pr-10 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-[#004767] placeholder:text-[#64748B]"
+                  className="w-full pl-10 pr-10 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-black placeholder:text-[#64748B]"
                 />
                 {searchTerm && (
                   <button
@@ -4603,7 +4603,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                       setSearchTerm('');
                       setCurrentPage(1);
                     }}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#64748B] hover:text-blue-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#64748B] hover:text-pink-600"
                   >
                     <FaTimes className="w-4 h-4" />
                   </button>
@@ -4615,7 +4615,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   setStatusFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="px-4 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-[#004767] text-sm"
+                className="px-4 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-black text-sm"
               >
                 <option value="">All Order Status</option>
                 {ORDER_STATUSES.map(status => (
@@ -4629,7 +4629,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   setPaymentFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="px-4 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-[#004767] text-sm"
+                className="px-4 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-black text-sm"
               >
                 <option value="">All Payment Status</option>
                 {PAYMENT_STATUSES.map(status => (
@@ -4643,7 +4643,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   setSortBy(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="px-4 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-[#004767] text-sm"
+                className="px-4 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-black text-sm"
               >
                 <option value="-createdAt">Newest First</option>
                 <option value="createdAt_asc">Oldest First</option>
@@ -4655,7 +4655,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
 
           {/* Status Tabs */}
           <div className="mb-6">
-            <div className="flex flex-wrap gap-2 border-b border-blue-600/30 pb-2">
+            <div className="flex flex-wrap gap-2 border-b border-pink-600/30 pb-2">
               {statusTabs.map((tab) => (
                 <button
                   key={tab.value}
@@ -4665,8 +4665,8 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   }}
                   className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 flex items-center gap-2 ${
                     activeStatusTab === tab.value
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/25'
-                      : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-blue-600/30'
+                      ? 'bg-gradient-to-r from-pink-600 to-pink-800 text-white shadow-lg shadow-pink-600/25'
+                      : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-pink-600/30'
                   }`}
                 >
                   <span className={`w-2 h-2 rounded-full ${tab.color}`}></span>
@@ -4684,10 +4684,10 @@ const refreshSingleOrderDelivery = async (orderId) => {
           </div>
 
           {/* Orders Table */}
-          <div className="bg-white rounded-2xl border border-blue-600/30 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-2xl border border-pink-600/30 shadow-sm overflow-hidden">
             {/* Bulk Delete Toolbar */}
             {isAdminOrSuperAdmin && (
-              <div className="px-4 py-3 border-b border-blue-600/30 bg-[#E2E7EA]/30 flex flex-wrap items-center justify-between gap-3">
+              <div className="px-4 py-3 border-b border-pink-600/30 bg-[#E2E7EA]/30 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   {showCheckboxes ? (
                     <>
@@ -4714,7 +4714,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   ) : (
                     <button
                       onClick={toggleBulkDeleteMode}
-                      className="flex items-center gap-2 px-4 py-2 bg-[#E2E7EA] text-[#004767] rounded-xl hover:bg-blue-600/10 transition-all text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#E2E7EA] text-black rounded-xl hover:bg-pink-600/10 transition-all text-sm font-medium"
                     >
                       <FaTrash className="w-4 h-4" />
                       Delete Multiple
@@ -4726,7 +4726,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setSelectAll(!selectAll)}
-                      className="text-sm text-blue-600 hover:underline"
+                      className="text-sm text-pink-600 hover:underline"
                     >
                       {selectAll ? 'Deselect All' : 'Select All'}
                     </button>
@@ -4738,16 +4738,16 @@ const refreshSingleOrderDelivery = async (orderId) => {
             {/* Table Container */}
             <div className="w-full overflow-x-auto">
               <table className="w-full min-w-[1200px] lg:min-w-full">
-                <thead className="bg-[#E2E7EA]/50 border-b border-blue-600/30">
+                <thead className="bg-[#E2E7EA]/50 border-b border-pink-600/30">
                   <tr>
                     {isAdminOrSuperAdmin && showCheckboxes && (
                       <th className="px-2 py-2 text-center sticky left-0 bg-[#E2E7EA]/50 z-10">
                         <button
                           onClick={() => setSelectAll(!selectAll)}
-                          className="text-[#64748B] hover:text-blue-600 transition-colors"
+                          className="text-[#64748B] hover:text-pink-600 transition-colors"
                         >
                           {selectAll ? (
-                            <FaCheckSquare className="w-4 h-4 text-blue-600" />
+                            <FaCheckSquare className="w-4 h-4 text-pink-600" />
                           ) : (
                             <FaSquare className="w-4 h-4" />
                           )}
@@ -4768,7 +4768,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <tr><td colSpan={isAdminOrSuperAdmin && showCheckboxes ? 11 : 10} className="px-4 py-8 text-center"><div className="flex justify-center"><div className="w-6 h-6 border-3 border-blue-600 border-t-transparent rounded-full animate-spin"></div></div></td></tr>
+                    <tr><td colSpan={isAdminOrSuperAdmin && showCheckboxes ? 11 : 10} className="px-4 py-8 text-center"><div className="flex justify-center"><div className="w-6 h-6 border-3 border-pink-600 border-t-transparent rounded-full animate-spin"></div></div></td></tr>
                   ) : orders.length === 0 ? (
                     <tr><td colSpan={isAdminOrSuperAdmin && showCheckboxes ? 11 : 10} className="px-4 py-8 text-center text-[#64748B] text-sm">No orders found</td></tr>
                   ) : (
@@ -4780,28 +4780,28 @@ const refreshSingleOrderDelivery = async (orderId) => {
                       const isTerminal = ['cancelled', 'delivered', 'returned', 'rejected'].includes(order.orderStatus);
                       
                       return (
-                        <tr key={order._id} className="border-b border-blue-600/20 hover:bg-[#E2E7EA]/30 transition-colors">
+                        <tr key={order._id} className="border-b border-pink-600/20 hover:bg-[#E2E7EA]/30 transition-colors">
                           {isAdminOrSuperAdmin && showCheckboxes && (
                             <td className="px-2 py-2 text-center sticky left-0 bg-white z-10">
                               <button
                                 onClick={() => toggleOrderSelection(order)}
-                                className="text-[#64748B] hover:text-blue-600 transition-colors"
+                                className="text-[#64748B] hover:text-pink-600 transition-colors"
                               >
                                 {isSelected ? (
-                                  <FaCheckSquare className="w-4 h-4 text-blue-600" />
+                                  <FaCheckSquare className="w-4 h-4 text-pink-600" />
                                 ) : (
                                   <FaSquare className="w-4 h-4" />
                                 )}
                               </button>
                             </td>
                           )}
-                          <td className="px-2 py-2 text-xs font-mono text-[#004767] whitespace-nowrap">{order.orderNumber || order._id.slice(-8).toUpperCase()}</td>
+                          <td className="px-2 py-2 text-xs font-mono text-black whitespace-nowrap">{order.orderNumber || order._id.slice(-8).toUpperCase()}</td>
                           <td className="px-2 py-2 text-xs">
-                            <div className="font-medium truncate max-w-[150px] text-[#004767]">{order.customerInfo?.fullName}</div>
+                            <div className="font-medium truncate max-w-[150px] text-black">{order.customerInfo?.fullName}</div>
                             <div className="text-[#64748B] text-xs truncate max-w-[150px]">{order.customerInfo?.email}</div>
                           </td>
-                          <td className="px-2 py-2 text-xs text-[#004767] whitespace-nowrap">{order.customerInfo?.phone}</td>
-                          <td className="px-2 py-2 text-xs text-right font-bold text-blue-600 whitespace-nowrap">৳{order.total?.toFixed(2)}</td>
+                          <td className="px-2 py-2 text-xs text-black whitespace-nowrap">{order.customerInfo?.phone}</td>
+                          <td className="px-2 py-2 text-xs text-right font-bold text-pink-600 whitespace-nowrap">৳{order.total?.toFixed(2)}</td>
                           <td className="px-2 py-2 text-center">
                             <button 
                               onClick={() => { 
@@ -4829,7 +4829,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
 <td className="px-2 py-2 text-center">
   {hasDelivery ? (
     <div className="flex flex-col items-center gap-0.5 min-w-[100px]">
-      <span className="text-xs font-medium text-[#004767]">
+      <span className="text-xs font-medium text-black">
         {order.deliveryService.courierName}
       </span>
       
@@ -4840,7 +4840,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
         
         <button
           onClick={() => refreshSingleOrderDelivery(order._id)}
-          className="text-[10px] text-blue-600 hover:text-[#0891B2] transition-colors"
+          className="text-[10px] text-pink-600 hover:text-[#0891B2] transition-colors"
           disabled={refreshingOrders[order._id]}
           title="Refresh delivery status"
         >
@@ -4857,7 +4857,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
               setSelectedOrder(order);
               handleTrackDelivery(order);
             }}
-            className="text-[10px] text-blue-600 hover:underline flex items-center gap-1"
+            className="text-[10px] text-pink-600 hover:underline flex items-center gap-1"
             disabled={trackingLoading[order._id]}
           >
             {trackingLoading[order._id] ? (
@@ -4877,7 +4877,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
           href={order.deliveryService.trackingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[10px] text-[#64748B] hover:text-blue-600 flex items-center gap-1"
+          className="text-[10px] text-[#64748B] hover:text-pink-600 flex items-center gap-1"
           title={`Track on ${order.deliveryService.courierName}`}
         >
           <FaExternalLinkAlt className="w-2.5 h-2.5" />
@@ -4895,7 +4895,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
         return (
           <button
             onClick={() => { setSelectedOrder(order); setShowDeliveryModal(true); }}
-            className="inline-flex items-center gap-1 px-2 py-1 bg-blue-600 text-white text-[10px] rounded hover:bg-blue-800 transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1 px-2 py-1 bg-pink-600 text-white text-[10px] rounded hover:bg-pink-800 transition-colors whitespace-nowrap"
           >
             <FaTruck className="w-3 h-3" />
             Create Delivery
@@ -4915,14 +4915,14 @@ const refreshSingleOrderDelivery = async (orderId) => {
                           </td>
                           <td className="px-2 py-2 text-center">
                             <div className="flex items-center justify-center gap-1 whitespace-nowrap">
-                              <button onClick={() => { setSelectedOrder(order); setShowDetailsModal(true); }} className="p-1 text-blue-600 hover:bg-[#E2E7EA] rounded transition-colors" title="View Details">
+                              <button onClick={() => { setSelectedOrder(order); setShowDetailsModal(true); }} className="p-1 text-pink-600 hover:bg-[#E2E7EA] rounded transition-colors" title="View Details">
                                 <FaEye className="w-3.5 h-3.5" />
                               </button>
                               
                               <button
                                 onClick={() => handleDownloadInvoice(order)}
                                 disabled={downloadingOrders[order._id]}
-                                className="p-1 text-blue-600 hover:bg-[#E2E7EA] rounded transition-colors disabled:opacity-50" title="Download Invoice"
+                                className="p-1 text-pink-600 hover:bg-[#E2E7EA] rounded transition-colors disabled:opacity-50" title="Download Invoice"
                               >
                                 {downloadingOrders[order._id] ? (
                                   <FaSpinner className="w-3.5 h-3.5 animate-spin" />
@@ -4930,7 +4930,7 @@ const refreshSingleOrderDelivery = async (orderId) => {
                                   <FaDownload className="w-3.5 h-3.5" />
                                 )}
                               </button>
-                              <button onClick={() => { setSelectedOrder(order); setShowEditModal(true); }} className="p-1 text-[#004767] hover:bg-[#E2E7EA] rounded transition-colors" title="Edit Order">
+                              <button onClick={() => { setSelectedOrder(order); setShowEditModal(true); }} className="p-1 text-black hover:bg-[#E2E7EA] rounded transition-colors" title="Edit Order">
                                 <FaEdit className="w-3.5 h-3.5" />
                               </button>
 
@@ -4965,14 +4965,14 @@ const refreshSingleOrderDelivery = async (orderId) => {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="px-3 py-2 border-t border-blue-600/30 flex flex-wrap items-center justify-between gap-3 bg-[#E2E7EA]/20">
+              <div className="px-3 py-2 border-t border-pink-600/30 flex flex-wrap items-center justify-between gap-3 bg-[#E2E7EA]/20">
                 <p className="text-xs text-[#64748B]">Showing {orders.length} of {totalOrders} orders</p>
                 <div className="flex gap-1">
-                  <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 border border-blue-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-[#004767]">
+                  <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 border border-pink-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-black">
                     <FaChevronLeft className="w-3 h-3" />
                   </button>
-                  <span className="px-2 py-1 text-xs text-[#004767]">Page {currentPage} of {totalPages}</span>
-                  <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-blue-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-[#004767]">
+                  <span className="px-2 py-1 text-xs text-black">Page {currentPage} of {totalPages}</span>
+                  <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-pink-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-black">
                     <FaChevronRight className="w-3 h-3" />
                   </button>
                 </div>

@@ -1,6 +1,4 @@
 
-
-
 // 'use client';
 
 // import { useState, useEffect } from 'react';
@@ -125,7 +123,7 @@
 //     return (
 //       <div className="min-h-screen flex items-center justify-center bg-white">
 //         <div className="text-center">
-//           <div className="w-16 h-16 border-4 border-[#06B6D4] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+//           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
 //           <p className="text-gray-600 font-medium">Loading Agent Dashboard...</p>
 //         </div>
 //       </div>
@@ -155,15 +153,15 @@
 //           />
 //         )}
 
-//         {/* Sidebar - HyperVolt Theme */}
-//         <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-[#06B6D4]/20 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+//         {/* Sidebar - Black & Blue Theme */}
+//         <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
 //           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
 //         }`}>
 //           {/* Sidebar header with dynamic logo */}
-//           <div className="h-20 flex items-center justify-center px-6 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa]">
+//           <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 bg-white">
 //             <DynamicLogo 
 //               className="justify-center"
-//               textClassName="text-xl font-bold text-[#004767]"
+//               textClassName="text-xl font-bold text-black"
 //               iconClassName="w-8 h-8"
 //               linkClassName="justify-center"
 //             />
@@ -171,23 +169,23 @@
 
 //           {/* User info - In sidebar below header */}
 //           {user && (
-//             <div className="px-4 py-4 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa]">
+//             <div className="px-4 py-4 border-b border-gray-200 bg-gray-50">
 //               <div className="flex items-center gap-3">
-//                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-gradient-to-br from-[#06B6D4] to-[#004767]">
+//                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-black">
 //                   {user.companyName?.charAt(0) || user.contactPerson?.charAt(0) || user.email?.charAt(0)}
 //                 </div>
 //                 <div className="flex-1 min-w-0">
-//                   <p className="text-sm font-semibold text-[#004767] truncate">
+//                   <p className="text-sm font-semibold text-gray-900 truncate">
 //                     {user.companyName || user.contactPerson || 'Agent'}
 //                   </p>
 //                   <p className="text-xs text-gray-500 truncate mt-0.5">
 //                     {user.email}
 //                   </p>
 //                   <div className="flex items-center gap-1.5 mt-1.5">
-//                     <span className="text-xs font-medium px-2 py-0.5 rounded-full border bg-gradient-to-r from-[#06B6D4]/10 to-[#004767]/10 text-[#004767] border-[#06B6D4]/30">
+//                     <span className="text-xs font-medium px-2 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200">
 //                       Call Center Agent
 //                     </span>
-//                     <Headphones className="w-3 h-3 text-[#06B6D4]" />
+//                     <Headphones className="w-3 h-3 text-blue-600" />
 //                   </div>
 //                 </div>
 //               </div>
@@ -197,7 +195,7 @@
 //           {/* Navigation */}
 //           <nav className="px-3 py-4 h-[calc(100vh-11rem)] overflow-y-auto pb-24 custom-scroll">
 //             <div className="flex items-center gap-2 px-3 mb-4">
-//               <Headphones className="w-3 h-3 text-[#06B6D4]" />
+//               <Headphones className="w-3 h-3 text-blue-600" />
 //               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">AGENT MENU</p>
 //             </div>
 //             <div className="space-y-1">
@@ -209,13 +207,13 @@
 //                     onClick={() => handleNavigation(item.href)}
 //                     className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
 //                       active
-//                         ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white shadow-lg shadow-[#06B6D4]/20'
-//                         : 'text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767]'
+//                         ? 'bg-black text-white shadow-lg shadow-black/20'
+//                         : 'text-gray-700 hover:bg-gray-100 hover:text-black'
 //                     }`}
 //                   >
 //                     <div className="flex items-center gap-3">
 //                       <item.icon className={`w-5 h-5 ${
-//                         active ? 'text-white' : 'text-gray-400 group-hover:text-[#06B6D4]'
+//                         active ? 'text-white' : 'text-gray-400 group-hover:text-black'
 //                       }`} />
 //                       <span>{item.name}</span>
 //                     </div>
@@ -227,13 +225,13 @@
 //           </nav>
 
 //           {/* Logout button at bottom */}
-//           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa] backdrop-blur">
+//           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
 //             <button
 //               onClick={logout}
-//               className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-[#06B6D4]/10 hover:text-[#004767] w-full transition-all group"
+//               className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 w-full transition-all group"
 //             >
-//               <div className="w-8 h-8 rounded-lg bg-[#06B6D4]/10 group-hover:bg-[#06B6D4]/20 flex items-center justify-center">
-//                 <LogOut className="w-4 h-4 text-[#06B6D4] group-hover:text-[#004767]" />
+//               <div className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-red-100 flex items-center justify-center">
+//                 <LogOut className="w-4 h-4 text-gray-500 group-hover:text-red-600" />
 //               </div>
 //               <span>Logout</span>
 //             </button>
@@ -241,16 +239,16 @@
 //         </div>
 
 //         {/* Main content */}
-//         <div className="lg:ml-72 min-h-screen">
-//           {/* Top header - HyperVolt Theme */}
-//           <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#06B6D4]/20 shadow-sm" style={{ margin: 0 }}>
+//         <div className="lg:ml-72 min-h-screen -mt-16">
+//           {/* Top header - Black & Blue Theme */}
+//           <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm" style={{ margin: 0 }}>
 //             <div className="px-4 sm:px-6 lg:px-8" style={{ margin: 0 }}>
 //               <div className="flex items-center justify-between h-20" style={{ margin: 0 }}>
 //                 {/* Left section */}
 //                 <div className="flex items-center gap-3">
 //                   <button
 //                     onClick={() => setSidebarOpen(true)}
-//                     className="lg:hidden w-10 h-10 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4]/20 transition-colors"
+//                     className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
 //                   >
 //                     <Menu className="w-5 h-5" />
 //                   </button>
@@ -258,7 +256,7 @@
 //                   {/* Dynamic Logo in header (visible on mobile when sidebar closed) */}
 //                   <div className="lg:hidden">
 //                     <DynamicLogo 
-//                       textClassName="text-lg font-bold text-[#004767]"
+//                       textClassName="text-lg font-bold text-black"
 //                       iconClassName="w-6 h-6"
 //                     />
 //                   </div>
@@ -266,10 +264,10 @@
 //                   {/* Welcome Message */}
 //                   {user && (
 //                     <div className="hidden lg:flex items-center gap-2">
-//                       <span className="text-lg md:text-2xl font-bold text-[#004767]">Welcome back,</span>
-//                       <span className="text-lg md:text-2xl font-bold text-[#06B6D4]">{user.companyName || user.contactPerson || 'Agent'}</span>
-//                       <Headphones className="w-5 h-5 text-[#06B6D4] hidden md:block" />
-//                       <span className="ml-2 text-xs font-medium px-2 py-1 rounded-full border bg-gradient-to-r from-[#06B6D4]/10 to-[#004767]/10 text-[#004767] border-[#06B6D4]/30 hidden md:inline-flex items-center gap-1">
+//                       <span className="text-lg md:text-2xl font-bold text-gray-800">Welcome back,</span>
+//                       <span className="text-lg md:text-2xl font-bold text-black">{user.companyName || user.contactPerson || 'Agent'}</span>
+//                       <Headphones className="w-5 h-5 text-gray-400 hidden md:block" />
+//                       <span className="ml-2 text-xs font-medium px-2 py-1 rounded-full border bg-blue-50 text-blue-700 border-blue-200 hidden md:inline-flex items-center gap-1">
 //                         <Headphones className="w-3 h-3" />
 //                         Call Center Agent
 //                       </span>
@@ -287,7 +285,7 @@
 
 //                   <Link
 //                     href="/"
-//                     className="w-10 h-10 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4]/20 transition-colors group"
+//                     className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors group"
 //                     title="Go to Homepage"
 //                   >
 //                     <Store className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -298,16 +296,16 @@
 //                     <div className="relative">
 //                       <button
 //                         onClick={() => setUserMenuOpen(!userMenuOpen)}
-//                         className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-[#06B6D4]/10 transition-colors"
+//                         className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-gray-100 transition-colors"
 //                       >
 //                         <div className="text-right hidden md:block">
-//                           <p className="text-sm font-medium text-[#004767]">{user.companyName || user.contactPerson || 'Agent'}</p>
+//                           <p className="text-sm font-medium text-gray-800">{user.companyName || user.contactPerson || 'Agent'}</p>
 //                           <p className="text-xs text-gray-500">{user.email}</p>
 //                         </div>
-//                         <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-gradient-to-br from-[#06B6D4] to-[#004767] shadow-md">
+//                         <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-black shadow-md">
 //                           {user.companyName?.charAt(0) || user.contactPerson?.charAt(0) || user.email?.charAt(0)}
 //                         </div>
-//                         <ChevronDown className={`w-4 h-4 text-[#06B6D4] transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+//                         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
 //                       </button>
 
 //                       {/* Dropdown Menu */}
@@ -317,15 +315,15 @@
 //                             className="fixed inset-0 z-40"
 //                             onClick={() => setUserMenuOpen(false)}
 //                           />
-//                           <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[#06B6D4]/20 py-2 z-50">
-//                             <div className="px-4 py-3 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa] rounded-t-2xl">
-//                               <p className="text-sm font-semibold text-[#004767]">{user.companyName || user.contactPerson || 'Agent'}</p>
+//                           <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
+//                             <div className="px-4 py-3 border-b border-gray-200 bg-gray-50 rounded-t-2xl">
+//                               <p className="text-sm font-semibold text-gray-900">{user.companyName || user.contactPerson || 'Agent'}</p>
 //                               <p className="text-xs text-gray-500 truncate mt-0.5">{user.email}</p>
 //                               <div className="flex items-center gap-2 mt-2">
-//                                 <span className="px-2 py-0.5 text-xs font-medium rounded-full border bg-gradient-to-r from-[#06B6D4]/10 to-[#004767]/10 text-[#004767] border-[#06B6D4]/30">
+//                                 <span className="px-2 py-0.5 text-xs font-medium rounded-full border bg-blue-50 text-blue-700 border-blue-200">
 //                                   Call Center Agent
 //                                 </span>
-//                                 <Headphones className="w-3 h-3 text-[#06B6D4]" />
+//                                 <Headphones className="w-3 h-3 text-blue-600" />
 //                               </div>
 //                             </div>
 
@@ -334,9 +332,9 @@
 //                                 setUserMenuOpen(false);
 //                                 handleNavigation('/agent/settings');
 //                               }}
-//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767] transition-colors cursor-pointer"
+//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-colors cursor-pointer"
 //                             >
-//                               <Settings className="w-4 h-4 text-[#06B6D4]" />
+//                               <Settings className="w-4 h-4 text-gray-500" />
 //                               <span>Settings</span>
 //                             </div>
 
@@ -345,7 +343,7 @@
 //                                 setUserMenuOpen(false);
 //                                 logout();
 //                               }}
-//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-[#06B6D4]/20 mt-1 pt-2 rounded-b-2xl"
+//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-gray-200 mt-1 pt-2 rounded-b-2xl"
 //                             >
 //                               <LogOut className="w-4 h-4" />
 //                               <span>Logout</span>
@@ -367,21 +365,21 @@
 //         </div>
 //       </div>
 
-//       {/* Add custom scrollbar styles */}
+//       {/* Add custom scrollbar styles - Black & Blue */}
 //       <style jsx>{`
 //         .custom-scroll::-webkit-scrollbar {
 //           width: 5px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-track {
-//           background: #f0f7fa;
+//           background: #f1f1f1;
 //           border-radius: 10px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-thumb {
-//           background: linear-gradient(to bottom, #06B6D4, #004767);
+//           background: linear-gradient(to bottom, #000000, #3b82f6);
 //           border-radius: 10px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-thumb:hover {
-//           background: linear-gradient(to bottom, #0891B2, #003a5a);
+//           background: linear-gradient(to bottom, #1a1a1a, #2563eb);
 //         }
 //       `}</style>
 //     </>
@@ -513,7 +511,7 @@ export default function AgentLayout({ children }) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading Agent Dashboard...</p>
         </div>
       </div>
@@ -543,39 +541,39 @@ export default function AgentLayout({ children }) {
           />
         )}
 
-        {/* Sidebar - Black & Blue Theme */}
-        <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        {/* Sidebar - Pink Theme */}
+        <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-[#F7C7D3]/40 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}>
           {/* Sidebar header with dynamic logo */}
-          <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 bg-white">
+          <div className="h-20 flex items-center justify-center px-6 border-b border-[#F7C7D3]/40 bg-white">
             <DynamicLogo 
               className="justify-center"
-              textClassName="text-xl font-bold text-black"
-              iconClassName="w-8 h-8"
+              textClassName="text-xl font-bold text-[#2D1B2E]"
+              iconClassName="w-8 h-8 text-[#EE4275]"
               linkClassName="justify-center"
             />
           </div>
 
           {/* User info - In sidebar below header */}
           {user && (
-            <div className="px-4 py-4 border-b border-gray-200 bg-gray-50">
+            <div className="px-4 py-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-black">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]">
                   {user.companyName?.charAt(0) || user.contactPerson?.charAt(0) || user.email?.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">
+                  <p className="text-sm font-semibold text-[#2D1B2E] truncate">
                     {user.companyName || user.contactPerson || 'Agent'}
                   </p>
                   <p className="text-xs text-gray-500 truncate mt-0.5">
                     {user.email}
                   </p>
                   <div className="flex items-center gap-1.5 mt-1.5">
-                    <span className="text-xs font-medium px-2 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200">
+                    <span className="text-xs font-medium px-2 py-0.5 rounded-full border bg-[#F7C7D3]/30 text-[#EE4275] border-[#EE4275]/30">
                       Call Center Agent
                     </span>
-                    <Headphones className="w-3 h-3 text-blue-600" />
+                    <Headphones className="w-3 h-3 text-[#EE4275]" />
                   </div>
                 </div>
               </div>
@@ -585,8 +583,8 @@ export default function AgentLayout({ children }) {
           {/* Navigation */}
           <nav className="px-3 py-4 h-[calc(100vh-11rem)] overflow-y-auto pb-24 custom-scroll">
             <div className="flex items-center gap-2 px-3 mb-4">
-              <Headphones className="w-3 h-3 text-blue-600" />
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">AGENT MENU</p>
+              <Headphones className="w-3 h-3 text-[#EE4275]" />
+              <p className="text-xs font-semibold text-[#EE4275]/60 uppercase tracking-wider">AGENT MENU</p>
             </div>
             <div className="space-y-1">
               {navigation.map((item) => {
@@ -597,13 +595,13 @@ export default function AgentLayout({ children }) {
                     onClick={() => handleNavigation(item.href)}
                     className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
                       active
-                        ? 'bg-black text-white shadow-lg shadow-black/20'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-black'
+                        ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20'
+                        : 'text-[#2D1B2E] hover:bg-[#F7C7D3]/20'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <item.icon className={`w-5 h-5 ${
-                        active ? 'text-white' : 'text-gray-400 group-hover:text-black'
+                        active ? 'text-white' : 'text-[#EE4275]'
                       }`} />
                       <span>{item.name}</span>
                     </div>
@@ -615,13 +613,13 @@ export default function AgentLayout({ children }) {
           </nav>
 
           {/* Logout button at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#F7C7D3]/40 bg-white">
             <button
               onClick={logout}
-              className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 w-full transition-all group"
+              className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#2D1B2E] rounded-xl hover:bg-[#F7C7D3]/30 hover:text-[#EE4275] w-full transition-all group"
             >
-              <div className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-red-100 flex items-center justify-center">
-                <LogOut className="w-4 h-4 text-gray-500 group-hover:text-red-600" />
+              <div className="w-8 h-8 rounded-lg bg-[#F7C7D3]/20 group-hover:bg-[#F7C7D3]/50 flex items-center justify-center">
+                <LogOut className="w-4 h-4 text-[#EE4275] group-hover:text-[#EE4275]" />
               </div>
               <span>Logout</span>
             </button>
@@ -630,15 +628,15 @@ export default function AgentLayout({ children }) {
 
         {/* Main content */}
         <div className="lg:ml-72 min-h-screen -mt-16">
-          {/* Top header - Black & Blue Theme */}
-          <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm" style={{ margin: 0 }}>
+          {/* Top header - Pink Theme */}
+          <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#F7C7D3]/40 shadow-sm" style={{ margin: 0 }}>
             <div className="px-4 sm:px-6 lg:px-8" style={{ margin: 0 }}>
               <div className="flex items-center justify-between h-20" style={{ margin: 0 }}>
                 {/* Left section */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
+                    className="lg:hidden w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center text-[#EE4275] hover:bg-[#F7C7D3]/40 transition-colors"
                   >
                     <Menu className="w-5 h-5" />
                   </button>
@@ -646,18 +644,18 @@ export default function AgentLayout({ children }) {
                   {/* Dynamic Logo in header (visible on mobile when sidebar closed) */}
                   <div className="lg:hidden">
                     <DynamicLogo 
-                      textClassName="text-lg font-bold text-black"
-                      iconClassName="w-6 h-6"
+                      textClassName="text-lg font-bold text-[#2D1B2E]"
+                      iconClassName="w-6 h-6 text-[#EE4275]"
                     />
                   </div>
 
                   {/* Welcome Message */}
                   {user && (
                     <div className="hidden lg:flex items-center gap-2">
-                      <span className="text-lg md:text-2xl font-bold text-gray-800">Welcome back,</span>
-                      <span className="text-lg md:text-2xl font-bold text-black">{user.companyName || user.contactPerson || 'Agent'}</span>
-                      <Headphones className="w-5 h-5 text-gray-400 hidden md:block" />
-                      <span className="ml-2 text-xs font-medium px-2 py-1 rounded-full border bg-blue-50 text-blue-700 border-blue-200 hidden md:inline-flex items-center gap-1">
+                      <span className="text-lg md:text-2xl font-bold text-[#2D1B2E]">Welcome back,</span>
+                      <span className="text-lg md:text-2xl font-bold text-[#EE4275]">{user.companyName || user.contactPerson || 'Agent'}</span>
+                      <Headphones className="w-5 h-5 text-[#EE4275] hidden md:block" />
+                      <span className="ml-2 text-xs font-medium px-2 py-1 rounded-full border bg-[#F7C7D3]/30 text-[#EE4275] border-[#EE4275]/30 hidden md:inline-flex items-center gap-1">
                         <Headphones className="w-3 h-3" />
                         Call Center Agent
                       </span>
@@ -667,15 +665,15 @@ export default function AgentLayout({ children }) {
 
                 {/* Right section */}
                 <div className="flex items-center gap-3">
-                  {/* Agent Status Badge */}
-                  <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
+                  {/* Agent Status Badge - Pink themed */}
+                  <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-[#F7C7D3]/20 border border-[#EE4275]/20 rounded-full">
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span className="text-xs font-medium text-green-700">Online</span>
+                    <span className="text-xs font-medium text-[#EE4275]">Online</span>
                   </div>
 
                   <Link
                     href="/"
-                    className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors group"
+                    className="w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center text-[#EE4275] hover:bg-[#F7C7D3]/40 transition-colors group"
                     title="Go to Homepage"
                   >
                     <Store className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -686,16 +684,16 @@ export default function AgentLayout({ children }) {
                     <div className="relative">
                       <button
                         onClick={() => setUserMenuOpen(!userMenuOpen)}
-                        className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-[#F7C7D3]/20 transition-colors"
                       >
                         <div className="text-right hidden md:block">
-                          <p className="text-sm font-medium text-gray-800">{user.companyName || user.contactPerson || 'Agent'}</p>
+                          <p className="text-sm font-medium text-[#2D1B2E]">{user.companyName || user.contactPerson || 'Agent'}</p>
                           <p className="text-xs text-gray-500">{user.email}</p>
                         </div>
-                        <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-black shadow-md">
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] shadow-md shadow-[#EE4275]/20">
                           {user.companyName?.charAt(0) || user.contactPerson?.charAt(0) || user.email?.charAt(0)}
                         </div>
-                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 text-[#EE4275] transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
                       </button>
 
                       {/* Dropdown Menu */}
@@ -705,15 +703,15 @@ export default function AgentLayout({ children }) {
                             className="fixed inset-0 z-40"
                             onClick={() => setUserMenuOpen(false)}
                           />
-                          <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
-                            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50 rounded-t-2xl">
-                              <p className="text-sm font-semibold text-gray-900">{user.companyName || user.contactPerson || 'Agent'}</p>
+                          <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[#F7C7D3]/40 py-2 z-50">
+                            <div className="px-4 py-3 border-b border-[#F7C7D3]/40 bg-[#FFF5F6] rounded-t-2xl">
+                              <p className="text-sm font-semibold text-[#2D1B2E]">{user.companyName || user.contactPerson || 'Agent'}</p>
                               <p className="text-xs text-gray-500 truncate mt-0.5">{user.email}</p>
                               <div className="flex items-center gap-2 mt-2">
-                                <span className="px-2 py-0.5 text-xs font-medium rounded-full border bg-blue-50 text-blue-700 border-blue-200">
+                                <span className="px-2 py-0.5 text-xs font-medium rounded-full border bg-[#F7C7D3]/30 text-[#EE4275] border-[#EE4275]/30">
                                   Call Center Agent
                                 </span>
-                                <Headphones className="w-3 h-3 text-blue-600" />
+                                <Headphones className="w-3 h-3 text-[#EE4275]" />
                               </div>
                             </div>
 
@@ -722,9 +720,9 @@ export default function AgentLayout({ children }) {
                                 setUserMenuOpen(false);
                                 handleNavigation('/agent/settings');
                               }}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-colors cursor-pointer"
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#2D1B2E] hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
                             >
-                              <Settings className="w-4 h-4 text-gray-500" />
+                              <Settings className="w-4 h-4 text-[#EE4275]" />
                               <span>Settings</span>
                             </div>
 
@@ -733,7 +731,7 @@ export default function AgentLayout({ children }) {
                                 setUserMenuOpen(false);
                                 logout();
                               }}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-gray-200 mt-1 pt-2 rounded-b-2xl"
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-[#F7C7D3]/40 mt-1 pt-2 rounded-b-2xl"
                             >
                               <LogOut className="w-4 h-4" />
                               <span>Logout</span>
@@ -755,7 +753,7 @@ export default function AgentLayout({ children }) {
         </div>
       </div>
 
-      {/* Add custom scrollbar styles - Black & Blue */}
+      {/* Add custom scrollbar styles - Pink */}
       <style jsx>{`
         .custom-scroll::-webkit-scrollbar {
           width: 5px;
@@ -765,11 +763,11 @@ export default function AgentLayout({ children }) {
           border-radius: 10px;
         }
         .custom-scroll::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, #000000, #3b82f6);
+          background: linear-gradient(to bottom, #EE4275, #FF6B9D);
           border-radius: 10px;
         }
         .custom-scroll::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #1a1a1a, #2563eb);
+          background: linear-gradient(to bottom, #d43b68, #ee5a8c);
         }
       `}</style>
     </>

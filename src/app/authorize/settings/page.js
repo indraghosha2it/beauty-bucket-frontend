@@ -71,9 +71,6 @@
 //   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 //   const [passwordStrength, setPasswordStrength] = useState(0);
 
-//   // ✅ REMOVED admin access restriction - all roles can access
-//   // All admin roles (super_admin, admin, moderator, call_center_agent) can access this page
-
 //   useEffect(() => {
 //     fetchUserData();
 //   }, []);
@@ -265,44 +262,44 @@
 
 //   if (loading) {
 //     return (
-//       <div className="min-h-screen bg-[#f0f7fa] flex items-center justify-center">
+//       <div className="min-h-screen bg-white flex items-center justify-center">
 //         <div className="text-center">
-//           <div className="w-16 h-16 border-4 border-[#06B6D4] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+//           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
 //           <p className="text-gray-600 font-medium">Loading your profile...</p>
-//           <Sparkles className="w-5 h-5 text-[#06B6D4] mx-auto mt-2 animate-pulse" />
+//           <Sparkles className="w-5 h-5 text-blue-600 mx-auto mt-2 animate-pulse" />
 //         </div>
 //       </div>
 //     );
 //   }
 
 //   return (
-//      <ProtectedRoute pageKey="settings">
-//     <div className="min-h-screen bg-[#f0f7fa]">
-//       {/* Header - HyperVolt Theme */}
-//       <div className="bg-[#004767] border-b border-[#06B6D4]/20 shadow-lg sticky top-0 z-10">
+//     <ProtectedRoute pageKey="settings">
+//     <div className="min-h-screen bg-white">
+//       {/* Header - Black & Blue Theme */}
+//       <div className="bg-white border-b border-blue-600/20 shadow-lg sticky top-0 z-10">
 //         <div className="px-6 py-4">
 //           <div className="flex items-center justify-between">
 //             <div className="flex items-center gap-4">
-//               <Link href="/authorize/dashboard" className="p-2 hover:bg-[#06B6D4]/20 rounded-lg transition-colors">
-//                 <ArrowLeft className="w-5 h-5 text-white/80 hover:text-white" />
+//               <Link href="/authorize/dashboard" className="p-2 hover:bg-blue-600/20 rounded-lg transition-colors">
+//                 <ArrowLeft className="w-5 h-5 text-black/80 hover:text-black" />
 //               </Link>
 //               <div>
 //                 <div className="flex items-center gap-2">
-//                   <Shield className="w-6 h-6 text-[#06B6D4]" />
-//                   <h1 className="text-xl font-bold text-white">Settings</h1>
+//                   <Shield className="w-6 h-6 text-blue-400" />
+//                   <h1 className="text-xl font-bold text-black">Settings</h1>
 //                 </div>
-//                 <p className="text-sm text-white/70 mt-1">Manage your account information and security</p>
+//                 <p className="text-sm text-black/70 mt-1">Manage your account information and security</p>
 //               </div>
 //             </div>
-//             <Zap className="w-5 h-5 text-[#06B6D4]" />
+//             <Zap className="w-5 h-5 text-blue-400" />
 //           </div>
 //         </div>
 //       </div>
 
 //       {/* Main Content */}
 //       <div className="container mx-auto px-4 max-w-4xl py-8">
-//         {/* Tabs - HyperVolt Theme */}
-//         <div className="mb-6 border-b border-[#06B6D4]/20 bg-white/80 backdrop-blur-sm rounded-t-xl px-4 shadow-sm">
+//         {/* Tabs - Black & Blue Theme */}
+//         <div className="mb-6 border-b border-gray-200 bg-white rounded-t-xl px-4 shadow-sm">
 //           <div className="flex gap-1 overflow-x-auto">
 //             {[
 //               { id: 'view', label: 'Profile Info', icon: Info },
@@ -314,18 +311,18 @@
 //                 onClick={() => setActiveTab(tab.id)}
 //                 className={`px-6 py-3 text-sm font-medium transition-all relative whitespace-nowrap ${
 //                   activeTab === tab.id
-//                     ? 'text-[#06B6D4]'
-//                     : 'text-gray-500 hover:text-[#06B6D4]'
+//                     ? 'text-blue-600'
+//                     : 'text-gray-500 hover:text-blue-600'
 //                 }`}
 //               >
 //                 <div className="flex items-center gap-2">
-//                   <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-[#06B6D4]' : 'text-gray-400'}`} />
+//                   <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-blue-600' : 'text-gray-400'}`} />
 //                   {tab.label}
 //                 </div>
 //                 {activeTab === tab.id && (
 //                   <motion.div
 //                     layoutId="activeTab"
-//                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#06B6D4] to-[#004767]"
+//                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
 //                     initial={false}
 //                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
 //                   />
@@ -335,7 +332,7 @@
 //           </div>
 //         </div>
 
-//         {/* Tab Content - HyperVolt Theme */}
+//         {/* Tab Content - Black & Blue Theme */}
 //         <AnimatePresence mode="wait">
 //           <motion.div
 //             key={activeTab}
@@ -346,22 +343,22 @@
 //           >
 //             {/* Profile Info Tab */}
 //             {activeTab === 'view' && (
-//               <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-[#06B6D4]/20 overflow-hidden">
-//                 <div className="px-6 py-4 border-b border-[#06B6D4]/20 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5">
-//                   <h2 className="text-lg font-semibold text-[#004767]">Profile Information</h2>
+//               <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+//                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+//                   <h2 className="text-lg font-semibold text-gray-900">Profile Information</h2>
 //                   <p className="text-sm text-gray-500 mt-0.5">Your account details and information</p>
 //                 </div>
 
 //                 <div className="p-6">
 //                   {/* Profile Header */}
-//                   <div className="flex items-center gap-4 mb-6 pb-6 border-b border-[#06B6D4]/20">
-//                     <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#06B6D4] to-[#004767] flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-[#06B6D4]/20">
+//                   <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+//                     <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-200">
 //                       {userData.contactPerson?.charAt(0) || userData.email?.charAt(0)}
 //                     </div>
 //                     <div>
-//                       <h3 className="text-xl font-bold text-[#004767]">{userData.contactPerson}</h3>
+//                       <h3 className="text-xl font-bold text-gray-900">{userData.contactPerson}</h3>
 //                       <div className="flex flex-wrap items-center gap-2 mt-1">
-//                         <span className="px-3 py-1 bg-[#06B6D4]/10 text-[#06B6D4] rounded-full text-xs font-medium border border-[#06B6D4]/20 flex items-center gap-1">
+//                         <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-200 flex items-center gap-1">
 //                           <Shield className="w-3 h-3" />
 //                           {userData.role === 'super_admin' ? 'Super Admin' : 
 //                            userData.role === 'admin' ? 'Admin' :
@@ -374,7 +371,7 @@
 //                             Verified
 //                           </span>
 //                         )}
-//                         <Sparkles className="w-4 h-4 text-[#06B6D4]" />
+//                         <Sparkles className="w-4 h-4 text-blue-600" />
 //                       </div>
 //                     </div>
 //                   </div>
@@ -382,42 +379,42 @@
 //                   {/* Information Grid */}
 //                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 //                     <div className="space-y-4">
-//                       <h4 className="text-sm font-semibold text-[#06B6D4] flex items-center gap-2">
+//                       <h4 className="text-sm font-semibold text-blue-600 flex items-center gap-2">
 //                         <User className="w-4 h-4" />
 //                         Personal Information
 //                       </h4>
                       
 //                       <div className="space-y-3">
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <User className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <User className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Full Name</p>
-//                             <p className="text-sm font-medium text-[#004767]">{userData.contactPerson}</p>
+//                             <p className="text-sm font-medium text-gray-900">{userData.contactPerson}</p>
 //                           </div>
 //                         </div>
 
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <Mail className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <Mail className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Email Address</p>
-//                             <p className="text-sm font-medium text-[#004767]">{userData.email}</p>
+//                             <p className="text-sm font-medium text-gray-900">{userData.email}</p>
 //                           </div>
 //                         </div>
 
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <Phone className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <Phone className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Phone Number</p>
-//                             <p className="text-sm font-medium text-[#004767]">{userData.phone || 'Not provided'}</p>
+//                             <p className="text-sm font-medium text-gray-900">{userData.phone || 'Not provided'}</p>
 //                           </div>
 //                         </div>
 
 //                         {userData.whatsapp && (
-//                           <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
+//                           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
 //                             <Smartphone className="w-4 h-4 text-green-500 mt-0.5" />
 //                             <div>
 //                               <p className="text-xs text-gray-500">WhatsApp</p>
-//                               <p className="text-sm font-medium text-[#004767]">{userData.whatsapp}</p>
+//                               <p className="text-sm font-medium text-gray-900">{userData.whatsapp}</p>
 //                             </div>
 //                           </div>
 //                         )}
@@ -425,33 +422,33 @@
 //                     </div>
 
 //                     <div className="space-y-4">
-//                       <h4 className="text-sm font-semibold text-[#06B6D4] flex items-center gap-2">
+//                       <h4 className="text-sm font-semibold text-blue-600 flex items-center gap-2">
 //                         <Clock className="w-4 h-4" />
 //                         Account Information
 //                       </h4>
                       
 //                       <div className="space-y-3">
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <Clock className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <Clock className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Member Since</p>
-//                             <p className="text-sm font-medium text-[#004767]">{formatDate(userData.createdAt)}</p>
+//                             <p className="text-sm font-medium text-gray-900">{formatDate(userData.createdAt)}</p>
 //                           </div>
 //                         </div>
 
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <Shield className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <Shield className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Access Level</p>
-//                             <p className="text-sm font-medium text-[#004767] capitalize">{userData.role || 'User'}</p>
+//                             <p className="text-sm font-medium text-gray-900 capitalize">{userData.role || 'User'}</p>
 //                           </div>
 //                         </div>
 
-//                         <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5 rounded-lg border border-[#06B6D4]/20">
-//                           <Heart className="w-4 h-4 text-[#06B6D4] mt-0.5" />
+//                         <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                           <Heart className="w-4 h-4 text-blue-600 mt-0.5" />
 //                           <div>
 //                             <p className="text-xs text-gray-500">Last Login</p>
-//                             <p className="text-sm font-medium text-[#004767]">{userData.lastLogin ? formatDate(userData.lastLogin) : 'Never'}</p>
+//                             <p className="text-sm font-medium text-gray-900">{userData.lastLogin ? formatDate(userData.lastLogin) : 'Never'}</p>
 //                           </div>
 //                         </div>
 //                       </div>
@@ -459,19 +456,19 @@
 //                   </div>
 
 //                   {/* Action Buttons */}
-//                   <div className="mt-6 pt-6 border-t border-[#06B6D4]/20 flex flex-wrap gap-3">
+//                   <div className="mt-6 pt-6 border-t border-gray-200 flex flex-wrap gap-3">
 //                     <button
 //                       onClick={() => setActiveTab('edit')}
-//                       className="px-6 py-2.5 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white rounded-lg hover:opacity-90 transition-all text-sm font-medium flex items-center gap-2 shadow-md hover:shadow-lg hover:shadow-[#06B6D4]/20"
+//                       className="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium flex items-center gap-2 shadow-md hover:shadow-lg hover:shadow-blue-200"
 //                     >
 //                       <Edit className="w-4 h-4" />
 //                       Edit Profile
 //                     </button>
 //                     <button
 //                       onClick={() => setActiveTab('security')}
-//                       className="px-6 py-2.5 border border-[#06B6D4]/20 text-gray-700 rounded-lg hover:bg-[#06B6D4]/10 hover:border-[#06B6D4]/40 transition-all text-sm font-medium flex items-center gap-2"
+//                       className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all text-sm font-medium flex items-center gap-2"
 //                     >
-//                       <Key className="w-4 h-4 text-[#06B6D4]" />
+//                       <Key className="w-4 h-4 text-blue-600" />
 //                       Change Password
 //                     </button>
 //                   </div>
@@ -481,9 +478,9 @@
 
 //             {/* Edit Profile Tab */}
 //             {activeTab === 'edit' && (
-//               <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-[#06B6D4]/20 overflow-hidden">
-//                 <div className="px-6 py-4 border-b border-[#06B6D4]/20 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5">
-//                   <h2 className="text-lg font-semibold text-[#004767]">Edit Profile</h2>
+//               <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+//                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+//                   <h2 className="text-lg font-semibold text-gray-900">Edit Profile</h2>
 //                   <p className="text-sm text-gray-500 mt-0.5">Update your personal information</p>
 //                 </div>
 
@@ -499,7 +496,7 @@
 //                         value={editFormData.contactPerson}
 //                         onChange={handleEditChange}
 //                         required
-//                         className="w-full px-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                         className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                         placeholder="Your full name"
 //                       />
 //                     </div>
@@ -509,12 +506,12 @@
 //                         Email Address
 //                       </label>
 //                       <div className="relative">
-//                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                         <input
 //                           type="email"
 //                           value={userData.email}
 //                           disabled
-//                           className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+//                           className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
 //                         />
 //                       </div>
 //                       <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
@@ -526,14 +523,14 @@
 //                           Phone Number <span className="text-rose-500">*</span>
 //                         </label>
 //                         <div className="relative">
-//                           <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                           <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                           <input
 //                             type="tel"
 //                             name="phone"
 //                             value={editFormData.phone}
 //                             onChange={handleEditChange}
 //                             required
-//                             className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                             className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                             placeholder="+880 1234 567890"
 //                           />
 //                         </div>
@@ -544,13 +541,13 @@
 //                           WhatsApp Number
 //                         </label>
 //                         <div className="relative">
-//                           <Smartphone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                           <Smartphone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                           <input
 //                             type="tel"
 //                             name="whatsapp"
 //                             value={editFormData.whatsapp}
 //                             onChange={handleEditChange}
-//                             className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                             className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                             placeholder="+880 1234 567890"
 //                           />
 //                         </div>
@@ -561,14 +558,14 @@
 //                       <button
 //                         type="button"
 //                         onClick={() => setActiveTab('view')}
-//                         className="flex-1 px-6 py-2.5 border border-[#06B6D4]/20 rounded-lg hover:bg-[#06B6D4]/10 transition-all font-medium text-gray-700"
+//                         className="flex-1 px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all font-medium text-gray-700"
 //                       >
 //                         Cancel
 //                       </button>
 //                       <button
 //                         type="submit"
 //                         disabled={saving}
-//                         className="flex-1 px-6 py-2.5 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white rounded-lg hover:opacity-90 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-[#06B6D4]/20"
+//                         className="flex-1 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-blue-200"
 //                       >
 //                         {saving ? (
 //                           <>
@@ -590,9 +587,9 @@
 
 //             {/* Security Tab */}
 //             {activeTab === 'security' && (
-//               <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-[#06B6D4]/20 overflow-hidden">
-//                 <div className="px-6 py-4 border-b border-[#06B6D4]/20 bg-gradient-to-r from-[#06B6D4]/5 to-[#004767]/5">
-//                   <h2 className="text-lg font-semibold text-[#004767]">Security Settings</h2>
+//               <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+//                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+//                   <h2 className="text-lg font-semibold text-gray-900">Security Settings</h2>
 //                   <p className="text-sm text-gray-500 mt-0.5">Change your password to keep your account secure</p>
 //                 </div>
 
@@ -603,20 +600,20 @@
 //                         Current Password <span className="text-rose-500">*</span>
 //                       </label>
 //                       <div className="relative">
-//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                         <input
 //                           type={showCurrentPassword ? "text" : "password"}
 //                           name="currentPassword"
 //                           value={passwordData.currentPassword}
 //                           onChange={handlePasswordInputChange}
 //                           required
-//                           className="w-full pl-10 pr-10 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                           className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                           placeholder="Enter your current password"
 //                         />
 //                         <button
 //                           type="button"
 //                           onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-[#06B6D4]/50 hover:text-[#06B6D4]"
+//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
 //                         >
 //                           {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
 //                         </button>
@@ -628,20 +625,20 @@
 //                         New Password <span className="text-rose-500">*</span>
 //                       </label>
 //                       <div className="relative">
-//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                         <input
 //                           type={showNewPassword ? "text" : "password"}
 //                           name="newPassword"
 //                           value={passwordData.newPassword}
 //                           onChange={handlePasswordInputChange}
 //                           required
-//                           className="w-full pl-10 pr-10 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                           className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                           placeholder="Enter new password (min. 8 characters)"
 //                         />
 //                         <button
 //                           type="button"
 //                           onClick={() => setShowNewPassword(!showNewPassword)}
-//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-[#06B6D4]/50 hover:text-[#06B6D4]"
+//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
 //                         >
 //                           {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
 //                         </button>
@@ -656,7 +653,7 @@
 //                                 className={`h-1 flex-1 rounded-full ${
 //                                   level <= passwordStrength 
 //                                     ? level <= 2 ? 'bg-rose-500' : level <= 4 ? 'bg-yellow-500' : 'bg-green-500'
-//                                     : 'bg-[#06B6D4]/20'
+//                                     : 'bg-gray-200'
 //                                 }`}
 //                               />
 //                             ))}
@@ -673,20 +670,20 @@
 //                         Confirm New Password <span className="text-rose-500">*</span>
 //                       </label>
 //                       <div className="relative">
-//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#06B6D4]/60" />
+//                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 //                         <input
 //                           type={showConfirmPassword ? "text" : "password"}
 //                           name="confirmPassword"
 //                           value={passwordData.confirmPassword}
 //                           onChange={handlePasswordInputChange}
 //                           required
-//                           className="w-full pl-10 pr-10 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                           className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                           placeholder="Confirm your new password"
 //                         />
 //                         <button
 //                           type="button"
 //                           onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-[#06B6D4]/50 hover:text-[#06B6D4]"
+//                           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
 //                         >
 //                           {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
 //                         </button>
@@ -711,14 +708,14 @@
 //                       <button
 //                         type="button"
 //                         onClick={() => setActiveTab('view')}
-//                         className="flex-1 px-6 py-2.5 border border-[#06B6D4]/20 rounded-lg hover:bg-[#06B6D4]/10 transition-all font-medium text-gray-700"
+//                         className="flex-1 px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all font-medium text-gray-700"
 //                       >
 //                         Cancel
 //                       </button>
 //                       <button
 //                         type="submit"
 //                         disabled={changingPassword}
-//                         className="flex-1 px-6 py-2.5 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white rounded-lg hover:opacity-90 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-[#06B6D4]/20"
+//                         className="flex-1 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-blue-200"
 //                       >
 //                         {changingPassword ? (
 //                           <>
@@ -744,6 +741,7 @@
 //     </ProtectedRoute>
 //   );
 // }
+
 
 
 // app/admin/settings/page.js
@@ -1009,11 +1007,11 @@ export default function AdminSettings() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading your profile...</p>
-          <Sparkles className="w-5 h-5 text-blue-600 mx-auto mt-2 animate-pulse" />
+          <Sparkles className="w-5 h-5 text-[#EE4275] mx-auto mt-2 animate-pulse" />
         </div>
       </div>
     );
@@ -1021,32 +1019,32 @@ export default function AdminSettings() {
 
   return (
     <ProtectedRoute pageKey="settings">
-    <div className="min-h-screen bg-white">
-      {/* Header - Black & Blue Theme */}
-      <div className="bg-white border-b border-blue-600/20 shadow-lg sticky top-0 z-10">
+    <div className="min-h-screen bg-[#FFF5F6]">
+      {/* Header - Pink Theme */}
+      <div className="bg-white border-b border-[#EE4275]/20 shadow-lg sticky top-0 z-10">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/authorize/dashboard" className="p-2 hover:bg-blue-600/20 rounded-lg transition-colors">
-                <ArrowLeft className="w-5 h-5 text-black/80 hover:text-black" />
+              <Link href="/authorize/dashboard" className="p-2 hover:bg-[#F7C7D3]/30 rounded-lg transition-colors">
+                <ArrowLeft className="w-5 h-5 text-[#2D1B2E]/80 hover:text-[#2D1B2E]" />
               </Link>
               <div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-6 h-6 text-blue-400" />
-                  <h1 className="text-xl font-bold text-black">Settings</h1>
+                  <Shield className="w-6 h-6 text-[#EE4275]" />
+                  <h1 className="text-xl font-bold text-[#2D1B2E]">Settings</h1>
                 </div>
-                <p className="text-sm text-black/70 mt-1">Manage your account information and security</p>
+                <p className="text-sm text-[#EE4275]/60 mt-1">Manage your account information and security</p>
               </div>
             </div>
-            <Zap className="w-5 h-5 text-blue-400" />
+            <Sparkles className="w-5 h-5 text-[#EE4275]" />
           </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 max-w-4xl py-8">
-        {/* Tabs - Black & Blue Theme */}
-        <div className="mb-6 border-b border-gray-200 bg-white rounded-t-xl px-4 shadow-sm">
+        {/* Tabs - Pink Theme */}
+        <div className="mb-6 border-b border-[#F7C7D3]/40 bg-white rounded-t-xl px-4 shadow-sm">
           <div className="flex gap-1 overflow-x-auto">
             {[
               { id: 'view', label: 'Profile Info', icon: Info },
@@ -1058,18 +1056,18 @@ export default function AdminSettings() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 text-sm font-medium transition-all relative whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'text-blue-600'
-                    : 'text-gray-500 hover:text-blue-600'
+                    ? 'text-[#EE4275]'
+                    : 'text-[#2D1B2E]/60 hover:text-[#EE4275]'
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-blue-600' : 'text-gray-400'}`} />
+                  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-[#EE4275]' : 'text-[#EE4275]/40'}`} />
                   {tab.label}
                 </div>
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#EE4275]"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
@@ -1079,7 +1077,7 @@ export default function AdminSettings() {
           </div>
         </div>
 
-        {/* Tab Content - Black & Blue Theme */}
+        {/* Tab Content - Pink Theme */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -1090,22 +1088,22 @@ export default function AdminSettings() {
           >
             {/* Profile Info Tab */}
             {activeTab === 'view' && (
-              <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                  <h2 className="text-lg font-semibold text-gray-900">Profile Information</h2>
-                  <p className="text-sm text-gray-500 mt-0.5">Your account details and information</p>
+              <div className="bg-white rounded-xl shadow-lg border border-[#F7C7D3]/40 overflow-hidden">
+                <div className="px-6 py-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
+                  <h2 className="text-lg font-semibold text-[#2D1B2E]">Profile Information</h2>
+                  <p className="text-sm text-[#EE4275]/60 mt-0.5">Your account details and information</p>
                 </div>
 
                 <div className="p-6">
                   {/* Profile Header */}
-                  <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-                    <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-200">
+                  <div className="flex items-center gap-4 mb-6 pb-6 border-b border-[#F7C7D3]/40">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-[#EE4275]/25">
                       {userData.contactPerson?.charAt(0) || userData.email?.charAt(0)}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{userData.contactPerson}</h3>
+                      <h3 className="text-xl font-bold text-[#2D1B2E]">{userData.contactPerson}</h3>
                       <div className="flex flex-wrap items-center gap-2 mt-1">
-                        <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-200 flex items-center gap-1">
+                        <span className="px-3 py-1 bg-[#FFF5F6] text-[#EE4275] rounded-full text-xs font-medium border border-[#EE4275]/30 flex items-center gap-1">
                           <Shield className="w-3 h-3" />
                           {userData.role === 'super_admin' ? 'Super Admin' : 
                            userData.role === 'admin' ? 'Admin' :
@@ -1118,7 +1116,7 @@ export default function AdminSettings() {
                             Verified
                           </span>
                         )}
-                        <Sparkles className="w-4 h-4 text-blue-600" />
+                        <Sparkles className="w-4 h-4 text-[#EE4275]" />
                       </div>
                     </div>
                   </div>
@@ -1126,42 +1124,42 @@ export default function AdminSettings() {
                   {/* Information Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h4 className="text-sm font-semibold text-blue-600 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-[#EE4275] flex items-center gap-2">
                         <User className="w-4 h-4" />
                         Personal Information
                       </h4>
                       
                       <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <User className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <User className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Full Name</p>
-                            <p className="text-sm font-medium text-gray-900">{userData.contactPerson}</p>
+                            <p className="text-xs text-[#EE4275]/60">Full Name</p>
+                            <p className="text-sm font-medium text-[#2D1B2E]">{userData.contactPerson}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Mail className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <Mail className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Email Address</p>
-                            <p className="text-sm font-medium text-gray-900">{userData.email}</p>
+                            <p className="text-xs text-[#EE4275]/60">Email Address</p>
+                            <p className="text-sm font-medium text-[#2D1B2E]">{userData.email}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Phone className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <Phone className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Phone Number</p>
-                            <p className="text-sm font-medium text-gray-900">{userData.phone || 'Not provided'}</p>
+                            <p className="text-xs text-[#EE4275]/60">Phone Number</p>
+                            <p className="text-sm font-medium text-[#2D1B2E]">{userData.phone || 'Not provided'}</p>
                           </div>
                         </div>
 
                         {userData.whatsapp && (
-                          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
                             <Smartphone className="w-4 h-4 text-green-500 mt-0.5" />
                             <div>
-                              <p className="text-xs text-gray-500">WhatsApp</p>
-                              <p className="text-sm font-medium text-gray-900">{userData.whatsapp}</p>
+                              <p className="text-xs text-[#EE4275]/60">WhatsApp</p>
+                              <p className="text-sm font-medium text-[#2D1B2E]">{userData.whatsapp}</p>
                             </div>
                           </div>
                         )}
@@ -1169,33 +1167,33 @@ export default function AdminSettings() {
                     </div>
 
                     <div className="space-y-4">
-                      <h4 className="text-sm font-semibold text-blue-600 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-[#EE4275] flex items-center gap-2">
                         <Clock className="w-4 h-4" />
                         Account Information
                       </h4>
                       
                       <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Clock className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <Clock className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Member Since</p>
-                            <p className="text-sm font-medium text-gray-900">{formatDate(userData.createdAt)}</p>
+                            <p className="text-xs text-[#EE4275]/60">Member Since</p>
+                            <p className="text-sm font-medium text-[#2D1B2E]">{formatDate(userData.createdAt)}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Shield className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <Shield className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Access Level</p>
-                            <p className="text-sm font-medium text-gray-900 capitalize">{userData.role || 'User'}</p>
+                            <p className="text-xs text-[#EE4275]/60">Access Level</p>
+                            <p className="text-sm font-medium text-[#2D1B2E] capitalize">{userData.role || 'User'}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Heart className="w-4 h-4 text-blue-600 mt-0.5" />
+                        <div className="flex items-start gap-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                          <Heart className="w-4 h-4 text-[#EE4275] mt-0.5" />
                           <div>
-                            <p className="text-xs text-gray-500">Last Login</p>
-                            <p className="text-sm font-medium text-gray-900">{userData.lastLogin ? formatDate(userData.lastLogin) : 'Never'}</p>
+                            <p className="text-xs text-[#EE4275]/60">Last Login</p>
+                            <p className="text-sm font-medium text-[#2D1B2E]">{userData.lastLogin ? formatDate(userData.lastLogin) : 'Never'}</p>
                           </div>
                         </div>
                       </div>
@@ -1203,19 +1201,19 @@ export default function AdminSettings() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="mt-6 pt-6 border-t border-gray-200 flex flex-wrap gap-3">
+                  <div className="mt-6 pt-6 border-t border-[#F7C7D3]/40 flex flex-wrap gap-3">
                     <button
                       onClick={() => setActiveTab('edit')}
-                      className="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium flex items-center gap-2 shadow-md hover:shadow-lg hover:shadow-blue-200"
+                      className="px-6 py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all text-sm font-medium flex items-center gap-2 shadow-md"
                     >
                       <Edit className="w-4 h-4" />
                       Edit Profile
                     </button>
                     <button
                       onClick={() => setActiveTab('security')}
-                      className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all text-sm font-medium flex items-center gap-2"
+                      className="px-6 py-2.5 border border-[#F7C7D3]/50 text-[#2D1B2E] rounded-lg hover:bg-[#FFF5F6] hover:border-[#EE4275]/30 transition-all text-sm font-medium flex items-center gap-2"
                     >
-                      <Key className="w-4 h-4 text-blue-600" />
+                      <Key className="w-4 h-4 text-[#EE4275]" />
                       Change Password
                     </button>
                   </div>
@@ -1225,17 +1223,17 @@ export default function AdminSettings() {
 
             {/* Edit Profile Tab */}
             {activeTab === 'edit' && (
-              <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                  <h2 className="text-lg font-semibold text-gray-900">Edit Profile</h2>
-                  <p className="text-sm text-gray-500 mt-0.5">Update your personal information</p>
+              <div className="bg-white rounded-xl shadow-lg border border-[#F7C7D3]/40 overflow-hidden">
+                <div className="px-6 py-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
+                  <h2 className="text-lg font-semibold text-[#2D1B2E]">Edit Profile</h2>
+                  <p className="text-sm text-[#EE4275]/60 mt-0.5">Update your personal information</p>
                 </div>
 
                 <form onSubmit={handleProfileUpdate} className="p-6">
                   <div className="space-y-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Full Name <span className="text-rose-500">*</span>
+                      <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                        Full Name <span className="text-[#EE4275]">*</span>
                       </label>
                       <input
                         type="text"
@@ -1243,58 +1241,58 @@ export default function AdminSettings() {
                         value={editFormData.contactPerson}
                         onChange={handleEditChange}
                         required
-                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                        className="w-full px-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                         placeholder="Your full name"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
                         Email Address
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                         <input
                           type="email"
                           value={userData.email}
                           disabled
-                          className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+                          className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg bg-[#FFF5F6] text-[#EE4275]/60 cursor-not-allowed"
                         />
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                      <p className="text-xs text-[#EE4275]/40 mt-1">Email cannot be changed</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Phone Number <span className="text-rose-500">*</span>
+                        <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                          Phone Number <span className="text-[#EE4275]">*</span>
                         </label>
                         <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                           <input
                             type="tel"
                             name="phone"
                             value={editFormData.phone}
                             onChange={handleEditChange}
                             required
-                            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                            className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                             placeholder="+880 1234 567890"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
                           WhatsApp Number
                         </label>
                         <div className="relative">
-                          <Smartphone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                          <Smartphone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                           <input
                             type="tel"
                             name="whatsapp"
                             value={editFormData.whatsapp}
                             onChange={handleEditChange}
-                            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                            className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                             placeholder="+880 1234 567890"
                           />
                         </div>
@@ -1305,14 +1303,14 @@ export default function AdminSettings() {
                       <button
                         type="button"
                         onClick={() => setActiveTab('view')}
-                        className="flex-1 px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all font-medium text-gray-700"
+                        className="flex-1 px-6 py-2.5 border border-[#F7C7D3]/50 rounded-lg hover:bg-[#FFF5F6] transition-all font-medium text-[#2D1B2E]"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={saving}
-                        className="flex-1 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-blue-200"
+                        className="flex-1 px-6 py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md"
                       >
                         {saving ? (
                           <>
@@ -1334,33 +1332,33 @@ export default function AdminSettings() {
 
             {/* Security Tab */}
             {activeTab === 'security' && (
-              <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                  <h2 className="text-lg font-semibold text-gray-900">Security Settings</h2>
-                  <p className="text-sm text-gray-500 mt-0.5">Change your password to keep your account secure</p>
+              <div className="bg-white rounded-xl shadow-lg border border-[#F7C7D3]/40 overflow-hidden">
+                <div className="px-6 py-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
+                  <h2 className="text-lg font-semibold text-[#2D1B2E]">Security Settings</h2>
+                  <p className="text-sm text-[#EE4275]/60 mt-0.5">Change your password to keep your account secure</p>
                 </div>
 
                 <form onSubmit={handlePasswordChange} className="p-6">
                   <div className="space-y-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Current Password <span className="text-rose-500">*</span>
+                      <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                        Current Password <span className="text-[#EE4275]">*</span>
                       </label>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                         <input
                           type={showCurrentPassword ? "text" : "password"}
                           name="currentPassword"
                           value={passwordData.currentPassword}
                           onChange={handlePasswordInputChange}
                           required
-                          className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                          className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                           placeholder="Enter your current password"
                         />
                         <button
                           type="button"
                           onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275]"
                         >
                           {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -1368,24 +1366,24 @@ export default function AdminSettings() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        New Password <span className="text-rose-500">*</span>
+                      <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                        New Password <span className="text-[#EE4275]">*</span>
                       </label>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                         <input
                           type={showNewPassword ? "text" : "password"}
                           name="newPassword"
                           value={passwordData.newPassword}
                           onChange={handlePasswordInputChange}
                           required
-                          className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                          className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                           placeholder="Enter new password (min. 8 characters)"
                         />
                         <button
                           type="button"
                           onClick={() => setShowNewPassword(!showNewPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275]"
                         >
                           {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -1399,13 +1397,13 @@ export default function AdminSettings() {
                                 key={level}
                                 className={`h-1 flex-1 rounded-full ${
                                   level <= passwordStrength 
-                                    ? level <= 2 ? 'bg-rose-500' : level <= 4 ? 'bg-yellow-500' : 'bg-green-500'
-                                    : 'bg-gray-200'
+                                    ? level <= 2 ? 'bg-[#EE4275]' : level <= 4 ? 'bg-[#EE4275]' : 'bg-green-500'
+                                    : 'bg-[#F7C7D3]'
                                 }`}
                               />
                             ))}
                           </div>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-[#EE4275]/60">
                             {passwordStrength <= 2 ? 'Weak' : passwordStrength <= 4 ? 'Medium' : 'Strong'} password
                           </p>
                         </div>
@@ -1413,24 +1411,24 @@ export default function AdminSettings() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Confirm New Password <span className="text-rose-500">*</span>
+                      <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                        Confirm New Password <span className="text-[#EE4275]">*</span>
                       </label>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
                         <input
                           type={showConfirmPassword ? "text" : "password"}
                           name="confirmPassword"
                           value={passwordData.confirmPassword}
                           onChange={handlePasswordInputChange}
                           required
-                          className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                          className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                           placeholder="Confirm your new password"
                         />
                         <button
                           type="button"
                           onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275]"
                         >
                           {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -1440,7 +1438,7 @@ export default function AdminSettings() {
                         <p className={`text-xs mt-1 flex items-center gap-1 ${
                           passwordData.newPassword === passwordData.confirmPassword
                             ? 'text-green-600'
-                            : 'text-rose-600'
+                            : 'text-[#EE4275]'
                         }`}>
                           {passwordData.newPassword === passwordData.confirmPassword ? (
                             <>✓ Passwords match</>
@@ -1455,14 +1453,14 @@ export default function AdminSettings() {
                       <button
                         type="button"
                         onClick={() => setActiveTab('view')}
-                        className="flex-1 px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all font-medium text-gray-700"
+                        className="flex-1 px-6 py-2.5 border border-[#F7C7D3]/50 rounded-lg hover:bg-[#FFF5F6] transition-all font-medium text-[#2D1B2E]"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={changingPassword}
-                        className="flex-1 px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md hover:shadow-lg hover:shadow-blue-200"
+                        className="flex-1 px-6 py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all font-medium flex items-center justify-center gap-2 disabled:opacity-50 shadow-md"
                       >
                         {changingPassword ? (
                           <>

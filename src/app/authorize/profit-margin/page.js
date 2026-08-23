@@ -1,4 +1,3 @@
-
 // 'use client';
 
 // import { useState, useEffect, useCallback } from 'react';
@@ -263,13 +262,13 @@
 //   };
 
 //   const SummaryCard = ({ title, value, subtitle, icon, color }) => (
-//     <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#06B6D4]/20 hover:shadow-md transition-shadow">
+//     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
 //       <div className="flex items-start justify-between">
 //         <div>
-//           <p className="text-sm text-[#64748B] font-medium">{title}</p>
-//           <p className="text-2xl font-bold text-[#004767] mt-1">{value}</p>
+//           <p className="text-sm text-gray-500 font-medium">{title}</p>
+//           <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
 //           {subtitle && (
-//             <p className="text-xs text-[#64748B] mt-1">{subtitle}</p>
+//             <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
 //           )}
 //         </div>
 //         <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color}`}>
@@ -308,11 +307,11 @@
 //         return (
 //           <div className="grid grid-cols-3 gap-3">
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Day</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Day</label>
 //               <select
 //                 value={selectedDay}
 //                 onChange={(e) => setSelectedDay(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(getDaysInMonth(selectedYear, selectedMonth))].map((_, i) => (
 //                   <option key={i + 1} value={i + 1}>{i + 1}</option>
@@ -320,11 +319,11 @@
 //               </select>
 //             </div>
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Month</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Month</label>
 //               <select
 //                 value={selectedMonth}
 //                 onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(12)].map((_, i) => (
 //                   <option key={i} value={i}>{getMonthName(i)}</option>
@@ -332,11 +331,11 @@
 //               </select>
 //             </div>
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Year</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
 //               <select
 //                 value={selectedYear}
 //                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(5)].map((_, i) => {
 //                   const year = new Date().getFullYear() - i;
@@ -351,7 +350,7 @@
 //         return (
 //           <div className="grid grid-cols-1 gap-3">
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Select Week</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Select Week</label>
 //               <input
 //                 type="week"
 //                 value={`${selectedYear}-W${String(getWeekNumber(new Date(selectedYear, selectedMonth, selectedDay))).padStart(2, '0')}`}
@@ -365,7 +364,7 @@
 //                   setSelectedDay(date.getDate());
 //                   setSelectedMonth(date.getMonth());
 //                 }}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               />
 //             </div>
 //           </div>
@@ -375,11 +374,11 @@
 //         return (
 //           <div className="grid grid-cols-2 gap-3">
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Month</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Month</label>
 //               <select
 //                 value={selectedMonth}
 //                 onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(12)].map((_, i) => (
 //                   <option key={i} value={i}>{getMonthName(i)}</option>
@@ -387,11 +386,11 @@
 //               </select>
 //             </div>
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Year</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
 //               <select
 //                 value={selectedYear}
 //                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(5)].map((_, i) => {
 //                   const year = new Date().getFullYear() - i;
@@ -406,11 +405,11 @@
 //         return (
 //           <div className="grid grid-cols-1 gap-3">
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Year</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
 //               <select
 //                 value={selectedYear}
 //                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               >
 //                 {[...Array(10)].map((_, i) => {
 //                   const year = new Date().getFullYear() - i;
@@ -425,21 +424,21 @@
 //         return (
 //           <div className="grid grid-cols-2 gap-3">
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">Start Date</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">Start Date</label>
 //               <input
 //                 type="date"
 //                 value={startDate}
 //                 onChange={(e) => setStartDate(e.target.value)}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               />
 //             </div>
 //             <div>
-//               <label className="block text-xs font-medium text-[#64748B] mb-1">End Date</label>
+//               <label className="block text-xs font-medium text-gray-500 mb-1">End Date</label>
 //               <input
 //                 type="date"
 //                 value={endDate}
 //                 onChange={(e) => setEndDate(e.target.value)}
-//                 className="w-full px-3 py-2 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767] text-sm"
+//                 className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
 //               />
 //             </div>
 //           </div>
@@ -451,20 +450,20 @@
 //   };
 
 //   return (
-//      <ProtectedRoute pageKey="profit_margin">
-//     <div className="min-h-screen bg-[#E2E7EA]/20 p-4 md:p-6">
+//     <ProtectedRoute pageKey="profit_margin">
+//     <div className="min-h-screen bg-white p-4 md:p-6">
 //       <div className="max-w-7xl mx-auto">
 //         {/* Header */}
 //         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
 //           <div className="flex items-center gap-3">
-//             <div className="w-11 h-11 bg-gradient-to-br from-[#06B6D4] to-[#004767] rounded-xl flex items-center justify-center shadow-lg shadow-[#06B6D4]/25">
+//             <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
 //               <FaChartLine className="w-5 h-5 text-white" />
 //             </div>
 //             <div>
-//               <h1 className="text-2xl font-bold text-[#004767]">Profit Margin</h1>
-//               <p className="text-sm text-[#64748B]">
+//               <h1 className="text-2xl font-bold text-gray-900">Profit Margin</h1>
+//               <p className="text-sm text-gray-500">
 //                 Track profitability of delivered & paid orders
-//                 <span className="ml-2 text-xs text-[#06B6D4] font-medium bg-[#06B6D4]/10 px-2 py-0.5 rounded-full">
+//                 <span className="ml-2 text-xs text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full">
 //                   {getPeriodLabel()}
 //                 </span>
 //               </p>
@@ -472,11 +471,10 @@
 //           </div>
           
 //           <div className="flex items-center gap-2 flex-wrap">
-          
 //             <button
 //               onClick={() => setShowFilters(!showFilters)}
 //               className={`flex items-center gap-2 px-4 py-2 border rounded-xl transition-colors text-sm ${
-//                 showFilters ? 'bg-[#06B6D4] text-white border-[#06B6D4]' : 'bg-white border-[#06B6D4]/30 text-[#004767] hover:bg-[#06B6D4]/5'
+//                 showFilters ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
 //               }`}
 //             >
 //               <FaFilter className="w-4 h-4" />
@@ -486,18 +484,17 @@
 //           </div>
 //         </div>
 
-
 //         {/* Filters */}
 //         {showFilters && (
-//           <div className="bg-white rounded-2xl border border-[#06B6D4]/30 shadow-sm overflow-hidden mb-6">
+//           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-6">
 //             {/* Period Type Tabs */}
-//             <div className="p-4 border-b border-[#06B6D4]/20 bg-[#E2E7EA]/20">
+//             <div className="p-4 border-b border-gray-200 bg-gray-50">
 //               <div className="flex flex-wrap items-center gap-2">
-//                 <span className="text-xs font-medium text-[#64748B] mr-2">View by:</span>
+//                 <span className="text-xs font-medium text-gray-500 mr-2">View by:</span>
 //                 <button
 //                   onClick={() => setPeriod('day')}
 //                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-//                     period === 'day' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                     period === 'day' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
 //                   }`}
 //                 >
 //                   <FaCalendarDay className="w-3 h-3" />
@@ -506,7 +503,7 @@
 //                 <button
 //                   onClick={() => setPeriod('week')}
 //                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-//                     period === 'week' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                     period === 'week' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
 //                   }`}
 //                 >
 //                   <FaCalendarWeek className="w-3 h-3" />
@@ -515,7 +512,7 @@
 //                 <button
 //                   onClick={() => setPeriod('month')}
 //                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-//                     period === 'month' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                     period === 'month' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
 //                   }`}
 //                 >
 //                   <FaCalendarAlt className="w-3 h-3" />
@@ -524,7 +521,7 @@
 //                 <button
 //                   onClick={() => setPeriod('year')}
 //                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-//                     period === 'year' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                     period === 'year' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
 //                   }`}
 //                 >
 //                   <FaCalendar className="w-3 h-3" />
@@ -533,7 +530,7 @@
 //                 <button
 //                   onClick={() => setPeriod('custom')}
 //                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-//                     period === 'custom' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                     period === 'custom' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
 //                   }`}
 //                 >
 //                   Custom
@@ -548,21 +545,21 @@
 
 //             {/* Quick Stats */}
 //             {data && (
-//               <div className="px-4 py-3 bg-[#E2E7EA]/20 border-t border-[#06B6D4]/20 grid grid-cols-2 md:grid-cols-4 gap-3">
+//               <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-3">
 //                 <div className="text-center">
-//                   <p className="text-[10px] text-[#64748B] uppercase tracking-wide">Period</p>
-//                   <p className="text-sm font-semibold text-[#004767]">{getPeriodLabel()}</p>
+//                   <p className="text-[10px] text-gray-500 uppercase tracking-wide">Period</p>
+//                   <p className="text-sm font-semibold text-gray-900">{getPeriodLabel()}</p>
 //                 </div>
 //                 <div className="text-center">
-//                   <p className="text-[10px] text-[#64748B] uppercase tracking-wide">Product Orders</p>
-//                   <p className="text-sm font-semibold text-[#004767]">{data.summary.totalOrders}</p>
+//                   <p className="text-[10px] text-gray-500 uppercase tracking-wide">Product Orders</p>
+//                   <p className="text-sm font-semibold text-gray-900">{data.summary.totalOrders}</p>
 //                 </div>
 //                 <div className="text-center">
-//                   <p className="text-[10px] text-[#64748B] uppercase tracking-wide">Revenue</p>
+//                   <p className="text-[10px] text-gray-500 uppercase tracking-wide">Revenue</p>
 //                   <p className="text-sm font-semibold text-emerald-600">{formatCurrency(data.summary.totalRevenue)}</p>
 //                 </div>
 //                 <div className="text-center">
-//                   <p className="text-[10px] text-[#64748B] uppercase tracking-wide">Profit</p>
+//                   <p className="text-[10px] text-gray-500 uppercase tracking-wide">Profit</p>
 //                   <p className={`text-sm font-semibold ${data.summary.totalProfit > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
 //                     {formatCurrency(data.summary.totalProfit)}
 //                   </p>
@@ -574,9 +571,9 @@
 
 //         {/* Loading State */}
 //         {loading && (
-//           <div className="bg-white rounded-2xl p-12 text-center border border-[#06B6D4]/30">
-//             <FaSpinner className="w-8 h-8 text-[#06B6D4] animate-spin mx-auto mb-4" />
-//             <p className="text-[#64748B]">Calculating profit margins...</p>
+//           <div className="bg-white rounded-2xl p-12 text-center border border-gray-200">
+//             <FaSpinner className="w-8 h-8 text-blue-600 animate-spin mx-auto mb-4" />
+//             <p className="text-gray-500">Calculating profit margins...</p>
 //           </div>
 //         )}
 
@@ -588,8 +585,8 @@
 //               <SummaryCard
 //                 title="Total Product Orders"
 //                 value={data.summary.totalOrders}
-//                 icon={<FaShoppingCart className="w-5 h-5 text-[#06B6D4]" />}
-//                 color="bg-[#06B6D4]/10"
+//                 icon={<FaShoppingCart className="w-5 h-5 text-blue-600" />}
+//                 color="bg-blue-50"
 //               />
 //               <SummaryCard
 //                 title="Total Revenue"
@@ -607,21 +604,21 @@
 //                 title="Total Profit"
 //                 value={formatCurrency(data.summary.totalProfit)}
 //                 subtitle={`${data.summary.averageProfitMargin}% average margin`}
-//                 icon={<FaChartLine className="w-5 h-5 text-[#06B6D4]" />}
-//                 color="bg-[#06B6D4]/10"
+//                 icon={<FaChartLine className="w-5 h-5 text-blue-600" />}
+//                 color="bg-blue-50"
 //               />
 //             </div>
 
 //             {/* Product Profit Breakdown */}
-//             <div className="bg-white rounded-2xl border border-[#06B6D4]/30 shadow-sm overflow-hidden">
-//               <div className="p-4 border-b border-[#06B6D4]/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+//             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+//               <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
 //                 <div className="flex items-center gap-2">
-//                   <FaBox className="w-5 h-5 text-[#06B6D4]" />
-//                   <h2 className="text-lg font-semibold text-[#004767]">Product Profit Breakdown</h2>
-//                   <span className="text-xs text-[#64748B] bg-[#E2E7EA]/50 px-2 py-1 rounded-full">
+//                   <FaBox className="w-5 h-5 text-blue-600" />
+//                   <h2 className="text-lg font-semibold text-gray-900">Product Profit Breakdown</h2>
+//                   <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
 //                     {data.productProfitDetails.length} products
 //                   </span>
-//                   <span className="text-xs text-[#06B6D4] bg-[#06B6D4]/10 px-2 py-1 rounded-full">
+//                   <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
 //                     {getPeriodLabel()}
 //                   </span>
 //                 </div>
@@ -632,12 +629,12 @@
 //                     placeholder="Search products..."
 //                     value={searchTerm}
 //                     onChange={(e) => setSearchTerm(e.target.value)}
-//                     className="flex-1 sm:w-48 px-3 py-1.5 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-[#E2E7EA]/20 text-sm text-[#004767] placeholder:text-[#64748B]"
+//                     className="flex-1 sm:w-48 px-3 py-1.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 text-sm text-gray-900 placeholder:text-gray-400"
 //                   />
 //                   <select
 //                     value={sortBy}
 //                     onChange={(e) => setSortBy(e.target.value)}
-//                     className="px-3 py-1.5 border border-[#06B6D4]/30 rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-[#E2E7EA]/20 text-sm text-[#004767]"
+//                     className="px-3 py-1.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 text-sm text-gray-900"
 //                   >
 //                     <option value="profit_desc">Highest Profit</option>
 //                     <option value="profit_asc">Lowest Profit</option>
@@ -651,21 +648,21 @@
 
 //               <div className="overflow-x-auto">
 //                 <table className="w-full">
-//                   <thead className="bg-[#E2E7EA]/50">
+//                   <thead className="bg-gray-50">
 //                     <tr>
-//                       <th className="px-4 py-3 text-left text-xs font-medium text-[#64748B]">Product</th>
-//                       <th className="px-4 py-3 text-center text-xs font-medium text-[#64748B]">Qty Sold</th>
-//                       <th className="px-4 py-3 text-right text-xs font-medium text-[#64748B]">Revenue</th>
-//                       <th className="px-4 py-3 text-right text-xs font-medium text-[#64748B]">Cost</th>
-//                       <th className="px-4 py-3 text-right text-xs font-medium text-[#64748B]">Profit</th>
-//                       <th className="px-4 py-3 text-center text-xs font-medium text-[#64748B]">Margin</th>
-//                       <th className="px-4 py-3 text-center text-xs font-medium text-[#64748B]">Actions</th>
+//                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Product</th>
+//                       <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Qty Sold</th>
+//                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Revenue</th>
+//                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Cost</th>
+//                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Profit</th>
+//                       <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Margin</th>
+//                       <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Actions</th>
 //                     </tr>
 //                   </thead>
 //                   <tbody>
 //                     {filteredProducts.length === 0 ? (
 //                       <tr>
-//                         <td colSpan="7" className="px-4 py-8 text-center text-[#64748B] text-sm">
+//                         <td colSpan="7" className="px-4 py-8 text-center text-gray-500 text-sm">
 //                           No products found
 //                         </td>
 //                       </tr>
@@ -676,31 +673,31 @@
 //                         const isNegative = profitMargin < 0;
                         
 //                         return (
-//                           <tr key={index} className="border-b border-[#06B6D4]/20 hover:bg-[#E2E7EA]/30 transition-colors">
+//                           <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
 //                             <td className="px-4 py-3">
 //                               <div className="flex items-center gap-3">
 //                                 {product.image ? (
 //                                   <img
 //                                     src={product.image}
 //                                     alt={product.productName}
-//                                     className="w-8 h-8 rounded-lg object-cover border border-[#06B6D4]/30"
+//                                     className="w-8 h-8 rounded-lg object-cover border border-gray-200"
 //                                   />
 //                                 ) : (
-//                                   <div className="w-8 h-8 rounded-lg bg-[#E2E7EA] flex items-center justify-center">
-//                                     <FaBox className="w-4 h-4 text-[#64748B]" />
+//                                   <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
+//                                     <FaBox className="w-4 h-4 text-gray-400" />
 //                                   </div>
 //                                 )}
 //                                 <div>
-//                                   <p className="text-sm font-medium text-[#004767] truncate max-w-[200px]">
+//                                   <p className="text-sm font-medium text-gray-900 truncate max-w-[200px]">
 //                                     {product.productName}
 //                                   </p>
-//                                   <p className="text-xs text-[#64748B]">
+//                                   <p className="text-xs text-gray-500">
 //                                     Avg: {formatCurrency(product.averageSellingPrice)} / {formatCurrency(product.averageBuyingPrice)}
 //                                   </p>
 //                                 </div>
 //                               </div>
 //                             </td>
-//                             <td className="px-4 py-3 text-center text-sm text-[#004767]">
+//                             <td className="px-4 py-3 text-center text-sm text-gray-900">
 //                               {product.totalQuantity}
 //                             </td>
 //                             <td className="px-4 py-3 text-right text-sm text-emerald-600">
@@ -710,7 +707,7 @@
 //                               {formatCurrency(product.totalCost)}
 //                             </td>
 //                             <td className="px-4 py-3 text-right text-sm font-semibold">
-//                               <span className={isPositive ? 'text-emerald-600' : isNegative ? 'text-red-600' : 'text-[#64748B]'}>
+//                               <span className={isPositive ? 'text-emerald-600' : isNegative ? 'text-red-600' : 'text-gray-500'}>
 //                                 {formatCurrency(product.totalProfit)}
 //                               </span>
 //                             </td>
@@ -730,7 +727,7 @@
 //                                   setSelectedProduct(product);
 //                                   setShowOrderDetails(!showOrderDetails);
 //                                 }}
-//                                 className="text-[#06B6D4] hover:text-[#0891B2] transition-colors text-xs flex items-center gap-1 mx-auto"
+//                                 className="text-blue-600 hover:text-blue-700 transition-colors text-xs flex items-center gap-1 mx-auto"
 //                               >
 //                                 <FaEye className="w-3 h-3" />
 //                                 View
@@ -747,45 +744,45 @@
 
 //             {/* Period Summary */}
 //             {data.periodSummary && data.periodSummary.length > 0 && (
-//               <div className="bg-white rounded-2xl border border-[#06B6D4]/30 shadow-sm overflow-hidden mt-6">
-//                 <div className="p-4 border-b border-[#06B6D4]/30">
-//                   <h3 className="text-lg font-semibold text-[#004767] flex items-center gap-2">
-//                     <FaCalendarAlt className="w-5 h-5 text-[#06B6D4]" />
+//               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mt-6">
+//                 <div className="p-4 border-b border-gray-200">
+//                   <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+//                     <FaCalendarAlt className="w-5 h-5 text-blue-600" />
 //                     {period === 'day' ? 'Daily' : period === 'week' ? 'Daily' : period === 'month' ? 'Daily' : 'Monthly'} Performance
-//                     <span className="text-xs text-[#64748B] font-normal bg-[#E2E7EA]/50 px-2 py-0.5 rounded-full">
+//                     <span className="text-xs text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded-full">
 //                       {getPeriodLabel()}
 //                     </span>
 //                   </h3>
 //                 </div>
 //                 <div className="overflow-x-auto">
 //                   <table className="w-full">
-//                     <thead className="bg-[#E2E7EA]/50">
+//                     <thead className="bg-gray-50">
 //                       <tr>
-//                         <th className="px-4 py-2 text-left text-xs font-medium text-[#64748B]">Date</th>
-//                         <th className="px-4 py-2 text-center text-xs font-medium text-[#64748B]">Orders</th>
-//                         <th className="px-4 py-2 text-center text-xs font-medium text-[#64748B]">Items</th>
-//                         <th className="px-4 py-2 text-right text-xs font-medium text-[#64748B]">Revenue</th>
-//                         <th className="px-4 py-2 text-right text-xs font-medium text-[#64748B]">Cost</th>
-//                         <th className="px-4 py-2 text-right text-xs font-medium text-[#64748B]">Profit</th>
-//                         <th className="px-4 py-2 text-center text-xs font-medium text-[#64748B]">Margin</th>
+//                         <th className="px-4 py-2 text-left text-xs font-medium text-gray-500">Date</th>
+//                         <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Orders</th>
+//                         <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Items</th>
+//                         <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Revenue</th>
+//                         <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Cost</th>
+//                         <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Profit</th>
+//                         <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Margin</th>
 //                       </tr>
 //                     </thead>
 //                     <tbody>
 //                       {data.periodSummary.map((day, index) => (
-//                         <tr key={index} className="border-b border-[#06B6D4]/20 hover:bg-[#E2E7EA]/30 transition-colors">
-//                           <td className="px-4 py-2 text-sm text-[#004767]">
+//                         <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+//                           <td className="px-4 py-2 text-sm text-gray-900">
 //                             {new Date(day.date).toLocaleDateString('en-BD', {
 //                               day: '2-digit',
 //                               month: 'short',
 //                               year: 'numeric'
 //                             })}
 //                           </td>
-//                           <td className="px-4 py-2 text-center text-sm text-[#004767]">{day.orders}</td>
-//                           <td className="px-4 py-2 text-center text-sm text-[#64748B]">{day.itemsSold}</td>
+//                           <td className="px-4 py-2 text-center text-sm text-gray-900">{day.orders}</td>
+//                           <td className="px-4 py-2 text-center text-sm text-gray-500">{day.itemsSold}</td>
 //                           <td className="px-4 py-2 text-right text-sm text-emerald-600">{formatCurrency(day.revenue)}</td>
 //                           <td className="px-4 py-2 text-right text-sm text-orange-600">{formatCurrency(day.cost)}</td>
 //                           <td className="px-4 py-2 text-right text-sm font-semibold">
-//                             <span className={day.profit > 0 ? 'text-emerald-600' : day.profit < 0 ? 'text-red-600' : 'text-[#64748B]'}>
+//                             <span className={day.profit > 0 ? 'text-emerald-600' : day.profit < 0 ? 'text-red-600' : 'text-gray-500'}>
 //                               {formatCurrency(day.profit)}
 //                             </span>
 //                           </td>
@@ -811,8 +808,8 @@
 //             {/* Product Details Modal */}
 //             {showOrderDetails && selectedProduct && (
 //               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-//                 <div className="bg-white rounded-2xl border border-[#06B6D4]/30 shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
-//                   <div className="p-4 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white flex items-center justify-between">
+//                 <div className="bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
+//                   <div className="p-4 bg-blue-600 text-white flex items-center justify-between">
 //                     <div>
 //                       <h3 className="text-lg font-bold">Product Profit Details</h3>
 //                       <p className="text-sm text-white/80">{selectedProduct.productName}</p>
@@ -829,42 +826,42 @@
                   
 //                   <div className="p-6 overflow-y-auto max-h-[60vh]">
 //                     <div className="grid grid-cols-2 gap-4 mb-6">
-//                       <div className="bg-[#E2E7EA]/30 rounded-xl p-3 text-center">
-//                         <p className="text-xs text-[#64748B]">Total Revenue</p>
+//                       <div className="bg-gray-50 rounded-xl p-3 text-center">
+//                         <p className="text-xs text-gray-500">Total Revenue</p>
 //                         <p className="text-xl font-bold text-emerald-600">{formatCurrency(selectedProduct.totalRevenue)}</p>
 //                       </div>
-//                       <div className="bg-[#E2E7EA]/30 rounded-xl p-3 text-center">
-//                         <p className="text-xs text-[#64748B]">Total Profit</p>
+//                       <div className="bg-gray-50 rounded-xl p-3 text-center">
+//                         <p className="text-xs text-gray-500">Total Profit</p>
 //                         <p className={`text-xl font-bold ${selectedProduct.totalProfit > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
 //                           {formatCurrency(selectedProduct.totalProfit)}
 //                         </p>
 //                       </div>
-//                       <div className="bg-[#E2E7EA]/30 rounded-xl p-3 text-center">
-//                         <p className="text-xs text-[#64748B]">Quantity Sold</p>
-//                         <p className="text-xl font-bold text-[#004767]">{selectedProduct.totalQuantity}</p>
+//                       <div className="bg-gray-50 rounded-xl p-3 text-center">
+//                         <p className="text-xs text-gray-500">Quantity Sold</p>
+//                         <p className="text-xl font-bold text-gray-900">{selectedProduct.totalQuantity}</p>
 //                       </div>
-//                       <div className="bg-[#E2E7EA]/30 rounded-xl p-3 text-center">
-//                         <p className="text-xs text-[#64748B]">Profit Margin</p>
+//                       <div className="bg-gray-50 rounded-xl p-3 text-center">
+//                         <p className="text-xs text-gray-500">Profit Margin</p>
 //                         <p className={`text-xl font-bold ${parseFloat(selectedProduct.profitMargin) > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
 //                           {selectedProduct.profitMargin}%
 //                         </p>
 //                       </div>
 //                     </div>
 
-//                     <div className="bg-[#E2E7EA]/30 rounded-xl p-3 mb-4">
+//                     <div className="bg-gray-50 rounded-xl p-3 mb-4">
 //                       <div className="grid grid-cols-2 gap-2 text-sm">
 //                         <div>
-//                           <span className="text-[#64748B]">Avg Selling Price:</span>
-//                           <span className="font-medium text-[#004767] ml-1">{formatCurrency(selectedProduct.averageSellingPrice)}</span>
+//                           <span className="text-gray-500">Avg Selling Price:</span>
+//                           <span className="font-medium text-gray-900 ml-1">{formatCurrency(selectedProduct.averageSellingPrice)}</span>
 //                         </div>
 //                         <div>
-//                           <span className="text-[#64748B]">Avg Cost Per Item:</span>
-//                           <span className="font-medium text-[#004767] ml-1">{formatCurrency(selectedProduct.averageBuyingPrice)}</span>
+//                           <span className="text-gray-500">Avg Cost Per Item:</span>
+//                           <span className="font-medium text-gray-900 ml-1">{formatCurrency(selectedProduct.averageBuyingPrice)}</span>
 //                         </div>
 //                       </div>
 //                     </div>
 
-//                     <div className="text-xs text-[#64748B] bg-blue-50 p-3 rounded-lg border border-blue-200">
+//                     <div className="text-xs text-gray-500 bg-blue-50 p-3 rounded-lg border border-blue-200">
 //                       <p className="font-medium text-blue-700">Calculation</p>
 //                       <p>Revenue: {formatCurrency(selectedProduct.totalRevenue)}</p>
 //                       <p>Cost: {formatCurrency(selectedProduct.totalCost)}</p>
@@ -873,10 +870,10 @@
 //                     </div>
 //                   </div>
 
-//                   <div className="p-4 border-t border-[#06B6D4]/30 bg-[#E2E7EA]/20 flex justify-end">
+//                   <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-end">
 //                     <button
 //                       onClick={() => setShowOrderDetails(false)}
-//                       className="px-4 py-2 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-[#06B6D4]/25 transition-all text-sm"
+//                       className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all text-sm shadow-md hover:shadow-lg"
 //                     >
 //                       Close
 //                     </button>
@@ -969,7 +966,7 @@ export default function ProfitMarginPage() {
     return `${y}-${m}-${d}`;
   };
 
-  // Get current date ranges - FIXED
+  // Get current date ranges
   const getDateRange = useCallback(() => {
     const year = selectedYear;
     const month = selectedMonth;
@@ -1166,13 +1163,13 @@ export default function ProfitMarginPage() {
   };
 
   const SummaryCard = ({ title, value, subtitle, icon, color }) => (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#F7C7D3]/40 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-gray-500 font-medium">{title}</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+          <p className="text-sm text-[#EE4275]/60 font-medium">{title}</p>
+          <p className="text-2xl font-bold text-[#2D1B2E] mt-1">{value}</p>
           {subtitle && (
-            <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
+            <p className="text-xs text-[#EE4275]/60 mt-1">{subtitle}</p>
           )}
         </div>
         <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color}`}>
@@ -1211,11 +1208,11 @@ export default function ProfitMarginPage() {
         return (
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Day</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Day</label>
               <select
                 value={selectedDay}
                 onChange={(e) => setSelectedDay(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(getDaysInMonth(selectedYear, selectedMonth))].map((_, i) => (
                   <option key={i + 1} value={i + 1}>{i + 1}</option>
@@ -1223,11 +1220,11 @@ export default function ProfitMarginPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Month</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Month</label>
               <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(12)].map((_, i) => (
                   <option key={i} value={i}>{getMonthName(i)}</option>
@@ -1235,11 +1232,11 @@ export default function ProfitMarginPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Year</label>
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(5)].map((_, i) => {
                   const year = new Date().getFullYear() - i;
@@ -1254,7 +1251,7 @@ export default function ProfitMarginPage() {
         return (
           <div className="grid grid-cols-1 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Select Week</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Select Week</label>
               <input
                 type="week"
                 value={`${selectedYear}-W${String(getWeekNumber(new Date(selectedYear, selectedMonth, selectedDay))).padStart(2, '0')}`}
@@ -1268,7 +1265,7 @@ export default function ProfitMarginPage() {
                   setSelectedDay(date.getDate());
                   setSelectedMonth(date.getMonth());
                 }}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               />
             </div>
           </div>
@@ -1278,11 +1275,11 @@ export default function ProfitMarginPage() {
         return (
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Month</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Month</label>
               <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(12)].map((_, i) => (
                   <option key={i} value={i}>{getMonthName(i)}</option>
@@ -1290,11 +1287,11 @@ export default function ProfitMarginPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Year</label>
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(5)].map((_, i) => {
                   const year = new Date().getFullYear() - i;
@@ -1309,11 +1306,11 @@ export default function ProfitMarginPage() {
         return (
           <div className="grid grid-cols-1 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Year</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Year</label>
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               >
                 {[...Array(10)].map((_, i) => {
                   const year = new Date().getFullYear() - i;
@@ -1328,21 +1325,21 @@ export default function ProfitMarginPage() {
         return (
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">Start Date</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">Start Date</label>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-500 mb-1">End Date</label>
+              <label className="block text-xs font-medium text-[#EE4275]/60 mb-1">End Date</label>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900 text-sm"
+                className="w-full px-3 py-2 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E] text-sm"
               />
             </div>
           </div>
@@ -1355,19 +1352,19 @@ export default function ProfitMarginPage() {
 
   return (
     <ProtectedRoute pageKey="profit_margin">
-    <div className="min-h-screen bg-white p-4 md:p-6">
+    <div className="min-h-screen bg-[#FFF5F6] p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+            <div className="w-11 h-11 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl flex items-center justify-center shadow-lg shadow-[#EE4275]/25">
               <FaChartLine className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Profit Margin</h1>
-              <p className="text-sm text-gray-500">
+              <h1 className="text-2xl font-bold text-[#2D1B2E]">Profit Margin</h1>
+              <p className="text-sm text-[#EE4275]/60">
                 Track profitability of delivered & paid orders
-                <span className="ml-2 text-xs text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full">
+                <span className="ml-2 text-xs text-[#EE4275] font-medium bg-[#FFF5F6] px-2 py-0.5 rounded-full border border-[#EE4275]/20">
                   {getPeriodLabel()}
                 </span>
               </p>
@@ -1378,7 +1375,7 @@ export default function ProfitMarginPage() {
             <button
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-2 px-4 py-2 border rounded-xl transition-colors text-sm ${
-                showFilters ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                showFilters ? 'bg-[#EE4275] text-white border-[#EE4275]' : 'bg-white border-[#F7C7D3]/50 text-[#2D1B2E] hover:bg-[#FFF5F6]'
               }`}
             >
               <FaFilter className="w-4 h-4" />
@@ -1390,15 +1387,15 @@ export default function ProfitMarginPage() {
 
         {/* Filters */}
         {showFilters && (
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-6">
+          <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-sm overflow-hidden mb-6">
             {/* Period Type Tabs */}
-            <div className="p-4 border-b border-gray-200 bg-gray-50">
+            <div className="p-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-medium text-gray-500 mr-2">View by:</span>
+                <span className="text-xs font-medium text-[#EE4275]/60 mr-2">View by:</span>
                 <button
                   onClick={() => setPeriod('day')}
                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                    period === 'day' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    period === 'day' ? 'bg-[#EE4275] text-white shadow-sm' : 'bg-white text-[#2D1B2E] hover:bg-[#FFF5F6] border border-[#F7C7D3]/50'
                   }`}
                 >
                   <FaCalendarDay className="w-3 h-3" />
@@ -1407,7 +1404,7 @@ export default function ProfitMarginPage() {
                 <button
                   onClick={() => setPeriod('week')}
                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                    period === 'week' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    period === 'week' ? 'bg-[#EE4275] text-white shadow-sm' : 'bg-white text-[#2D1B2E] hover:bg-[#FFF5F6] border border-[#F7C7D3]/50'
                   }`}
                 >
                   <FaCalendarWeek className="w-3 h-3" />
@@ -1416,7 +1413,7 @@ export default function ProfitMarginPage() {
                 <button
                   onClick={() => setPeriod('month')}
                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                    period === 'month' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    period === 'month' ? 'bg-[#EE4275] text-white shadow-sm' : 'bg-white text-[#2D1B2E] hover:bg-[#FFF5F6] border border-[#F7C7D3]/50'
                   }`}
                 >
                   <FaCalendarAlt className="w-3 h-3" />
@@ -1425,7 +1422,7 @@ export default function ProfitMarginPage() {
                 <button
                   onClick={() => setPeriod('year')}
                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                    period === 'year' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    period === 'year' ? 'bg-[#EE4275] text-white shadow-sm' : 'bg-white text-[#2D1B2E] hover:bg-[#FFF5F6] border border-[#F7C7D3]/50'
                   }`}
                 >
                   <FaCalendar className="w-3 h-3" />
@@ -1434,7 +1431,7 @@ export default function ProfitMarginPage() {
                 <button
                   onClick={() => setPeriod('custom')}
                   className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                    period === 'custom' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    period === 'custom' ? 'bg-[#EE4275] text-white shadow-sm' : 'bg-white text-[#2D1B2E] hover:bg-[#FFF5F6] border border-[#F7C7D3]/50'
                   }`}
                 >
                   Custom
@@ -1449,21 +1446,21 @@ export default function ProfitMarginPage() {
 
             {/* Quick Stats */}
             {data && (
-              <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="px-4 py-3 bg-[#FFF5F6] border-t border-[#F7C7D3]/40 grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="text-center">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wide">Period</p>
-                  <p className="text-sm font-semibold text-gray-900">{getPeriodLabel()}</p>
+                  <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wide">Period</p>
+                  <p className="text-sm font-semibold text-[#2D1B2E]">{getPeriodLabel()}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wide">Product Orders</p>
-                  <p className="text-sm font-semibold text-gray-900">{data.summary.totalOrders}</p>
+                  <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wide">Product Orders</p>
+                  <p className="text-sm font-semibold text-[#2D1B2E]">{data.summary.totalOrders}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wide">Revenue</p>
+                  <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wide">Revenue</p>
                   <p className="text-sm font-semibold text-emerald-600">{formatCurrency(data.summary.totalRevenue)}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wide">Profit</p>
+                  <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wide">Profit</p>
                   <p className={`text-sm font-semibold ${data.summary.totalProfit > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                     {formatCurrency(data.summary.totalProfit)}
                   </p>
@@ -1475,9 +1472,9 @@ export default function ProfitMarginPage() {
 
         {/* Loading State */}
         {loading && (
-          <div className="bg-white rounded-2xl p-12 text-center border border-gray-200">
-            <FaSpinner className="w-8 h-8 text-blue-600 animate-spin mx-auto mb-4" />
-            <p className="text-gray-500">Calculating profit margins...</p>
+          <div className="bg-white rounded-2xl p-12 text-center border border-[#F7C7D3]/40">
+            <FaSpinner className="w-8 h-8 text-[#EE4275] animate-spin mx-auto mb-4" />
+            <p className="text-[#EE4275]/60">Calculating profit margins...</p>
           </div>
         )}
 
@@ -1489,8 +1486,8 @@ export default function ProfitMarginPage() {
               <SummaryCard
                 title="Total Product Orders"
                 value={data.summary.totalOrders}
-                icon={<FaShoppingCart className="w-5 h-5 text-blue-600" />}
-                color="bg-blue-50"
+                icon={<FaShoppingCart className="w-5 h-5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
               />
               <SummaryCard
                 title="Total Revenue"
@@ -1508,21 +1505,21 @@ export default function ProfitMarginPage() {
                 title="Total Profit"
                 value={formatCurrency(data.summary.totalProfit)}
                 subtitle={`${data.summary.averageProfitMargin}% average margin`}
-                icon={<FaChartLine className="w-5 h-5 text-blue-600" />}
-                color="bg-blue-50"
+                icon={<FaChartLine className="w-5 h-5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
               />
             </div>
 
             {/* Product Profit Breakdown */}
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-              <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-sm overflow-hidden">
+              <div className="p-4 border-b border-[#F7C7D3]/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <FaBox className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-lg font-semibold text-gray-900">Product Profit Breakdown</h2>
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                  <FaBox className="w-5 h-5 text-[#EE4275]" />
+                  <h2 className="text-lg font-semibold text-[#2D1B2E]">Product Profit Breakdown</h2>
+                  <span className="text-xs text-[#EE4275]/60 bg-[#FFF5F6] px-2 py-1 rounded-full border border-[#F7C7D3]/40">
                     {data.productProfitDetails.length} products
                   </span>
-                  <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                  <span className="text-xs text-[#EE4275] bg-[#FFF5F6] px-2 py-1 rounded-full border border-[#EE4275]/20">
                     {getPeriodLabel()}
                   </span>
                 </div>
@@ -1533,12 +1530,12 @@ export default function ProfitMarginPage() {
                     placeholder="Search products..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="flex-1 sm:w-48 px-3 py-1.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 text-sm text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 sm:w-48 px-3 py-1.5 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-[#FFF5F6] text-sm text-[#2D1B2E] placeholder:text-[#EE4275]/40"
                   />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="px-3 py-1.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 text-sm text-gray-900"
+                    className="px-3 py-1.5 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-[#FFF5F6] text-sm text-[#2D1B2E]"
                   >
                     <option value="profit_desc">Highest Profit</option>
                     <option value="profit_asc">Lowest Profit</option>
@@ -1552,21 +1549,21 @@ export default function ProfitMarginPage() {
 
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-[#FFF5F6]">
                     <tr>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Product</th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Qty Sold</th>
-                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Revenue</th>
-                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Cost</th>
-                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Profit</th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Margin</th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Actions</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#EE4275]/60">Product</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium text-[#EE4275]/60">Qty Sold</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-[#EE4275]/60">Revenue</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-[#EE4275]/60">Cost</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-[#EE4275]/60">Profit</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium text-[#EE4275]/60">Margin</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium text-[#EE4275]/60">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredProducts.length === 0 ? (
                       <tr>
-                        <td colSpan="7" className="px-4 py-8 text-center text-gray-500 text-sm">
+                        <td colSpan="7" className="px-4 py-8 text-center text-[#EE4275]/60 text-sm">
                           No products found
                         </td>
                       </tr>
@@ -1577,31 +1574,31 @@ export default function ProfitMarginPage() {
                         const isNegative = profitMargin < 0;
                         
                         return (
-                          <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                          <tr key={index} className="border-b border-[#F7C7D3]/20 hover:bg-[#FFF5F6] transition-colors">
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-3">
                                 {product.image ? (
                                   <img
                                     src={product.image}
                                     alt={product.productName}
-                                    className="w-8 h-8 rounded-lg object-cover border border-gray-200"
+                                    className="w-8 h-8 rounded-lg object-cover border border-[#F7C7D3]/40"
                                   />
                                 ) : (
-                                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                                    <FaBox className="w-4 h-4 text-gray-400" />
+                                  <div className="w-8 h-8 rounded-lg bg-[#FFF5F6] flex items-center justify-center">
+                                    <FaBox className="w-4 h-4 text-[#EE4275]/40" />
                                   </div>
                                 )}
                                 <div>
-                                  <p className="text-sm font-medium text-gray-900 truncate max-w-[200px]">
+                                  <p className="text-sm font-medium text-[#2D1B2E] truncate max-w-[200px]">
                                     {product.productName}
                                   </p>
-                                  <p className="text-xs text-gray-500">
+                                  <p className="text-xs text-[#EE4275]/60">
                                     Avg: {formatCurrency(product.averageSellingPrice)} / {formatCurrency(product.averageBuyingPrice)}
                                   </p>
                                 </div>
                               </div>
                             </td>
-                            <td className="px-4 py-3 text-center text-sm text-gray-900">
+                            <td className="px-4 py-3 text-center text-sm text-[#2D1B2E]">
                               {product.totalQuantity}
                             </td>
                             <td className="px-4 py-3 text-right text-sm text-emerald-600">
@@ -1611,7 +1608,7 @@ export default function ProfitMarginPage() {
                               {formatCurrency(product.totalCost)}
                             </td>
                             <td className="px-4 py-3 text-right text-sm font-semibold">
-                              <span className={isPositive ? 'text-emerald-600' : isNegative ? 'text-red-600' : 'text-gray-500'}>
+                              <span className={isPositive ? 'text-emerald-600' : isNegative ? 'text-red-600' : 'text-[#EE4275]/60'}>
                                 {formatCurrency(product.totalProfit)}
                               </span>
                             </td>
@@ -1619,7 +1616,7 @@ export default function ProfitMarginPage() {
                               <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
                                 isPositive ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
                                 isNegative ? 'bg-red-50 text-red-700 border border-red-200' :
-                                'bg-gray-50 text-gray-700 border border-gray-200'
+                                'bg-[#F7C7D3]/20 text-[#EE4275]/60 border border-[#F7C7D3]/40'
                               }`}>
                                 <FaPercentage className="w-2.5 h-2.5" />
                                 {profitMargin.toFixed(2)}%
@@ -1631,7 +1628,7 @@ export default function ProfitMarginPage() {
                                   setSelectedProduct(product);
                                   setShowOrderDetails(!showOrderDetails);
                                 }}
-                                className="text-blue-600 hover:text-blue-700 transition-colors text-xs flex items-center gap-1 mx-auto"
+                                className="text-[#EE4275] hover:text-[#EE4275]/80 transition-colors text-xs flex items-center gap-1 mx-auto"
                               >
                                 <FaEye className="w-3 h-3" />
                                 View
@@ -1648,53 +1645,53 @@ export default function ProfitMarginPage() {
 
             {/* Period Summary */}
             {data.periodSummary && data.periodSummary.length > 0 && (
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mt-6">
-                <div className="p-4 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <FaCalendarAlt className="w-5 h-5 text-blue-600" />
+              <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-sm overflow-hidden mt-6">
+                <div className="p-4 border-b border-[#F7C7D3]/40">
+                  <h3 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2">
+                    <FaCalendarAlt className="w-5 h-5 text-[#EE4275]" />
                     {period === 'day' ? 'Daily' : period === 'week' ? 'Daily' : period === 'month' ? 'Daily' : 'Monthly'} Performance
-                    <span className="text-xs text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded-full">
+                    <span className="text-xs text-[#EE4275]/60 font-normal bg-[#FFF5F6] px-2 py-0.5 rounded-full border border-[#F7C7D3]/40">
                       {getPeriodLabel()}
                     </span>
                   </h3>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-[#FFF5F6]">
                       <tr>
-                        <th className="px-4 py-2 text-left text-xs font-medium text-gray-500">Date</th>
-                        <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Orders</th>
-                        <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Items</th>
-                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Revenue</th>
-                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Cost</th>
-                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500">Profit</th>
-                        <th className="px-4 py-2 text-center text-xs font-medium text-gray-500">Margin</th>
+                        <th className="px-4 py-2 text-left text-xs font-medium text-[#EE4275]/60">Date</th>
+                        <th className="px-4 py-2 text-center text-xs font-medium text-[#EE4275]/60">Orders</th>
+                        <th className="px-4 py-2 text-center text-xs font-medium text-[#EE4275]/60">Items</th>
+                        <th className="px-4 py-2 text-right text-xs font-medium text-[#EE4275]/60">Revenue</th>
+                        <th className="px-4 py-2 text-right text-xs font-medium text-[#EE4275]/60">Cost</th>
+                        <th className="px-4 py-2 text-right text-xs font-medium text-[#EE4275]/60">Profit</th>
+                        <th className="px-4 py-2 text-center text-xs font-medium text-[#EE4275]/60">Margin</th>
                       </tr>
                     </thead>
                     <tbody>
                       {data.periodSummary.map((day, index) => (
-                        <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                          <td className="px-4 py-2 text-sm text-gray-900">
+                        <tr key={index} className="border-b border-[#F7C7D3]/20 hover:bg-[#FFF5F6] transition-colors">
+                          <td className="px-4 py-2 text-sm text-[#2D1B2E]">
                             {new Date(day.date).toLocaleDateString('en-BD', {
                               day: '2-digit',
                               month: 'short',
                               year: 'numeric'
                             })}
                           </td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-900">{day.orders}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-500">{day.itemsSold}</td>
+                          <td className="px-4 py-2 text-center text-sm text-[#2D1B2E]">{day.orders}</td>
+                          <td className="px-4 py-2 text-center text-sm text-[#EE4275]/60">{day.itemsSold}</td>
                           <td className="px-4 py-2 text-right text-sm text-emerald-600">{formatCurrency(day.revenue)}</td>
                           <td className="px-4 py-2 text-right text-sm text-orange-600">{formatCurrency(day.cost)}</td>
                           <td className="px-4 py-2 text-right text-sm font-semibold">
-                            <span className={day.profit > 0 ? 'text-emerald-600' : day.profit < 0 ? 'text-red-600' : 'text-gray-500'}>
+                            <span className={day.profit > 0 ? 'text-emerald-600' : day.profit < 0 ? 'text-red-600' : 'text-[#EE4275]/60'}>
                               {formatCurrency(day.profit)}
                             </span>
                           </td>
                           <td className="px-4 py-2 text-center">
                             <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
                               day.profitMargin > 10 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
-                              day.profitMargin > 0 ? 'bg-blue-50 text-blue-700 border border-blue-200' :
-                              day.profitMargin === 0 ? 'bg-gray-50 text-gray-700 border border-gray-200' :
+                              day.profitMargin > 0 ? 'bg-[#FFF5F6] text-[#EE4275] border border-[#EE4275]/20' :
+                              day.profitMargin === 0 ? 'bg-[#F7C7D3]/20 text-[#EE4275]/60 border border-[#F7C7D3]/40' :
                               'bg-red-50 text-red-700 border border-red-200'
                             }`}>
                               <FaPercentage className="w-2.5 h-2.5" />
@@ -1712,8 +1709,8 @@ export default function ProfitMarginPage() {
             {/* Product Details Modal */}
             {showOrderDetails && selectedProduct && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                <div className="bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
-                  <div className="p-4 bg-blue-600 text-white flex items-center justify-between">
+                <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white flex items-center justify-between">
                     <div>
                       <h3 className="text-lg font-bold">Product Profit Details</h3>
                       <p className="text-sm text-white/80">{selectedProduct.productName}</p>
@@ -1730,43 +1727,43 @@ export default function ProfitMarginPage() {
                   
                   <div className="p-6 overflow-y-auto max-h-[60vh]">
                     <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="text-xs text-gray-500">Total Revenue</p>
+                      <div className="bg-[#FFF5F6] rounded-xl p-3 text-center border border-[#F7C7D3]/40">
+                        <p className="text-xs text-[#EE4275]/60">Total Revenue</p>
                         <p className="text-xl font-bold text-emerald-600">{formatCurrency(selectedProduct.totalRevenue)}</p>
                       </div>
-                      <div className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="text-xs text-gray-500">Total Profit</p>
+                      <div className="bg-[#FFF5F6] rounded-xl p-3 text-center border border-[#F7C7D3]/40">
+                        <p className="text-xs text-[#EE4275]/60">Total Profit</p>
                         <p className={`text-xl font-bold ${selectedProduct.totalProfit > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                           {formatCurrency(selectedProduct.totalProfit)}
                         </p>
                       </div>
-                      <div className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="text-xs text-gray-500">Quantity Sold</p>
-                        <p className="text-xl font-bold text-gray-900">{selectedProduct.totalQuantity}</p>
+                      <div className="bg-[#FFF5F6] rounded-xl p-3 text-center border border-[#F7C7D3]/40">
+                        <p className="text-xs text-[#EE4275]/60">Quantity Sold</p>
+                        <p className="text-xl font-bold text-[#2D1B2E]">{selectedProduct.totalQuantity}</p>
                       </div>
-                      <div className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="text-xs text-gray-500">Profit Margin</p>
+                      <div className="bg-[#FFF5F6] rounded-xl p-3 text-center border border-[#F7C7D3]/40">
+                        <p className="text-xs text-[#EE4275]/60">Profit Margin</p>
                         <p className={`text-xl font-bold ${parseFloat(selectedProduct.profitMargin) > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                           {selectedProduct.profitMargin}%
                         </p>
                       </div>
                     </div>
 
-                    <div className="bg-gray-50 rounded-xl p-3 mb-4">
+                    <div className="bg-[#FFF5F6] rounded-xl p-3 mb-4 border border-[#F7C7D3]/40">
                       <div className="grid grid-cols-2 gap-2 text-sm">
                         <div>
-                          <span className="text-gray-500">Avg Selling Price:</span>
-                          <span className="font-medium text-gray-900 ml-1">{formatCurrency(selectedProduct.averageSellingPrice)}</span>
+                          <span className="text-[#EE4275]/60">Avg Selling Price:</span>
+                          <span className="font-medium text-[#2D1B2E] ml-1">{formatCurrency(selectedProduct.averageSellingPrice)}</span>
                         </div>
                         <div>
-                          <span className="text-gray-500">Avg Cost Per Item:</span>
-                          <span className="font-medium text-gray-900 ml-1">{formatCurrency(selectedProduct.averageBuyingPrice)}</span>
+                          <span className="text-[#EE4275]/60">Avg Cost Per Item:</span>
+                          <span className="font-medium text-[#2D1B2E] ml-1">{formatCurrency(selectedProduct.averageBuyingPrice)}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="text-xs text-gray-500 bg-blue-50 p-3 rounded-lg border border-blue-200">
-                      <p className="font-medium text-blue-700">Calculation</p>
+                    <div className="text-xs text-[#EE4275]/60 bg-[#FFF5F6] p-3 rounded-lg border border-[#EE4275]/20">
+                      <p className="font-medium text-[#EE4275]">Calculation</p>
                       <p>Revenue: {formatCurrency(selectedProduct.totalRevenue)}</p>
                       <p>Cost: {formatCurrency(selectedProduct.totalCost)}</p>
                       <p>Profit: {formatCurrency(selectedProduct.totalProfit)}</p>
@@ -1774,10 +1771,10 @@ export default function ProfitMarginPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-end">
+                  <div className="p-4 border-t border-[#F7C7D3]/40 bg-[#FFF5F6] flex justify-end">
                     <button
                       onClick={() => setShowOrderDetails(false)}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all text-sm shadow-md hover:shadow-lg"
+                      className="px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-xl hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all text-sm shadow-md"
                     >
                       Close
                     </button>

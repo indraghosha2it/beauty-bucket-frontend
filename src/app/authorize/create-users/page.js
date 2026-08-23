@@ -1,4 +1,3 @@
-
 // 'use client';
 
 // import { useState } from 'react';
@@ -185,9 +184,9 @@
 //         role: 'moderator'
 //       });
 
-//       setTimeout(() => {
-//         router.push('/authorize/manage-users');
-//       }, 2000);
+//     setTimeout(() => {
+//   window.location.href = '/authorize/manage-users';
+// }, 2000);
 
 //     } catch (err) {
 //       toast.dismiss(loadingToast);
@@ -199,7 +198,7 @@
 //     }
 //   };
 
-//   // Get role icon and color - HyperVolt theme
+//   // Get role icon and color - Black & Blue theme
 //   const getRoleInfo = (role) => {
 //     const roles = {
 //       super_admin: { 
@@ -212,18 +211,18 @@
 //       },
 //       admin: { 
 //         icon: Shield, 
-//         color: 'from-cyan-500 to-blue-500',
-//         bgColor: 'bg-cyan-50',
-//         borderColor: 'border-cyan-300',
-//         textColor: 'text-cyan-600',
+//         color: 'from-blue-600 to-blue-800',
+//         bgColor: 'bg-blue-50',
+//         borderColor: 'border-blue-300',
+//         textColor: 'text-blue-600',
 //         description: 'Can manage users, products, orders, and content'
 //       },
 //       moderator: { 
 //         icon: Briefcase, 
-//         color: 'from-emerald-500 to-green-500',
-//         bgColor: 'bg-emerald-50',
-//         borderColor: 'border-emerald-300',
-//         textColor: 'text-emerald-600',
+//         color: 'from-gray-600 to-gray-800',
+//         bgColor: 'bg-gray-50',
+//         borderColor: 'border-gray-300',
+//         textColor: 'text-gray-600',
 //         description: 'Can manage products, content, and reviews'
 //       },
 //       call_center_agent: { 
@@ -240,22 +239,22 @@
 
 //   return (
 //     <ProtectedRoute pageKey="create_users">
-//     <div className="min-h-screen bg-gradient-to-br from-[#004767]/5 via-white to-[#004767]/10 py-8">
+//     <div className="min-h-screen bg-white py-8">
 //       <div className="container mx-auto px-4 max-w-4xl">
 //         {/* Header with back button */}
 //         <div className="mb-6 flex items-center justify-between">
-//           <Link 
+//           <a
 //             href="/authorize/manage-users" 
-//             className="inline-flex items-center text-gray-600 hover:text-[#06B6D4] transition-colors group"
+//             className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors group"
 //           >
-//             <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2 group-hover:bg-[#06B6D4] group-hover:text-white transition-all border border-[#06B6D4]/20">
+//             <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2 group-hover:bg-blue-600 group-hover:text-white transition-all border border-gray-200">
 //               <ArrowLeft className="w-4 h-4" />
 //             </div>
 //             <span className="font-medium">Back to Users</span>
-//           </Link>
+//           </a>
           
-//           <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-[#06B6D4]/20">
-//             <Zap className="w-4 h-4 text-[#06B6D4]" />
+//           <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200">
+//             <Zap className="w-4 h-4 text-blue-600" />
 //             <span className="text-sm font-medium text-gray-700">Create User</span>
 //           </div>
 //         </div>
@@ -263,22 +262,22 @@
 //         <motion.div
 //           initial={{ opacity: 0, y: 20 }}
 //           animate={{ opacity: 1, y: 0 }}
-//           className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-[#06B6D4]/20 overflow-hidden"
+//           className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
 //         >
 //           {/* Header */}
-//           <div className="px-6 py-5 border-b border-[#06B6D4]/20 bg-gradient-to-r from-[#004767]/5 to-[#06B6D4]/10">
+//           <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-blue-50/50">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <h1 className="text-2xl font-bold text-[#004767] flex items-center gap-2">
-//                   <UserCog className="w-6 h-6 text-[#06B6D4]" />
+//                 <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+//                   <UserCog className="w-6 h-6 text-blue-600" />
 //                   Create New User
 //                 </h1>
 //                 <p className="text-gray-500 text-sm mt-1">
 //                   Create admin, moderator, call center, or super admin accounts
 //                 </p>
 //               </div>
-//               <div className="bg-gradient-to-r from-[#06B6D4]/20 to-[#004767]/20 p-3 rounded-lg border border-[#06B6D4]/20">
-//                 <Zap className="w-6 h-6 text-[#06B6D4]" />
+//               <div className="bg-blue-100 p-3 rounded-lg border border-blue-200">
+//                 <Zap className="w-6 h-6 text-blue-600" />
 //               </div>
 //             </div>
 //           </div>
@@ -287,7 +286,7 @@
 //             {/* Role Selection */}
 //             <div className="mb-8">
 //               <label className="block text-sm font-semibold text-gray-700 mb-3">
-//                 Select User Role <span className="text-[#06B6D4]">*</span>
+//                 Select User Role <span className="text-blue-600">*</span>
 //               </label>
 //               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
 //                 {['super_admin', 'admin', 'moderator', 'call_center_agent'].map((role) => {
@@ -301,8 +300,8 @@
 //                       className={`
 //                         relative flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition-all duration-200
 //                         ${isSelected 
-//                           ? `${roleInfo.borderColor} ${roleInfo.bgColor} shadow-md shadow-[#06B6D4]/20` 
-//                           : 'border-gray-200 hover:border-[#06B6D4]/50 hover:bg-[#06B6D4]/5'}
+//                           ? `${roleInfo.borderColor} ${roleInfo.bgColor} shadow-md` 
+//                           : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50/50'}
 //                       `}
 //                     >
 //                       <input
@@ -328,7 +327,7 @@
 //                         </div>
 //                       </div>
 //                       {isSelected && (
-//                         <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-[#06B6D4] bg-white rounded-full" />
+//                         <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-blue-600 bg-white rounded-full" />
 //                       )}
 //                     </label>
 //                   );
@@ -336,9 +335,9 @@
 //               </div>
               
 //               {/* Role description */}
-//               <div className="mt-3 p-3 bg-[#004767]/5 rounded-lg border border-[#06B6D4]/10">
+//               <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
 //                 <p className="text-xs text-gray-600">
-//                   <span className="font-medium text-[#004767]">Role: </span>
+//                   <span className="font-medium text-gray-900">Role: </span>
 //                   {getRoleInfo(formData.role).description}
 //                 </p>
 //               </div>
@@ -363,13 +362,13 @@
 //             )}
 
 //             {/* Info Banner */}
-//             <div className="mb-6 p-4 bg-gradient-to-r from-[#06B6D4]/10 to-[#004767]/10 rounded-lg border border-[#06B6D4]/20">
+//             <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
 //               <div className="flex items-start gap-3">
-//                 <div className="text-[#06B6D4] mt-0.5">
+//                 <div className="text-blue-600 mt-0.5">
 //                   <Sparkles className="w-5 h-5" />
 //                 </div>
 //                 <div>
-//                   <p className="text-sm font-medium text-[#004767]">Account Verification</p>
+//                   <p className="text-sm font-medium text-gray-900">Account Verification</p>
 //                   <p className="text-xs text-gray-600 mt-1">
 //                     Users created by admin are automatically verified. No email verification required. 
 //                     They can login immediately with the provided credentials.
@@ -383,11 +382,11 @@
 //               {/* Full Name */}
 //               <div className="col-span-2 md:col-span-1">
 //                 <label className="block text-sm font-medium text-gray-700 mb-1">
-//                   Full Name <span className="text-[#06B6D4]">*</span>
+//                   Full Name <span className="text-blue-600">*</span>
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <User className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <User className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type="text"
@@ -395,7 +394,7 @@
 //                     value={formData.contactPerson}
 //                     onChange={handleChange}
 //                     required
-//                     className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="Enter full name"
 //                   />
 //                 </div>
@@ -404,11 +403,11 @@
 //               {/* Email */}
 //               <div className="col-span-2 md:col-span-1">
 //                 <label className="block text-sm font-medium text-gray-700 mb-1">
-//                   Email Address <span className="text-[#06B6D4]">*</span>
+//                   Email Address <span className="text-blue-600">*</span>
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <Mail className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <Mail className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type="email"
@@ -416,7 +415,7 @@
 //                     value={formData.email}
 //                     onChange={handleChange}
 //                     required
-//                     className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="user@example.com"
 //                   />
 //                 </div>
@@ -425,11 +424,11 @@
 //               {/* Phone Number */}
 //               <div className="col-span-2 md:col-span-1">
 //                 <label className="block text-sm font-medium text-gray-700 mb-1">
-//                   Phone Number <span className="text-[#06B6D4]">*</span>
+//                   Phone Number <span className="text-blue-600">*</span>
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <Phone className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <Phone className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type="tel"
@@ -437,7 +436,7 @@
 //                     value={formData.phone}
 //                     onChange={handleChange}
 //                     required
-//                     className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="+880 1234 567890"
 //                   />
 //                 </div>
@@ -450,14 +449,14 @@
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <Smartphone className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <Smartphone className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type="tel"
 //                     name="whatsapp"
 //                     value={formData.whatsapp}
 //                     onChange={handleChange}
-//                     className="w-full pl-10 pr-4 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="+880 1234 567890"
 //                   />
 //                 </div>
@@ -466,11 +465,11 @@
 //               {/* Password */}
 //               <div className="col-span-2 md:col-span-1">
 //                 <label className="block text-sm font-medium text-gray-700 mb-1">
-//                   Password <span className="text-[#06B6D4]">*</span>
+//                   Password <span className="text-blue-600">*</span>
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <Lock className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type={showPassword ? "text" : "password"}
@@ -478,13 +477,13 @@
 //                     value={formData.password}
 //                     onChange={handleChange}
 //                     required
-//                     className="w-full pl-10 pr-10 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="Min. 8 characters"
 //                   />
 //                   <button
 //                     type="button"
 //                     onClick={() => setShowPassword(!showPassword)}
-//                     className="absolute right-3 top-1/2 -translate-y-1/2 text-[#06B6D4]/50 hover:text-[#06B6D4] transition-colors"
+//                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
 //                   >
 //                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
 //                   </button>
@@ -494,11 +493,11 @@
 //               {/* Confirm Password */}
 //               <div className="col-span-2 md:col-span-1">
 //                 <label className="block text-sm font-medium text-gray-700 mb-1">
-//                   Confirm Password <span className="text-[#06B6D4]">*</span>
+//                   Confirm Password <span className="text-blue-600">*</span>
 //                 </label>
 //                 <div className="relative group">
 //                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                     <Lock className="w-5 h-5 text-[#06B6D4]/50 group-focus-within:text-[#06B6D4] transition-colors" />
+//                     <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
 //                   </div>
 //                   <input
 //                     type={showConfirmPassword ? "text" : "password"}
@@ -506,13 +505,13 @@
 //                     value={formData.confirmPassword}
 //                     onChange={handleChange}
 //                     required
-//                     className="w-full pl-10 pr-10 py-2.5 border border-[#06B6D4]/20 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-all bg-white hover:border-[#06B6D4]/40"
+//                     className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
 //                     placeholder="Re-enter password"
 //                   />
 //                   <button
 //                     type="button"
 //                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-//                     className="absolute right-3 top-1/2 -translate-y-1/2 text-[#06B6D4]/50 hover:text-[#06B6D4] transition-colors"
+//                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
 //                   >
 //                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
 //                   </button>
@@ -522,23 +521,23 @@
 
 //             {/* Password Strength Indicator */}
 //             {formData.password && (
-//               <div className="mt-6 p-4 bg-gradient-to-r from-[#06B6D4]/10 to-[#004767]/10 rounded-lg border border-[#06B6D4]/20">
+//               <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
 //                 <div className="flex items-center gap-2 mb-2">
 //                   <div className={`h-2 flex-1 rounded-full ${
-//                     formData.password.length >= 8 ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767]' : 'bg-gray-200'
+//                     formData.password.length >= 8 ? 'bg-blue-600' : 'bg-gray-200'
 //                   }`} />
 //                   <div className={`h-2 flex-1 rounded-full ${
-//                     /[A-Z]/.test(formData.password) && /[a-z]/.test(formData.password) ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767]' : 'bg-gray-200'
+//                     /[A-Z]/.test(formData.password) && /[a-z]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
 //                   }`} />
 //                   <div className={`h-2 flex-1 rounded-full ${
-//                     /[0-9]/.test(formData.password) ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767]' : 'bg-gray-200'
+//                     /[0-9]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
 //                   }`} />
 //                   <div className={`h-2 flex-1 rounded-full ${
-//                     /[^A-Za-z0-9]/.test(formData.password) ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767]' : 'bg-gray-200'
+//                     /[^A-Za-z0-9]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
 //                   }`} />
 //                 </div>
 //                 <p className="text-xs text-gray-600 flex items-center gap-1">
-//                   <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]"></span>
+//                   <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
 //                   Password must be at least 8 characters with uppercase, lowercase, number and special character
 //                 </p>
 //               </div>
@@ -552,7 +551,7 @@
 //                 className={`w-full py-3 px-4 text-white font-semibold rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md ${
 //                   formData.role === 'super_admin'
 //                     ? 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:shadow-yellow-200/50 focus:ring-yellow-500'
-//                     : 'bg-gradient-to-r from-[#06B6D4] to-[#004767] hover:shadow-[#06B6D4]/30 focus:ring-[#06B6D4]'
+//                     : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200/50 focus:ring-blue-600'
 //                 }`}
 //               >
 //                 {isSubmitting ? (
@@ -577,7 +576,7 @@
 //             {/* Note about login */}
 //             <div className="mt-4 text-center">
 //               <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-//                 <span className="w-1 h-1 rounded-full bg-[#06B6D4]"></span>
+//                 <span className="w-1 h-1 rounded-full bg-blue-600"></span>
 //                 Users will be able to login immediately with the provided credentials.
 //                 No email verification required.
 //               </p>
@@ -589,7 +588,6 @@
 //     </ProtectedRoute>
 //   );
 // }
-
 
 
 'use client';
@@ -792,7 +790,7 @@ export default function CreateUsers() {
     }
   };
 
-  // Get role icon and color - Black & Blue theme
+  // Get role icon and color - Pink theme
   const getRoleInfo = (role) => {
     const roles = {
       super_admin: { 
@@ -805,18 +803,18 @@ export default function CreateUsers() {
       },
       admin: { 
         icon: Shield, 
-        color: 'from-blue-600 to-blue-800',
-        bgColor: 'bg-blue-50',
-        borderColor: 'border-blue-300',
-        textColor: 'text-blue-600',
+        color: 'from-[#EE4275] to-[#FF6B9D]',
+        bgColor: 'bg-[#FFF5F6]',
+        borderColor: 'border-[#EE4275]/30',
+        textColor: 'text-[#EE4275]',
         description: 'Can manage users, products, orders, and content'
       },
       moderator: { 
         icon: Briefcase, 
-        color: 'from-gray-600 to-gray-800',
-        bgColor: 'bg-gray-50',
-        borderColor: 'border-gray-300',
-        textColor: 'text-gray-600',
+        color: 'from-[#2D1B2E] to-[#5D3B5E]',
+        bgColor: 'bg-[#F7C7D3]/10',
+        borderColor: 'border-[#2D1B2E]/20',
+        textColor: 'text-[#2D1B2E]',
         description: 'Can manage products, content, and reviews'
       },
       call_center_agent: { 
@@ -833,45 +831,45 @@ export default function CreateUsers() {
 
   return (
     <ProtectedRoute pageKey="create_users">
-    <div className="min-h-screen bg-white py-8">
+    <div className="min-h-screen bg-[#FFF5F6] py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header with back button */}
         <div className="mb-6 flex items-center justify-between">
           <a
             href="/authorize/manage-users" 
-            className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors group"
+            className="inline-flex items-center text-[#2D1B2E] hover:text-[#EE4275] transition-colors group"
           >
-            <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2 group-hover:bg-blue-600 group-hover:text-white transition-all border border-gray-200">
+            <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2 group-hover:bg-[#EE4275] group-hover:text-white transition-all border border-[#F7C7D3]/40">
               <ArrowLeft className="w-4 h-4" />
             </div>
             <span className="font-medium">Back to Users</span>
           </a>
           
-          <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200">
-            <Zap className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-medium text-gray-700">Create User</span>
+          <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-[#F7C7D3]/40">
+            <Zap className="w-4 h-4 text-[#EE4275]" />
+            <span className="text-sm font-medium text-[#2D1B2E]">Create User</span>
           </div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
+          className="bg-white rounded-xl shadow-lg border border-[#F7C7D3]/40 overflow-hidden"
         >
           {/* Header */}
-          <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-blue-50/50">
+          <div className="px-6 py-5 border-b border-[#F7C7D3]/40 bg-gradient-to-r from-[#FFF5F6] to-[#F7C7D3]/20">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                  <UserCog className="w-6 h-6 text-blue-600" />
+                <h1 className="text-2xl font-bold text-[#2D1B2E] flex items-center gap-2">
+                  <UserCog className="w-6 h-6 text-[#EE4275]" />
                   Create New User
                 </h1>
-                <p className="text-gray-500 text-sm mt-1">
+                <p className="text-[#EE4275]/60 text-sm mt-1">
                   Create admin, moderator, call center, or super admin accounts
                 </p>
               </div>
-              <div className="bg-blue-100 p-3 rounded-lg border border-blue-200">
-                <Zap className="w-6 h-6 text-blue-600" />
+              <div className="bg-[#F7C7D3]/30 p-3 rounded-lg border border-[#EE4275]/20">
+                <Zap className="w-6 h-6 text-[#EE4275]" />
               </div>
             </div>
           </div>
@@ -879,8 +877,8 @@ export default function CreateUsers() {
           <form onSubmit={handleSubmit} className="p-6">
             {/* Role Selection */}
             <div className="mb-8">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Select User Role <span className="text-blue-600">*</span>
+              <label className="block text-sm font-semibold text-[#2D1B2E] mb-3">
+                Select User Role <span className="text-[#EE4275]">*</span>
               </label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {['super_admin', 'admin', 'moderator', 'call_center_agent'].map((role) => {
@@ -895,7 +893,7 @@ export default function CreateUsers() {
                         relative flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition-all duration-200
                         ${isSelected 
                           ? `${roleInfo.borderColor} ${roleInfo.bgColor} shadow-md` 
-                          : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50/50'}
+                          : 'border-[#F7C7D3]/40 hover:border-[#EE4275]/40 hover:bg-[#FFF5F6]'}
                       `}
                     >
                       <input
@@ -909,19 +907,19 @@ export default function CreateUsers() {
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${
                         isSelected 
                           ? `bg-gradient-to-r ${roleInfo.color} text-white shadow-md` 
-                          : 'bg-gray-100 text-gray-400'
+                          : 'bg-[#F7C7D3]/10 text-[#EE4275]/40'
                       }`}>
                         <RoleIcon className="w-5 h-5" />
                       </div>
                       <div className="mt-2 text-center">
-                        <div className={`text-xs font-semibold ${isSelected ? roleInfo.textColor : 'text-gray-700'}`}>
+                        <div className={`text-xs font-semibold ${isSelected ? roleInfo.textColor : 'text-[#2D1B2E]/70'}`}>
                           {role === 'super_admin' ? 'Super Admin' :
                            role === 'call_center_agent' ? 'Call Center' :
                            role.charAt(0).toUpperCase() + role.slice(1)}
                         </div>
                       </div>
                       {isSelected && (
-                        <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-blue-600 bg-white rounded-full" />
+                        <CheckCircle className="absolute -top-1 -right-1 w-4 h-4 text-[#EE4275] bg-white rounded-full" />
                       )}
                     </label>
                   );
@@ -929,9 +927,9 @@ export default function CreateUsers() {
               </div>
               
               {/* Role description */}
-              <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="text-xs text-gray-600">
-                  <span className="font-medium text-gray-900">Role: </span>
+              <div className="mt-3 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
+                <p className="text-xs text-[#2D1B2E]/70">
+                  <span className="font-medium text-[#2D1B2E]">Role: </span>
                   {getRoleInfo(formData.role).description}
                 </p>
               </div>
@@ -956,14 +954,14 @@ export default function CreateUsers() {
             )}
 
             {/* Info Banner */}
-            <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mb-6 p-4 bg-[#FFF5F6] rounded-lg border border-[#EE4275]/20">
               <div className="flex items-start gap-3">
-                <div className="text-blue-600 mt-0.5">
+                <div className="text-[#EE4275] mt-0.5">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">Account Verification</p>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-sm font-medium text-[#2D1B2E]">Account Verification</p>
+                  <p className="text-xs text-[#2D1B2E]/70 mt-1">
                     Users created by admin are automatically verified. No email verification required. 
                     They can login immediately with the provided credentials.
                   </p>
@@ -975,12 +973,12 @@ export default function CreateUsers() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Full Name */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Full Name <span className="text-blue-600">*</span>
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                  Full Name <span className="text-[#EE4275]">*</span>
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <User className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type="text"
@@ -988,7 +986,7 @@ export default function CreateUsers() {
                     value={formData.contactPerson}
                     onChange={handleChange}
                     required
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="Enter full name"
                   />
                 </div>
@@ -996,12 +994,12 @@ export default function CreateUsers() {
 
               {/* Email */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address <span className="text-blue-600">*</span>
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                  Email Address <span className="text-[#EE4275]">*</span>
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <Mail className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type="email"
@@ -1009,7 +1007,7 @@ export default function CreateUsers() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="user@example.com"
                   />
                 </div>
@@ -1017,12 +1015,12 @@ export default function CreateUsers() {
 
               {/* Phone Number */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number <span className="text-blue-600">*</span>
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                  Phone Number <span className="text-[#EE4275]">*</span>
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Phone className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <Phone className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type="tel"
@@ -1030,7 +1028,7 @@ export default function CreateUsers() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="+880 1234 567890"
                   />
                 </div>
@@ -1038,19 +1036,19 @@ export default function CreateUsers() {
 
               {/* WhatsApp */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
                   WhatsApp Number
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Smartphone className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <Smartphone className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type="tel"
                     name="whatsapp"
                     value={formData.whatsapp}
                     onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-4 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="+880 1234 567890"
                   />
                 </div>
@@ -1058,12 +1056,12 @@ export default function CreateUsers() {
 
               {/* Password */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Password <span className="text-blue-600">*</span>
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                  Password <span className="text-[#EE4275]">*</span>
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <Lock className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type={showPassword ? "text" : "password"}
@@ -1071,13 +1069,13 @@ export default function CreateUsers() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="Min. 8 characters"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275] transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -1086,12 +1084,12 @@ export default function CreateUsers() {
 
               {/* Confirm Password */}
               <div className="col-span-2 md:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirm Password <span className="text-blue-600">*</span>
+                <label className="block text-sm font-medium text-[#2D1B2E] mb-1">
+                  Confirm Password <span className="text-[#EE4275]">*</span>
                 </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                    <Lock className="w-5 h-5 text-[#EE4275]/40 group-focus-within:text-[#EE4275] transition-colors" />
                   </div>
                   <input
                     type={showConfirmPassword ? "text" : "password"}
@@ -1099,13 +1097,13 @@ export default function CreateUsers() {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
-                    className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all bg-white hover:border-gray-400"
+                    className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent transition-all bg-white hover:border-[#EE4275]/30"
                     placeholder="Re-enter password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275] transition-colors"
                   >
                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -1115,23 +1113,23 @@ export default function CreateUsers() {
 
             {/* Password Strength Indicator */}
             {formData.password && (
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mt-6 p-4 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
                 <div className="flex items-center gap-2 mb-2">
                   <div className={`h-2 flex-1 rounded-full ${
-                    formData.password.length >= 8 ? 'bg-blue-600' : 'bg-gray-200'
+                    formData.password.length >= 8 ? 'bg-[#EE4275]' : 'bg-[#F7C7D3]'
                   }`} />
                   <div className={`h-2 flex-1 rounded-full ${
-                    /[A-Z]/.test(formData.password) && /[a-z]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
+                    /[A-Z]/.test(formData.password) && /[a-z]/.test(formData.password) ? 'bg-[#EE4275]' : 'bg-[#F7C7D3]'
                   }`} />
                   <div className={`h-2 flex-1 rounded-full ${
-                    /[0-9]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
+                    /[0-9]/.test(formData.password) ? 'bg-[#EE4275]' : 'bg-[#F7C7D3]'
                   }`} />
                   <div className={`h-2 flex-1 rounded-full ${
-                    /[^A-Za-z0-9]/.test(formData.password) ? 'bg-blue-600' : 'bg-gray-200'
+                    /[^A-Za-z0-9]/.test(formData.password) ? 'bg-[#EE4275]' : 'bg-[#F7C7D3]'
                   }`} />
                 </div>
-                <p className="text-xs text-gray-600 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                <p className="text-xs text-[#2D1B2E]/70 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EE4275]"></span>
                   Password must be at least 8 characters with uppercase, lowercase, number and special character
                 </p>
               </div>
@@ -1145,7 +1143,7 @@ export default function CreateUsers() {
                 className={`w-full py-3 px-4 text-white font-semibold rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md ${
                   formData.role === 'super_admin'
                     ? 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:shadow-yellow-200/50 focus:ring-yellow-500'
-                    : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-200/50 focus:ring-blue-600'
+                    : 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] hover:shadow-[#EE4275]/25 focus:ring-[#EE4275]'
                 }`}
               >
                 {isSubmitting ? (
@@ -1169,8 +1167,8 @@ export default function CreateUsers() {
 
             {/* Note about login */}
             <div className="mt-4 text-center">
-              <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-                <span className="w-1 h-1 rounded-full bg-blue-600"></span>
+              <p className="text-xs text-[#EE4275]/60 flex items-center justify-center gap-1">
+                <span className="w-1 h-1 rounded-full bg-[#EE4275]"></span>
                 Users will be able to login immediately with the provided credentials.
                 No email verification required.
               </p>

@@ -1,3 +1,4 @@
+
 // 'use client';
 
 // import { useState, useEffect, useCallback } from 'react';
@@ -306,12 +307,12 @@
 //   };
 
 //   const StatCard = ({ title, value, icon, color, subtitle }) => (
-//     <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#cbd4d8]">
+//     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200">
 //       <div className="flex items-center justify-between">
 //         <div>
-//           <p className="text-xs text-[#64748B] font-medium uppercase tracking-wider">{title}</p>
-//           <p className="text-2xl font-bold text-[#004767] mt-1">{value?.toLocaleString() || 0}</p>
-//           {subtitle && <p className="text-xs text-[#64748B] mt-1">{subtitle}</p>}
+//           <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">{title}</p>
+//           <p className="text-2xl font-bold text-gray-900 mt-1">{value?.toLocaleString() || 0}</p>
+//           {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
 //         </div>
 //         <div className={`w-11 h-11 ${color} rounded-xl flex items-center justify-center`}>
 //           {icon}
@@ -321,20 +322,20 @@
 //   );
 
 //   return (
-//      <ProtectedRoute pageKey="incomplete_orders">
-//     <div className="min-h-screen bg-[#cbd4d8]/20 pb-12 pt-6">
+//     <ProtectedRoute pageKey="incomplete_orders">
+//     <div className="min-h-screen bg-white pb-12 pt-6">
 //       <div className="container mx-auto px-4 max-w-7xl">
 //         {/* Header */}
 //         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
 //           <div className="flex items-center gap-3">
-//             <div className="w-11 h-11 bg-gradient-to-br from-[#06B6D4] to-[#004767] rounded-xl flex items-center justify-center shadow-lg shadow-[#06B6D4]/25">
+//             <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
 //               <FaShoppingCart className="w-5 h-5 text-white" />
 //             </div>
 //             <div>
-//               <h1 className="text-2xl md:text-3xl font-bold text-[#004767]" style={{ fontFamily: '"Playfair Display"' }}>
+//               <h1 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: '"Playfair Display"' }}>
 //                 Abandoned Checkouts
 //               </h1>
-//               <p className="text-sm text-[#64748B] mt-0.5">Track and recover incomplete orders</p>
+//               <p className="text-sm text-gray-500 mt-0.5">Track and recover incomplete orders</p>
 //             </div>
 //           </div>
 //           {canDelete && (
@@ -344,7 +345,7 @@
 //                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sm font-medium shadow-sm ${
 //                   showCheckboxes
 //                     ? 'bg-red-500 text-white hover:shadow-lg hover:shadow-red-500/25'
-//                     : 'bg-[#cbd4d8] text-[#004767] hover:bg-[#06B6D4]/10'
+//                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 //                 }`}
 //               >
 //                 {showCheckboxes ? (
@@ -379,29 +380,29 @@
 //             <StatCard 
 //               title="Total Abandoned" 
 //               value={stats.totalIncomplete} 
-//               icon={<FaShoppingCart className="w-5 h-5 text-[#06B6D4]" />} 
-//               color="bg-[#06B6D4]/10"
+//               icon={<FaShoppingCart className="w-5 h-5 text-blue-600" />} 
+//               color="bg-blue-50"
 //               subtitle="All time"
 //             />
 //             <StatCard 
 //               title="Active (7 days)" 
 //               value={stats.activeIncomplete} 
-//               icon={<FaClock className="w-5 h-5 text-[#06B6D4]" />} 
-//               color="bg-[#06B6D4]/10"
+//               icon={<FaClock className="w-5 h-5 text-blue-600" />} 
+//               color="bg-blue-50"
 //               subtitle="Last 7 days"
 //             />
 //             <StatCard 
 //               title="Today" 
 //               value={stats.todayIncomplete} 
-//               icon={<FaClock className="w-5 h-5 text-[#004767]" />} 
-//               color="bg-[#cbd4d8]/50"
+//               icon={<FaClock className="w-5 h-5 text-gray-700" />} 
+//               color="bg-gray-100"
 //               subtitle="New today"
 //             />
 //             <StatCard 
 //               title="This Month" 
 //               value={stats.monthIncomplete} 
-//               icon={<FaCalendarAlt className="w-5 h-5 text-[#06B6D4]" />} 
-//               color="bg-[#06B6D4]/10"
+//               icon={<FaCalendarAlt className="w-5 h-5 text-blue-600" />} 
+//               color="bg-blue-50"
 //               subtitle="This month"
 //             />
 //             <StatCard 
@@ -414,27 +415,27 @@
 //             <StatCard 
 //               title="Avg. Cart Value" 
 //               value={`৳${stats.totalRevenue && stats.totalIncomplete ? (stats.totalRevenue / stats.totalIncomplete).toFixed(0) : 0}`} 
-//               icon={<FaTag className="w-5 h-5 text-[#004767]" />} 
-//               color="bg-[#cbd4d8]/50"
+//               icon={<FaTag className="w-5 h-5 text-gray-700" />} 
+//               color="bg-gray-100"
 //               subtitle="Per abandoned cart"
 //             />
 //           </div>
 //         ) : (
 //           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
 //             {[...Array(6)].map((_, i) => (
-//               <div key={i} className="bg-white rounded-2xl p-5 shadow-sm border border-[#cbd4d8] animate-pulse">
-//                 <div className="h-4 bg-[#cbd4d8]/50 rounded w-1/2 mb-2"></div>
-//                 <div className="h-8 bg-[#cbd4d8]/50 rounded w-3/4"></div>
+//               <div key={i} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 animate-pulse">
+//                 <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
+//                 <div className="h-8 bg-gray-200 rounded w-3/4"></div>
 //               </div>
 //             ))}
 //           </div>
 //         )}
 
 //         {/* Filters */}
-//         <div className="bg-white rounded-2xl border border-[#cbd4d8] p-4 mb-6 shadow-sm">
+//         <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6 shadow-sm">
 //           <div className="flex flex-col md:flex-row gap-4">
 //             <div className="flex-1 relative">
-//               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#64748B] w-4 h-4" />
+//               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
 //               <input
 //                 type="text"
 //                 placeholder="Search by name, phone, email or product..."
@@ -443,7 +444,7 @@
 //                   setSearchTerm(e.target.value);
 //                   setCurrentPage(1);
 //                 }}
-//                 className="w-full pl-10 pr-10 py-2.5 border border-[#cbd4d8] rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-[#cbd4d8]/10 hover:bg-white transition text-[#004767] placeholder:text-[#64748B] text-sm"
+//                 className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 hover:bg-white transition text-gray-900 placeholder:text-gray-400 text-sm"
 //               />
 //               {searchTerm && (
 //                 <button
@@ -451,7 +452,7 @@
 //                     setSearchTerm('');
 //                     setCurrentPage(1);
 //                   }}
-//                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#64748B] hover:text-[#06B6D4]"
+//                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600"
 //                 >
 //                   <FaTimes className="w-4 h-4" />
 //                 </button>
@@ -463,7 +464,7 @@
 //                 setStatusFilter(e.target.value);
 //                 setCurrentPage(1);
 //               }}
-//               className="px-4 py-2.5 border border-[#cbd4d8] rounded-xl focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent bg-[#cbd4d8]/10 hover:bg-white transition text-[#004767] text-sm"
+//               className="px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 hover:bg-white transition text-gray-900 text-sm"
 //             >
 //               <option value="all">All Status</option>
 //               <option value="active">Active</option>
@@ -473,44 +474,44 @@
 //         </div>
 
 //         {/* Orders Table */}
-//         <div className="bg-white rounded-2xl border border-[#cbd4d8] shadow-sm overflow-hidden">
+//         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
 //           <div className="w-full overflow-x-visible">
 //             <table className="w-full min-w-[900px] lg:min-w-full">
-//               <thead className="bg-[#cbd4d8]/30 border-b border-[#cbd4d8]">
+//               <thead className="bg-gray-50 border-b border-gray-200">
 //                 <tr>
 //                   {canDelete && showCheckboxes && (
 //                     <th className="px-4 py-3 text-center">
 //                       <button
 //                         onClick={() => setSelectAll(!selectAll)}
-//                         className="text-[#64748B] hover:text-[#06B6D4] transition-colors"
+//                         className="text-gray-400 hover:text-blue-600 transition-colors"
 //                       >
 //                         {selectAll ? (
-//                           <FaCheckSquare className="w-5 h-5 text-[#06B6D4]" />
+//                           <FaCheckSquare className="w-5 h-5 text-blue-600" />
 //                         ) : (
 //                           <FaSquare className="w-5 h-5" />
 //                         )}
 //                       </button>
 //                     </th>
 //                   )}
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Customer</th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Contact</th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Items</th>
-//                   <th className="px-4 py-3 text-right text-xs font-semibold text-[#64748B] uppercase tracking-wider">Total</th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Last Activity</th>
-//                   <th className="px-4 py-3 text-center text-xs font-semibold text-[#64748B] uppercase tracking-wider">Actions</th>
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Customer</th>
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Contact</th>
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Items</th>
+//                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Total</th>
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Last Activity</th>
+//                   <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
 //                 </tr>
 //               </thead>
 //               <tbody>
 //                 {loading ? (
 //                   <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center">
 //                     <div className="flex justify-center">
-//                       <FaSpinner className="w-6 h-6 text-[#06B6D4] animate-spin" />
+//                       <FaSpinner className="w-6 h-6 text-blue-600 animate-spin" />
 //                     </div>
 //                   </td></tr>
 //                 ) : orders.length === 0 ? (
-//                   <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center text-[#64748B]">
+//                   <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center text-gray-500">
 //                     <div className="flex flex-col items-center gap-2">
-//                       <FaShoppingCart className="w-12 h-12 text-[#cbd4d8]" />
+//                       <FaShoppingCart className="w-12 h-12 text-gray-300" />
 //                       <p className="text-sm">No incomplete orders found</p>
 //                     </div>
 //                   </td></tr>
@@ -520,15 +521,15 @@
 //                     const uniqueItemCount = getUniqueProductCount(order.items);
                     
 //                     return (
-//                       <tr key={order._id} className="border-b border-[#cbd4d8]/50 hover:bg-[#cbd4d8]/10 transition-colors">
+//                       <tr key={order._id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
 //                         {canDelete && showCheckboxes && (
 //                           <td className="px-4 py-3 text-center">
 //                             <button
 //                               onClick={() => toggleOrderSelection(order)}
-//                               className="text-[#64748B] hover:text-[#06B6D4] transition-colors"
+//                               className="text-gray-400 hover:text-blue-600 transition-colors"
 //                             >
 //                               {isSelected ? (
-//                                 <FaCheckSquare className="w-5 h-5 text-[#06B6D4]" />
+//                                 <FaCheckSquare className="w-5 h-5 text-blue-600" />
 //                               ) : (
 //                                 <FaSquare className="w-5 h-5" />
 //                               )}
@@ -537,18 +538,18 @@
 //                         )}
 //                         <td className="px-4 py-3">
 //                           <div className="flex items-center gap-2">
-//                             <div className="w-8 h-8 bg-[#06B6D4]/10 rounded-full flex items-center justify-center flex-shrink-0">
-//                               <FaUserCircle className="w-4 h-4 text-[#06B6D4]" />
+//                             <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
+//                               <FaUserCircle className="w-4 h-4 text-blue-600" />
 //                             </div>
 //                             <div>
-//                               <p className="font-medium text-[#004767] text-sm">
+//                               <p className="font-medium text-gray-900 text-sm">
 //                                 {order.customerInfo?.fullName || 'Guest User'}
 //                               </p>
 //                               {order.userId && (
-//                                 <span className="text-[10px] text-[#06B6D4]">Registered</span>
+//                                 <span className="text-[10px] text-blue-600">Registered</span>
 //                               )}
 //                               {!order.userId && order.sessionId && (
-//                                 <span className="text-[10px] text-[#64748B]">Guest</span>
+//                                 <span className="text-[10px] text-gray-500">Guest</span>
 //                               )}
 //                             </div>
 //                           </div>
@@ -556,36 +557,36 @@
 //                         <td className="px-4 py-3">
 //                           <div className="space-y-0.5">
 //                             {order.customerInfo?.phone && (
-//                               <p className="text-xs text-[#004767] flex items-center gap-1">
-//                                 <FaPhone className="w-3 h-3 text-[#64748B]" />
+//                               <p className="text-xs text-gray-900 flex items-center gap-1">
+//                                 <FaPhone className="w-3 h-3 text-gray-400" />
 //                                 {order.customerInfo.phone}
 //                               </p>
 //                             )}
 //                             {order.customerInfo?.email && (
-//                               <p className="text-xs text-[#64748B] flex items-center gap-1">
-//                                 <FaEnvelope className="w-3 h-3 text-[#64748B]" />
+//                               <p className="text-xs text-gray-500 flex items-center gap-1">
+//                                 <FaEnvelope className="w-3 h-3 text-gray-400" />
 //                                 {order.customerInfo.email}
 //                               </p>
 //                             )}
 //                           </div>
 //                         </td>
 //                         <td className="px-4 py-3">
-//                           <p className="text-sm text-[#004767]">
+//                           <p className="text-sm text-gray-900">
 //                             {uniqueItemCount}  product{uniqueItemCount !== 1 ? 's' : ''}
 //                           </p>
 //                           {order.items && order.items.length > 0 && (
-//                             <p className="text-[10px] text-[#64748B] truncate max-w-[150px]">
+//                             <p className="text-[10px] text-gray-500 truncate max-w-[150px]">
 //                               {order.items.slice(0, 2).map(i => i.productName).join(', ')}
 //                               {order.items.length > 2 && ` +${order.items.length - 2} more`}
 //                             </p>
 //                           )}
 //                         </td>
 //                         <td className="px-4 py-3 text-right">
-//                           <p className="font-bold text-[#06B6D4]">৳{order.total?.toFixed(2) || '0.00'}</p>
+//                           <p className="font-bold text-blue-600">৳{order.total?.toFixed(2) || '0.00'}</p>
 //                         </td>
                       
 //                         <td className="px-4 py-3">
-//                           <div className="text-xs text-[#64748B]">
+//                           <div className="text-xs text-gray-500">
 //                             <p>{formatDate(order.lastInteractionAt)}</p>
 //                             <p className="text-[10px]">
 //                               Started: {formatDate(order.startedAt)}
@@ -599,7 +600,7 @@
 //                                 setSelectedOrder(order);
 //                                 setShowDetailsModal(true);
 //                               }}
-//                               className="p-2 text-[#06B6D4] hover:bg-[#06B6D4]/10 rounded-lg transition-colors"
+//                               className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
 //                               title="View Details"
 //                             >
 //                               <FaEye className="w-4 h-4" />
@@ -640,21 +641,21 @@
 
 //           {/* Pagination */}
 //           {totalPages > 1 && (
-//             <div className="px-4 py-3 border-t border-[#cbd4d8] flex flex-wrap items-center justify-between gap-3 bg-[#cbd4d8]/10">
-//               <p className="text-xs text-[#64748B]">Showing {orders.length} of {totalOrders} incomplete orders</p>
+//             <div className="px-4 py-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-3 bg-gray-50">
+//               <p className="text-xs text-gray-500">Showing {orders.length} of {totalOrders} incomplete orders</p>
 //               <div className="flex gap-1">
 //                 <button
 //                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
 //                   disabled={currentPage === 1}
-//                   className="p-2 border border-[#cbd4d8] rounded-xl hover:bg-white disabled:opacity-50 transition text-[#004767]"
+//                   className="p-2 border border-gray-200 rounded-xl hover:bg-white disabled:opacity-50 transition text-gray-700"
 //                 >
 //                   <FaChevronLeft className="w-3 h-3" />
 //                 </button>
-//                 <span className="px-3 py-1.5 text-xs text-[#004767]">Page {currentPage} of {totalPages}</span>
+//                 <span className="px-3 py-1.5 text-xs text-gray-700">Page {currentPage} of {totalPages}</span>
 //                 <button
 //                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
 //                   disabled={currentPage === totalPages}
-//                   className="p-2 border border-[#cbd4d8] rounded-xl hover:bg-white disabled:opacity-50 transition text-[#004767]"
+//                   className="p-2 border border-gray-200 rounded-xl hover:bg-white disabled:opacity-50 transition text-gray-700"
 //                 >
 //                   <FaChevronRight className="w-3 h-3" />
 //                 </button>
@@ -723,7 +724,7 @@
 //         initial={{ opacity: 0, scale: 0.95 }}
 //         animate={{ opacity: 1, scale: 1 }}
 //         exit={{ opacity: 0, scale: 0.95 }}
-//         className="relative bg-white rounded-2xl border border-[#cbd4d8] shadow-2xl w-full max-w-md overflow-hidden"
+//         className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-md overflow-hidden"
 //       >
 //         <div className="p-5 bg-gradient-to-r from-red-500 to-red-600 text-white">
 //           <div className="flex items-center gap-2">
@@ -735,24 +736,24 @@
 //         </div>
 
 //         <div className="p-6 text-center">
-//           <p className="text-[#004767] text-sm mb-2">
+//           <p className="text-gray-900 text-sm mb-2">
 //             Are you sure you want to delete this incomplete order?
 //           </p>
-//           <div className="bg-[#cbd4d8]/20 rounded-lg p-3 mb-3">
-//             <p className="text-sm font-medium text-[#004767]">
+//           <div className="bg-gray-50 rounded-lg p-3 mb-3">
+//             <p className="text-sm font-medium text-gray-900">
 //               {order.customerInfo?.fullName || 'Guest User'}
 //             </p>
-//             <p className="text-xs text-[#64748B]">
+//             <p className="text-xs text-gray-500">
 //               Total: ৳{order.total?.toFixed(2) || '0.00'} • {order.items?.length || 0} items
 //             </p>
 //           </div>
 //           <p className="text-xs text-red-500">⚠️ This action cannot be undone!</p>
 //         </div>
 
-//         <div className="p-4 border-t border-[#cbd4d8] bg-[#cbd4d8]/10 flex gap-3">
+//         <div className="p-4 border-t border-gray-200 bg-gray-50 flex gap-3">
 //           <button
 //             onClick={onClose}
-//             className="flex-1 px-4 py-2.5 border border-[#cbd4d8] text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm font-medium"
+//             className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-600 rounded-xl hover:bg-white transition-colors text-sm font-medium"
 //           >
 //             Cancel
 //           </button>
@@ -789,7 +790,7 @@
 //         initial={{ opacity: 0, scale: 0.95 }}
 //         animate={{ opacity: 1, scale: 1 }}
 //         exit={{ opacity: 0, scale: 0.95 }}
-//         className="relative bg-white rounded-2xl border border-[#cbd4d8] shadow-2xl w-full max-w-md overflow-hidden"
+//         className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-md overflow-hidden"
 //       >
 //         <div className="p-5 bg-gradient-to-r from-red-500 to-red-600 text-white">
 //           <div className="flex items-center gap-2">
@@ -801,21 +802,21 @@
 //         </div>
 
 //         <div className="p-6 text-center">
-//           <p className="text-[#004767] text-sm mb-2">
+//           <p className="text-gray-900 text-sm mb-2">
 //             Are you sure you want to delete <span className="font-bold text-red-600">{selectedOrders?.length || 0}</span> incomplete order(s)?
 //           </p>
-//           <p className="text-xs text-[#64748B] mb-3">This action cannot be undone!</p>
-//           <div className="bg-[#cbd4d8]/20 rounded-lg p-3 max-h-[150px] overflow-y-auto">
+//           <p className="text-xs text-gray-500 mb-3">This action cannot be undone!</p>
+//           <div className="bg-gray-50 rounded-lg p-3 max-h-[150px] overflow-y-auto">
 //             {selectedOrders?.map((order, index) => (
-//               <p key={order._id} className="text-xs text-[#004767] py-1 border-b border-[#cbd4d8]/30 last:border-0">
+//               <p key={order._id} className="text-xs text-gray-700 py-1 border-b border-gray-200 last:border-0">
 //                 {order.customerInfo?.fullName || 'Guest'} - ৳{order.total?.toFixed(2) || '0.00'}
 //               </p>
 //             ))}
 //           </div>
 //         </div>
 
-//         <div className="p-4 border-t border-[#cbd4d8] bg-[#cbd4d8]/10 flex gap-3">
-//           <button onClick={onClose} className="flex-1 px-4 py-2.5 border border-[#cbd4d8] text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm font-medium">
+//         <div className="p-4 border-t border-gray-200 bg-gray-50 flex gap-3">
+//           <button onClick={onClose} className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-600 rounded-xl hover:bg-white transition-colors text-sm font-medium">
 //             Cancel
 //           </button>
 //           <button onClick={onDelete} disabled={deleting} className="flex-1 px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm font-medium">
@@ -911,9 +912,9 @@
 //         initial={{ opacity: 0, scale: 0.95 }}
 //         animate={{ opacity: 1, scale: 1 }}
 //         exit={{ opacity: 0, scale: 0.95 }}
-//         className="relative bg-white rounded-2xl border border-[#cbd4d8] shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
+//         className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
 //       >
-//         <div className="p-5 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white sticky top-0 z-10">
+//         <div className="p-5 bg-black text-white sticky top-0 z-10">
 //           <div className="flex items-center justify-between">
 //             <div className="flex items-center gap-2">
 //               <FaFileInvoice className="w-5 h-5" />
@@ -932,11 +933,11 @@
 
 //         <div className="p-6 max-h-[60vh] overflow-y-auto">
 //           <div className="flex flex-wrap gap-2 mb-5">
-//             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-[#E2E7EA] text-[#004767] border-[#06B6D4]/30">
+//             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-gray-50 text-gray-700 border-gray-200">
 //               <FaShoppingCart className="w-3 h-3" />
 //               <span className="font-medium">Step: {getStepLabel(order.checkoutStep)}</span>
 //             </span>
-//             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-[#E2E7EA] text-[#004767] border-[#06B6D4]/30">
+//             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-gray-50 text-gray-700 border-gray-200">
 //               <FaMoneyBillWave className="w-3 h-3" />
 //               <span className="font-medium">Total: ৳{order.total?.toFixed(2) || '0.00'}</span>
 //             </span>
@@ -944,56 +945,56 @@
 
 //           {/* Customer & Delivery Info */}
 //           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-//             <div className="bg-[#E2E7EA]/50 rounded-xl p-4 border border-[#06B6D4]/30">
-//               <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-//                 <FaUser className="w-3.5 h-3.5 text-[#06B6D4]" />
+//             <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+//               <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
+//                 <FaUser className="w-3.5 h-3.5 text-blue-600" />
 //                 Customer Information
 //               </h3>
 //               <div className="space-y-1 text-xs">
-//                 <p><span className="text-[#64748B]">Name:</span> <span className="text-[#004767] font-medium">{order.customerInfo?.fullName || 'N/A'}</span></p>
-//                 <p><span className="text-[#64748B]">Email:</span> <span className="text-[#004767]">{order.customerInfo?.email || 'N/A'}</span></p>
-//                 <p><span className="text-[#64748B]">Phone:</span> <span className="text-[#004767]">{order.customerInfo?.phone || 'N/A'}</span></p>
-//                 <p><span className="text-[#64748B]">User Type:</span> 
-//                   <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${order.userId ? 'bg-[#06B6D4]/10 text-[#06B6D4]' : 'bg-[#E2E7EA] text-[#64748B]'}`}>
+//                 <p><span className="text-gray-500">Name:</span> <span className="text-gray-900 font-medium">{order.customerInfo?.fullName || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">Email:</span> <span className="text-gray-700">{order.customerInfo?.email || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">Phone:</span> <span className="text-gray-700">{order.customerInfo?.phone || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">User Type:</span> 
+//                   <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${order.userId ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>
 //                     {order.userId ? 'Registered' : 'Guest'}
 //                   </span>
 //                 </p>
 //               </div>
 //             </div>
 
-//             <div className="bg-[#E2E7EA]/50 rounded-xl p-4 border border-[#06B6D4]/30">
-//               <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-//                 <FaMapMarkerAlt className="w-3.5 h-3.5 text-[#06B6D4]" />
+//             <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+//               <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
+//                 <FaMapMarkerAlt className="w-3.5 h-3.5 text-blue-600" />
 //                 Delivery Information
 //               </h3>
 //               <div className="space-y-1 text-xs">
-//                 <p><span className="text-[#64748B]">Division:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.division || 'N/A'}</span></p>
-//                 <p><span className="text-[#64748B]">District/City:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.city || 'N/A'}</span></p>
-//                 <p><span className="text-[#64748B]">Upazila/Thana:</span> <span className="font-medium text-[#004767]">{order.customerInfo?.zone || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">Division:</span> <span className="font-medium text-gray-900">{order.customerInfo?.division || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">District/City:</span> <span className="font-medium text-gray-900">{order.customerInfo?.city || 'N/A'}</span></p>
+//                 <p><span className="text-gray-500">Upazila/Thana:</span> <span className="font-medium text-gray-900">{order.customerInfo?.zone || 'N/A'}</span></p>
 //                 {order.customerInfo?.area && (
-//                   <p><span className="text-[#64748B]">Union/Area:</span> <span className="font-medium text-[#004767]">{order.customerInfo.area}</span></p>
+//                   <p><span className="text-gray-500">Union/Area:</span> <span className="font-medium text-gray-900">{order.customerInfo.area}</span></p>
 //                 )}
-//                 <p><span className="text-[#64748B]">Address:</span> <span className="text-[#004767]">{order.customerInfo?.address}</span></p>
+//                 <p><span className="text-gray-500">Address:</span> <span className="text-gray-700">{order.customerInfo?.address}</span></p>
 //               </div>
 //             </div>
 //           </div>
 
 //           {/* Order Summary */}
-//           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 p-3 bg-[#E2E7EA]/30 rounded-lg border border-[#06B6D4]/10">
+//           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 p-3 bg-gray-50 rounded-lg border border-gray-200">
 //             <div>
-//               <p className="text-[10px] text-[#64748B] uppercase tracking-wider">Subtotal</p>
-//               <p className="text-sm font-bold text-[#004767]">৳{order.subtotal?.toFixed(2) || '0.00'}</p>
+//               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Subtotal</p>
+//               <p className="text-sm font-bold text-gray-900">৳{order.subtotal?.toFixed(2) || '0.00'}</p>
 //             </div>
 //             <div>
-//               <p className="text-[10px] text-[#64748B] uppercase tracking-wider">Shipping</p>
-//               <p className="text-sm font-bold text-[#004767]">৳{order.shippingCost?.toFixed(2) || '0.00'}</p>
+//               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Shipping</p>
+//               <p className="text-sm font-bold text-gray-900">৳{order.shippingCost?.toFixed(2) || '0.00'}</p>
 //             </div>
 //             <div>
-//               <p className="text-[10px] text-[#64748B] uppercase tracking-wider">Total</p>
-//               <p className="text-sm font-bold text-[#06B6D4]">৳{order.total?.toFixed(2) || '0.00'}</p>
+//               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Total</p>
+//               <p className="text-sm font-bold text-blue-600">৳{order.total?.toFixed(2) || '0.00'}</p>
 //             </div>
 //             <div>
-//               <p className="text-[10px] text-[#64748B] uppercase tracking-wider">Checkout Step</p>
+//               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Checkout Step</p>
 //               <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-xs font-medium ${getStepColor(order.checkoutStep)}`}>
 //                 {getStepLabel(order.checkoutStep)}
 //               </span>
@@ -1003,19 +1004,19 @@
 //           {/* Items Table - Same style as OrderDetailsModal */}
 //           {groupedItems.length > 0 && (
 //             <div className="mb-5">
-//               <h3 className="font-semibold text-[#004767] text-sm mb-2 flex items-center gap-1.5">
-//                 <FaBox className="w-3.5 h-3.5 text-[#06B6D4]" />
+//               <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
+//                 <FaBox className="w-3.5 h-3.5 text-blue-600" />
 //                 Cart Items ({groupedItems.length} unique products)
 //               </h3>
 //               <div className="overflow-x-auto">
 //                 <table className="w-full text-xs">
-//                   <thead className="bg-[#E2E7EA]">
+//                   <thead className="bg-gray-100">
 //                     <tr>
-//                       <th className="px-2 py-1.5 text-left text-[#004767]">Product</th>
-//                       <th className="px-2 py-1.5 text-center text-[#004767]">Color</th>
-//                       <th className="px-2 py-1.5 text-center text-[#004767]">Qty</th>
-//                       <th className="px-2 py-1.5 text-right text-[#004767]">Price</th>
-//                       <th className="px-2 py-1.5 text-right text-[#004767]">Total</th>
+//                       <th className="px-2 py-1.5 text-left text-gray-700">Product</th>
+//                       <th className="px-2 py-1.5 text-center text-gray-700">Color</th>
+//                       <th className="px-2 py-1.5 text-center text-gray-700">Qty</th>
+//                       <th className="px-2 py-1.5 text-right text-gray-700">Price</th>
+//                       <th className="px-2 py-1.5 text-right text-gray-700">Total</th>
 //                     </tr>
 //                   </thead>
 //                   <tbody>
@@ -1028,17 +1029,17 @@
 //                         const totalPrice = price * colorObj.quantity;
                         
 //                         return (
-//                           <tr key={`${idx}-${colorIdx}`} className="border-t border-[#06B6D4]/20">
+//                           <tr key={`${idx}-${colorIdx}`} className="border-t border-gray-200">
 //                             {isFirst && (
 //                               <td className="px-2 py-2" rowSpan={hasMultipleColors ? group.colors.length : 1}>
 //                                 <div className="flex items-center gap-2">
 //                                   <img 
 //                                     src={group.image || 'https://via.placeholder.com/30'} 
 //                                     alt={group.productName}
-//                                     className="w-7 h-7 rounded object-cover border border-[#06B6D4]/30"
+//                                     className="w-7 h-7 rounded object-cover border border-gray-200"
 //                                     onError={(e) => { e.target.src = 'https://via.placeholder.com/30?text=Product'; }}
 //                                   />
-//                                   <p className="font-medium text-xs text-[#004767]">{group.productName}</p>
+//                                   <p className="font-medium text-xs text-gray-900">{group.productName}</p>
 //                                 </div>
 //                               </td>
 //                             )}
@@ -1046,29 +1047,29 @@
 //                               {colorObj.color ? (
 //                                 <div className="flex items-center justify-center">
 //                                   <div 
-//                                     className="w-5 h-5 rounded-full border border-[#06B6D4]/30 shadow-sm"
+//                                     className="w-5 h-5 rounded-full border border-gray-200 shadow-sm"
 //                                     style={{ backgroundColor: colorObj.color }}
 //                                     title={colorObj.color}
 //                                   />
 //                                 </div>
 //                               ) : (
-//                                 <span className="text-xs text-[#64748B]">-</span>
+//                                 <span className="text-xs text-gray-500">-</span>
 //                               )}
 //                             </td>
-//                             <td className="px-2 py-2 text-center text-[#004767]">{colorObj.quantity}</td>
-//                             <td className="px-2 py-2 text-right text-[#004767]">৳{price.toFixed(2)}</td>
-//                             <td className="px-2 py-2 text-right font-medium text-[#06B6D4]">৳{totalPrice.toFixed(2)}</td>
+//                             <td className="px-2 py-2 text-center text-gray-700">{colorObj.quantity}</td>
+//                             <td className="px-2 py-2 text-right text-gray-700">৳{price.toFixed(2)}</td>
+//                             <td className="px-2 py-2 text-right font-medium text-blue-600">৳{totalPrice.toFixed(2)}</td>
 //                           </tr>
 //                         );
 //                       });
 //                     })}
 //                   </tbody>
-//                   <tfoot className="border-t border-[#06B6D4]/30">
-//                     <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#004767]">Subtotal:</td><td className="px-2 py-1 text-right text-[#004767]">৳{order.subtotal?.toFixed(2)}</td></tr>
-//                     <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#004767]">Shipping:</td><td className="px-2 py-1 text-right text-[#004767]">৳{order.shippingCost?.toFixed(2)}</td></tr>
+//                   <tfoot className="border-t border-gray-300">
+//                     <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-gray-700">Subtotal:</td><td className="px-2 py-1 text-right text-gray-700">৳{order.subtotal?.toFixed(2)}</td></tr>
+//                     <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-gray-700">Shipping:</td><td className="px-2 py-1 text-right text-gray-700">৳{order.shippingCost?.toFixed(2)}</td></tr>
 //                     <tr className="text-sm font-bold">
-//                       <td colSpan="4" className="px-2 py-1 text-right text-[#004767]">Total:</td>
-//                       <td className="px-2 py-1 text-right text-[#06B6D4]">৳{order.total?.toFixed(2)}</td>
+//                       <td colSpan="4" className="px-2 py-1 text-right text-gray-700">Total:</td>
+//                       <td className="px-2 py-1 text-right text-blue-600">৳{order.total?.toFixed(2)}</td>
 //                     </tr>
 //                   </tfoot>
 //                 </table>
@@ -1077,9 +1078,9 @@
 //           )}
 
 //           {/* Recovery Actions */}
-//           <div className="mt-4 pt-4 border-t border-[#06B6D4]/30">
-//             <h3 className="text-xs font-medium text-[#004767] mb-2 flex items-center gap-1.5">
-//               <FaInfoCircle className="w-3.5 h-3.5 text-[#06B6D4]" />
+//           <div className="mt-4 pt-4 border-t border-gray-200">
+//             <h3 className="text-xs font-medium text-gray-700 mb-2 flex items-center gap-1.5">
+//               <FaInfoCircle className="w-3.5 h-3.5 text-blue-600" />
 //               Recovery Actions
 //             </h3>
 //             <div className="flex flex-wrap gap-2">
@@ -1099,7 +1100,7 @@
 //                   navigator.clipboard.writeText(JSON.stringify(order, null, 2));
 //                   toast.success('Order data copied to clipboard');
 //                 }}
-//                 className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#06B6D4]/30 text-[#64748B] rounded-lg hover:bg-white transition-colors text-xs font-medium"
+//                 className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors text-xs font-medium"
 //               >
 //                 <FaFileInvoice className="w-3.5 h-3.5" />
 //                 Copy Data
@@ -1116,12 +1117,10 @@
 //               )}
 //             </div>
 //           </div>
-
-         
 //         </div>
 
-//         <div className="p-4 border-t border-[#06B6D4]/30 bg-[#E2E7EA]/20 flex justify-end gap-2">
-//           <button onClick={onClose} className="px-4 py-2 bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white rounded-xl hover:shadow-lg hover:shadow-[#06B6D4]/25 transition-all text-sm font-medium">
+//         <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-2">
+//           <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all text-sm font-medium shadow-md hover:shadow-lg">
 //             Close
 //           </button>
 //         </div>
@@ -1129,7 +1128,6 @@
 //     </div>
 //   );
 // }
-
 
 
 'use client';
@@ -1440,12 +1438,12 @@ export default function IncompleteOrdersPage() {
   };
 
   const StatCard = ({ title, value, icon, color, subtitle }) => (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200">
+    <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#F7C7D3]/40">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">{title}</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{value?.toLocaleString() || 0}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+          <p className="text-xs text-[#EE4275]/60 font-medium uppercase tracking-wider">{title}</p>
+          <p className="text-2xl font-bold text-[#2D1B2E] mt-1">{value?.toLocaleString() || 0}</p>
+          {subtitle && <p className="text-xs text-[#EE4275]/60 mt-1">{subtitle}</p>}
         </div>
         <div className={`w-11 h-11 ${color} rounded-xl flex items-center justify-center`}>
           {icon}
@@ -1456,19 +1454,19 @@ export default function IncompleteOrdersPage() {
 
   return (
     <ProtectedRoute pageKey="incomplete_orders">
-    <div className="min-h-screen bg-white pb-12 pt-6">
+    <div className="min-h-screen bg-[#FFF5F6] pb-12 pt-6">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+            <div className="w-11 h-11 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl flex items-center justify-center shadow-lg shadow-[#EE4275]/25">
               <FaShoppingCart className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: '"Playfair Display"' }}>
+              <h1 className="text-2xl md:text-3xl font-bold text-[#2D1B2E]" style={{ fontFamily: '"Playfair Display"' }}>
                 Abandoned Checkouts
               </h1>
-              <p className="text-sm text-gray-500 mt-0.5">Track and recover incomplete orders</p>
+              <p className="text-sm text-[#EE4275]/60 mt-0.5">Track and recover incomplete orders</p>
             </div>
           </div>
           {canDelete && (
@@ -1478,7 +1476,7 @@ export default function IncompleteOrdersPage() {
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sm font-medium shadow-sm ${
                   showCheckboxes
                     ? 'bg-red-500 text-white hover:shadow-lg hover:shadow-red-500/25'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    : 'bg-[#F7C7D3]/30 text-[#2D1B2E] hover:bg-[#F7C7D3]/50'
                 }`}
               >
                 {showCheckboxes ? (
@@ -1513,29 +1511,29 @@ export default function IncompleteOrdersPage() {
             <StatCard 
               title="Total Abandoned" 
               value={stats.totalIncomplete} 
-              icon={<FaShoppingCart className="w-5 h-5 text-blue-600" />} 
-              color="bg-blue-50"
+              icon={<FaShoppingCart className="w-5 h-5 text-[#EE4275]" />} 
+              color="bg-[#FFF5F6]"
               subtitle="All time"
             />
             <StatCard 
               title="Active (7 days)" 
               value={stats.activeIncomplete} 
-              icon={<FaClock className="w-5 h-5 text-blue-600" />} 
-              color="bg-blue-50"
+              icon={<FaClock className="w-5 h-5 text-[#EE4275]" />} 
+              color="bg-[#FFF5F6]"
               subtitle="Last 7 days"
             />
             <StatCard 
               title="Today" 
               value={stats.todayIncomplete} 
-              icon={<FaClock className="w-5 h-5 text-gray-700" />} 
-              color="bg-gray-100"
+              icon={<FaClock className="w-5 h-5 text-[#2D1B2E]/60" />} 
+              color="bg-[#F7C7D3]/10"
               subtitle="New today"
             />
             <StatCard 
               title="This Month" 
               value={stats.monthIncomplete} 
-              icon={<FaCalendarAlt className="w-5 h-5 text-blue-600" />} 
-              color="bg-blue-50"
+              icon={<FaCalendarAlt className="w-5 h-5 text-[#EE4275]" />} 
+              color="bg-[#FFF5F6]"
               subtitle="This month"
             />
             <StatCard 
@@ -1548,27 +1546,27 @@ export default function IncompleteOrdersPage() {
             <StatCard 
               title="Avg. Cart Value" 
               value={`৳${stats.totalRevenue && stats.totalIncomplete ? (stats.totalRevenue / stats.totalIncomplete).toFixed(0) : 0}`} 
-              icon={<FaTag className="w-5 h-5 text-gray-700" />} 
-              color="bg-gray-100"
+              icon={<FaTag className="w-5 h-5 text-[#2D1B2E]/60" />} 
+              color="bg-[#F7C7D3]/10"
               subtitle="Per abandoned cart"
             />
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm border border-[#F7C7D3]/40 animate-pulse">
+                <div className="h-4 bg-[#F7C7D3]/30 rounded w-1/2 mb-2"></div>
+                <div className="h-8 bg-[#F7C7D3]/30 rounded w-3/4"></div>
               </div>
             ))}
           </div>
         )}
 
         {/* Filters */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6 shadow-sm">
+        <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 p-4 mb-6 shadow-sm">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#EE4275]/40 w-4 h-4" />
               <input
                 type="text"
                 placeholder="Search by name, phone, email or product..."
@@ -1577,7 +1575,7 @@ export default function IncompleteOrdersPage() {
                   setSearchTerm(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 hover:bg-white transition text-gray-900 placeholder:text-gray-400 text-sm"
+                className="w-full pl-10 pr-10 py-2.5 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-[#FFF5F6] hover:bg-white transition text-[#2D1B2E] placeholder:text-[#EE4275]/40 text-sm"
               />
               {searchTerm && (
                 <button
@@ -1585,7 +1583,7 @@ export default function IncompleteOrdersPage() {
                     setSearchTerm('');
                     setCurrentPage(1);
                   }}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#EE4275]/40 hover:text-[#EE4275]"
                 >
                   <FaTimes className="w-4 h-4" />
                 </button>
@@ -1597,7 +1595,7 @@ export default function IncompleteOrdersPage() {
                 setStatusFilter(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-50 hover:bg-white transition text-gray-900 text-sm"
+              className="px-4 py-2.5 border border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-[#FFF5F6] hover:bg-white transition text-[#2D1B2E] text-sm"
             >
               <option value="all">All Status</option>
               <option value="active">Active</option>
@@ -1607,44 +1605,44 @@ export default function IncompleteOrdersPage() {
         </div>
 
         {/* Orders Table */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-sm overflow-hidden">
           <div className="w-full overflow-x-visible">
             <table className="w-full min-w-[900px] lg:min-w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-[#FFF5F6] border-b border-[#F7C7D3]/40">
                 <tr>
                   {canDelete && showCheckboxes && (
                     <th className="px-4 py-3 text-center">
                       <button
                         onClick={() => setSelectAll(!selectAll)}
-                        className="text-gray-400 hover:text-blue-600 transition-colors"
+                        className="text-[#EE4275]/40 hover:text-[#EE4275] transition-colors"
                       >
                         {selectAll ? (
-                          <FaCheckSquare className="w-5 h-5 text-blue-600" />
+                          <FaCheckSquare className="w-5 h-5 text-[#EE4275]" />
                         ) : (
                           <FaSquare className="w-5 h-5" />
                         )}
                       </button>
                     </th>
                   )}
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Customer</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Contact</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Items</th>
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Total</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Last Activity</th>
-                  <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Customer</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Contact</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Items</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Total</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Last Activity</th>
+                  <th className="px-4 py-3 text-center text-xs font-semibold text-[#2D1B2E] uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center">
                     <div className="flex justify-center">
-                      <FaSpinner className="w-6 h-6 text-blue-600 animate-spin" />
+                      <FaSpinner className="w-6 h-6 text-[#EE4275] animate-spin" />
                     </div>
                   </td></tr>
                 ) : orders.length === 0 ? (
-                  <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center text-gray-500">
+                  <tr><td colSpan={canDelete && showCheckboxes ? 8 : 7} className="px-4 py-12 text-center text-[#EE4275]/60">
                     <div className="flex flex-col items-center gap-2">
-                      <FaShoppingCart className="w-12 h-12 text-gray-300" />
+                      <FaShoppingCart className="w-12 h-12 text-[#EE4275]/30" />
                       <p className="text-sm">No incomplete orders found</p>
                     </div>
                   </td></tr>
@@ -1654,15 +1652,15 @@ export default function IncompleteOrdersPage() {
                     const uniqueItemCount = getUniqueProductCount(order.items);
                     
                     return (
-                      <tr key={order._id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                      <tr key={order._id} className="border-b border-[#F7C7D3]/20 hover:bg-[#FFF5F6] transition-colors">
                         {canDelete && showCheckboxes && (
                           <td className="px-4 py-3 text-center">
                             <button
                               onClick={() => toggleOrderSelection(order)}
-                              className="text-gray-400 hover:text-blue-600 transition-colors"
+                              className="text-[#EE4275]/40 hover:text-[#EE4275] transition-colors"
                             >
                               {isSelected ? (
-                                <FaCheckSquare className="w-5 h-5 text-blue-600" />
+                                <FaCheckSquare className="w-5 h-5 text-[#EE4275]" />
                               ) : (
                                 <FaSquare className="w-5 h-5" />
                               )}
@@ -1671,18 +1669,18 @@ export default function IncompleteOrdersPage() {
                         )}
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
-                              <FaUserCircle className="w-4 h-4 text-blue-600" />
+                            <div className="w-8 h-8 bg-[#FFF5F6] rounded-full flex items-center justify-center flex-shrink-0">
+                              <FaUserCircle className="w-4 h-4 text-[#EE4275]" />
                             </div>
                             <div>
-                              <p className="font-medium text-gray-900 text-sm">
+                              <p className="font-medium text-[#2D1B2E] text-sm">
                                 {order.customerInfo?.fullName || 'Guest User'}
                               </p>
                               {order.userId && (
-                                <span className="text-[10px] text-blue-600">Registered</span>
+                                <span className="text-[10px] text-[#EE4275]">Registered</span>
                               )}
                               {!order.userId && order.sessionId && (
-                                <span className="text-[10px] text-gray-500">Guest</span>
+                                <span className="text-[10px] text-[#EE4275]/60">Guest</span>
                               )}
                             </div>
                           </div>
@@ -1690,36 +1688,36 @@ export default function IncompleteOrdersPage() {
                         <td className="px-4 py-3">
                           <div className="space-y-0.5">
                             {order.customerInfo?.phone && (
-                              <p className="text-xs text-gray-900 flex items-center gap-1">
-                                <FaPhone className="w-3 h-3 text-gray-400" />
+                              <p className="text-xs text-[#2D1B2E] flex items-center gap-1">
+                                <FaPhone className="w-3 h-3 text-[#EE4275]/40" />
                                 {order.customerInfo.phone}
                               </p>
                             )}
                             {order.customerInfo?.email && (
-                              <p className="text-xs text-gray-500 flex items-center gap-1">
-                                <FaEnvelope className="w-3 h-3 text-gray-400" />
+                              <p className="text-xs text-[#EE4275]/60 flex items-center gap-1">
+                                <FaEnvelope className="w-3 h-3 text-[#EE4275]/40" />
                                 {order.customerInfo.email}
                               </p>
                             )}
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          <p className="text-sm text-gray-900">
+                          <p className="text-sm text-[#2D1B2E]">
                             {uniqueItemCount}  product{uniqueItemCount !== 1 ? 's' : ''}
                           </p>
                           {order.items && order.items.length > 0 && (
-                            <p className="text-[10px] text-gray-500 truncate max-w-[150px]">
+                            <p className="text-[10px] text-[#EE4275]/60 truncate max-w-[150px]">
                               {order.items.slice(0, 2).map(i => i.productName).join(', ')}
                               {order.items.length > 2 && ` +${order.items.length - 2} more`}
                             </p>
                           )}
                         </td>
                         <td className="px-4 py-3 text-right">
-                          <p className="font-bold text-blue-600">৳{order.total?.toFixed(2) || '0.00'}</p>
+                          <p className="font-bold text-[#EE4275]">৳{order.total?.toFixed(2) || '0.00'}</p>
                         </td>
                       
                         <td className="px-4 py-3">
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-[#EE4275]/60">
                             <p>{formatDate(order.lastInteractionAt)}</p>
                             <p className="text-[10px]">
                               Started: {formatDate(order.startedAt)}
@@ -1733,7 +1731,7 @@ export default function IncompleteOrdersPage() {
                                 setSelectedOrder(order);
                                 setShowDetailsModal(true);
                               }}
-                              className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                              className="p-2 text-[#EE4275] hover:bg-[#FFF5F6] rounded-lg transition-colors"
                               title="View Details"
                             >
                               <FaEye className="w-4 h-4" />
@@ -1774,21 +1772,21 @@ export default function IncompleteOrdersPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="px-4 py-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-3 bg-gray-50">
-              <p className="text-xs text-gray-500">Showing {orders.length} of {totalOrders} incomplete orders</p>
+            <div className="px-4 py-3 border-t border-[#F7C7D3]/40 flex flex-wrap items-center justify-between gap-3 bg-[#FFF5F6]">
+              <p className="text-xs text-[#EE4275]/60">Showing {orders.length} of {totalOrders} incomplete orders</p>
               <div className="flex gap-1">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="p-2 border border-gray-200 rounded-xl hover:bg-white disabled:opacity-50 transition text-gray-700"
+                  className="p-2 border border-[#F7C7D3]/50 rounded-xl hover:bg-white disabled:opacity-50 transition text-[#2D1B2E]"
                 >
                   <FaChevronLeft className="w-3 h-3" />
                 </button>
-                <span className="px-3 py-1.5 text-xs text-gray-700">Page {currentPage} of {totalPages}</span>
+                <span className="px-3 py-1.5 text-xs text-[#2D1B2E]">Page {currentPage} of {totalPages}</span>
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="p-2 border border-gray-200 rounded-xl hover:bg-white disabled:opacity-50 transition text-gray-700"
+                  className="p-2 border border-[#F7C7D3]/50 rounded-xl hover:bg-white disabled:opacity-50 transition text-[#2D1B2E]"
                 >
                   <FaChevronRight className="w-3 h-3" />
                 </button>
@@ -1857,7 +1855,7 @@ function DeleteConfirmModal({ isOpen, onClose, order, onDelete, deleting }) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-2xl w-full max-w-md overflow-hidden"
       >
         <div className="p-5 bg-gradient-to-r from-red-500 to-red-600 text-white">
           <div className="flex items-center gap-2">
@@ -1869,24 +1867,24 @@ function DeleteConfirmModal({ isOpen, onClose, order, onDelete, deleting }) {
         </div>
 
         <div className="p-6 text-center">
-          <p className="text-gray-900 text-sm mb-2">
+          <p className="text-[#2D1B2E] text-sm mb-2">
             Are you sure you want to delete this incomplete order?
           </p>
-          <div className="bg-gray-50 rounded-lg p-3 mb-3">
-            <p className="text-sm font-medium text-gray-900">
+          <div className="bg-[#FFF5F6] rounded-lg p-3 mb-3">
+            <p className="text-sm font-medium text-[#2D1B2E]">
               {order.customerInfo?.fullName || 'Guest User'}
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-[#EE4275]/60">
               Total: ৳{order.total?.toFixed(2) || '0.00'} • {order.items?.length || 0} items
             </p>
           </div>
           <p className="text-xs text-red-500">⚠️ This action cannot be undone!</p>
         </div>
 
-        <div className="p-4 border-t border-gray-200 bg-gray-50 flex gap-3">
+        <div className="p-4 border-t border-[#F7C7D3]/40 bg-[#FFF5F6] flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-600 rounded-xl hover:bg-white transition-colors text-sm font-medium"
+            className="flex-1 px-4 py-2.5 border border-[#F7C7D3]/50 text-[#2D1B2E] rounded-xl hover:bg-white transition-colors text-sm font-medium"
           >
             Cancel
           </button>
@@ -1923,7 +1921,7 @@ function BulkDeleteModal({ isOpen, onClose, selectedOrders, onDelete, deleting }
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-2xl w-full max-w-md overflow-hidden"
       >
         <div className="p-5 bg-gradient-to-r from-red-500 to-red-600 text-white">
           <div className="flex items-center gap-2">
@@ -1935,21 +1933,21 @@ function BulkDeleteModal({ isOpen, onClose, selectedOrders, onDelete, deleting }
         </div>
 
         <div className="p-6 text-center">
-          <p className="text-gray-900 text-sm mb-2">
+          <p className="text-[#2D1B2E] text-sm mb-2">
             Are you sure you want to delete <span className="font-bold text-red-600">{selectedOrders?.length || 0}</span> incomplete order(s)?
           </p>
-          <p className="text-xs text-gray-500 mb-3">This action cannot be undone!</p>
-          <div className="bg-gray-50 rounded-lg p-3 max-h-[150px] overflow-y-auto">
+          <p className="text-xs text-[#EE4275]/60 mb-3">This action cannot be undone!</p>
+          <div className="bg-[#FFF5F6] rounded-lg p-3 max-h-[150px] overflow-y-auto">
             {selectedOrders?.map((order, index) => (
-              <p key={order._id} className="text-xs text-gray-700 py-1 border-b border-gray-200 last:border-0">
+              <p key={order._id} className="text-xs text-[#2D1B2E] py-1 border-b border-[#F7C7D3]/20 last:border-0">
                 {order.customerInfo?.fullName || 'Guest'} - ৳{order.total?.toFixed(2) || '0.00'}
               </p>
             ))}
           </div>
         </div>
 
-        <div className="p-4 border-t border-gray-200 bg-gray-50 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-600 rounded-xl hover:bg-white transition-colors text-sm font-medium">
+        <div className="p-4 border-t border-[#F7C7D3]/40 bg-[#FFF5F6] flex gap-3">
+          <button onClick={onClose} className="flex-1 px-4 py-2.5 border border-[#F7C7D3]/50 text-[#2D1B2E] rounded-xl hover:bg-white transition-colors text-sm font-medium">
             Cancel
           </button>
           <button onClick={onDelete} disabled={deleting} className="flex-1 px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm font-medium">
@@ -2045,9 +2043,9 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
+        className="relative bg-white rounded-2xl border border-[#F7C7D3]/40 shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
       >
-        <div className="p-5 bg-black text-white sticky top-0 z-10">
+        <div className="p-5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaFileInvoice className="w-5 h-5" />
@@ -2066,90 +2064,90 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
 
         <div className="p-6 max-h-[60vh] overflow-y-auto">
           <div className="flex flex-wrap gap-2 mb-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-gray-50 text-gray-700 border-gray-200">
-              <FaShoppingCart className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-[#FFF5F6] text-[#2D1B2E] border-[#F7C7D3]/40">
+              <FaShoppingCart className="w-3 h-3 text-[#EE4275]" />
               <span className="font-medium">Step: {getStepLabel(order.checkoutStep)}</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-gray-50 text-gray-700 border-gray-200">
-              <FaMoneyBillWave className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border bg-[#FFF5F6] text-[#2D1B2E] border-[#F7C7D3]/40">
+              <FaMoneyBillWave className="w-3 h-3 text-[#EE4275]" />
               <span className="font-medium">Total: ৳{order.total?.toFixed(2) || '0.00'}</span>
             </span>
           </div>
 
           {/* Customer & Delivery Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-              <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
-                <FaUser className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
+              <h3 className="font-semibold text-[#2D1B2E] text-sm mb-2 flex items-center gap-1.5">
+                <FaUser className="w-3.5 h-3.5 text-[#EE4275]" />
                 Customer Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-gray-500">Name:</span> <span className="text-gray-900 font-medium">{order.customerInfo?.fullName || 'N/A'}</span></p>
-                <p><span className="text-gray-500">Email:</span> <span className="text-gray-700">{order.customerInfo?.email || 'N/A'}</span></p>
-                <p><span className="text-gray-500">Phone:</span> <span className="text-gray-700">{order.customerInfo?.phone || 'N/A'}</span></p>
-                <p><span className="text-gray-500">User Type:</span> 
-                  <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${order.userId ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>
+                <p><span className="text-[#EE4275]/60">Name:</span> <span className="text-[#2D1B2E] font-medium">{order.customerInfo?.fullName || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">Email:</span> <span className="text-[#2D1B2E]">{order.customerInfo?.email || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">Phone:</span> <span className="text-[#2D1B2E]">{order.customerInfo?.phone || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">User Type:</span> 
+                  <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${order.userId ? 'bg-[#FFF5F6] text-[#EE4275]' : 'bg-[#F7C7D3]/20 text-[#EE4275]/60'}`}>
                     {order.userId ? 'Registered' : 'Guest'}
                   </span>
                 </p>
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-              <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
+              <h3 className="font-semibold text-[#2D1B2E] text-sm mb-2 flex items-center gap-1.5">
+                <FaMapMarkerAlt className="w-3.5 h-3.5 text-[#EE4275]" />
                 Delivery Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-gray-500">Division:</span> <span className="font-medium text-gray-900">{order.customerInfo?.division || 'N/A'}</span></p>
-                <p><span className="text-gray-500">District/City:</span> <span className="font-medium text-gray-900">{order.customerInfo?.city || 'N/A'}</span></p>
-                <p><span className="text-gray-500">Upazila/Thana:</span> <span className="font-medium text-gray-900">{order.customerInfo?.zone || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">Division:</span> <span className="font-medium text-[#2D1B2E]">{order.customerInfo?.division || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">District/City:</span> <span className="font-medium text-[#2D1B2E]">{order.customerInfo?.city || 'N/A'}</span></p>
+                <p><span className="text-[#EE4275]/60">Upazila/Thana:</span> <span className="font-medium text-[#2D1B2E]">{order.customerInfo?.zone || 'N/A'}</span></p>
                 {order.customerInfo?.area && (
-                  <p><span className="text-gray-500">Union/Area:</span> <span className="font-medium text-gray-900">{order.customerInfo.area}</span></p>
+                  <p><span className="text-[#EE4275]/60">Union/Area:</span> <span className="font-medium text-[#2D1B2E]">{order.customerInfo.area}</span></p>
                 )}
-                <p><span className="text-gray-500">Address:</span> <span className="text-gray-700">{order.customerInfo?.address}</span></p>
+                <p><span className="text-[#EE4275]/60">Address:</span> <span className="text-[#2D1B2E]">{order.customerInfo?.address}</span></p>
               </div>
             </div>
           </div>
 
           {/* Order Summary */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 p-3 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5 p-3 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/40">
             <div>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Subtotal</p>
-              <p className="text-sm font-bold text-gray-900">৳{order.subtotal?.toFixed(2) || '0.00'}</p>
+              <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wider">Subtotal</p>
+              <p className="text-sm font-bold text-[#2D1B2E]">৳{order.subtotal?.toFixed(2) || '0.00'}</p>
             </div>
             <div>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Shipping</p>
-              <p className="text-sm font-bold text-gray-900">৳{order.shippingCost?.toFixed(2) || '0.00'}</p>
+              <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wider">Shipping</p>
+              <p className="text-sm font-bold text-[#2D1B2E]">৳{order.shippingCost?.toFixed(2) || '0.00'}</p>
             </div>
             <div>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Total</p>
-              <p className="text-sm font-bold text-blue-600">৳{order.total?.toFixed(2) || '0.00'}</p>
+              <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wider">Total</p>
+              <p className="text-sm font-bold text-[#EE4275]">৳{order.total?.toFixed(2) || '0.00'}</p>
             </div>
             <div>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">Checkout Step</p>
+              <p className="text-[10px] text-[#EE4275]/60 uppercase tracking-wider">Checkout Step</p>
               <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-xs font-medium ${getStepColor(order.checkoutStep)}`}>
                 {getStepLabel(order.checkoutStep)}
               </span>
             </div>
           </div>
 
-          {/* Items Table - Same style as OrderDetailsModal */}
+          {/* Items Table */}
           {groupedItems.length > 0 && (
             <div className="mb-5">
-              <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-1.5">
-                <FaBox className="w-3.5 h-3.5 text-blue-600" />
+              <h3 className="font-semibold text-[#2D1B2E] text-sm mb-2 flex items-center gap-1.5">
+                <FaBox className="w-3.5 h-3.5 text-[#EE4275]" />
                 Cart Items ({groupedItems.length} unique products)
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
-                  <thead className="bg-gray-100">
+                  <thead className="bg-[#F7C7D3]/20">
                     <tr>
-                      <th className="px-2 py-1.5 text-left text-gray-700">Product</th>
-                      <th className="px-2 py-1.5 text-center text-gray-700">Color</th>
-                      <th className="px-2 py-1.5 text-center text-gray-700">Qty</th>
-                      <th className="px-2 py-1.5 text-right text-gray-700">Price</th>
-                      <th className="px-2 py-1.5 text-right text-gray-700">Total</th>
+                      <th className="px-2 py-1.5 text-left text-[#2D1B2E]">Product</th>
+                      <th className="px-2 py-1.5 text-center text-[#2D1B2E]">Color</th>
+                      <th className="px-2 py-1.5 text-center text-[#2D1B2E]">Qty</th>
+                      <th className="px-2 py-1.5 text-right text-[#2D1B2E]">Price</th>
+                      <th className="px-2 py-1.5 text-right text-[#2D1B2E]">Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -2162,17 +2160,17 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
                         const totalPrice = price * colorObj.quantity;
                         
                         return (
-                          <tr key={`${idx}-${colorIdx}`} className="border-t border-gray-200">
+                          <tr key={`${idx}-${colorIdx}`} className="border-t border-[#F7C7D3]/20">
                             {isFirst && (
                               <td className="px-2 py-2" rowSpan={hasMultipleColors ? group.colors.length : 1}>
                                 <div className="flex items-center gap-2">
                                   <img 
                                     src={group.image || 'https://via.placeholder.com/30'} 
                                     alt={group.productName}
-                                    className="w-7 h-7 rounded object-cover border border-gray-200"
+                                    className="w-7 h-7 rounded object-cover border border-[#F7C7D3]/40"
                                     onError={(e) => { e.target.src = 'https://via.placeholder.com/30?text=Product'; }}
                                   />
-                                  <p className="font-medium text-xs text-gray-900">{group.productName}</p>
+                                  <p className="font-medium text-xs text-[#2D1B2E]">{group.productName}</p>
                                 </div>
                               </td>
                             )}
@@ -2180,29 +2178,29 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
                               {colorObj.color ? (
                                 <div className="flex items-center justify-center">
                                   <div 
-                                    className="w-5 h-5 rounded-full border border-gray-200 shadow-sm"
+                                    className="w-5 h-5 rounded-full border border-[#F7C7D3]/40 shadow-sm"
                                     style={{ backgroundColor: colorObj.color }}
                                     title={colorObj.color}
                                   />
                                 </div>
                               ) : (
-                                <span className="text-xs text-gray-500">-</span>
+                                <span className="text-xs text-[#EE4275]/60">-</span>
                               )}
                             </td>
-                            <td className="px-2 py-2 text-center text-gray-700">{colorObj.quantity}</td>
-                            <td className="px-2 py-2 text-right text-gray-700">৳{price.toFixed(2)}</td>
-                            <td className="px-2 py-2 text-right font-medium text-blue-600">৳{totalPrice.toFixed(2)}</td>
+                            <td className="px-2 py-2 text-center text-[#2D1B2E]">{colorObj.quantity}</td>
+                            <td className="px-2 py-2 text-right text-[#2D1B2E]">৳{price.toFixed(2)}</td>
+                            <td className="px-2 py-2 text-right font-medium text-[#EE4275]">৳{totalPrice.toFixed(2)}</td>
                           </tr>
                         );
                       });
                     })}
                   </tbody>
-                  <tfoot className="border-t border-gray-300">
-                    <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-gray-700">Subtotal:</td><td className="px-2 py-1 text-right text-gray-700">৳{order.subtotal?.toFixed(2)}</td></tr>
-                    <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-gray-700">Shipping:</td><td className="px-2 py-1 text-right text-gray-700">৳{order.shippingCost?.toFixed(2)}</td></tr>
+                  <tfoot className="border-t border-[#F7C7D3]/40">
+                    <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#2D1B2E]">Subtotal:</td><td className="px-2 py-1 text-right text-[#2D1B2E]">৳{order.subtotal?.toFixed(2)}</td></tr>
+                    <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-[#2D1B2E]">Shipping:</td><td className="px-2 py-1 text-right text-[#2D1B2E]">৳{order.shippingCost?.toFixed(2)}</td></tr>
                     <tr className="text-sm font-bold">
-                      <td colSpan="4" className="px-2 py-1 text-right text-gray-700">Total:</td>
-                      <td className="px-2 py-1 text-right text-blue-600">৳{order.total?.toFixed(2)}</td>
+                      <td colSpan="4" className="px-2 py-1 text-right text-[#2D1B2E]">Total:</td>
+                      <td className="px-2 py-1 text-right text-[#EE4275]">৳{order.total?.toFixed(2)}</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -2211,9 +2209,9 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
           )}
 
           {/* Recovery Actions */}
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <h3 className="text-xs font-medium text-gray-700 mb-2 flex items-center gap-1.5">
-              <FaInfoCircle className="w-3.5 h-3.5 text-blue-600" />
+          <div className="mt-4 pt-4 border-t border-[#F7C7D3]/40">
+            <h3 className="text-xs font-medium text-[#2D1B2E] mb-2 flex items-center gap-1.5">
+              <FaInfoCircle className="w-3.5 h-3.5 text-[#EE4275]" />
               Recovery Actions
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -2233,7 +2231,7 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
                   navigator.clipboard.writeText(JSON.stringify(order, null, 2));
                   toast.success('Order data copied to clipboard');
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors text-xs font-medium"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#F7C7D3]/50 text-[#2D1B2E] rounded-lg hover:bg-[#FFF5F6] transition-colors text-xs font-medium"
               >
                 <FaFileInvoice className="w-3.5 h-3.5" />
                 Copy Data
@@ -2252,8 +2250,8 @@ function IncompleteOrderDetailsModal({ isOpen, onClose, order, formatDate, canDe
           </div>
         </div>
 
-        <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-2">
-          <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all text-sm font-medium shadow-md hover:shadow-lg">
+        <div className="p-4 border-t border-[#F7C7D3]/40 bg-[#FFF5F6] flex justify-end gap-2">
+          <button onClick={onClose} className="px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-xl hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all text-sm font-medium shadow-md">
             Close
           </button>
         </div>

@@ -107,6 +107,10 @@
 //     if (href === '/authorize/dashboard') {
 //       return currentPath === '/authorize/dashboard';
 //     }
+
+//     if (href === '/authorize/create-order') {
+//   return currentPath === '/authorize/create-order';
+// }
     
 //     // Orders group
 //     if (href === '/authorize/orders') {
@@ -270,7 +274,8 @@
 //       'media': 'media_library',
 //       'homepage': 'manage_homepage',
 //       'reviews': 'manage_reviews',
-//       'settings': 'settings'
+//       'settings': 'settings',
+//       'create_order': 'create_order'
 //     };
     
 //     if (typeof menuItem === 'string') {
@@ -305,20 +310,20 @@
 //       admin: { 
 //         name: 'Administrator', 
 //         icon: UsersRound,
-//         color: 'from-cyan-500 to-blue-500',
-//         badgeColor: 'bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-700 border-cyan-200'
+//         color: 'from-black to-gray-800',
+//         badgeColor: 'bg-gray-100 text-gray-800 border-gray-300'
 //       },
 //       moderator: { 
 //         name: 'Moderator', 
 //         icon: Shield,
-//         color: 'from-emerald-500 to-green-500',
-//         badgeColor: 'bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 border-emerald-200'
+//         color: 'from-blue-600 to-blue-700',
+//         badgeColor: 'bg-blue-50 text-blue-700 border-blue-200'
 //       },
 //       call_center_agent: { 
 //         name: 'Call Center Agent', 
 //         icon: Headphones,
-//         color: 'from-purple-500 to-violet-500',
-//         badgeColor: 'bg-gradient-to-r from-purple-100 to-violet-100 text-purple-700 border-purple-200'
+//         color: 'from-purple-600 to-purple-700',
+//         badgeColor: 'bg-purple-50 text-purple-700 border-purple-200'
 //       }
 //     };
 //     return roleMap[role] || roleMap.admin;
@@ -344,6 +349,13 @@
 //       accessKey: 'orders',
 //       icon: ShoppingBag,
 //       children: [
+
+//         {
+//           name: 'Create Order',
+//           href: '/authorize/create-order',
+//           icon: ShoppingBag,
+//           accessKey: 'create_order'
+//         },
 //         { 
 //           name: 'All Orders', 
 //           href: '/authorize/orders', 
@@ -594,7 +606,7 @@
 //     setSidebarOpen(false);
     
 //     // Use window.location for problematic routes to force navigation
-//     const problemRoutes = ['/authorize/dashboard', '/authorize/create-products' ,  '/authorize/all-products', '/authorize/manage-users' , '/authorize/create-users'];
+//     const problemRoutes = ['/authorize/dashboard', '/authorize/create-products' ,  '/authorize/all-products', '/authorize/manage-users' , '/authorize/create-users', '/authorize/banner-management',];
 //     if (problemRoutes.includes(href)) {
 //       window.location.href = href;
 //     } else {
@@ -690,7 +702,7 @@
 //     // Fix any broken routes on initial load
 //     const fixRoute = () => {
 //       const currentPath = window.location.pathname;
-//       const problemRoutes = ['/authorize/dashboard', '/authorize/create-products', '/authorize/all-products', '/authorize/manage-users', '/authorize/create-users'];
+//       const problemRoutes = ['/authorize/dashboard', '/authorize/create-products', '/authorize/all-products', '/authorize/manage-users', '/authorize/create-users', '/authorize/banner-management'];
       
 //       if (problemRoutes.includes(currentPath) && currentPath !== pathname) {
 //         console.log('🔄 Fixing broken route:', currentPath);
@@ -716,7 +728,7 @@
 //     return (
 //       <div className="min-h-screen flex items-center justify-center bg-white">
 //         <div className="text-center">
-//           <div className="w-16 h-16 border-4 border-[#06B6D4] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+//           <div className="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
 //           <p className="text-gray-600 font-medium">Loading...</p>
 //         </div>
 //       </div>
@@ -748,29 +760,29 @@
 //           />
 //         )}
 
-//         {/* Sidebar */}
-//         <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-[#06B6D4]/20 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+//         {/* Sidebar - Black and White theme */}
+//         <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
 //           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
 //         }`}>
-//           {/* Sidebar header with dynamic logo */}
-//           <div className="h-20 flex items-center justify-center px-6 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa]">
+//           {/* Sidebar header with dynamic logo - White background */}
+//           <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 bg-white">
 //             <DynamicLogo 
 //               className="justify-center"
-//               textClassName="text-xl font-bold text-[#004767]"
+//               textClassName="text-xl font-bold text-black"
 //               iconClassName="w-8 h-8"
 //               linkClassName="justify-center"
 //             />
 //           </div>
 
-//           {/* User info */}
+//           {/* User info - Black accent */}
 //           {user && (
-//             <div className="px-4 py-4 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa]">
+//             <div className="px-4 py-4 border-b border-gray-200 bg-gray-50">
 //               <div className="flex items-center gap-3">
-//                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-gradient-to-br ${roleInfo.color}`}>
+//                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-black`}>
 //                   {user.contactPerson?.charAt(0) || user.email?.charAt(0)}
 //                 </div>
 //                 <div className="flex-1 min-w-0">
-//                   <p className="text-sm font-semibold text-[#004767] truncate">
+//                   <p className="text-sm font-semibold text-gray-900 truncate">
 //                     {user.contactPerson || 'Admin User'}
 //                   </p>
 //                   <p className="text-xs text-gray-500 truncate mt-0.5">
@@ -780,14 +792,14 @@
 //                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full border ${roleInfo.badgeColor}`}>
 //                       {roleInfo.name}
 //                     </span>
-//                     <roleInfo.icon className="w-3 h-3 text-[#06B6D4] ml-1" />
+//                     <roleInfo.icon className="w-3 h-3 text-gray-500 ml-1" />
 //                   </div>
 //                 </div>
 //               </div>
 //             </div>
 //           )}
 
-//           {/* Navigation - With all groups and proper spacing */}
+//           {/* Navigation - Black active state */}
 //           <nav className="px-3 py-4 h-[calc(100vh-11rem)] overflow-y-auto pb-24 custom-scroll">
 //             <div className="space-y-0.5">
 //               {filteredNavigation.map((item, index) => {
@@ -795,7 +807,6 @@
 //                   const isGroupActive = getGroupActiveState(item);
 //                   const isExpanded = expandedMenus[item.name.replace(/\s/g, '')];
                   
-//                   // Filter children based on permissions
 //                   const filteredChildren = item.children.filter(child => 
 //                     userRole === 'super_admin' || canAccessMenuItem(child)
 //                   );
@@ -804,7 +815,7 @@
                   
 //                   return (
 //                     <div key={item.name} className="mb-1">
-//                       {/* Parent Group Button */}
+//                       {/* Parent Group Button - Black accent */}
 //                       <button
 //                         onClick={(e) => {
 //                           e.stopPropagation();
@@ -812,31 +823,31 @@
 //                         }}
 //                         className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
 //                           isGroupActive
-//                             ? 'bg-[#06B6D4]/10 text-[#004767] border-2 border-[#06B6D4]/30 shadow-sm'
-//                             : 'text-gray-700 hover:bg-[#06B6D4]/5 hover:text-[#004767]'
+//                             ? 'bg-black text-white shadow-md'
+//                             : 'text-gray-700 hover:bg-gray-100'
 //                         }`}
 //                       >
 //                         <div className="flex items-center gap-3">
 //                           <item.icon className={`w-5 h-5 ${
-//                             isGroupActive ? 'text-[#06B6D4]' : 'text-gray-400 group-hover:text-[#06B6D4]'
+//                             isGroupActive ? 'text-white' : 'text-gray-400'
 //                           }`} />
-//                           <span className={isGroupActive ? 'text-[#06B6D4] font-semibold' : ''}>{item.name}</span>
+//                           <span className={isGroupActive ? 'text-white font-semibold' : ''}>{item.name}</span>
 //                           {isGroupActive && (
-//                             <span className="ml-auto text-xs bg-[#06B6D4] text-white px-2 py-0.5 rounded-full">
+//                             <span className="ml-auto text-xs bg-white text-black px-2 py-0.5 rounded-full">
 //                               {filteredChildren.length}
 //                             </span>
 //                           )}
 //                         </div>
 //                         {isExpanded ? (
-//                           <ChevronUp className={`w-4 h-4 ${isGroupActive ? 'text-[#06B6D4]' : 'text-gray-400'}`} />
+//                           <ChevronUp className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-gray-400'}`} />
 //                         ) : (
-//                           <ChevronDown className={`w-4 h-4 ${isGroupActive ? 'text-[#06B6D4]' : 'text-gray-400'}`} />
+//                           <ChevronDown className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-gray-400'}`} />
 //                         )}
 //                       </button>
 
-//                       {/* Sub-menu items with spacing */}
+//                       {/* Sub-menu items - Gray border */}
 //                       {isExpanded && (
-//                         <div className="ml-4 mt-2 space-y-1 border-l-2 border-[#06B6D4]/20 pl-3">
+//                         <div className="ml-4 mt-2 space-y-1 border-l-2 border-gray-200 pl-3">
 //                           {filteredChildren.map((child) => {
 //                             const active = isActive(child.href);
 //                             return (
@@ -845,12 +856,12 @@
 //                                 onClick={(e) => handleNavigation(child.href, e)}
 //                                 className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
 //                                   active
-//                                     ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white shadow-lg shadow-[#06B6D4]/20'
-//                                     : 'text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767]'
+//                                     ? 'bg-black text-white shadow-md'
+//                                     : 'text-gray-700 hover:bg-gray-100'
 //                                 }`}
 //                               >
 //                                 <child.icon className={`w-4 h-4 ${
-//                                   active ? 'text-white' : 'text-gray-400 group-hover:text-[#06B6D4]'
+//                                   active ? 'text-white' : 'text-gray-400'
 //                                 }`} />
 //                                 <span>{child.name}</span>
 //                                 {active && <ChevronRight className="w-3 h-3 ml-auto text-white" />}
@@ -863,7 +874,7 @@
 //                   );
 //                 }
                 
-//                 // Regular menu item
+//                 // Regular menu item - Black active
 //                 const active = isActive(item.href);
 //                 return (
 //                   <div
@@ -871,13 +882,13 @@
 //                     onClick={(e) => handleNavigation(item.href, e)}
 //                     className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
 //                       active
-//                         ? 'bg-gradient-to-r from-[#06B6D4] to-[#004767] text-white shadow-lg shadow-[#06B6D4]/20'
-//                         : 'text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767]'
+//                         ? 'bg-black text-white shadow-md'
+//                         : 'text-gray-700 hover:bg-gray-100'
 //                     }`}
 //                   >
 //                     <div className="flex items-center gap-3">
 //                       <item.icon className={`w-5 h-5 ${
-//                         active ? 'text-white' : 'text-gray-400 group-hover:text-[#06B6D4]'
+//                         active ? 'text-white' : 'text-gray-400'
 //                       }`} />
 //                       <span>{item.name}</span>
 //                     </div>
@@ -888,14 +899,14 @@
 //             </div>
 //           </nav>
 
-//           {/* Logout button */}
-//           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa] backdrop-blur">
+//           {/* Logout button - Black accent */}
+//           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
 //             <button
 //               onClick={logout}
-//               className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-[#06B6D4]/10 hover:text-[#004767] w-full transition-all group"
+//               className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 w-full transition-all group"
 //             >
-//               <div className="w-8 h-8 rounded-lg bg-[#06B6D4]/10 group-hover:bg-[#06B6D4]/20 flex items-center justify-center">
-//                 <LogOut className="w-4 h-4 text-[#06B6D4] group-hover:text-[#004767]" />
+//               <div className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-red-100 flex items-center justify-center">
+//                 <LogOut className="w-4 h-4 text-gray-500 group-hover:text-red-600" />
 //               </div>
 //               <span>Logout</span>
 //             </button>
@@ -903,16 +914,16 @@
 //         </div>
 
 //         {/* Main content */}
-//         <div className="lg:ml-72 min-h-screen">
-//           {/* Top header */}
-//           <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#06B6D4]/20 shadow-sm" style={{ margin: 0 }}>
+//         <div className="lg:ml-72 min-h-screen -mt-16">
+//           {/* Top header - White with black accents */}
+//           <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm " style={{ margin: 0 }}>
 //             <div className="px-4 sm:px-6 lg:px-8" style={{ margin: 0 }}>
 //               <div className="flex items-center justify-between h-20" style={{ margin: 0 }}>
 //                 {/* Left section */}
 //                 <div className="flex items-center gap-3">
 //                   <button
 //                     onClick={() => setSidebarOpen(true)}
-//                     className="lg:hidden w-10 h-10 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4]/20 transition-colors"
+//                     className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
 //                   >
 //                     <Menu className="w-5 h-5" />
 //                   </button>
@@ -920,7 +931,7 @@
 //                   {/* Dynamic Logo in header */}
 //                   <div className="lg:hidden">
 //                     <DynamicLogo 
-//                       textClassName="text-lg font-bold text-[#004767]"
+//                       textClassName="text-lg font-bold text-black"
 //                       iconClassName="w-6 h-6"
 //                     />
 //                   </div>
@@ -928,13 +939,13 @@
 //                   {/* Welcome Message */}
 //                   {user && (
 //                     <div className="hidden lg:flex items-center gap-2">
-//                       <span className="text-lg md:text-2xl font-bold text-[#004767]">Welcome back,</span>
-//                       <span className="text-lg md:text-2xl font-bold text-[#06B6D4]">
+//                       <span className="text-lg md:text-2xl font-bold text-gray-800">Welcome back,</span>
+//                       <span className="text-lg md:text-2xl font-bold text-black">
 //                         {user.contactPerson || 'Admin'}
 //                       </span>
-//                       <Zap className="w-5 h-5 text-[#06B6D4] hidden md:block" />
+//                       <Zap className="w-5 h-5 text-gray-400 hidden md:block" />
                       
-//                       {/* Role badge in header */}
+//                       {/* Role badge in header - Black accent */}
 //                       <span className={`ml-2 text-xs font-medium px-2 py-1 rounded-full border ${roleInfo.badgeColor} hidden md:inline-flex items-center gap-1`}>
 //                         <roleInfo.icon className="w-3 h-3" />
 //                         {roleInfo.name}
@@ -947,45 +958,45 @@
 //                 <div className="flex items-center gap-3">
 //                   <Link 
 //                     href="/" 
-//                     className="w-10 h-10 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4]/20 transition-colors group"
+//                     className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors group"
 //                     title="Go to Homepage"
 //                   >
 //                     <Store className="w-5 h-5 group-hover:scale-110 transition-transform" />
 //                   </Link>
 
-//                   {/* User Dropdown */}
+//                   {/* User Dropdown - Black accent */}
 //                   {user && (
 //                     <div className="relative">
 //                       <button
 //                         onClick={() => setUserMenuOpen(!userMenuOpen)}
-//                         className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-[#06B6D4]/10 transition-colors"
+//                         className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-gray-100 transition-colors"
 //                       >
 //                         <div className="text-right hidden md:block">
-//                           <p className="text-sm font-medium text-[#004767]">{user.contactPerson || 'Admin'}</p>
+//                           <p className="text-sm font-medium text-gray-800">{user.contactPerson || 'Admin'}</p>
 //                           <p className="text-xs text-gray-500">{user.email}</p>
 //                         </div>
-//                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-gradient-to-br ${roleInfo.color} shadow-md`}>
+//                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-black shadow-md`}>
 //                           {user.contactPerson?.charAt(0) || user.email?.charAt(0)}
 //                         </div>
-//                         <ChevronDown className={`w-4 h-4 text-[#06B6D4] transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+//                         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
 //                       </button>
 
-//                       {/* Dropdown Menu */}
+//                       {/* Dropdown Menu - Black accent */}
 //                       {userMenuOpen && (
 //                         <>
 //                           <div 
 //                             className="fixed inset-0 z-40"
 //                             onClick={() => setUserMenuOpen(false)}
 //                           />
-//                           <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[#06B6D4]/20 py-2 z-50">
-//                             <div className={`px-4 py-3 border-b border-[#06B6D4]/20 bg-gradient-to-r from-white to-[#f0f7fa] rounded-t-2xl`}>
-//                               <p className="text-sm font-semibold text-[#004767]">{user.contactPerson || 'Admin'}</p>
+//                           <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
+//                             <div className={`px-4 py-3 border-b border-gray-200 bg-gray-50 rounded-t-2xl`}>
+//                               <p className="text-sm font-semibold text-gray-900">{user.contactPerson || 'Admin'}</p>
 //                               <p className="text-xs text-gray-500 truncate mt-0.5">{user.email}</p>
 //                               <div className="flex items-center gap-2 mt-2">
 //                                 <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${roleInfo.badgeColor}`}>
 //                                   {roleInfo.name}
 //                                 </span>
-//                                 <Zap className="w-3 h-3 text-[#06B6D4]" />
+//                                 <Zap className="w-3 h-3 text-gray-400" />
 //                               </div>
 //                             </div>
                             
@@ -995,9 +1006,9 @@
 //                                   setUserMenuOpen(false);
 //                                   handleNavigation('/authorize/role-management', e);
 //                                 }}
-//                                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767] transition-colors cursor-pointer"
+//                                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
 //                               >
-//                                 <ShieldCheck className="w-4 h-4 text-[#06B6D4]" />
+//                                 <ShieldCheck className="w-4 h-4 text-gray-500" />
 //                                 <span>Role Management</span>
 //                               </div>
 //                             )}
@@ -1007,9 +1018,9 @@
 //                                 setUserMenuOpen(false);
 //                                 handleNavigation('/authorize/settings', e);
 //                               }}
-//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#06B6D4]/10 hover:text-[#004767] transition-colors cursor-pointer"
+//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
 //                             >
-//                               <Settings className="w-4 h-4 text-[#06B6D4]" />
+//                               <Settings className="w-4 h-4 text-gray-500" />
 //                               <span>Settings</span>
 //                             </div>
                             
@@ -1018,7 +1029,7 @@
 //                                 setUserMenuOpen(false);
 //                                 logout();
 //                               }}
-//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-[#06B6D4]/20 mt-1 pt-2 rounded-b-2xl"
+//                               className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-gray-200 mt-1 pt-2 rounded-b-2xl"
 //                             >
 //                               <LogOut className="w-4 h-4" />
 //                               <span>Logout</span>
@@ -1040,21 +1051,21 @@
 //         </div>
 //       </div>
 
-//       {/* Custom scrollbar styles */}
+//       {/* Custom scrollbar styles - Black */}
 //       <style jsx>{`
 //         .custom-scroll::-webkit-scrollbar {
 //           width: 5px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-track {
-//           background: #f0f7fa;
+//           background: #f1f1f1;
 //           border-radius: 10px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-thumb {
-//           background: linear-gradient(to bottom, #06B6D4, #004767);
+//           background: linear-gradient(to bottom, #000000, #333333);
 //           border-radius: 10px;
 //         }
 //         .custom-scroll::-webkit-scrollbar-thumb:hover {
-//           background: linear-gradient(to bottom, #0891B2, #003a5a);
+//           background: linear-gradient(to bottom, #1a1a1a, #4a4a4a);
 //         }
 //       `}</style>
 //     </>
@@ -1171,8 +1182,8 @@ export default function AuthorizeLayout({ children }) {
     }
 
     if (href === '/authorize/create-order') {
-  return currentPath === '/authorize/create-order';
-}
+      return currentPath === '/authorize/create-order';
+    }
     
     // Orders group
     if (href === '/authorize/orders') {
@@ -1372,8 +1383,8 @@ export default function AuthorizeLayout({ children }) {
       admin: { 
         name: 'Administrator', 
         icon: UsersRound,
-        color: 'from-black to-gray-800',
-        badgeColor: 'bg-gray-100 text-gray-800 border-gray-300'
+        color: 'from-[#EE4275] to-[#FF6B9D]',
+        badgeColor: 'bg-[#F7C7D3]/30 text-[#EE4275] border-[#EE4275]/30'
       },
       moderator: { 
         name: 'Moderator', 
@@ -1790,7 +1801,7 @@ export default function AuthorizeLayout({ children }) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading...</p>
         </div>
       </div>
@@ -1822,29 +1833,29 @@ export default function AuthorizeLayout({ children }) {
           />
         )}
 
-        {/* Sidebar - Black and White theme */}
-        <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        {/* Sidebar - Pink theme */}
+        <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl border-r border-[#F7C7D3]/40 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}>
-          {/* Sidebar header with dynamic logo - White background */}
-          <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 bg-white">
+          {/* Sidebar header with dynamic logo */}
+          <div className="h-20 flex items-center justify-center px-6 border-b border-[#F7C7D3]/40 bg-white">
             <DynamicLogo 
               className="justify-center"
-              textClassName="text-xl font-bold text-black"
-              iconClassName="w-8 h-8"
+              textClassName="text-xl font-bold text-[#2D1B2E]"
+              iconClassName="w-8 h-8 text-[#EE4275]"
               linkClassName="justify-center"
             />
           </div>
 
-          {/* User info - Black accent */}
+          {/* User info - Pink accent */}
           {user && (
-            <div className="px-4 py-4 border-b border-gray-200 bg-gray-50">
+            <div className="px-4 py-4 border-b border-[#F7C7D3]/40 bg-[#FFF5F6]">
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-black`}>
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold text-lg shadow-lg bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]`}>
                   {user.contactPerson?.charAt(0) || user.email?.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">
+                  <p className="text-sm font-semibold text-[#2D1B2E] truncate">
                     {user.contactPerson || 'Admin User'}
                   </p>
                   <p className="text-xs text-gray-500 truncate mt-0.5">
@@ -1854,14 +1865,14 @@ export default function AuthorizeLayout({ children }) {
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full border ${roleInfo.badgeColor}`}>
                       {roleInfo.name}
                     </span>
-                    <roleInfo.icon className="w-3 h-3 text-gray-500 ml-1" />
+                    <roleInfo.icon className="w-3 h-3 text-[#EE4275] ml-1" />
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Navigation - Black active state */}
+          {/* Navigation - Pink active state */}
           <nav className="px-3 py-4 h-[calc(100vh-11rem)] overflow-y-auto pb-24 custom-scroll">
             <div className="space-y-0.5">
               {filteredNavigation.map((item, index) => {
@@ -1877,7 +1888,7 @@ export default function AuthorizeLayout({ children }) {
                   
                   return (
                     <div key={item.name} className="mb-1">
-                      {/* Parent Group Button - Black accent */}
+                      {/* Parent Group Button - Pink accent */}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -1885,31 +1896,31 @@ export default function AuthorizeLayout({ children }) {
                         }}
                         className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
                           isGroupActive
-                            ? 'bg-black text-white shadow-md'
-                            : 'text-gray-700 hover:bg-gray-100'
+                            ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20'
+                            : 'text-[#2D1B2E] hover:bg-[#F7C7D3]/20'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <item.icon className={`w-5 h-5 ${
-                            isGroupActive ? 'text-white' : 'text-gray-400'
+                            isGroupActive ? 'text-white' : 'text-[#EE4275]'
                           }`} />
                           <span className={isGroupActive ? 'text-white font-semibold' : ''}>{item.name}</span>
                           {isGroupActive && (
-                            <span className="ml-auto text-xs bg-white text-black px-2 py-0.5 rounded-full">
+                            <span className="ml-auto text-xs bg-white text-[#EE4275] px-2 py-0.5 rounded-full">
                               {filteredChildren.length}
                             </span>
                           )}
                         </div>
                         {isExpanded ? (
-                          <ChevronUp className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-gray-400'}`} />
+                          <ChevronUp className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-[#EE4275]'}`} />
                         ) : (
-                          <ChevronDown className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-gray-400'}`} />
+                          <ChevronDown className={`w-4 h-4 ${isGroupActive ? 'text-white' : 'text-[#EE4275]'}`} />
                         )}
                       </button>
 
-                      {/* Sub-menu items - Gray border */}
+                      {/* Sub-menu items - Pink border */}
                       {isExpanded && (
-                        <div className="ml-4 mt-2 space-y-1 border-l-2 border-gray-200 pl-3">
+                        <div className="ml-4 mt-2 space-y-1 border-l-2 border-[#F7C7D3]/50 pl-3">
                           {filteredChildren.map((child) => {
                             const active = isActive(child.href);
                             return (
@@ -1918,12 +1929,12 @@ export default function AuthorizeLayout({ children }) {
                                 onClick={(e) => handleNavigation(child.href, e)}
                                 className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
                                   active
-                                    ? 'bg-black text-white shadow-md'
-                                    : 'text-gray-700 hover:bg-gray-100'
+                                    ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20'
+                                    : 'text-[#2D1B2E] hover:bg-[#F7C7D3]/20'
                                 }`}
                               >
                                 <child.icon className={`w-4 h-4 ${
-                                  active ? 'text-white' : 'text-gray-400'
+                                  active ? 'text-white' : 'text-[#EE4275]'
                                 }`} />
                                 <span>{child.name}</span>
                                 {active && <ChevronRight className="w-3 h-3 ml-auto text-white" />}
@@ -1936,7 +1947,7 @@ export default function AuthorizeLayout({ children }) {
                   );
                 }
                 
-                // Regular menu item - Black active
+                // Regular menu item - Pink active
                 const active = isActive(item.href);
                 return (
                   <div
@@ -1944,13 +1955,13 @@ export default function AuthorizeLayout({ children }) {
                     onClick={(e) => handleNavigation(item.href, e)}
                     className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${
                       active
-                        ? 'bg-black text-white shadow-md'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20'
+                        : 'text-[#2D1B2E] hover:bg-[#F7C7D3]/20'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <item.icon className={`w-5 h-5 ${
-                        active ? 'text-white' : 'text-gray-400'
+                        active ? 'text-white' : 'text-[#EE4275]'
                       }`} />
                       <span>{item.name}</span>
                     </div>
@@ -1961,14 +1972,14 @@ export default function AuthorizeLayout({ children }) {
             </div>
           </nav>
 
-          {/* Logout button - Black accent */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+          {/* Logout button - Pink accent */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#F7C7D3]/40 bg-white">
             <button
               onClick={logout}
-              className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 w-full transition-all group"
+              className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#2D1B2E] rounded-xl hover:bg-[#F7C7D3]/30 hover:text-[#EE4275] w-full transition-all group"
             >
-              <div className="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-red-100 flex items-center justify-center">
-                <LogOut className="w-4 h-4 text-gray-500 group-hover:text-red-600" />
+              <div className="w-8 h-8 rounded-lg bg-[#F7C7D3]/20 group-hover:bg-[#F7C7D3]/50 flex items-center justify-center">
+                <LogOut className="w-4 h-4 text-[#EE4275] group-hover:text-[#EE4275]" />
               </div>
               <span>Logout</span>
             </button>
@@ -1977,15 +1988,15 @@ export default function AuthorizeLayout({ children }) {
 
         {/* Main content */}
         <div className="lg:ml-72 min-h-screen -mt-16">
-          {/* Top header - White with black accents */}
-          <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm " style={{ margin: 0 }}>
+          {/* Top header - White with pink accents */}
+          <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#F7C7D3]/40 shadow-sm" style={{ margin: 0 }}>
             <div className="px-4 sm:px-6 lg:px-8" style={{ margin: 0 }}>
               <div className="flex items-center justify-between h-20" style={{ margin: 0 }}>
                 {/* Left section */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
+                    className="lg:hidden w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center text-[#EE4275] hover:bg-[#F7C7D3]/40 transition-colors"
                   >
                     <Menu className="w-5 h-5" />
                   </button>
@@ -1993,21 +2004,21 @@ export default function AuthorizeLayout({ children }) {
                   {/* Dynamic Logo in header */}
                   <div className="lg:hidden">
                     <DynamicLogo 
-                      textClassName="text-lg font-bold text-black"
-                      iconClassName="w-6 h-6"
+                      textClassName="text-lg font-bold text-[#2D1B2E]"
+                      iconClassName="w-6 h-6 text-[#EE4275]"
                     />
                   </div>
                   
                   {/* Welcome Message */}
                   {user && (
                     <div className="hidden lg:flex items-center gap-2">
-                      <span className="text-lg md:text-2xl font-bold text-gray-800">Welcome back,</span>
-                      <span className="text-lg md:text-2xl font-bold text-black">
+                      <span className="text-lg md:text-2xl font-bold text-[#2D1B2E]">Welcome back,</span>
+                      <span className="text-lg md:text-2xl font-bold text-[#EE4275]">
                         {user.contactPerson || 'Admin'}
                       </span>
-                      <Zap className="w-5 h-5 text-gray-400 hidden md:block" />
+                      <Sparkles className="w-5 h-5 text-[#EE4275] hidden md:block" />
                       
-                      {/* Role badge in header - Black accent */}
+                      {/* Role badge in header - Pink accent */}
                       <span className={`ml-2 text-xs font-medium px-2 py-1 rounded-full border ${roleInfo.badgeColor} hidden md:inline-flex items-center gap-1`}>
                         <roleInfo.icon className="w-3 h-3" />
                         {roleInfo.name}
@@ -2020,45 +2031,45 @@ export default function AuthorizeLayout({ children }) {
                 <div className="flex items-center gap-3">
                   <Link 
                     href="/" 
-                    className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors group"
+                    className="w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center text-[#EE4275] hover:bg-[#F7C7D3]/40 transition-colors group"
                     title="Go to Homepage"
                   >
                     <Store className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </Link>
 
-                  {/* User Dropdown - Black accent */}
+                  {/* User Dropdown - Pink accent */}
                   {user && (
                     <div className="relative">
                       <button
                         onClick={() => setUserMenuOpen(!userMenuOpen)}
-                        className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-3 pl-3 pr-2 py-2 rounded-lg hover:bg-[#F7C7D3]/20 transition-colors"
                       >
                         <div className="text-right hidden md:block">
-                          <p className="text-sm font-medium text-gray-800">{user.contactPerson || 'Admin'}</p>
+                          <p className="text-sm font-medium text-[#2D1B2E]">{user.contactPerson || 'Admin'}</p>
                           <p className="text-xs text-gray-500">{user.email}</p>
                         </div>
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-black shadow-md`}>
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-sm bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] shadow-md shadow-[#EE4275]/20`}>
                           {user.contactPerson?.charAt(0) || user.email?.charAt(0)}
                         </div>
-                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 text-[#EE4275] transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
                       </button>
 
-                      {/* Dropdown Menu - Black accent */}
+                      {/* Dropdown Menu - Pink accent */}
                       {userMenuOpen && (
                         <>
                           <div 
                             className="fixed inset-0 z-40"
                             onClick={() => setUserMenuOpen(false)}
                           />
-                          <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
-                            <div className={`px-4 py-3 border-b border-gray-200 bg-gray-50 rounded-t-2xl`}>
-                              <p className="text-sm font-semibold text-gray-900">{user.contactPerson || 'Admin'}</p>
+                          <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[#F7C7D3]/40 py-2 z-50">
+                            <div className={`px-4 py-3 border-b border-[#F7C7D3]/40 bg-[#FFF5F6] rounded-t-2xl`}>
+                              <p className="text-sm font-semibold text-[#2D1B2E]">{user.contactPerson || 'Admin'}</p>
                               <p className="text-xs text-gray-500 truncate mt-0.5">{user.email}</p>
                               <div className="flex items-center gap-2 mt-2">
                                 <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${roleInfo.badgeColor}`}>
                                   {roleInfo.name}
                                 </span>
-                                <Zap className="w-3 h-3 text-gray-400" />
+                                <Sparkles className="w-3 h-3 text-[#EE4275]" />
                               </div>
                             </div>
                             
@@ -2068,9 +2079,9 @@ export default function AuthorizeLayout({ children }) {
                                   setUserMenuOpen(false);
                                   handleNavigation('/authorize/role-management', e);
                                 }}
-                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#2D1B2E] hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
                               >
-                                <ShieldCheck className="w-4 h-4 text-gray-500" />
+                                <ShieldCheck className="w-4 h-4 text-[#EE4275]" />
                                 <span>Role Management</span>
                               </div>
                             )}
@@ -2080,9 +2091,9 @@ export default function AuthorizeLayout({ children }) {
                                 setUserMenuOpen(false);
                                 handleNavigation('/authorize/settings', e);
                               }}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#2D1B2E] hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
                             >
-                              <Settings className="w-4 h-4 text-gray-500" />
+                              <Settings className="w-4 h-4 text-[#EE4275]" />
                               <span>Settings</span>
                             </div>
                             
@@ -2091,7 +2102,7 @@ export default function AuthorizeLayout({ children }) {
                                 setUserMenuOpen(false);
                                 logout();
                               }}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-gray-200 mt-1 pt-2 rounded-b-2xl"
+                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full text-left border-t border-[#F7C7D3]/40 mt-1 pt-2 rounded-b-2xl"
                             >
                               <LogOut className="w-4 h-4" />
                               <span>Logout</span>
@@ -2113,7 +2124,7 @@ export default function AuthorizeLayout({ children }) {
         </div>
       </div>
 
-      {/* Custom scrollbar styles - Black */}
+      {/* Custom scrollbar styles - Pink */}
       <style jsx>{`
         .custom-scroll::-webkit-scrollbar {
           width: 5px;
@@ -2123,11 +2134,11 @@ export default function AuthorizeLayout({ children }) {
           border-radius: 10px;
         }
         .custom-scroll::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, #000000, #333333);
+          background: linear-gradient(to bottom, #EE4275, #FF6B9D);
           border-radius: 10px;
         }
         .custom-scroll::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #1a1a1a, #4a4a4a);
+          background: linear-gradient(to bottom, #d43b68, #ee5a8c);
         }
       `}</style>
     </>
