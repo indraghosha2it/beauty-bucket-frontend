@@ -1,3 +1,4 @@
+// app/terms/page.js
 import { Suspense } from 'react';
 import TermsClient from './TermsClient';
 
@@ -10,10 +11,10 @@ function TermsLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#F0F7FF] to-[#DBEAFE] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF5F6] to-[#FFD2DB] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 mx-auto bg-[#2563EB]/20 rounded-full animate-pulse mb-4"></div>
-          <div className="h-6 w-48 bg-[#2563EB]/20 rounded mx-auto animate-pulse"></div>
+          <div className="w-16 h-16 mx-auto bg-[#EE4275]/20 rounded-full animate-pulse mb-4"></div>
+          <div className="h-6 w-48 bg-[#EE4275]/20 rounded mx-auto animate-pulse"></div>
         </div>
       </div>
       <Footer />
@@ -21,89 +22,114 @@ function TermsLoading() {
   );
 }
 
-// Smart Gadget Terms & Conditions Page SEO Metadata
+// Beauty Bucket Terms & Conditions Page SEO Metadata
 export const metadata = {
-  title: "Terms & Conditions - Smart Gadget | Legal Terms for Electronics Purchase",
-  description: "Read Smart Gadget's terms and conditions for online electronics purchases in Bangladesh. Learn about pricing, shipping, returns, warranty, and legal policies for premium gadgets.",
+  title: "Terms & Conditions - Beauty Bucket | Legal Terms for Beauty Products Purchase",
+  description: "Read Beauty Bucket's terms and conditions for online beauty and cosmetics purchases in Bangladesh. Learn about pricing, shipping, returns, product authenticity, and legal policies for premium beauty products.",
   keywords: [
     // Legal terms specific
-    "terms and conditions smart gadget",
-    "gadget store legal terms bd",
-    "electronics purchase terms",
-    "smart gadget policies",
-    "online electronics store terms bangladesh",
-    "legal terms electronics bd",
+    "terms and conditions beauty bucket",
+    "cosmetics store legal terms bd",
+    "beauty products purchase terms",
+    "beauty bucket policies",
+    "online cosmetics store terms bangladesh",
+    "legal terms beauty bd",
     
     // Purchase terms
-    "gadget purchase agreement",
-    "tech products terms bd",
-    "smart gadget return policy",
-    "electronics warranty terms",
-    "refund policy gadgets",
-    "consumer electronics terms",
+    "beauty purchase agreement",
+    "cosmetics products terms bd",
+    "beauty bucket return policy",
+    "cosmetics warranty terms",
+    "refund policy beauty products",
+    "consumer cosmetics terms",
     
     // Shipping terms
-    "gadget delivery terms",
-    "shipping policy electronics bd",
-    "cod terms gadgets",
-    "smart gadget shipping policy",
-    "electronics delivery policy bd",
-    "express delivery terms",
+    "beauty delivery terms",
+    "shipping policy cosmetics bd",
+    "cod terms beauty products",
+    "beauty bucket shipping policy",
+    "cosmetics delivery policy bd",
+    "express delivery terms beauty",
     
     // Payment terms
-    "gadget payment terms",
-    "bkash payment policy",
-    "nagad payment terms",
-    "electronics pricing policy",
-    "emi payment terms bd",
-    "credit card payment policy",
+    "beauty payment terms",
+    "bkash payment policy cosmetics",
+    "nagad payment terms beauty",
+    "cosmetics pricing policy",
+    "emi payment terms bd beauty",
+    "credit card payment policy cosmetics",
+    
+    // Authenticity & Quality
+    "beauty product authenticity policy",
+    "cosmetics quality guarantee",
+    "authenticity guarantee terms bd",
+    "quality assurance beauty products",
+    "genuine products policy bd",
+    "skin care product authenticity",
+    
+    // Returns & Exchanges
+    "beauty return policy bangladesh",
+    "cosmetics exchange policy",
+    "makeup return terms bd",
+    "skincare product return policy",
+    "fragrance return policy bd",
+    "beauty product exchange terms",
     
     // Warranty & Service
-    "electronics warranty policy",
-    "gadget repair policy",
-    "warranty claim terms bd",
-    "after sales service policy",
-    "tech support terms",
-    "official warranty terms",
+    "cosmetics warranty policy",
+    "beauty product guarantee",
+    "quality claim terms bd",
+    "after sales service policy beauty",
+    "beauty support terms",
+    "satisfaction guarantee terms",
     
     // Legal compliance
-    "electronics safety compliance",
-    "consumer rights electronics bd",
-    "product liability gadgets",
-    "smart gadget legal information",
-    "import compliance bd",
-    "electronics standards bd",
+    "cosmetics safety compliance",
+    "consumer rights beauty bd",
+    "product liability cosmetics",
+    "beauty bucket legal information",
+    "cosmetics standards bd",
+    "beauty product regulations bd",
     
     // Account terms
-    "user account terms",
-    "customer agreement electronics",
-    "smart gadget account policy",
-    "tech buyer agreement",
+    "user account terms beauty",
+    "customer agreement cosmetics",
+    "beauty bucket account policy",
+    "beauty buyer agreement",
     
     // Privacy & Security
-    "privacy policy gadgets",
-    "data protection electronics bd",
-    "secure transaction terms",
-    "customer data policy bd",
+    "privacy policy beauty products",
+    "data protection cosmetics bd",
+    "secure transaction terms beauty",
+    "customer data policy bd beauty",
+    
+    // Beauty specific
+    "skin care product terms",
+    "makeup purchase policy",
+    "cosmetics consumer protection",
+    "beauty product warranty bd",
+    "authentic skincare terms",
+    "beauty shopping terms bd",
     
     // Additional
-    "consumer protection bd",
-    "digital commerce terms",
-    "online purchase policy bd",
-    "gadget buyer protection",
-    "electronics transaction terms"
+    "consumer protection bd beauty",
+    "digital commerce terms cosmetics",
+    "online purchase policy bd beauty",
+    "beauty buyer protection",
+    "cosmetics transaction terms",
+    "eco-friendly beauty policy"
   ],
   openGraph: {
-    title: "Terms & Conditions - Smart Gadget | Legal Information for Electronics Purchases",
-    description: "Review Smart Gadget's complete terms and conditions. Understand our policies on pricing, shipping, returns, warranty, privacy, and customer responsibilities for premium gadgets.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/terms' || 'https://smartgadget.com.bd/terms',
-    siteName: "Smart Gadget",
+    title: "Terms & Conditions - Beauty Bucket | Legal Information for Beauty Products Purchases",
+    description: "Review Beauty Bucket's complete terms and conditions. Understand our policies on pricing, shipping, returns, authenticity, privacy, and customer responsibilities for premium beauty products.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/terms' || 'https://beautybucket.com.bd/terms',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/terms-og-smartgadget.jpg',
+        url: '/terms-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Gadget Terms & Conditions - Legal Information for Electronics',
+        alt: 'Beauty Bucket Terms & Conditions - Legal Information for Beauty Products',
       },
     ],
     type: 'website',
@@ -112,11 +138,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Terms & Conditions | Smart Gadget",
-    description: "Read Smart Gadget's terms for online electronics purchases in Bangladesh. Pricing, shipping, returns, warranty, and privacy policies.",
-    images: ['/terms-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Terms & Conditions | Beauty Bucket",
+    description: "Read Beauty Bucket's terms for online beauty and cosmetics purchases in Bangladesh. Pricing, shipping, returns, authenticity, and privacy policies.",
+    images: ['/terms-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/terms',
@@ -138,22 +164,22 @@ export const metadata = {
   },
   // Terms page specific metadata
   other: {
-    'application-name': 'Smart Gadget Terms',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket Terms',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'legal-terms',
     'last-updated': '2024-01-01',
     'jurisdiction': 'Bangladesh',
-    'legal-entity': 'Smart Gadget BD',
+    'legal-entity': 'Beauty Bucket BD',
     'company-registration': 'Registered in Bangladesh',
     'tax-id': 'TIN: 123456789',
     
     // Policy details
     'return-policy-period': '7 Days',
-    'warranty-policy': 'Official Brand Warranty',
+    'authenticity-guarantee': '100% Authentic Products',
     'refund-policy': 'Within 7-14 business days',
     'replacement-policy': 'Within 7 days of delivery',
-    'repair-policy': 'Warranty terms apply',
+    'exchange-policy': 'Subject to terms and conditions',
     
     // Consumer rights
     'consumer-protection': 'Bangladesh Consumer Rights Act',
@@ -172,11 +198,19 @@ export const metadata = {
     'payment-security': '256-bit SSL Encrypted',
     'refund-processing': '5-7 business days',
     
-    // Warranty details
-    'warranty-type': 'Official Manufacturer Warranty',
-    'warranty-period': 'Brand-dependent (6-24 months)',
-    'warranty-service': 'Service Center Support',
-    'free-service': 'Within warranty period',
+    // Authenticity & Quality
+    'authenticity-policy': '100% Genuine Beauty Products',
+    'quality-guarantee': 'Quality Assured Products',
+    'quality-check': 'Pre-shipment Quality Check',
+    'brand-authorization': 'Authorized Beauty Retailer',
+    'certified-products': 'Dermatologically Tested Products Available',
+    
+    // Product safety
+    'safety-standards': 'ISO, GMP Certified',
+    'skin-safety': 'Hypoallergenic Options, Non-Comedogenic Options',
+    'ingredient-transparency': 'Full Ingredient Disclosure Available',
+    'ethical-standards': 'Cruelty Free Options, Vegan Options',
+    'eco-friendly': 'Eco-Friendly Packaging Options',
     
     // Data protection
     'privacy-policy': 'Data Protection Compliant',
@@ -184,12 +218,20 @@ export const metadata = {
     'data-sharing': 'Not shared with third parties',
     'data-security': 'Encrypted Storage',
     
+    // Beauty specific policies
+    'shade-matching': 'Color Matching Support Available',
+    'skin-consultation': 'Skin Care Consultation Available',
+    'product-advice': 'Beauty Expert Advice Available',
+    'sample-policy': 'Selected Products Available for Testing',
+    
     // Additional
     'business-hours': '10:00 AM - 10:00 PM (Everyday)',
-    'customer-support': 'support@smartgadget.com.bd',
+    'customer-support': 'support@beautybucket.com',
     'emergency-contact': '+880123456789',
     'terms-version': 'v2.0',
     'effective-date': 'January 1, 2024',
+    'beauty-expert': 'Available for Product Guidance',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
   },
 };
 

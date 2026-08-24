@@ -1,5 +1,4 @@
 
-
 // 'use client';
 
 // import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -50,7 +49,7 @@
 // const LoadingBar = ({ isVisible }) => {
 //   return (
 //     <div className={`fixed top-0 left-0 w-full h-0.5 bg-gray-200 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-//       <div className="h-full bg-blue-600 animate-loading-bar"></div>
+//       <div className="h-full bg-black animate-loading-bar"></div>
 //     </div>
 //   );
 // };
@@ -82,8 +81,7 @@
 //   return 0;
 // };
 
-// // Product Grid Card - Updated with Link
-// // Product Grid Card - Fixed (no nested Link)
+// // ✅ FIXED: Product Grid Card - Black/White theme, correct link
 // const ProductGridCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
 //   const [activeIndex, setActiveIndex] = useState(0);
 //   const [cartStatusLoading, setCartStatusLoading] = useState(false);
@@ -108,9 +106,8 @@
 //     return () => window.removeEventListener('resize', checkMobile);
 //   }, []);
 
-//   // Navigate in same tab using router
 //   const navigateToProduct = () => {
-//     router.push(`/productDetails?id=${product._id}`);
+//     router.push(`/product/${product.slug || product._id}`);
 //   };
 
 //   const addToCart = async (e) => {
@@ -168,8 +165,7 @@
 
 //   return (
 //     <Link
-//       // href={`/productDetails?id=${product._id}`}
-//        href={`/productDetails?id=${product.slug}`}
+//       href={`/product/${product.slug || product._id}`}
 //       className="block group bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 cursor-pointer overflow-hidden"
 //     >
 //       <div className="relative w-full h-40 overflow-hidden bg-gray-50">
@@ -236,7 +232,7 @@
 //               {cartStatusLoading ? (
 //                 <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-500" />
 //               ) : isInCart ? (
-//                 <ShoppingCart className="w-3.5 h-3.5 text-blue-600" />
+//                 <ShoppingCart className="w-3.5 h-3.5 text-black" />
 //               ) : (
 //                 <ShoppingCart className="w-3.5 h-3.5 text-black" />
 //               )}
@@ -266,7 +262,7 @@
 //               {cartStatusLoading ? (
 //                 <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-700" />
 //               ) : isInCart ? (
-//                 <ShoppingCart className="w-3.5 h-3.5 text-blue-600" />
+//                 <ShoppingCart className="w-3.5 h-3.5 text-black hover:text-white transition-colors" />
 //               ) : (
 //                 <ShoppingCart className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
 //               )}
@@ -282,7 +278,7 @@
 //             <button
 //               key={index}
 //               className={`w-6 h-6 overflow-hidden transition-all duration-200 ${
-//                 activeIndex === index ? 'ring-1 ring-blue-500 ring-offset-1' : 'opacity-60 hover:opacity-100'
+//                 activeIndex === index ? 'ring-1 ring-black ring-offset-1' : 'opacity-60 hover:opacity-100'
 //               }`}
 //               onMouseEnter={() => setActiveIndex(index)}
 //               onClick={(e) => {
@@ -340,12 +336,14 @@
 //         </div>
 //       </div>
 
-//       {/* Add to Cart / View in Cart Button */}
+//       {/* ✅ FIXED: Different colors for Add to Cart vs View in Cart */}
 //       <button
 //         onClick={addToCart}
 //         disabled={isOutOfStock}
 //         className={`w-full py-1.5 text-center text-[10px] font-medium transition-colors flex items-center justify-center gap-1 ${
-//           isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : isInCart ? 'bg-cyan-600 text-white hover:bg-cyan-700' : 'bg-black text-white hover:bg-gray-800'
+//           isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 
+//           isInCart ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:bg-gradient-to-r hover:from-blue-700 hover:to-cyan-700' : 
+//           'bg-black text-white hover:bg-gray-800'
 //         }`}
 //       >
 //         {cartStatusLoading ? (
@@ -366,10 +364,12 @@
 //   );
 // };
 
-// // Product List Card - Fixed (no nested Link)
+// // ✅ FIXED: Product List Card - Black/White theme, correct link, wider images
 // const ProductListCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
 //   const [activeIndex, setActiveIndex] = useState(0);
 //   const [cartStatusLoading, setCartStatusLoading] = useState(false);
+//   const [isHovered, setIsHovered] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
   
 //   const isInCart = propIsInCart || false;
 //   const productImages = product.images || [];
@@ -381,9 +381,20 @@
 //   const isLowStock = product.stockAlertQuantity > 0 && product.stockQuantity <= product.stockAlertQuantity;
 //   const isOutOfStock = product.stockQuantity <= 0;
 
-//   // Navigate in same tab using router
+//   // Get category name
+//   const categoryName = product.category?.name || product.categoryName || '';
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkMobile();
+//     window.addEventListener('resize', checkMobile);
+//     return () => window.removeEventListener('resize', checkMobile);
+//   }, []);
+
 //   const navigateToProduct = () => {
-//     router.push(`/productDetails?id=${product._id}`);
+//     router.push(`/product/${product.slug || product._id}`);
 //   };
 
 //   const addToCart = async (e) => {
@@ -441,18 +452,19 @@
 
 //   return (
 //     <Link
-//       // href={`/productDetails?id=${product._id}`}
-//        href={`/productDetails?id=${product.slug}`}
+//       href={`/product/${product.slug || product._id}`}
 //       className="block group bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 cursor-pointer overflow-hidden"
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
 //     >
 //       <div className="flex flex-col sm:flex-row">
-//         {/* Image Section */}
-//         <div className="sm:w-32 relative">
-//           <div className="relative h-32 overflow-hidden bg-gray-50">
+//         {/* Image Section - Wider */}
+//         <div className="sm:w-44 md:w-52 lg:w-60 relative flex-shrink-0">
+//           <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden bg-gray-50">
 //             <img
 //               src={productImages[activeIndex]?.url || productImages[0]?.url || 'https://via.placeholder.com/150?text=Product'}
 //               alt={product.productName}
-//               className="w-full h-full object-contain p-2"
+//               className="w-full h-full object-contain p-3"
 //               onError={(e) => {
 //                 e.target.onerror = null;
 //                 e.target.src = 'https://via.placeholder.com/150?text=Product';
@@ -461,34 +473,95 @@
 //             />
             
 //             {discountPercent > 0 && (
-//               <div className="absolute top-1 left-1 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 z-20 flex items-center gap-0.5">
-//                 <Zap className="w-2 h-2" />
+//               <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-2 py-1 z-20 flex items-center gap-1">
+//                 <Zap className="w-3 h-3" />
 //                 {discountPercent}%
 //               </div>
 //             )}
             
 //             {product.brand && (
-//               <div className="absolute top-1 right-1 bg-black/70 text-white text-[8px] px-1.5 py-0.5 font-medium z-20 flex items-center gap-0.5">
-//                 <Building2 className="w-2 h-2" />
+//               <div className="absolute top-2 right-2 bg-black/70 text-white text-[9px] px-2 py-1 font-medium z-20 flex items-center gap-1">
+//                 <Building2 className="w-2.5 h-2.5" />
 //                 {product.brand}
 //               </div>
 //             )}
             
 //             {isOutOfStock && (
 //               <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-20">
-//                 <span className="bg-black text-white text-[10px] font-medium px-1.5 py-0.5">Out of Stock</span>
+//                 <span className="bg-black text-white text-xs font-medium px-3 py-1.5">Out of Stock</span>
+//               </div>
+//             )}
+
+//             {/* ✅ ADDED: Hover Icons - Same as Grid Card */}
+//             {!isMobile && (
+//               <div className={`absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 z-30 transition-opacity duration-200 ${
+//                 isHovered ? 'opacity-100' : 'opacity-0'
+//               }`}>
+//                 <button
+//                   onClick={(e) => {
+//                     e.stopPropagation();
+//                     e.preventDefault();
+//                     navigateToProduct();
+//                   }}
+//                   className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
+//                 >
+//                   <Eye className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
+//                 </button>
+                
+//                 <button
+//                   onClick={addToCart}
+//                   disabled={isOutOfStock}
+//                   className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
+//                 >
+//                   {cartStatusLoading ? (
+//                     <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-700" />
+//                   ) : isInCart ? (
+//                     <ShoppingCart className="w-3.5 h-3.5 text-black hover:text-white transition-colors" />
+//                   ) : (
+//                     <ShoppingCart className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
+//                   )}
+//                 </button>
+//               </div>
+//             )}
+
+//             {/* Mobile: Always visible icons at bottom center */}
+//             {isMobile && (
+//               <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 z-30">
+//                 <button
+//                   onClick={(e) => {
+//                     e.stopPropagation();
+//                     e.preventDefault();
+//                     navigateToProduct();
+//                   }}
+//                   className="bg-white p-1.5 shadow-md inline-flex items-center justify-center"
+//                 >
+//                   <Eye className="w-3.5 h-3.5 text-gray-700" />
+//                 </button>
+//                 <button
+//                   onClick={addToCart}
+//                   disabled={isOutOfStock}
+//                   className={`p-1.5 shadow-md ${isOutOfStock ? 'bg-gray-100' : 'bg-white'}`}
+//                 >
+//                   {cartStatusLoading ? (
+//                     <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-500" />
+//                   ) : isInCart ? (
+//                     <ShoppingCart className="w-3.5 h-3.5 text-black" />
+//                   ) : (
+//                     <ShoppingCart className="w-3.5 h-3.5 text-black" />
+//                   )}
+//                 </button>
 //               </div>
 //             )}
 //           </div>
           
-//           {/* Thumbnails */}
+//           {/* Thumbnails - Bigger */}
 //           {hasMultipleImages && (
-//             <div className="flex justify-center gap-0.5 py-1 bg-gray-50">
+//             <div className="flex justify-center gap-1.5 py-2 bg-gray-50 border-t border-gray-100">
 //               {productImages.slice(0, 4).map((image, idx) => (
 //                 <div
 //                   key={idx}
-//                   className={`w-5 h-5 overflow-hidden cursor-pointer transition-all ${
-//                     activeIndex === idx ? 'ring-1 ring-blue-500' : 'opacity-60 hover:opacity-100'
+//                   className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 overflow-hidden cursor-pointer transition-all rounded-md ${
+//                     activeIndex === idx ? 'ring-2 ring-black ring-offset-1' : 'opacity-60 hover:opacity-100'
 //                   }`}
 //                   onMouseEnter={() => setActiveIndex(idx)}
 //                   onClick={(e) => {
@@ -504,45 +577,54 @@
 //           )}
 //         </div>
 
-//         {/* Content Section - Vertical layout */}
-//         <div className="flex-1 p-3">
-//           {/* Product Name */}
-//           <h3 className="text-sm font-medium text-gray-900 mb-1 line-clamp-1">{product.productName}</h3>
+//         {/* Content Section */}
+//         <div className="flex-1 p-3 sm:p-4 flex flex-col">
+//           {/* Category before product name */}
+//           {categoryName && (
+//             <p className="text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-0.5">
+//               {categoryName}
+//             </p>
+//           )}
           
-//           {/* Description */}
-//           <p className="text-[10px] text-gray-500 mb-2 line-clamp-2">
-//             {product.fullDescription?.replace(/<[^>]*>/g, '').substring(0, 100) || product.shortDescription?.replace(/<[^>]*>/g, '').substring(0, 100) || 'No description available'}
+//           {/* Product Name */}
+//           <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1 line-clamp-1 group-hover:text-black transition-colors">
+//             {product.productName}
+//           </h3>
+          
+//           {/* Description - 2 lines */}
+//           <p className="text-[10px] sm:text-xs text-gray-500 mb-2 line-clamp-2">
+//             {product.fullDescription?.replace(/<[^>]*>/g, '').substring(0, 250) || product.shortDescription?.replace(/<[^>]*>/g, '').substring(0, 150) || 'No description available'}
 //           </p>
           
 //           {/* Price and Discount Row */}
 //           <div className="flex flex-wrap items-center gap-2 mb-2">
 //             <div className="flex items-baseline gap-1.5">
-//               <span className="text-base font-bold text-black">৳{formatPrice(currentPrice)}</span>
+//               <span className="text-base sm:text-lg font-bold text-black">৳{formatPrice(currentPrice)}</span>
 //               {discountPercent > 0 && (
 //                 <>
-//                   <span className="text-[9px] text-gray-400 line-through">৳{formatPrice(originalPrice)}</span>
-//                   <span className="text-[8px] font-medium text-red-600 bg-red-50 px-1 py-0.5">-{discountPercent}%</span>
+//                   <span className="text-[9px] sm:text-xs text-gray-400 line-through">৳{formatPrice(originalPrice)}</span>
+//                   <span className="text-[8px] sm:text-[9px] font-medium text-red-600 bg-red-50 px-1.5 py-0.5 rounded">-{discountPercent}%</span>
 //                 </>
 //               )}
-//               <span className="text-[9px] text-gray-500">/{getUnitLabel(product.unit)}</span>
+//               <span className="text-[9px] sm:text-xs text-gray-500">/{getUnitLabel(product.unit)}</span>
 //             </div>
 //           </div>
           
 //           {/* Stock Status and Rating Row */}
 //           <div className="flex flex-wrap items-center gap-3 mb-3">
 //             {isOutOfStock ? (
-//               <span className="inline-flex items-center gap-1 text-red-600 text-[9px] font-medium">
-//                 <div className="w-1 h-1 bg-red-500 rounded-full"></div>
+//               <span className="inline-flex items-center gap-1 text-red-600 text-[9px] sm:text-[10px] font-medium">
+//                 <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
 //                 Out of Stock
 //               </span>
 //             ) : isLowStock ? (
-//               <span className="inline-flex items-center gap-1 text-orange-600 text-[9px] font-medium">
-//                 <AlertTriangle className="w-2 h-2" />
+//               <span className="inline-flex items-center gap-1 text-orange-600 text-[9px] sm:text-[10px] font-medium">
+//                 <AlertTriangle className="w-3 h-3" />
 //                 Only {product.stockQuantity} left
 //               </span>
 //             ) : (
-//               <span className="inline-flex items-center gap-1 text-green-600 text-[9px] font-medium">
-//                 <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+//               <span className="inline-flex items-center gap-1 text-green-600 text-[9px] sm:text-[10px] font-medium">
+//                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
 //                 In Stock ({product.stockQuantity})
 //               </span>
 //             )}
@@ -551,32 +633,35 @@
 //               <div className="flex items-center gap-1">
 //                 <div className="flex items-center">
 //                   {[1, 2, 3, 4, 5].map((star) => (
-//                     <Star key={star} className={`w-2.5 h-2.5 ${star <= Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
+//                     <Star key={star} className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${star <= Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
 //                   ))}
 //                 </div>
-//                 <span className="text-[8px] text-gray-500">({product.rating})</span>
+//                 <span className="text-[8px] sm:text-[9px] text-gray-500">({product.rating})</span>
 //               </div>
 //             )}
 //           </div>
           
-//           {/* Add to Cart / View in Cart Button */}
+//           {/* ✅ REMOVED: Action buttons row - Now icons are on image hover */}
+//           {/* Add to Cart button remains at bottom */}
 //           <button
 //             onClick={addToCart}
 //             disabled={isOutOfStock}
-//             className={`w-full sm:w-auto px-4 py-1.5 text-[10px] font-medium transition-colors flex items-center justify-center gap-1 ${
-//               isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : isInCart ? 'bg-cyan-600 text-white hover:bg-cyan-700' : 'bg-black text-white hover:bg-gray-800'
+//             className={`w-full sm:w-auto px-4 py-2 text-[10px] sm:text-xs md:text-sm font-medium transition-colors flex items-center justify-center gap-1.5 rounded-lg ${
+//               isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 
+//               isInCart ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:bg-gradient-to-r hover:from-blue-700 hover:to-cyan-700' : 
+//               'bg-black text-white hover:bg-gray-800'
 //             }`}
 //           >
 //             {cartStatusLoading ? (
 //               <Loader2 className="w-3 h-3 animate-spin" />
 //             ) : isInCart ? (
 //               <>
-//                 <ShoppingCart className="w-3 h-3" />
+//                 <ShoppingCart className="w-3.5 h-3.5" />
 //                 View in Cart
 //               </>
 //             ) : (
 //               <>
-//                 <ShoppingCart className="w-3 h-3" />
+//                 <ShoppingCart className="w-3.5 h-3.5" />
 //                 Add to Cart
 //               </>
 //             )}
@@ -586,7 +671,8 @@
 //     </Link>
 //   );
 // };
-// // Filter Sidebar Component
+
+// // Filter Sidebar Component - Black/White theme
 // const FilterSidebar = ({ 
 //   expandedSections, 
 //   toggleSection, 
@@ -763,7 +849,7 @@
           
 //           <div className="max-h-48 overflow-y-auto pr-1 space-y-1.5">
 //             {brands.map(brand => (
-//               <label key={brand._id} className="flex items-center gap-2 cursor-pointer">
+//               <label key={brand.name} className="flex items-center gap-2 cursor-pointer">
 //                 <input
 //                   type="checkbox"
 //                   checked={filters.brands.includes(brand.name)}
@@ -886,7 +972,6 @@
 //   const [maxPriceInput, setMaxPriceInput] = useState('');
 //   const [initialCategorySet, setInitialCategorySet] = useState(false);
 
-//   // Functions to open/close cart sidebar
 //   const openCartSidebar = () => {
 //     setIsCartOpen(true);
 //   };
@@ -958,15 +1043,49 @@
 //     fetchUnits();
 //   }, []);
 
-//   const fetchBrands = async () => {
-//     try {
-//       const response = await fetch('http://localhost:5000/api/brands');
-//       const data = await response.json();
-//       if (data.success) setBrands(data.data);
-//     } catch (error) {
-//       console.error('Error fetching brands:', error);
-//     }
-//   };
+// //  const fetchBrands = async () => {
+// //   try {
+// //     // First fetch all brands
+// //     const brandsResponse = await fetch('http://localhost:5000/api/brands');
+// //     const brandsData = await brandsResponse.json();
+    
+// //     if (brandsData.success) {
+// //       // Then fetch products to get unique brand names
+// //       const productsResponse = await fetch('http://localhost:5000/api/products?limit=1000');
+// //       const productsData = await productsResponse.json();
+      
+// //       if (productsData.success) {
+// //         // Get unique brand names from products (only where brand exists)
+// //         const productBrands = new Set();
+// //         productsData.data.forEach(product => {
+// //           if (product.brand && product.brand.trim() !== '' && product.isActive !== false) {
+// //             productBrands.add(product.brand);
+// //           }
+// //         });
+        
+// //         // Filter brands to only those that have products
+// //         const filteredBrands = brandsData.data.filter(brand => 
+// //           productBrands.has(brand.name)
+// //         );
+        
+// //         setBrands(filteredBrands);
+// //       } else {
+// //         // If products fetch fails, show all brands
+// //         setBrands(brandsData.data);
+// //       }
+// //     }
+// //   } catch (error) {
+// //     console.error('Error fetching brands:', error);
+// //     // If error, try to fetch brands normally
+// //     try {
+// //       const response = await fetch('http://localhost:5000/api/brands');
+// //       const data = await response.json();
+// //       if (data.success) setBrands(data.data);
+// //     } catch (err) {
+// //       console.error('Error fetching brands fallback:', err);
+// //     }
+// //   }
+// // };
 
 //   useEffect(() => {
 //     if (categories.length > 0 && !initialCategorySet) {
@@ -1015,29 +1134,73 @@
 //     if (!loading) restoreScrollPosition();
 //   }, [loading]);
 
-//   useEffect(() => {
-//     const checkAllProductsCartStatus = async () => {
-//       if (products.length === 0) return;
-//       const productIds = products.map(p => p._id);
-//       const token = localStorage.getItem('token');
-//       const sessionId = localStorage.getItem('cartSessionId');
-//       const headers = {};
-//       if (token) headers['Authorization'] = `Bearer ${token}`;
-//       else if (sessionId) headers['x-session-id'] = sessionId;
+//   // useEffect(() => {
+//   //   const checkAllProductsCartStatus = async () => {
+//   //     if (products.length === 0) return;
+//   //     const productIds = products.map(p => p._id);
+//   //     const token = localStorage.getItem('token');
+//   //     const sessionId = localStorage.getItem('cartSessionId');
+//   //     const headers = {};
+//   //     if (token) headers['Authorization'] = `Bearer ${token}`;
+//   //     else if (sessionId) headers['x-session-id'] = sessionId;
       
-//       try {
-//         const response = await fetch('http://localhost:5000/api/cart/check-status', {
-//           method: 'POST',
-//           headers: { ...headers, 'Content-Type': 'application/json' },
-//           body: JSON.stringify({ productIds })
-//         });
-//         const data = await response.json();
-//         if (data.success) setProductsInCart(data.data);
-//       } catch (error) { console.error('Error checking cart status:', error); }
-//     };
-//     checkAllProductsCartStatus();
-//   }, [products]);
+//   //     try {
+//   //       const response = await fetch('http://localhost:5000/api/cart/check-status', {
+//   //         method: 'POST',
+//   //         headers: { ...headers, 'Content-Type': 'application/json' },
+//   //         body: JSON.stringify({ productIds })
+//   //       });
+//   //       const data = await response.json();
+//   //       if (data.success) setProductsInCart(data.data);
+//   //     } catch (error) { console.error('Error checking cart status:', error); }
+//   //   };
+//   //   checkAllProductsCartStatus();
+//   // }, [products]);
 
+//   // ProductsClient.js - Update the checkCartStatus function
+
+// const checkAllProductsCartStatus = async (productIds) => {
+//   if (!productIds || productIds.length === 0) return;
+  
+//   const token = localStorage.getItem('token');
+//   let sessionId = localStorage.getItem('cartSessionId');
+  
+//   // ✅ Generate session if missing
+//   if (!token && !sessionId) {
+//     sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+//     localStorage.setItem('cartSessionId', sessionId);
+//   }
+  
+//   const headers = {};
+//   if (token) {
+//     headers['Authorization'] = `Bearer ${token}`;
+//   } else if (sessionId) {
+//     headers['x-session-id'] = sessionId;
+//   }
+  
+//   try {
+//     // ✅ Batch check all products in one call
+//     const response = await fetch('http://localhost:5000/api/cart/check-status', {
+//       method: 'POST',
+//       headers: { ...headers, 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ productIds })
+//     });
+//     const data = await response.json();
+//     if (data.success) {
+//       setProductsInCart(data.data);
+//     }
+//   } catch (error) {
+//     console.error('Error checking cart status:', error);
+//   }
+// };
+
+// // ✅ Call it after products load
+// useEffect(() => {
+//   if (products.length > 0) {
+//     const productIds = products.map(p => p._id);
+//     checkAllProductsCartStatus(productIds);
+//   }
+// }, [products]);
 //   useEffect(() => {
 //     const refreshCartStatus = async () => {
 //       if (products.length === 0) return;
@@ -1099,15 +1262,86 @@
 //     return () => window.removeEventListener('popstate', handlePopState);
 //   }, []);
 
-//   const fetchCategories = async () => {
-//     try {
-//       const response = await fetch('http://localhost:5000/api/categories');
-//       const data = await response.json();
-//       if (data.success) setCategories(data.data);
-//       setCategoriesLoaded(true);
-//     } catch (error) { console.error('Error fetching categories:', error); setCategoriesLoaded(true); }
-//   };
+// //  const fetchCategories = async () => {
+// //   try {
+// //     // First, fetch all categories
+// //     const categoriesResponse = await fetch('http://localhost:5000/api/categories');
+// //     const categoriesData = await categoriesResponse.json();
+    
+// //     if (categoriesData.success) {
+// //       // Then, fetch products to get categories that have products
+// //       const productsResponse = await fetch('http://localhost:5000/api/products?limit=1000&fields=category,isActive');
+// //       const productsData = await productsResponse.json();
+      
+// //       if (productsData.success && productsData.data) {
+// //         // Get unique category IDs from products
+// //         const productCategoryIds = new Set();
+        
+// //         productsData.data.forEach(product => {
+// //           // Check if product has a category and is active
+// //           if (product.category && product.isActive !== false) {
+// //             // If category is an object with _id, use that, otherwise use the string
+// //             const categoryId = typeof product.category === 'object' 
+// //               ? product.category._id?.toString() 
+// //               : product.category.toString();
+// //             if (categoryId) {
+// //               productCategoryIds.add(categoryId);
+// //             }
+// //           }
+// //         });
+        
+// //         // Filter categories - only show those that have products
+// //         const filteredCategories = categoriesData.data.filter(category => {
+// //           const categoryId = category._id.toString();
+// //           return productCategoryIds.has(categoryId);
+// //         });
+        
+// //         setCategories(filteredCategories);
+// //       } else {
+// //         // If products fetch fails, show all categories
+// //         setCategories(categoriesData.data);
+// //       }
+// //       setCategoriesLoaded(true);
+// //     }
+// //   } catch (error) {
+// //     console.error('Error fetching categories:', error);
+// //     setCategoriesLoaded(true);
+// //   }
+// // };
 
+// // ProductsClient.js - Replace fetchCategories
+
+// const fetchCategories = async () => {
+//   try {
+//     // ✅ Use lightweight endpoint
+//     const response = await fetch('http://localhost:5000/api/categories/with-products');
+//     const data = await response.json();
+    
+//     if (data.success) {
+//       setCategories(data.data);
+//     }
+//     setCategoriesLoaded(true);
+//   } catch (error) {
+//     console.error('Error fetching categories:', error);
+//     setCategoriesLoaded(true);
+//   }
+// };
+
+// // ProductsClient.js - Replace fetchBrands
+
+// const fetchBrands = async () => {
+//   try {
+//     // ✅ Use lightweight endpoint
+//     const response = await fetch('http://localhost:5000/api/products/brands/with-products');
+//     const data = await response.json();
+    
+//     if (data.success) {
+//       setBrands(data.data);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching brands:', error);
+//   }
+// };
 //   const fetchSubcategories = async (categoryId) => {
 //     try {
 //       const response = await fetch(`http://localhost:5000/api/categories/${categoryId}/subcategories`);
@@ -1143,7 +1377,7 @@
 //     try {
 //       const queryParams = new URLSearchParams();
 //       queryParams.append('page', currentPage);
-//       queryParams.append('limit', 12);
+//       queryParams.append('limit', 16);
 //       if (filters.search) queryParams.append('search', filters.search);
 //       if (filters.categories.length > 0) filters.categories.forEach(cat => queryParams.append('category', cat));
 //       if (filters.subcategories.length > 0) filters.subcategories.forEach(sub => queryParams.append('subcategory', sub));
@@ -1328,11 +1562,36 @@
 //       <LoadingBar isVisible={loading} />
 //       <Navbar />
       
-//       {/* Hero Section */}
+//       {/* Hero Section - Black/White */}
 //       <div className="bg-gray-50 border-b border-gray-200">
-//         <div className="container mx-auto px-4 max-w-7xl py-2 md:py-6">
-//           <h1 className="text-2xl md:text-4xl font-bold font-sans text-black text-center mb-1">All Products</h1>
-//           <p className="text-gray-500 text-center text-sm">Discover our collection of premium gadgets</p>
+//         <div className="container mx-auto px-4 max-w-7xl py-6 md:py-8">
+//           <div className="flex flex-col items-center">
+//             <div className="flex items-center justify-center gap-3">
+//               <Package className="w-6 h-6 text-black" />
+//               <h1 className="text-2xl md:text-4xl font-bold text-black text-center">All Products</h1>
+//               <Package className="w-6 h-6 text-black" />
+//             </div>
+//             <p className="text-gray-500 text-center text-sm mt-1">Discover our collection of premium products</p>
+            
+//             {/* Search Bar - Under the header */}
+//             <div className="w-full max-w-2xl mt-4 md:mt-5">
+//               <div className="relative flex items-center bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden focus-within:border-black focus-within:ring-2 focus-within:ring-black/10 transition-all">
+//                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+//                 <input
+//                   type="text"
+//                   placeholder="Search products..."
+//                   value={searchInput}
+//                   onChange={handleSearchChange}
+//                   className="w-full pl-10 pr-24 py-2.5 text-sm border-0 focus:outline-none bg-transparent text-black placeholder:text-gray-400"
+//                 />
+//                 {searchInput && (
+//                   <button onClick={handleClearSearch} className="absolute right-3 p-1.5 text-gray-400 hover:text-black rounded-lg transition-colors">
+//                     <X className="w-4 h-4" />
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           </div>
 //         </div>
 //       </div>
 
@@ -1364,7 +1623,7 @@
 //                   <option value="name_asc">Name: A to Z</option>
 //                 </select>
 
-//                 {/* Desktop view toggle - hidden on mobile */}
+//                 {/* Desktop view toggle */}
 //                 {!isMobile && (
 //                   <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200">
 //                     <button onClick={() => setViewMode('grid')} className={`p-1.5 transition-all ${viewMode === 'grid' ? 'bg-black text-white' : 'text-gray-500 hover:bg-gray-100'}`} title="Grid View">
@@ -1509,10 +1768,8 @@
 //                     </div>
 //                   ) : (
 //                     <>
-//                       <div className="mb-3 text-xs text-gray-500">Found {totalProducts} product{totalProducts !== 1 ? 's' : ''}</div>
+//                       <div className="mb-3 text-xs text-gray-500"></div>
                       
-//                       {/* On mobile: always grid view with icons at bottom center */}
-//                       {/* On desktop: show selected view mode */}
 //                       {(isMobile || viewMode === 'grid') ? (
 //                         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 //                           {products.map(product => (
@@ -1668,16 +1925,22 @@ import {
   Building2,
   Box,
   Scale,
-  AlertTriangle
+  AlertTriangle,
+  Flower2,
+  Flame
 } from 'lucide-react';
 import { toast } from 'sonner';
 import CartSidebar from '../components/CartSidebar';
+
+// Font constants - Beauty Bucket Style
+const FONT_FAMILY = " serif";
+const FONT_FAMILY_CURSIVE = "'Courgette', cursive";
 
 // Loading Bar Component
 const LoadingBar = ({ isVisible }) => {
   return (
     <div className={`fixed top-0 left-0 w-full h-0.5 bg-gray-200 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className="h-full bg-black animate-loading-bar"></div>
+      <div className="h-full bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] animate-loading-bar"></div>
     </div>
   );
 };
@@ -1709,309 +1972,555 @@ const calculateDiscountPercentage = (regularPrice, discountPrice) => {
   return 0;
 };
 
-// ✅ FIXED: Product Grid Card - Black/White theme, correct link
+// ============================================================
+//  PRODUCT GRID CARD - Beauty Bucket Style
+// ============================================================
+// const ProductGridCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
+//   const [activeIndex, setActiveIndex] = useState(0);
+//   const [isHovered, setIsHovered] = useState(false);
+//   const [cartStatusLoading, setCartStatusLoading] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isInCart, setIsInCart] = useState(propIsInCart || false);
+//   const [imageErrors, setImageErrors] = useState({});
+//   const [isCartHovered, setIsCartHovered] = useState(false);
+
+//   // Safe data extraction
+//   const productId = product?._id || product?.id || 'unknown';
+//   const productName = product?.productName || product?.name || 'Product';
+//   const regularPrice = Number(product?.regularPrice || product?.price || 0);
+//   const discountPrice = Number(product?.discountPrice || 0);
+//   const stockQuantity = Number(product?.stockQuantity || 0);
+
+//   // Brand
+//   const brand = product?.brand
+//     ? typeof product.brand === 'string'
+//       ? product.brand
+//       : product.brand?.name || product.brand?.title || 'General'
+//     : product?.brandName || 'General';
+
+//   // Images
+//   let productImages = [];
+//   if (product?.images && Array.isArray(product.images)) {
+//     productImages = product.images
+//       .map((img) => {
+//         if (typeof img === 'string') return img;
+//         if (img?.url) return img.url;
+//         return null;
+//       })
+//       .filter(Boolean);
+//   }
+//   if (productImages.length === 0 && product?.image) {
+//     productImages = [typeof product.image === 'string' ? product.image : product.image?.url || ''].filter(Boolean);
+//   }
+//   if (productImages.length === 0) {
+//     productImages = ['/placeholder-product.jpg'];
+//   }
+
+//   // Tags
+//   let tagNames = [];
+//   if (product?.tags && Array.isArray(product.tags)) {
+//     tagNames = product.tags
+//       .map((tag) => {
+//         if (typeof tag === 'string') return tag;
+//         if (tag?.name) return tag.name;
+//         return null;
+//       })
+//       .filter(Boolean);
+//   }
+//   const primaryTag = tagNames[0] || null;
+
+//   // Price & discount
+//   const discountPercent = calculateDiscountPercentage(regularPrice, discountPrice);
+//   const currentPrice = discountPrice > 0 && discountPrice < regularPrice ? discountPrice : regularPrice;
+//   const originalPrice = regularPrice;
+
+//   // Stock
+//   const isLowStock = product?.stockAlertQuantity > 0 && stockQuantity <= product.stockAlertQuantity;
+//   const isOutOfStock = stockQuantity <= 0;
+
+//   // Rating
+//   const rating = product?.rating ? Number(product.rating) : 4.7;
+//   const reviewCount = product?.reviewStats?.totalReviews || product?.reviews?.length || 0;
+//   const fullStars = Math.floor(rating);
+//   const hasHalfStar = rating - fullStars >= 0.5;
+
+//   const hasMultipleImages = productImages.length > 1;
+
+//   // Mobile detection
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkMobile();
+//     window.addEventListener('resize', checkMobile);
+//     return () => window.removeEventListener('resize', checkMobile);
+//   }, []);
+
+//   useEffect(() => {
+//     setIsInCart(propIsInCart || false);
+//   }, [propIsInCart]);
+
+//   // Image navigation
+//   const nextImage = (e) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     if (hasMultipleImages) {
+//       setActiveIndex((prev) => (prev + 1) % productImages.length);
+//     }
+//   };
+
+//   const prevImage = (e) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     if (hasMultipleImages) {
+//       setActiveIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+//     }
+//   };
+
+//   const goToImage = (e, index) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     setActiveIndex(index);
+//   };
+
+//   const handleImageError = (index) => {
+//     setImageErrors((prev) => ({ ...prev, [index]: true }));
+//   };
+
+//   const getCurrentImage = () => {
+//     const image = productImages[activeIndex] || productImages[0];
+//     if (imageErrors[activeIndex]) {
+//       return '/placeholder-product.jpg';
+//     }
+//     return image;
+//   };
+
+//   // Add to cart
+//   const handleAddToCart = async (e) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+
+//     if (isInCart) {
+//       if (onViewInCart) onViewInCart();
+//       return;
+//     }
+
+//     if (isOutOfStock) {
+//       toast.error('Product is out of stock!');
+//       return;
+//     }
+
+//     setCartStatusLoading(true);
+//     const toastId = toast.loading('Adding to cart...');
+
+//     try {
+//       const token = localStorage.getItem('token');
+//       let sessionId = localStorage.getItem('cartSessionId');
+
+//       const headers = { 'Content-Type': 'application/json' };
+
+//       if (!token && !sessionId) {
+//         sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+//         localStorage.setItem('cartSessionId', sessionId);
+//       }
+
+//       if (token) {
+//         headers['Authorization'] = `Bearer ${token}`;
+//       } else if (sessionId) {
+//         headers['x-session-id'] = sessionId;
+//       }
+
+//       const response = await fetch('http://localhost:5000/api/cart', {
+//         method: 'POST',
+//         headers,
+//         body: JSON.stringify({ productId: productId, quantity: 1 })
+//       });
+
+//       const data = await response.json();
+
+//       if (data.success) {
+//         if (data.sessionId && !token) {
+//           localStorage.setItem('cartSessionId', data.sessionId);
+//         }
+//         toast.success('Added to cart!', { id: toastId });
+//         setIsInCart(true);
+//         window.dispatchEvent(new Event('cart-update'));
+//       } else {
+//         toast.error(data.error || 'Failed to add to cart', { id: toastId });
+//       }
+//     } catch (error) {
+//       console.error('Add to cart error:', error);
+//       toast.error('Network error. Please try again.', { id: toastId });
+//     } finally {
+//       setCartStatusLoading(false);
+//     }
+//   };
+
+//   // Render stars
+//   const renderStars = () => {
+//     const stars = [];
+//     for (let i = 0; i < 5; i++) {
+//       if (i < fullStars) {
+//         stars.push(<Star key={i} className="h-3 w-3 fill-current text-yellow-400" />);
+//       } else if (i === fullStars && hasHalfStar) {
+//         stars.push(
+//           <div key={i} className="relative h-3 w-3">
+//             <Star className="absolute h-3 w-3 text-gray-200" />
+//             <div className="absolute left-0 top-0 h-3 w-1/2 overflow-hidden">
+//               <Star className="h-3 w-3 fill-current text-yellow-400" />
+//             </div>
+//           </div>
+//         );
+//       } else {
+//         stars.push(<Star key={i} className="h-3 w-3 text-[#F7C7D3]" />);
+//       }
+//     }
+//     return stars;
+//   };
+
+//   // Navigate to product page
+//   const navigateToProduct = () => {
+//     router.push(`/product/${product.slug || product._id}`);
+//   };
+
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, y: 20 }}
+//       whileInView={{ opacity: 1, y: 0 }}
+//       viewport={{ once: true }}
+//       transition={{ duration: 0.4 }}
+//       className="group w-full"
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <Link
+//         href={`/product/${product.slug || product._id}`}
+//         className="block h-full"
+//       >
+//         <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#F7C7D3]/30 bg-white p-2 shadow-[0_2px_9px_rgba(238,66,117,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#EE4275]/50 hover:shadow-[0_18px_40px_rgba(238,66,117,0.12)]">
+          
+//           {/* ===== IMAGE SECTION ===== */}
+//           <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#F7C7D3]/10 to-[#EE4275]/5">
+//             <div className="relative aspect-square w-full overflow-hidden">
+//               <img
+//                 src={getCurrentImage()}
+//                 alt={productName}
+//                 className="w-full h-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+//                 onError={() => handleImageError(activeIndex)}
+//                 loading="lazy"
+//               />
+
+//               {/* Discount Badge - Zigzag with shimmer */}
+//               {discountPercent > 0 && (
+//                 <motion.div
+//                   className="absolute left-2 top-2 z-10"
+//                   animate={isHovered ? { scale: [1, 1.05, 1], rotate: [0, -2, 2, 0] } : {}}
+//                   transition={{ duration: 0.5, repeat: isHovered ? Infinity : 0, repeatDelay: 1 }}
+//                 >
+//                   <div
+//                     className="relative flex h-12 w-10 items-start justify-center overflow-hidden bg-[#EE4275] px-1 pt-2 text-center text-[9px] font-bold uppercase leading-[0.9] tracking-wide text-white"
+//                     style={{
+//                       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 85% 91%, 70% 100%, 55% 91%, 40% 100%, 25% 91%, 0 100%)',
+//                       fontFamily: FONT_FAMILY
+//                     }}
+//                   >
+//                     {isHovered && (
+//                       <motion.div
+//                         className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+//                         initial={{ x: '-100%' }}
+//                         animate={{ x: '200%' }}
+//                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+//                       />
+//                     )}
+//                     <span className="relative z-10 block leading-tight">
+//                       {discountPercent}%<br />OFF
+//                     </span>
+//                   </div>
+//                 </motion.div>
+//               )}
+
+//               {/* Tag Badge */}
+//               {primaryTag && (
+//                 <div className="absolute right-2 top-2 z-10 flex items-center gap-1 rounded bg-gradient-to-r from-[#EE4275]/80 to-[#FF6B9D]/80 px-2 py-1 text-[9px] font-medium text-white backdrop-blur-sm">
+//                   <Sparkles className="h-2.5 w-2.5" />
+//                   <span style={{ fontFamily: FONT_FAMILY }}>{primaryTag}</span>
+//                 </div>
+//               )}
+
+//               {/* Out of Stock Overlay */}
+//               {isOutOfStock && (
+//                 <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-black/60">
+//                   <span className="rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white" style={{ fontFamily: FONT_FAMILY }}>
+//                     Out of Stock
+//                   </span>
+//                 </div>
+//               )}
+
+//               {/* Low Stock Badge */}
+//               {!isOutOfStock && isLowStock && (
+//                 <div className="absolute bottom-2 left-2 z-10 flex items-center gap-1 rounded bg-orange-500 px-2 py-1 text-[9px] font-medium text-white">
+//                   <AlertTriangle className="h-2.5 w-2.5" />
+//                   <span style={{ fontFamily: FONT_FAMILY }}>Only {stockQuantity} left</span>
+//                 </div>
+//               )}
+
+//               {/* Desktop Hover Actions */}
+//               {!isMobile && (
+//                 <div className={`absolute right-2 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-2 transition-all duration-300 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>
+//                   <motion.button
+//                     type="button"
+//                     whileHover={{ scale: 1.1 }}
+//                     whileTap={{ scale: 0.9 }}
+//                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigateToProduct(); }}
+//                     className="flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white text-gray-700 shadow-md transition-all hover:bg-[#EE4275] hover:text-white"
+//                     aria-label="View product"
+//                   >
+//                     <Eye className="h-3.5 w-3.5" />
+//                   </motion.button>
+//                   <motion.button
+//                     type="button"
+//                     onClick={handleAddToCart}
+//                     disabled={isOutOfStock || cartStatusLoading}
+//                     whileHover={{ scale: 1.1 }}
+//                     whileTap={{ scale: 0.9 }}
+//                     className={`flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white shadow-md transition-all hover:bg-[#EE4275] hover:text-white ${cartStatusLoading ? 'pointer-events-none opacity-50' : ''}`}
+//                     aria-label="Add to cart"
+//                   >
+//                     {cartStatusLoading ? (
+//                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
+//                     ) : isInCart ? (
+//                       <ShoppingCart className="h-3.5 w-3.5 text-green-500" />
+//                     ) : (
+//                       <ShoppingCart className="h-3.5 w-3.5" />
+//                     )}
+//                   </motion.button>
+//                 </div>
+//               )}
+
+//               {/* Mobile Actions */}
+//               {isMobile && (
+//                 <div className="absolute bottom-10 left-1/2 z-30 flex -translate-x-1/2 gap-2">
+//                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white/90 shadow-md backdrop-blur-sm">
+//                     <Eye className="h-3.5 w-3.5 text-gray-700" />
+//                   </div>
+//                   <div
+//                     onClick={handleAddToCart}
+//                     className={`flex h-8 w-8 items-center justify-center rounded-full border bg-white/90 shadow-md backdrop-blur-sm ${isOutOfStock ? 'border-gray-200 bg-gray-100' : 'border-[#F7C7D3]/30'}`}
+//                   >
+//                     {cartStatusLoading ? (
+//                       <Loader2 className="h-3.5 w-3.5 animate-spin text-gray-500" />
+//                     ) : (
+//                       <ShoppingCart className={`h-3.5 w-3.5 ${isInCart ? 'text-[#EE4275]' : 'text-black'}`} />
+//                     )}
+//                   </div>
+//                 </div>
+//               )}
+
+//               {/* Image Navigation - Arrows & Dots */}
+//               {hasMultipleImages && (
+//                 <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+//                   <motion.button
+//                     type="button"
+//                     onClick={prevImage}
+//                     className="rounded-full p-0.5"
+//                     aria-label="Previous image"
+//                     whileHover={{ scale: 1.2 }}
+//                     whileTap={{ scale: 0.9 }}
+//                   >
+//                     <ChevronLeft className="h-4 w-4 text-[#EE4275]" />
+//                   </motion.button>
+//                   <div className="flex items-center gap-1.5">
+//                     {productImages.map((_, index) => (
+//                       <motion.button
+//                         key={index}
+//                         type="button"
+//                         onClick={(e) => goToImage(e, index)}
+//                         className={`rounded-full transition-all duration-200 ${activeIndex === index ? 'h-2 w-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]' : 'h-1.5 w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'}`}
+//                         whileHover={{ scale: 1.3 }}
+//                         aria-label={`Go to image ${index + 1}`}
+//                       />
+//                     ))}
+//                   </div>
+//                   <motion.button
+//                     type="button"
+//                     onClick={nextImage}
+//                     className="rounded-full p-0.5"
+//                     aria-label="Next image"
+//                     whileHover={{ scale: 1.2 }}
+//                     whileTap={{ scale: 0.9 }}
+//                   >
+//                     <ChevronRight className="h-4 w-4 text-[#FF6B9D]" />
+//                   </motion.button>
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+
+//           {/* ===== PRODUCT INFO ===== */}
+//           <div className="flex flex-1 flex-col px-1.5 pb-1 pt-3">
+//             {/* Brand + Stock Status */}
+//             <div className="mb-1 flex items-center justify-between gap-2">
+//               <span className="min-w-0 truncate text-[8px] font-semibold uppercase tracking-[0.12em] text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+//                 {brand}
+//               </span>
+//               <div className="flex shrink-0 items-center gap-1">
+//                 <span className={`h-1.5 w-1.5 rounded-full ${stockQuantity > 0 ? 'bg-emerald-500' : 'bg-red-500'}`} />
+//                 <span className={`text-[8px] font-medium ${stockQuantity > 0 ? 'text-emerald-600' : 'text-red-500'}`} style={{ fontFamily: FONT_FAMILY }}>
+//                   {stockQuantity > 0 ? 'In Stock' : 'Out of Stock'}
+//                 </span>
+//               </div>
+//             </div>
+
+//             {/* Product Name */}
+//             <h3
+//               className="min-h-[34px] line-clamp-2 text-[13px] font-semibold leading-[1.3] text-gray-800 transition-colors group-hover:text-[#EE4275]"
+//               style={{ fontFamily: FONT_FAMILY }}
+//               title={productName}
+//             >
+//               {truncateText(productName, 45)}
+//             </h3>
+
+//             {/* Rating */}
+//             <div className="mt-2 flex items-center gap-1.5">
+//               <div className="flex items-center gap-0.5">{renderStars()}</div>
+//               <span className="text-[9px] font-medium text-gray-500" style={{ fontFamily: FONT_FAMILY }}>
+//                 {rating.toFixed(1)}
+//               </span>
+//               {reviewCount > 0 && (
+//                 <>
+//                   <span className="text-gray-300">•</span>
+//                   <span className="text-[9px] text-gray-400" style={{ fontFamily: FONT_FAMILY }}>
+//                     {reviewCount} reviews
+//                   </span>
+//                 </>
+//               )}
+//             </div>
+
+//             {/* Divider */}
+//             <div className="my-2.5 h-px bg-gradient-to-r from-[#F7C7D3]/30 to-transparent" />
+
+//             {/* Price + Cart */}
+//             <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+//               <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap">
+//                 <span className="text-[15px] font-bold tracking-tight text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+//                   ৳{formatPrice(currentPrice)}
+//                 </span>
+//                 {discountPercent > 0 && (
+//                   <span className="text-[8px] text-gray-400 line-through" style={{ fontFamily: FONT_FAMILY }}>
+//                     ৳{formatPrice(originalPrice)}
+//                   </span>
+//                 )}
+//                 {discountPercent > 0 && (
+//                   <span className="text-[8px] font-semibold text-white bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-1 py-0.5 rounded" style={{ fontFamily: FONT_FAMILY }}>
+//                     Save {discountPercent}%
+//                   </span>
+//                 )}
+//               </div>
+//               <motion.button
+//                 type="button"
+//                 onClick={handleAddToCart}
+//                 disabled={isOutOfStock || cartStatusLoading}
+//                 onMouseEnter={() => setIsCartHovered(true)}
+//                 onMouseLeave={() => setIsCartHovered(false)}
+//                 whileHover={!isOutOfStock ? { scale: 1.08 } : {}}
+//                 whileTap={!isOutOfStock ? { scale: 0.92 } : {}}
+//                 animate={isCartHovered && !isOutOfStock ? { rotate: [0, -10, 10, -6, 6, 0] } : {}}
+//                 transition={{ duration: 0.5 }}
+//                 aria-label={isInCart ? 'View cart' : 'Add to cart'}
+//                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
+//                   isInCart
+//                     ? 'bg-gradient-to-r from-[#a80883] to-[#6c0756] text-white shadow-[0_4px_12px_rgba(168,8,131,0.22)]'
+//                     : isOutOfStock
+//                     ? 'cursor-not-allowed bg-gray-100 text-gray-300'
+//                     : 'border border-[#F7C7D3] bg-white text-[#EE4275] hover:border-[#EE4275] hover:bg-[#EE4275] hover:text-white hover:shadow-[0_4px_12px_rgba(238,66,117,0.18)]'
+//                 }`}
+//               >
+//                 {cartStatusLoading ? (
+//                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
+//                 ) : (
+//                   <ShoppingCart className="h-3.5 w-3.5" />
+//                 )}
+//               </motion.button>
+//             </div>
+//           </div>
+//         </article>
+//       </Link>
+//     </motion.div>
+//   );
+// };
+
 const ProductGridCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [cartStatusLoading, setCartStatusLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  
-  const isInCart = propIsInCart || false;
-  const productImages = product.images || [];
-  const hasMultipleImages = productImages.length > 1;
-  const discountPercent = calculateDiscountPercentage(product.regularPrice, product.discountPrice);
-  const currentPrice = product.discountPrice && product.discountPrice < product.regularPrice ? product.discountPrice : product.regularPrice;
-  const originalPrice = product.regularPrice;
-  
-  const isLowStock = product.stockAlertQuantity > 0 && product.stockQuantity <= product.stockAlertQuantity;
-  const isOutOfStock = product.stockQuantity <= 0;
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const navigateToProduct = () => {
-    router.push(`/product/${product.slug || product._id}`);
-  };
-
-  const addToCart = async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    
-    if (isInCart) {
-      onViewInCart();
-      return;
-    }
-    
-    if (isOutOfStock) {
-      toast.error('Product is out of stock!');
-      return;
-    }
-    
-    setCartStatusLoading(true);
-    const toastId = toast.loading('Adding to cart...');
-    
-    try {
-      const token = localStorage.getItem('token');
-      const sessionId = localStorage.getItem('cartSessionId');
-      
-      const headers = { 'Content-Type': 'application/json' };
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-      } else if (sessionId) {
-        headers['x-session-id'] = sessionId;
-      }
-      
-      const response = await fetch('http://localhost:5000/api/cart', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({ productId: product._id, quantity: 1 })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        if (data.sessionId && !token) {
-          localStorage.setItem('cartSessionId', data.sessionId);
-        }
-        toast.success('Added to cart!', { id: toastId });
-        window.dispatchEvent(new Event('cart-update'));
-      } else {
-        toast.error(data.error || 'Failed to add to cart', { id: toastId });
-      }
-    } catch (error) {
-      console.error('Add to cart error:', error);
-      toast.error('Network error. Please try again.', { id: toastId });
-    } finally {
-      setCartStatusLoading(false);
-    }
-  };
-
-  return (
-    <Link
-      href={`/product/${product.slug || product._id}`}
-      className="block group bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 cursor-pointer overflow-hidden"
-    >
-      <div className="relative w-full h-40 overflow-hidden bg-gray-50">
-        <img
-          src={productImages[activeIndex]?.url || productImages[0]?.url || 'https://via.placeholder.com/300?text=Product'}
-          alt={product.productName}
-          className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = 'https://via.placeholder.com/300?text=Product';
-          }}
-          loading="lazy"
-        />
-        
-        {/* Discount Badge */}
-        {discountPercent > 0 && (
-          <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 z-20 flex items-center gap-0.5">
-            <Zap className="w-2.5 h-2.5" />
-            {discountPercent}%
-          </div>
-        )}
-        
-        {/* Brand Badge on Image */}
-        {product.brand && (
-          <div className="absolute top-2 right-2 bg-black/70 text-white text-[9px] px-1.5 py-0.5 font-medium z-20 flex items-center gap-0.5">
-            <Building2 className="w-2 h-2" />
-            {product.brand}
-          </div>
-        )}
-        
-        {/* Out of Stock Overlay */}
-        {isOutOfStock && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-20">
-            <span className="bg-black text-white text-xs font-medium px-2 py-1">Out of Stock</span>
-          </div>
-        )}
-        
-        {/* Low Stock Badge */}
-        {!isOutOfStock && isLowStock && (
-          <div className="absolute bottom-2 left-2 bg-orange-500 text-white text-[9px] font-medium px-1.5 py-0.5 z-20 flex items-center gap-0.5">
-            <AlertTriangle className="w-2 h-2" />
-            Only {product.stockQuantity} left
-          </div>
-        )}
-        
-        {/* Mobile: Always visible icons at bottom center */}
-        {isMobile && (
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 z-30">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                navigateToProduct();
-              }}
-              className="bg-white p-1.5 shadow-md inline-flex items-center justify-center"
-            >
-              <Eye className="w-3.5 h-3.5 text-gray-700" />
-            </button>
-            <button
-              onClick={addToCart}
-              disabled={isOutOfStock}
-              className={`p-1.5 shadow-md ${isOutOfStock ? 'bg-gray-100' : 'bg-white'}`}
-            >
-              {cartStatusLoading ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-500" />
-              ) : isInCart ? (
-                <ShoppingCart className="w-3.5 h-3.5 text-black" />
-              ) : (
-                <ShoppingCart className="w-3.5 h-3.5 text-black" />
-              )}
-            </button>
-          </div>
-        )}
-        
-        {/* Desktop: Hover Icons */}
-        {!isMobile && (
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                navigateToProduct();
-              }}
-              className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
-            >
-              <Eye className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
-            </button>
-            
-            <button
-              onClick={addToCart}
-              disabled={isOutOfStock}
-              className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
-            >
-              {cartStatusLoading ? (
-                <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-700" />
-              ) : isInCart ? (
-                <ShoppingCart className="w-3.5 h-3.5 text-black hover:text-white transition-colors" />
-              ) : (
-                <ShoppingCart className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
-              )}
-            </button>
-          </div>
-        )}
-      </div>
-      
-      {/* Thumbnail Images - 4 thumbnails */}
-      {hasMultipleImages && !isMobile && (
-        <div className="flex justify-center items-center gap-1 py-1.5 bg-gray-50 border-b border-gray-100">
-          {productImages.slice(0, 4).map((image, index) => (
-            <button
-              key={index}
-              className={`w-6 h-6 overflow-hidden transition-all duration-200 ${
-                activeIndex === index ? 'ring-1 ring-black ring-offset-1' : 'opacity-60 hover:opacity-100'
-              }`}
-              onMouseEnter={() => setActiveIndex(index)}
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                setActiveIndex(index);
-              }}
-            >
-              <img src={image.url} alt="" className="w-full h-full object-cover" />
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Content - Centered */}
-      <div className="p-2.5 text-center">
-        {/* Product Name */}
-        <h3 className="text-xs font-medium text-gray-900 truncate mb-1" title={product.productName}>
-          {truncateText(product.productName, 35)}
-        </h3>
-
-        {/* Price with Unit */}
-        <div className="flex items-baseline justify-center gap-1.5 mb-1.5">
-          <span className="text-sm font-bold text-black">
-            ৳{formatPrice(currentPrice)}
-          </span>
-          {discountPercent > 0 && (
-            <>
-              <span className="text-[9px] text-gray-400 line-through">
-                ৳{formatPrice(originalPrice)}
-              </span>
-            </>
-          )}
-          <span className="text-[9px] text-gray-500">/{getUnitLabel(product.unit)}</span>
-        </div>
-
-        {/* Stock Status - Centered */}
-        <div className="mb-1.5 flex justify-center">
-          {isOutOfStock ? (
-            <span className="inline-flex items-center gap-1 text-red-600 text-[9px] font-medium">
-              <div className="w-1 h-1 bg-red-500 rounded-full"></div>
-              Out of Stock
-            </span>
-          ) : isLowStock ? (
-            <span className="inline-flex items-center gap-1 text-orange-600 text-[9px] font-medium">
-              <AlertTriangle className="w-2 h-2" />
-              Only {product.stockQuantity} left
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-1 text-green-600 text-[9px] font-medium">
-              <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-              In Stock 
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* ✅ FIXED: Different colors for Add to Cart vs View in Cart */}
-      <button
-        onClick={addToCart}
-        disabled={isOutOfStock}
-        className={`w-full py-1.5 text-center text-[10px] font-medium transition-colors flex items-center justify-center gap-1 ${
-          isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 
-          isInCart ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:bg-gradient-to-r hover:from-blue-700 hover:to-cyan-700' : 
-          'bg-black text-white hover:bg-gray-800'
-        }`}
-      >
-        {cartStatusLoading ? (
-          <Loader2 className="w-3 h-3 animate-spin" />
-        ) : isInCart ? (
-          <>
-            <ShoppingCart className="w-3 h-3" />
-            View in Cart
-          </>
-        ) : (
-          <>
-            <ShoppingCart className="w-3 h-3" />
-            Add to Cart
-          </>
-        )}
-      </button>
-    </Link>
-  );
-};
-
-// ✅ FIXED: Product List Card - Black/White theme, correct link, wider images
-const ProductListCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [cartStatusLoading, setCartStatusLoading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [cartStatusLoading, setCartStatusLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
-  const isInCart = propIsInCart || false;
-  const productImages = product.images || [];
+  const [isInCart, setIsInCart] = useState(propIsInCart || false);
+  const [imageErrors, setImageErrors] = useState({});
+  const [isCartHovered, setIsCartHovered] = useState(false);
+
+  // Safe data extraction
+  const productId = product?._id || product?.id || 'unknown';
+  const productName = product?.productName || product?.name || 'Product';
+  const regularPrice = Number(product?.regularPrice || product?.price || 0);
+  const discountPrice = Number(product?.discountPrice || 0);
+  const stockQuantity = Number(product?.stockQuantity || 0);
+
+  // Brand
+  const brand = product?.brand
+    ? typeof product.brand === 'string'
+      ? product.brand
+      : product.brand?.name || product.brand?.title || 'General'
+    : product?.brandName || 'General';
+
+  // Images
+  let productImages = [];
+  if (product?.images && Array.isArray(product.images)) {
+    productImages = product.images
+      .map((img) => {
+        if (typeof img === 'string') return img;
+        if (img?.url) return img.url;
+        return null;
+      })
+      .filter(Boolean);
+  }
+  if (productImages.length === 0 && product?.image) {
+    productImages = [typeof product.image === 'string' ? product.image : product.image?.url || ''].filter(Boolean);
+  }
+  if (productImages.length === 0) {
+    productImages = ['/placeholder-product.jpg'];
+  }
+
+  // Tags
+  let tagNames = [];
+  if (product?.tags && Array.isArray(product.tags)) {
+    tagNames = product.tags
+      .map((tag) => {
+        if (typeof tag === 'string') return tag;
+        if (tag?.name) return tag.name;
+        return null;
+      })
+      .filter(Boolean);
+  }
+  const primaryTag = tagNames[0] || null;
+
+  // Price & discount
+  const discountPercent = calculateDiscountPercentage(regularPrice, discountPrice);
+  const currentPrice = discountPrice > 0 && discountPrice < regularPrice ? discountPrice : regularPrice;
+  const originalPrice = regularPrice;
+
+  // Stock
+  const isLowStock = product?.stockAlertQuantity > 0 && stockQuantity <= product.stockAlertQuantity;
+  const isOutOfStock = stockQuantity <= 0;
+
+  // Rating
+  const rating = product?.rating ? Number(product.rating) : 4.7;
+  const reviewCount = product?.reviewStats?.totalReviews || product?.reviews?.length || 0;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
+
   const hasMultipleImages = productImages.length > 1;
-  const discountPercent = calculateDiscountPercentage(product.regularPrice, product.discountPrice);
-  const currentPrice = product.discountPrice && product.discountPrice < product.regularPrice ? product.discountPrice : product.regularPrice;
-  const originalPrice = product.regularPrice;
-  
-  const isLowStock = product.stockAlertQuantity > 0 && product.stockQuantity <= product.stockAlertQuantity;
-  const isOutOfStock = product.stockQuantity <= 0;
 
-  // Get category name
-  const categoryName = product.category?.name || product.categoryName || '';
-
+  // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -2021,51 +2530,94 @@ const ProductListCard = ({ product, router, isInCart: propIsInCart, onViewInCart
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const navigateToProduct = () => {
-    router.push(`/product/${product.slug || product._id}`);
+  useEffect(() => {
+    setIsInCart(propIsInCart || false);
+  }, [propIsInCart]);
+
+  // Image navigation
+  const nextImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (hasMultipleImages) {
+      setActiveIndex((prev) => (prev + 1) % productImages.length);
+    }
   };
 
-  const addToCart = async (e) => {
-    e.stopPropagation();
+  const prevImage = (e) => {
     e.preventDefault();
-    
+    e.stopPropagation();
+    if (hasMultipleImages) {
+      setActiveIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+    }
+  };
+
+  const goToImage = (e, index) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveIndex(index);
+  };
+
+  const handleImageError = (index) => {
+    setImageErrors((prev) => ({ ...prev, [index]: true }));
+  };
+
+  const getCurrentImage = () => {
+    const image = productImages[activeIndex] || productImages[0];
+    if (imageErrors[activeIndex]) {
+      return '/placeholder-product.jpg';
+    }
+    return image;
+  };
+
+  // Add to cart
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (isInCart) {
-      onViewInCart();
+      if (onViewInCart) onViewInCart();
       return;
     }
-    
+
     if (isOutOfStock) {
       toast.error('Product is out of stock!');
       return;
     }
-    
+
     setCartStatusLoading(true);
     const toastId = toast.loading('Adding to cart...');
-    
+
     try {
       const token = localStorage.getItem('token');
-      const sessionId = localStorage.getItem('cartSessionId');
-      
+      let sessionId = localStorage.getItem('cartSessionId');
+
       const headers = { 'Content-Type': 'application/json' };
+
+      if (!token && !sessionId) {
+        sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+        localStorage.setItem('cartSessionId', sessionId);
+      }
+
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
       } else if (sessionId) {
         headers['x-session-id'] = sessionId;
       }
-      
+
       const response = await fetch('http://localhost:5000/api/cart', {
         method: 'POST',
-        headers: headers,
-        body: JSON.stringify({ productId: product._id, quantity: 1 })
+        headers,
+        body: JSON.stringify({ productId: productId, quantity: 1 })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         if (data.sessionId && !token) {
           localStorage.setItem('cartSessionId', data.sessionId);
         }
         toast.success('Added to cart!', { id: toastId });
+        setIsInCart(true);
         window.dispatchEvent(new Event('cart-update'));
       } else {
         toast.error(data.error || 'Failed to add to cart', { id: toastId });
@@ -2078,229 +2630,836 @@ const ProductListCard = ({ product, router, isInCart: propIsInCart, onViewInCart
     }
   };
 
+  // Render stars
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push(<Star key={i} className="h-3 w-3 fill-current text-yellow-400" />);
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push(
+          <div key={i} className="relative h-3 w-3">
+            <Star className="absolute h-3 w-3 text-gray-200" />
+            <div className="absolute left-0 top-0 h-3 w-1/2 overflow-hidden">
+              <Star className="h-3 w-3 fill-current text-yellow-400" />
+            </div>
+          </div>
+        );
+      } else {
+        stars.push(<Star key={i} className="h-3 w-3 text-[#F7C7D3]" />);
+      }
+    }
+    return stars;
+  };
+
+  // Navigate to product page
+  const navigateToProduct = () => {
+    router.push(`/product/${product.slug || product._id}`);
+  };
+
   return (
-    <Link
-      href={`/product/${product.slug || product._id}`}
-      className="block group bg-white border border-gray-200 hover:border-gray-300 transition-all duration-300 cursor-pointer overflow-hidden"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className="group w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex flex-col sm:flex-row">
-        {/* Image Section - Wider */}
-        <div className="sm:w-44 md:w-52 lg:w-60 relative flex-shrink-0">
-          <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden bg-gray-50">
-            <img
-              src={productImages[activeIndex]?.url || productImages[0]?.url || 'https://via.placeholder.com/150?text=Product'}
-              alt={product.productName}
-              className="w-full h-full object-contain p-3"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/150?text=Product';
-              }}
-              loading="lazy"
-            />
-            
-            {discountPercent > 0 && (
-              <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-2 py-1 z-20 flex items-center gap-1">
-                <Zap className="w-3 h-3" />
-                {discountPercent}%
-              </div>
-            )}
-            
-            {product.brand && (
-              <div className="absolute top-2 right-2 bg-black/70 text-white text-[9px] px-2 py-1 font-medium z-20 flex items-center gap-1">
-                <Building2 className="w-2.5 h-2.5" />
-                {product.brand}
-              </div>
-            )}
-            
-            {isOutOfStock && (
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-20">
-                <span className="bg-black text-white text-xs font-medium px-3 py-1.5">Out of Stock</span>
-              </div>
-            )}
+      <Link
+        href={`/product/${product.slug || product._id}`}
+        className="block h-full"
+      >
+        <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#EE4275]/20 bg-white p-2 shadow-[0_2px_9px_rgba(238,66,117,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#EE4275]/50 hover:shadow-[0_18px_40px_rgba(238,66,117,0.12)]">
+          
+          {/* ===== IMAGE SECTION ===== */}
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#F7C7D3]/10 to-[#EE4275]/5">
+            <div className="relative aspect-square w-full overflow-hidden">
+              <img
+                src={getCurrentImage()}
+                alt={productName}
+                className="w-full h-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                onError={() => handleImageError(activeIndex)}
+                loading="lazy"
+              />
 
-            {/* ✅ ADDED: Hover Icons - Same as Grid Card */}
-            {!isMobile && (
-              <div className={`absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 z-30 transition-opacity duration-200 ${
-                isHovered ? 'opacity-100' : 'opacity-0'
-              }`}>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    navigateToProduct();
-                  }}
-                  className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
-                >
-                  <Eye className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
-                </button>
-                
-                <button
-                  onClick={addToCart}
-                  disabled={isOutOfStock}
-                  className="w-7 h-7 bg-white shadow-md hover:bg-black flex items-center justify-center cursor-pointer transition-all duration-200"
-                >
-                  {cartStatusLoading ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-700" />
-                  ) : isInCart ? (
-                    <ShoppingCart className="w-3.5 h-3.5 text-black hover:text-white transition-colors" />
-                  ) : (
-                    <ShoppingCart className="w-3.5 h-3.5 text-gray-700 hover:text-white transition-colors" />
-                  )}
-                </button>
-              </div>
-            )}
-
-            {/* Mobile: Always visible icons at bottom center */}
-            {isMobile && (
-              <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 z-30">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    navigateToProduct();
-                  }}
-                  className="bg-white p-1.5 shadow-md inline-flex items-center justify-center"
-                >
-                  <Eye className="w-3.5 h-3.5 text-gray-700" />
-                </button>
-                <button
-                  onClick={addToCart}
-                  disabled={isOutOfStock}
-                  className={`p-1.5 shadow-md ${isOutOfStock ? 'bg-gray-100' : 'bg-white'}`}
-                >
-                  {cartStatusLoading ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-500" />
-                  ) : isInCart ? (
-                    <ShoppingCart className="w-3.5 h-3.5 text-black" />
-                  ) : (
-                    <ShoppingCart className="w-3.5 h-3.5 text-black" />
-                  )}
-                </button>
-              </div>
-            )}
-          </div>
-          
-          {/* Thumbnails - Bigger */}
-          {hasMultipleImages && (
-            <div className="flex justify-center gap-1.5 py-2 bg-gray-50 border-t border-gray-100">
-              {productImages.slice(0, 4).map((image, idx) => (
-                <div
-                  key={idx}
-                  className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 overflow-hidden cursor-pointer transition-all rounded-md ${
-                    activeIndex === idx ? 'ring-2 ring-black ring-offset-1' : 'opacity-60 hover:opacity-100'
-                  }`}
-                  onMouseEnter={() => setActiveIndex(idx)}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setActiveIndex(idx);
-                  }}
-                >
-                  <img src={image.url} alt="" className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Content Section */}
-        <div className="flex-1 p-3 sm:p-4 flex flex-col">
-          {/* Category before product name */}
-          {categoryName && (
-            <p className="text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-0.5">
-              {categoryName}
-            </p>
-          )}
-          
-          {/* Product Name */}
-          <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1 line-clamp-1 group-hover:text-black transition-colors">
-            {product.productName}
-          </h3>
-          
-          {/* Description - 2 lines */}
-          <p className="text-[10px] sm:text-xs text-gray-500 mb-2 line-clamp-2">
-            {product.fullDescription?.replace(/<[^>]*>/g, '').substring(0, 250) || product.shortDescription?.replace(/<[^>]*>/g, '').substring(0, 150) || 'No description available'}
-          </p>
-          
-          {/* Price and Discount Row */}
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base sm:text-lg font-bold text-black">৳{formatPrice(currentPrice)}</span>
+              {/* Discount Badge - Always visible on image */}
               {discountPercent > 0 && (
+                <motion.div
+                  className="absolute left-1.5 top-1.5 z-10"
+                  animate={isHovered ? { scale: [1, 1.05, 1], rotate: [0, -2, 2, 0] } : {}}
+                  transition={{ duration: 0.5, repeat: isHovered ? Infinity : 0, repeatDelay: 1 }}
+                >
+                  <div
+                    className="relative flex h-10 sm:h-12 w-8 sm:w-10 items-start justify-center overflow-hidden bg-[#EE4275] px-0.5 sm:px-1 pt-1 sm:pt-2 text-center text-[7px] sm:text-[9px] font-bold uppercase leading-[0.8] sm:leading-[0.9] tracking-wide text-white"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 85% 91%, 70% 100%, 55% 91%, 40% 100%, 25% 91%, 0 100%)',
+                      fontFamily: FONT_FAMILY
+                    }}
+                  >
+                    {isHovered && (
+                      <motion.div
+                        className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '200%' }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                    )}
+                    <span className="relative z-10 block leading-tight">
+                      {discountPercent}%<br />OFF
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Tag Badge - Make smaller on mobile */}
+              {primaryTag && (
+                <div className="absolute right-1.5 top-1.5 z-10 flex items-center gap-0.5 sm:gap-1 rounded bg-gradient-to-r from-[#EE4275]/80 to-[#FF6B9D]/80 px-1 sm:px-2 py-0.5 sm:py-1 text-[6px] sm:text-[9px] font-medium text-white backdrop-blur-sm">
+                  <Sparkles className="h-1.5 w-1.5 sm:h-2.5 sm:w-2.5" />
+                  <span className="truncate max-w-[25px] sm:max-w-none" style={{ fontFamily: FONT_FAMILY }}>
+                    {primaryTag}
+                  </span>
+                </div>
+              )}
+
+              {/* Out of Stock Overlay */}
+              {isOutOfStock && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-black/60">
+                  <span className="rounded-full bg-black px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-white" style={{ fontFamily: FONT_FAMILY }}>
+                    Out of Stock
+                  </span>
+                </div>
+              )}
+
+              {/* Low Stock Badge - Make smaller on mobile */}
+              {!isOutOfStock && isLowStock && (
+                <div className="absolute bottom-2 left-2 z-10 flex items-center gap-0.5 sm:gap-1 rounded bg-orange-500 px-1 sm:px-2 py-0.5 sm:py-1 text-[7px] sm:text-[9px] font-medium text-white">
+                  <AlertTriangle className="h-1.5 w-1.5 sm:h-2.5 sm:w-2.5" />
+                  <span className="hidden xs:inline" style={{ fontFamily: FONT_FAMILY }}>Only {stockQuantity} left</span>
+                  <span className="xs:hidden" style={{ fontFamily: FONT_FAMILY }}>{stockQuantity} left</span>
+                </div>
+              )}
+
+              {/* Desktop Hover Actions - Keep as is */}
+              {!isMobile && (
+                <div className={`absolute right-2 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-2 transition-all duration-300 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>
+                  <motion.button
+                    type="button"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigateToProduct(); }}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white text-gray-700 shadow-md transition-all hover:bg-[#EE4275] hover:text-white"
+                    aria-label="View product"
+                  >
+                    <Eye className="h-3.5 w-3.5" />
+                  </motion.button>
+                  <motion.button
+                    type="button"
+                    onClick={handleAddToCart}
+                    disabled={isOutOfStock || cartStatusLoading}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white shadow-md transition-all hover:bg-[#EE4275] hover:text-white ${cartStatusLoading ? 'pointer-events-none opacity-50' : ''}`}
+                    aria-label="Add to cart"
+                  >
+                    {cartStatusLoading ? (
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    ) : isInCart ? (
+                      <ShoppingCart className="h-3.5 w-3.5 text-green-500" />
+                    ) : (
+                      <ShoppingCart className="h-3.5 w-3.5" />
+                    )}
+                  </motion.button>
+                </div>
+              )}
+
+              {/* Mobile Actions - Smaller & Positioned Lower */}
+              {isMobile && (
+                <div className="absolute bottom-2 left-1/2 z-30 flex -translate-x-1/2 gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigateToProduct(); }}
+                    className="flex h-6 w-6 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-[#F7C7D3]/30"
+                    aria-label="View product"
+                  >
+                    <Eye className="h-2.5 w-2.5 text-gray-700" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    disabled={isOutOfStock || cartStatusLoading}
+                    className={`flex h-6 w-6 items-center justify-center rounded-full bg-white/80 shadow-md backdrop-blur-sm border ${isOutOfStock ? 'border-gray-200 bg-gray-100/80' : 'border-[#F7C7D3]/30'}`}
+                    aria-label="Add to cart"
+                  >
+                    {cartStatusLoading ? (
+                      <Loader2 className="h-2.5 w-2.5 animate-spin text-gray-500" />
+                    ) : (
+                      <ShoppingCart className={`h-2.5 w-2.5 ${isInCart ? 'text-[#EE4275]' : 'text-gray-700'}`} />
+                    )}
+                  </button>
+                </div>
+              )}
+
+              {/* Image Navigation - Arrows & Dots */}
+              {hasMultipleImages && (
+                <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 sm:gap-2">
+                  <motion.button
+                    type="button"
+                    onClick={prevImage}
+                    className="rounded-full p-0.5"
+                    aria-label="Previous image"
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 text-[#EE4275]" />
+                  </motion.button>
+                  <div className="flex items-center gap-1 sm:gap-1.5">
+                    {productImages.map((_, index) => (
+                      <motion.button
+                        key={index}
+                        type="button"
+                        onClick={(e) => goToImage(e, index)}
+                        className={`rounded-full transition-all duration-200 ${activeIndex === index ? 'h-1.5 w-1.5 sm:h-2 sm:w-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]' : 'h-1 w-1 sm:h-1.5 sm:w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'}`}
+                        whileHover={{ scale: 1.3 }}
+                        aria-label={`Go to image ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <motion.button
+                    type="button"
+                    onClick={nextImage}
+                    className="rounded-full p-0.5"
+                    aria-label="Next image"
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-[#FF6B9D]" />
+                  </motion.button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ===== PRODUCT INFO ===== */}
+          <div className="flex flex-1 flex-col px-1.5 pb-1 pt-3">
+            {/* Brand + Stock Status */}
+            <div className="mb-1 flex items-center justify-between gap-2">
+              <span className="min-w-0 truncate text-[7px] sm:text-[8px] font-semibold uppercase tracking-[0.12em] text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+                {brand}
+              </span>
+              <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
+                <span className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full ${stockQuantity > 0 ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                <span className={`text-[6px] sm:text-[8px] font-medium ${stockQuantity > 0 ? 'text-emerald-600' : 'text-red-500'}`} style={{ fontFamily: FONT_FAMILY }}>
+                  {stockQuantity > 0 ? 'In Stock' : 'Out of Stock'}
+                </span>
+              </div>
+            </div>
+
+            {/* Product Name */}
+            <h3
+              className="min-h-[30px] sm:min-h-[34px] line-clamp-2 text-[11px] sm:text-[13px] font-semibold leading-[1.3] text-gray-800 transition-colors group-hover:text-[#EE4275]"
+              style={{ fontFamily: FONT_FAMILY }}
+              title={productName}
+            >
+              {truncateText(productName, 35)}
+            </h3>
+
+            {/* Rating */}
+            <div className="mt-1.5 sm:mt-2 flex items-center gap-1 sm:gap-1.5">
+              <div className="flex items-center gap-0.5">
+                {renderStars().map((star, index) => (
+                  <span key={index} className="scale-75 sm:scale-100">
+                    {star}
+                  </span>
+                ))}
+              </div>
+              <span className="text-[8px] sm:text-[9px] font-medium text-gray-500" style={{ fontFamily: FONT_FAMILY }}>
+                {rating.toFixed(1)}
+              </span>
+              {reviewCount > 0 && (
                 <>
-                  <span className="text-[9px] sm:text-xs text-gray-400 line-through">৳{formatPrice(originalPrice)}</span>
-                  <span className="text-[8px] sm:text-[9px] font-medium text-red-600 bg-red-50 px-1.5 py-0.5 rounded">-{discountPercent}%</span>
+                  <span className="text-gray-300 hidden xs:inline">•</span>
+                  <span className="text-[7px] sm:text-[9px] text-gray-400 hidden xs:inline" style={{ fontFamily: FONT_FAMILY }}>
+                    {reviewCount} reviews
+                  </span>
                 </>
               )}
-              <span className="text-[9px] sm:text-xs text-gray-500">/{getUnitLabel(product.unit)}</span>
+            </div>
+
+            {/* Divider */}
+            <div className="my-2 sm:my-2.5 h-px bg-gradient-to-r from-[#F7C7D3]/30 to-transparent" />
+
+            {/* Price + Cart - Hide discount badge on mobile in details */}
+            <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+              <div className="flex min-w-0 items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                <span className="text-[13px] sm:text-[15px] font-bold tracking-tight text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+                  ৳{formatPrice(currentPrice)}
+                </span>
+                {discountPercent > 0 && (
+                  <>
+                    <span className="text-[6px] sm:text-[8px] text-gray-400 line-through" style={{ fontFamily: FONT_FAMILY }}>
+                      ৳{formatPrice(originalPrice)}
+                    </span>
+                    {/* "Save" badge - hidden on mobile, visible on desktop */}
+                    <span className="text-[6px] sm:text-[8px] font-semibold text-white bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-0.5 sm:px-1 py-0.5 rounded hidden sm:inline-block" style={{ fontFamily: FONT_FAMILY }}>
+                      Save {discountPercent}%
+                    </span>
+                  </>
+                )}
+              </div>
+              <motion.button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isOutOfStock || cartStatusLoading}
+                onMouseEnter={() => setIsCartHovered(true)}
+                onMouseLeave={() => setIsCartHovered(false)}
+                whileHover={!isOutOfStock ? { scale: 1.08 } : {}}
+                whileTap={!isOutOfStock ? { scale: 0.92 } : {}}
+                animate={isCartHovered && !isOutOfStock ? { rotate: [0, -10, 10, -6, 6, 0] } : {}}
+                transition={{ duration: 0.5 }}
+                aria-label={isInCart ? 'View cart' : 'Add to cart'}
+                className={`flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
+                  isInCart
+                    ? 'bg-gradient-to-r from-[#a80883] to-[#6c0756] text-white shadow-[0_4px_12px_rgba(168,8,131,0.22)]'
+                    : isOutOfStock
+                    ? 'cursor-not-allowed bg-gray-100 text-gray-300'
+                    : 'border border-[#F7C7D3] bg-white text-[#EE4275] hover:border-[#EE4275] hover:bg-[#EE4275] hover:text-white hover:shadow-[0_4px_12px_rgba(238,66,117,0.18)]'
+                }`}
+              >
+                {cartStatusLoading ? (
+                  <Loader2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 animate-spin" />
+                ) : (
+                  <ShoppingCart className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                )}
+              </motion.button>
             </div>
           </div>
-          
-          {/* Stock Status and Rating Row */}
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-            {isOutOfStock ? (
-              <span className="inline-flex items-center gap-1 text-red-600 text-[9px] sm:text-[10px] font-medium">
-                <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
-                Out of Stock
-              </span>
-            ) : isLowStock ? (
-              <span className="inline-flex items-center gap-1 text-orange-600 text-[9px] sm:text-[10px] font-medium">
-                <AlertTriangle className="w-3 h-3" />
-                Only {product.stockQuantity} left
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1 text-green-600 text-[9px] sm:text-[10px] font-medium">
-                <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                In Stock ({product.stockQuantity})
-              </span>
-            )}
-            
-            {product.rating > 0 && (
-              <div className="flex items-center gap-1">
-                <div className="flex items-center">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${star <= Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
-                  ))}
-                </div>
-                <span className="text-[8px] sm:text-[9px] text-gray-500">({product.rating})</span>
-              </div>
-            )}
-          </div>
-          
-          {/* ✅ REMOVED: Action buttons row - Now icons are on image hover */}
-          {/* Add to Cart button remains at bottom */}
-          <button
-            onClick={addToCart}
-            disabled={isOutOfStock}
-            className={`w-full sm:w-auto px-4 py-2 text-[10px] sm:text-xs md:text-sm font-medium transition-colors flex items-center justify-center gap-1.5 rounded-lg ${
-              isOutOfStock ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 
-              isInCart ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:bg-gradient-to-r hover:from-blue-700 hover:to-cyan-700' : 
-              'bg-black text-white hover:bg-gray-800'
-            }`}
-          >
-            {cartStatusLoading ? (
-              <Loader2 className="w-3 h-3 animate-spin" />
-            ) : isInCart ? (
-              <>
-                <ShoppingCart className="w-3.5 h-3.5" />
-                View in Cart
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="w-3.5 h-3.5" />
-                Add to Cart
-              </>
-            )}
-          </button>
-        </div>
-      </div>
-    </Link>
+        </article>
+      </Link>
+    </motion.div>
   );
 };
 
-// Filter Sidebar Component - Black/White theme
+const ProductListCard = ({ product, router, isInCart: propIsInCart, onViewInCart }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [cartStatusLoading, setCartStatusLoading] = useState(false);
+  const [isInCart, setIsInCart] = useState(propIsInCart || false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
+  const [isCartHovered, setIsCartHovered] = useState(false);
+
+  // Safe data extraction
+  const productId = product?._id || product?.id || 'unknown';
+  const productName = product?.productName || product?.name || 'Product';
+  const regularPrice = Number(product?.regularPrice || product?.price || 0);
+  const discountPrice = Number(product?.discountPrice || 0);
+  const stockQuantity = Number(product?.stockQuantity || 0);
+
+  // Brand
+  const brand = product?.brand
+    ? typeof product.brand === 'string'
+      ? product.brand
+      : product.brand?.name || product.brand?.title || 'General'
+    : product?.brandName || 'General';
+
+  // Category name
+  const categoryName = product?.category?.name || product?.categoryName || '';
+
+  // Images
+  let productImages = [];
+  if (product?.images && Array.isArray(product.images)) {
+    productImages = product.images
+      .map((img) => {
+        if (typeof img === 'string') return img;
+        if (img?.url) return img.url;
+        return null;
+      })
+      .filter(Boolean);
+  }
+  if (productImages.length === 0 && product?.image) {
+    productImages = [typeof product.image === 'string' ? product.image : product.image?.url || ''].filter(Boolean);
+  }
+  if (productImages.length === 0) {
+    productImages = ['/placeholder-product.jpg'];
+  }
+
+  // Tags
+  let tagNames = [];
+  if (product?.tags && Array.isArray(product.tags)) {
+    tagNames = product.tags
+      .map((tag) => {
+        if (typeof tag === 'string') return tag;
+        if (tag?.name) return tag.name;
+        return null;
+      })
+      .filter(Boolean);
+  }
+  const primaryTag = tagNames[0] || null;
+
+  // Price & discount
+  const discountPercent = calculateDiscountPercentage(regularPrice, discountPrice);
+  const currentPrice = discountPrice > 0 && discountPrice < regularPrice ? discountPrice : regularPrice;
+  const originalPrice = regularPrice;
+
+  // Stock
+  const isLowStock = product?.stockAlertQuantity > 0 && stockQuantity <= product.stockAlertQuantity;
+  const isOutOfStock = stockQuantity <= 0;
+
+  // Rating
+  const rating = product?.rating ? Number(product.rating) : 4.7;
+  const reviewCount = product?.reviewStats?.totalReviews || product?.reviews?.length || 0;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
+
+  const hasMultipleImages = productImages.length > 1;
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    setIsInCart(propIsInCart || false);
+  }, [propIsInCart]);
+
+  // Image navigation
+  const nextImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (hasMultipleImages) {
+      setActiveIndex((prev) => (prev + 1) % productImages.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (hasMultipleImages) {
+      setActiveIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+    }
+  };
+
+  const goToImage = (e, index) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveIndex(index);
+  };
+
+  const handleImageError = (index) => {
+    setImageErrors((prev) => ({ ...prev, [index]: true }));
+  };
+
+  const getCurrentImage = () => {
+    const image = productImages[activeIndex] || productImages[0];
+    if (imageErrors[activeIndex]) {
+      return '/placeholder-product.jpg';
+    }
+    return image;
+  };
+
+  // Add to cart
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isInCart) {
+      if (onViewInCart) onViewInCart();
+      return;
+    }
+
+    if (isOutOfStock) {
+      toast.error('Product is out of stock!');
+      return;
+    }
+
+    setCartStatusLoading(true);
+    const toastId = toast.loading('Adding to cart...');
+
+    try {
+      const token = localStorage.getItem('token');
+      let sessionId = localStorage.getItem('cartSessionId');
+
+      const headers = { 'Content-Type': 'application/json' };
+
+      if (!token && !sessionId) {
+        sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+        localStorage.setItem('cartSessionId', sessionId);
+      }
+
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      } else if (sessionId) {
+        headers['x-session-id'] = sessionId;
+      }
+
+      const response = await fetch('http://localhost:5000/api/cart', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ productId: productId, quantity: 1 })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        if (data.sessionId && !token) {
+          localStorage.setItem('cartSessionId', data.sessionId);
+        }
+        toast.success('Added to cart!', { id: toastId });
+        setIsInCart(true);
+        window.dispatchEvent(new Event('cart-update'));
+      } else {
+        toast.error(data.error || 'Failed to add to cart', { id: toastId });
+      }
+    } catch (error) {
+      console.error('Add to cart error:', error);
+      toast.error('Network error. Please try again.', { id: toastId });
+    } finally {
+      setCartStatusLoading(false);
+    }
+  };
+
+  // Render stars
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push(<Star key={i} className="h-3 w-3 fill-current text-yellow-400" />);
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push(
+          <div key={i} className="relative h-3 w-3">
+            <Star className="absolute h-3 w-3 text-gray-200" />
+            <div className="absolute left-0 top-0 h-3 w-1/2 overflow-hidden">
+              <Star className="h-3 w-3 fill-current text-yellow-400" />
+            </div>
+          </div>
+        );
+      } else {
+        stars.push(<Star key={i} className="h-3 w-3 text-[#F7C7D3]" />);
+      }
+    }
+    return stars;
+  };
+
+  // Navigate to product page
+  const navigateToProduct = () => {
+    router.push(`/product/${product.slug || product._id}`);
+  };
+
+  // Get description - clean HTML and limit to ~150 chars for 2 lines
+  const getDescription = () => {
+    const fullDesc = product.fullDescription?.replace(/<[^>]*>/g, '') || '';
+    const shortDesc = product.shortDescription?.replace(/<[^>]*>/g, '') || '';
+    const desc = fullDesc || shortDesc || 'No description available';
+    // Limit to ~150 characters for 2 lines
+    return desc.length > 150 ? desc.substring(0, 150) + '...' : desc;
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className="group w-full"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Link
+        href={`/product/${product.slug || product._id}`}
+        className="block h-full"
+      >
+        <article className="relative flex flex-col sm:flex-row overflow-hidden rounded-2xl border border-[#F7C7D3]/30 bg-white p-3 shadow-[0_2px_9px_rgba(238,66,117,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#EE4275]/50 hover:shadow-[0_18px_40px_rgba(238,66,117,0.12)]">
+          
+          {/* ===== IMAGE SECTION (Left) ===== */}
+          <div className="sm:w-48 md:w-56 lg:w-64 relative flex-shrink-0">
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#F7C7D3]/10 to-[#EE4275]/5">
+              <div className="relative aspect-square w-full overflow-hidden">
+                <img
+                  src={getCurrentImage()}
+                  alt={productName}
+                  className="w-full h-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                  onError={() => handleImageError(activeIndex)}
+                  loading="lazy"
+                />
+
+                {/* Discount Badge - Zigzag with shimmer */}
+                {discountPercent > 0 && (
+                  <motion.div
+                    className="absolute left-2 top-2 z-10"
+                    animate={isHovered ? { scale: [1, 1.05, 1], rotate: [0, -2, 2, 0] } : {}}
+                    transition={{ duration: 0.5, repeat: isHovered ? Infinity : 0, repeatDelay: 1 }}
+                  >
+                    <div
+                      className="relative flex h-12 w-10 items-start justify-center overflow-hidden bg-[#EE4275] px-1 pt-2 text-center text-[9px] font-bold uppercase leading-[0.9] tracking-wide text-white"
+                      style={{
+                        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 85% 91%, 70% 100%, 55% 91%, 40% 100%, 25% 91%, 0 100%)',
+                        fontFamily: FONT_FAMILY
+                      }}
+                    >
+                      {isHovered && (
+                        <motion.div
+                          className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          initial={{ x: '-100%' }}
+                          animate={{ x: '200%' }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                        />
+                      )}
+                      <span className="relative z-10 block leading-tight">
+                        {discountPercent}%<br />OFF
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Tag Badge */}
+                {primaryTag && (
+                  <div className="absolute right-2 top-2 z-10 flex items-center gap-1 rounded bg-gradient-to-r from-[#EE4275]/80 to-[#FF6B9D]/80 px-2 py-1 text-[9px] font-medium text-white backdrop-blur-sm">
+                    <Sparkles className="h-2.5 w-2.5" />
+                    <span style={{ fontFamily: FONT_FAMILY }}>{primaryTag}</span>
+                  </div>
+                )}
+
+                {/* Out of Stock Overlay */}
+                {isOutOfStock && (
+                  <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-black/60">
+                    <span className="rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white" style={{ fontFamily: FONT_FAMILY }}>
+                      Out of Stock
+                    </span>
+                  </div>
+                )}
+
+                {/* Low Stock Badge */}
+                {!isOutOfStock && isLowStock && (
+                  <div className="absolute bottom-2 left-2 z-10 flex items-center gap-1 rounded bg-orange-500 px-2 py-1 text-[9px] font-medium text-white">
+                    <AlertTriangle className="h-2.5 w-2.5" />
+                    <span style={{ fontFamily: FONT_FAMILY }}>Only {stockQuantity} left</span>
+                  </div>
+                )}
+
+                {/* Desktop Hover Actions */}
+                {!isMobile && (
+                  <div className={`absolute right-2 top-1/2 z-30 flex -translate-y-1/2 flex-col gap-2 transition-all duration-300 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>
+                    <motion.button
+                      type="button"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigateToProduct(); }}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white text-gray-700 shadow-md transition-all hover:bg-[#EE4275] hover:text-white"
+                      aria-label="View product"
+                    >
+                      <Eye className="h-3.5 w-3.5" />
+                    </motion.button>
+                    <motion.button
+                      type="button"
+                      onClick={handleAddToCart}
+                      disabled={isOutOfStock || cartStatusLoading}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className={`flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white shadow-md transition-all hover:bg-[#EE4275] hover:text-white ${cartStatusLoading ? 'pointer-events-none opacity-50' : ''}`}
+                      aria-label="Add to cart"
+                    >
+                      {cartStatusLoading ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      ) : isInCart ? (
+                        <ShoppingCart className="h-3.5 w-3.5 text-green-500" />
+                      ) : (
+                        <ShoppingCart className="h-3.5 w-3.5" />
+                      )}
+                    </motion.button>
+                  </div>
+                )}
+
+                {/* Mobile Actions */}
+                {isMobile && (
+                  <div className="absolute bottom-10 left-1/2 z-30 flex -translate-x-1/2 gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#F7C7D3]/30 bg-white/90 shadow-md backdrop-blur-sm">
+                      <Eye className="h-3.5 w-3.5 text-gray-700" />
+                    </div>
+                    <div
+                      onClick={handleAddToCart}
+                      className={`flex h-8 w-8 items-center justify-center rounded-full border bg-white/90 shadow-md backdrop-blur-sm ${isOutOfStock ? 'border-gray-200 bg-gray-100' : 'border-[#F7C7D3]/30'}`}
+                    >
+                      {cartStatusLoading ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin text-gray-500" />
+                      ) : (
+                        <ShoppingCart className={`h-3.5 w-3.5 ${isInCart ? 'text-[#EE4275]' : 'text-black'}`} />
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Image Navigation - Arrows & Dots */}
+                {hasMultipleImages && (
+                  <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+                    <motion.button
+                      type="button"
+                      onClick={prevImage}
+                      className="rounded-full p-0.5"
+                      aria-label="Previous image"
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <ChevronLeft className="h-4 w-4 text-[#EE4275]" />
+                    </motion.button>
+                    <div className="flex items-center gap-1.5">
+                      {productImages.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          type="button"
+                          onClick={(e) => goToImage(e, index)}
+                          className={`rounded-full transition-all duration-200 ${activeIndex === index ? 'h-2 w-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]' : 'h-1.5 w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'}`}
+                          whileHover={{ scale: 1.3 }}
+                          aria-label={`Go to image ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                    <motion.button
+                      type="button"
+                      onClick={nextImage}
+                      className="rounded-full p-0.5"
+                      aria-label="Next image"
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <ChevronRight className="h-4 w-4 text-[#FF6B9D]" />
+                    </motion.button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ===== PRODUCT INFO (Right) ===== */}
+          <div className="flex-1 flex flex-col p-3 sm:p-4">
+            {/* Brand - Premium styling with icon */}
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="flex items-center gap-1.5">
+                <Building2 className="w-3 h-3 text-[#EE4275]" />
+                <span className="text-[10px] sm:text-[11px] font-medium text-[#EE4275] tracking-wide" style={{ fontFamily: FONT_FAMILY }}>
+                  {brand}
+                </span>
+              </div>
+              
+              {/* Separator dot */}
+              <span className="w-1 h-1 rounded-full bg-[#F7C7D3]"></span>
+              
+              {/* Category - Premium styling with muted color */}
+              {categoryName && (
+                <div className="flex items-center gap-1.5">
+                  <FolderTree className="w-3 h-3 text-[#8B7A8C]" />
+                  <span className="text-[10px] sm:text-[11px] font-medium text-[#8B7A8C] tracking-wide" style={{ fontFamily: FONT_FAMILY }}>
+                    {categoryName}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Product Name */}
+            <h3
+              className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1.5 line-clamp-1 transition-colors group-hover:text-[#EE4275]"
+              style={{ fontFamily: FONT_FAMILY }}
+              title={productName}
+            >
+              {productName}
+            </h3>
+
+            {/* Description - 2 lines with premium styling */}
+            <p className="text-[11px] sm:text-xs text-gray-500 mb-2.5 line-clamp-2 leading-relaxed tracking-wide">
+              {getDescription()}
+            </p>
+
+            {/* Rating */}
+            <div className="flex items-center gap-1.5 mb-2.5">
+              <div className="flex items-center gap-0.5">{renderStars()}</div>
+              <span className="text-[9px] font-medium text-gray-500" style={{ fontFamily: FONT_FAMILY }}>
+                {rating.toFixed(1)}
+              </span>
+              {reviewCount > 0 && (
+                <>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-[9px] text-gray-400" style={{ fontFamily: FONT_FAMILY }}>
+                    {reviewCount} reviews
+                  </span>
+                </>
+              )}
+            </div>
+
+            {/* Divider */}
+            <div className="my-2 h-px bg-gradient-to-r from-[#F7C7D3]/30 to-transparent" />
+
+            {/* Price + Cart */}
+            <div className="mt-auto flex items-center justify-between gap-2 pt-1 flex-wrap">
+              <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap flex-wrap">
+                <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
+                  ৳{formatPrice(currentPrice)}
+                </span>
+                {discountPercent > 0 && (
+                  <span className="text-[9px] sm:text-xs text-gray-400 line-through" style={{ fontFamily: FONT_FAMILY }}>
+                    ৳{formatPrice(originalPrice)}
+                  </span>
+                )}
+                {discountPercent > 0 && (
+                  <span className="text-[8px] sm:text-[9px] font-medium text-white bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-1.5 py-0.5 rounded" style={{ fontFamily: FONT_FAMILY }}>
+                    -{discountPercent}%
+                  </span>
+                )}
+                <span className="text-[9px] sm:text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY }}>
+                  /{getUnitLabel(product.unit)}
+                </span>
+              </div>
+
+              <motion.button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isOutOfStock || cartStatusLoading}
+                onMouseEnter={() => setIsCartHovered(true)}
+                onMouseLeave={() => setIsCartHovered(false)}
+                whileHover={!isOutOfStock ? { scale: 1.05 } : {}}
+                whileTap={!isOutOfStock ? { scale: 0.95 } : {}}
+                animate={isCartHovered && !isOutOfStock ? { rotate: [0, -10, 10, -6, 6, 0] } : {}}
+                transition={{ duration: 0.5 }}
+                aria-label={isInCart ? 'View cart' : 'Add to cart'}
+                className={`flex h-9 sm:h-10 px-4 sm:px-5 items-center justify-center gap-1.5 rounded-lg text-[10px] sm:text-xs md:text-sm font-medium transition-all duration-200 ${
+                  isInCart
+                    ? 'bg-gradient-to-r from-[#a80883] to-[#6c0756] text-white shadow-[0_4px_12px_rgba(168,8,131,0.22)] hover:shadow-[0_6px_20px_rgba(168,8,131,0.3)]'
+                    : isOutOfStock
+                    ? 'cursor-not-allowed bg-gray-100 text-gray-400'
+                    : 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white hover:shadow-lg hover:shadow-[#EE4275]/25'
+                }`}
+              >
+                {cartStatusLoading ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : isInCart ? (
+                  <>
+                    <ShoppingCart className="h-3.5 w-3.5" />
+                    View in Cart
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="h-3.5 w-3.5" />
+                    Add to Cart
+                  </>
+                )}
+              </motion.button>
+            </div>
+          </div>
+        </article>
+      </Link>
+    </motion.div>
+  );
+};
+
+
+// ============================================================
+//  FILTER SIDEBAR - Beauty Bucket Style (Fixed Keys)
+// ============================================================
 const FilterSidebar = ({ 
   expandedSections, 
   toggleSection, 
@@ -2333,24 +3492,24 @@ const FilterSidebar = ({
   availableUnits,      
   unitsLoading   
 }) => (
-  <div className="bg-white border border-gray-200 p-4 sticky top-24">
+  <div className="bg-white border border-[#F7C7D3]/30 rounded-2xl p-4 sticky top-24 shadow-[0_2px_9px_rgba(238,66,117,0.06)]">
     <div className="flex items-center justify-between mb-4">
-      <h3 className="text-base font-semibold text-black flex items-center gap-2">
-        <Filter className="w-4 h-4" />
+      <h3 className="text-base font-semibold text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+        <Filter className="w-4 h-4 text-[#EE4275]" />
         Filters
       </h3>
       {getActiveFilterCount() > 0 && (
-        <button onClick={clearFilters} className="text-[11px] text-gray-500 hover:text-black">
+        <button onClick={clearFilters} className="text-[11px] text-[#EE4275] hover:text-[#ca4f74] transition-colors">
           Clear All ({getActiveFilterCount()})
         </button>
       )}
     </div>
 
     {/* Price Range */}
-    <div className="mb-4 border-b border-gray-100 pb-4">
+    <div className="mb-4 border-b border-[#F7C7D3]/20 pb-4">
       <button onClick={() => toggleSection('price')} className="flex items-center justify-between w-full text-left mb-3">
-        <h4 className="font-medium text-sm text-black flex items-center gap-2">
-          <DollarSign className="w-3.5 h-3.5" />
+        <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+          <DollarSign className="w-3.5 h-3.5 text-[#EE4275]" />
           Price Range
         </h4>
         {expandedSections.price ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
@@ -2360,7 +3519,7 @@ const FilterSidebar = ({
         <div className="space-y-3">
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-xs text-gray-500">Min (৳)</span>
+              <span className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY }}>Min (৳)</span>
               <input
                 type="text"
                 inputMode="decimal"
@@ -2370,11 +3529,11 @@ const FilterSidebar = ({
                   if (value === '' || /^\d*\.?\d*$/.test(value)) setMinPriceInput(value);
                 }}
                 placeholder="0"
-                className="w-24 px-2 py-1 text-right text-xs border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-24 px-2 py-1 text-right text-xs border border-[#F7C7D3]/30 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#EE4275]"
               />
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-xs text-gray-500">Max (৳)</span>
+              <span className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY }}>Max (৳)</span>
               <input
                 type="text"
                 inputMode="decimal"
@@ -2384,7 +3543,7 @@ const FilterSidebar = ({
                   if (value === '' || /^\d*\.?\d*$/.test(value)) setMaxPriceInput(value);
                 }}
                 placeholder="Any"
-                className="w-24 px-2 py-1 text-right text-xs border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-24 px-2 py-1 text-right text-xs border border-[#F7C7D3]/30 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#EE4275]"
               />
             </div>
           </div>
@@ -2392,14 +3551,14 @@ const FilterSidebar = ({
           <button
             onClick={applyPriceRange}
             disabled={!minPriceInput && !maxPriceInput}
-            className="w-full py-1.5 bg-black text-white text-xs font-medium hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-1.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-xs font-medium rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Apply Price Range
           </button>
 
           {(filters.priceRange.min || filters.priceRange.max) && (
-            <div className="flex items-center justify-between bg-gray-50 p-2 border border-gray-200">
-              <span className="text-xs font-medium text-black">৳{filters.priceRange.min || '0'} - ৳{filters.priceRange.max || '∞'}</span>
+            <div className="flex items-center justify-between bg-[#FFF5F6] p-2 rounded-lg border border-[#F7C7D3]/30">
+              <span className="text-xs font-medium text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>৳{filters.priceRange.min || '0'} - ৳{filters.priceRange.max || '∞'}</span>
               <button onClick={clearPriceRange} className="text-gray-400 hover:text-gray-600"><X className="w-3 h-3" /></button>
             </div>
           )}
@@ -2408,10 +3567,10 @@ const FilterSidebar = ({
     </div>
 
     {/* Categories */}
-    <div className="mb-4 border-b border-gray-100 pb-4">
+    <div className="mb-4 border-b border-[#F7C7D3]/20 pb-4">
       <button onClick={() => toggleSection('categories')} className="flex items-center justify-between w-full text-left mb-3">
-        <h4 className="font-medium text-sm text-black flex items-center gap-2">
-          <Tag className="w-3.5 h-3.5" />
+        <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+          <Tag className="w-3.5 h-3.5 text-[#EE4275]" />
           Categories
         </h4>
         {expandedSections.categories ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
@@ -2420,13 +3579,13 @@ const FilterSidebar = ({
       {expandedSections.categories && (
         <div className="space-y-2">
           {filters.categories.length > 0 && (
-            <div className="mb-2 p-2 bg-gray-50 border border-gray-100">
-              <p className="text-[10px] text-gray-500 mb-1.5">Selected Categories:</p>
+            <div className="mb-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/30">
+              <p className="text-[10px] text-gray-500 mb-1.5" style={{ fontFamily: FONT_FAMILY }}>Selected Categories:</p>
               {filters.categories.map(catId => {
                 const category = categories.find(c => c._id === catId);
                 return category ? (
                   <div key={catId} className="flex items-center justify-between py-1">
-                    <span className="text-xs text-gray-700">{category.name}</span>
+                    <span className="text-xs text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>{category.name}</span>
                     <button onClick={() => handleRemoveCategory(catId)} className="text-gray-400 hover:text-gray-600"><X className="w-3 h-3" /></button>
                   </div>
                 ) : null;
@@ -2441,9 +3600,9 @@ const FilterSidebar = ({
                   type="checkbox"
                   checked={filters.categories.includes(category._id)}
                   onChange={() => handleCategoryChange(category._id)}
-                  className="w-3.5 h-3.5 rounded border-gray-300 text-black focus:ring-black"
+                  className="w-3.5 h-3.5 rounded border-[#F7C7D3]/40 text-[#EE4275] focus:ring-[#EE4275]"
                 />
-                <span className="text-xs text-gray-700 hover:text-black transition-colors">{category.name}</span>
+                <span className="text-xs text-gray-700 hover:text-[#EE4275] transition-colors" style={{ fontFamily: FONT_FAMILY }}>{category.name}</span>
               </label>
             ))}
           </div>
@@ -2451,11 +3610,103 @@ const FilterSidebar = ({
       )}
     </div>
 
-    {/* Brands */}
-    <div className="mb-4 border-b border-gray-100 pb-4">
+    {/* Subcategories */}
+    {selectedCategory && subcategories.length > 0 && (
+      <div className="mb-4 border-b border-[#F7C7D3]/20 pb-4">
+        <button onClick={() => toggleSection('subcategories')} className="flex items-center justify-between w-full text-left mb-3">
+          <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+            <FolderTree className="w-3.5 h-3.5 text-[#EE4275]" />
+            Subcategories
+          </h4>
+          {expandedSections.subcategories ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
+        </button>
+        
+        {expandedSections.subcategories && (
+          <div className="space-y-2">
+            {filters.subcategories.length > 0 && (
+              <div className="mb-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/30">
+                <p className="text-[10px] text-gray-500 mb-1.5" style={{ fontFamily: FONT_FAMILY }}>Selected Subcategories:</p>
+                {filters.subcategories.map(subId => {
+                  const subcategory = subcategories.find(s => s._id === subId);
+                  return subcategory ? (
+                    <div key={subId} className="flex items-center justify-between py-1">
+                      <span className="text-xs text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>{subcategory.name}</span>
+                      <button onClick={() => handleRemoveSubcategory(subId)} className="text-gray-400 hover:text-gray-600"><X className="w-3 h-3" /></button>
+                    </div>
+                  ) : null;
+                })}
+              </div>
+            )}
+            
+            <div className="max-h-48 overflow-y-auto pr-1 space-y-1.5">
+              {subcategories.map(sub => (
+                <label key={sub._id} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={filters.subcategories.includes(sub._id)}
+                    onChange={() => handleSubcategoryChange(sub._id)}
+                    className="w-3.5 h-3.5 rounded border-[#F7C7D3]/40 text-[#EE4275] focus:ring-[#EE4275]"
+                  />
+                  <span className="text-xs text-gray-700 hover:text-[#EE4275] transition-colors" style={{ fontFamily: FONT_FAMILY }}>{sub.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Child Subcategories */}
+    {showChildSubcategory && childSubcategories.length > 0 && (
+      <div className="mb-4 border-b border-[#F7C7D3]/20 pb-4">
+        <button onClick={() => toggleSection('childSubcategories')} className="flex items-center justify-between w-full text-left mb-3">
+          <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+            <FolderTree className="w-3.5 h-3.5 text-[#EE4275]" />
+            Child Subcategories
+          </h4>
+          {expandedSections.childSubcategories ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
+        </button>
+        
+        {expandedSections.childSubcategories && (
+          <div className="space-y-2">
+            {filters.childSubcategories.length > 0 && (
+              <div className="mb-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/30">
+                <p className="text-[10px] text-gray-500 mb-1.5" style={{ fontFamily: FONT_FAMILY }}>Selected Child Subcategories:</p>
+                {filters.childSubcategories.map(childId => {
+                  const child = childSubcategories.find(c => c._id === childId);
+                  return child ? (
+                    <div key={childId} className="flex items-center justify-between py-1">
+                      <span className="text-xs text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>{child.name}</span>
+                      <button onClick={() => handleRemoveChildSubcategory(childId)} className="text-gray-400 hover:text-gray-600"><X className="w-3 h-3" /></button>
+                    </div>
+                  ) : null;
+                })}
+              </div>
+            )}
+            
+            <div className="max-h-48 overflow-y-auto pr-1 space-y-1.5">
+              {childSubcategories.map(child => (
+                <label key={child._id} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={filters.childSubcategories.includes(child._id)}
+                    onChange={() => handleChildSubcategoryChange(child._id)}
+                    className="w-3.5 h-3.5 rounded border-[#F7C7D3]/40 text-[#EE4275] focus:ring-[#EE4275]"
+                  />
+                  <span className="text-xs text-gray-700 hover:text-[#EE4275] transition-colors" style={{ fontFamily: FONT_FAMILY }}>{child.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Brands - Fixed Key Issue */}
+    <div className="mb-4 border-b border-[#F7C7D3]/20 pb-4">
       <button onClick={() => toggleSection('brands')} className="flex items-center justify-between w-full text-left mb-3">
-        <h4 className="font-medium text-sm text-black flex items-center gap-2">
-          <Building2 className="w-3.5 h-3.5" />
+        <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+          <Building2 className="w-3.5 h-3.5 text-[#EE4275]" />
           Brands
         </h4>
         {expandedSections.brands ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
@@ -2464,11 +3715,11 @@ const FilterSidebar = ({
       {expandedSections.brands && (
         <div className="space-y-2">
           {filters.brands.length > 0 && (
-            <div className="mb-2 p-2 bg-gray-50 border border-gray-100">
-              <p className="text-[10px] text-gray-500 mb-1.5">Selected Brands:</p>
-              {filters.brands.map(brand => (
-                <div key={brand} className="flex items-center justify-between py-1">
-                  <span className="text-xs text-gray-700">{brand}</span>
+            <div className="mb-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/30">
+              <p className="text-[10px] text-gray-500 mb-1.5" style={{ fontFamily: FONT_FAMILY }}>Selected Brands:</p>
+              {filters.brands.map((brand, index) => (
+                <div key={brand || index} className="flex items-center justify-between py-1">
+                  <span className="text-xs text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>{brand}</span>
                   <button onClick={() => handleRemoveBrand(brand)} className="text-gray-400 hover:text-gray-600"><X className="w-3 h-3" /></button>
                 </div>
               ))}
@@ -2476,15 +3727,15 @@ const FilterSidebar = ({
           )}
           
           <div className="max-h-48 overflow-y-auto pr-1 space-y-1.5">
-            {brands.map(brand => (
-              <label key={brand.name} className="flex items-center gap-2 cursor-pointer">
+            {brands.map((brand, index) => (
+              <label key={brand._id || brand.name || index} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={filters.brands.includes(brand.name)}
                   onChange={() => handleBrandChange(brand.name)}
-                  className="w-3.5 h-3.5 rounded border-gray-300 text-black focus:ring-black"
+                  className="w-3.5 h-3.5 rounded border-[#F7C7D3]/40 text-[#EE4275] focus:ring-[#EE4275]"
                 />
-                <span className="text-xs text-gray-700 hover:text-black transition-colors">{brand.name}</span>
+                <span className="text-xs text-gray-700 hover:text-[#EE4275] transition-colors" style={{ fontFamily: FONT_FAMILY }}>{brand.name}</span>
               </label>
             ))}
           </div>
@@ -2492,11 +3743,11 @@ const FilterSidebar = ({
       )}
     </div>
 
-    {/* Unit Filter */}
+    {/* Unit Filter - Fixed Key Issue */}
     <div className="mb-4">
       <button onClick={() => toggleSection('unit')} className="flex items-center justify-between w-full text-left mb-3">
-        <h4 className="font-medium text-sm text-black flex items-center gap-2">
-          <Scale className="w-3.5 h-3.5" />
+        <h4 className="font-medium text-sm text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+          <Scale className="w-3.5 h-3.5 text-[#EE4275]" />
           Unit
         </h4>
         {expandedSections.unit ? <ChevronUp className="w-3.5 h-3.5 text-gray-500" /> : <ChevronDown className="w-3.5 h-3.5 text-gray-500" />}
@@ -2505,13 +3756,13 @@ const FilterSidebar = ({
       {expandedSections.unit && (
         <div className="space-y-2">
           {filters.units.length > 0 && (
-            <div className="mb-2 p-2 bg-gray-50 border border-gray-100">
-              <p className="text-[10px] text-gray-500 mb-1.5">Selected Units:</p>
-              {filters.units.map(unit => {
+            <div className="mb-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#F7C7D3]/30">
+              <p className="text-[10px] text-gray-500 mb-1.5" style={{ fontFamily: FONT_FAMILY }}>Selected Units:</p>
+              {filters.units.map((unit, index) => {
                 const unitLabel = availableUnits.find(u => u.value === unit)?.label || unit;
                 return (
-                  <div key={unit} className="flex items-center justify-between py-1">
-                    <span className="text-xs text-gray-700">{unitLabel}</span>
+                  <div key={unit || index} className="flex items-center justify-between py-1">
+                    <span className="text-xs text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>{unitLabel}</span>
                     <button onClick={() => handleRemoveUnit(unit)} className="text-gray-400 hover:text-gray-600">
                       <X className="w-3 h-3" />
                     </button>
@@ -2523,17 +3774,17 @@ const FilterSidebar = ({
           
           <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
             {availableUnits.length === 0 ? (
-              <p className="text-xs text-gray-500">No units available</p>
+              <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY }}>No units available</p>
             ) : (
-              availableUnits.map(unit => (
-                <label key={unit.value} className="flex items-center gap-2 cursor-pointer">
+              availableUnits.map((unit, index) => (
+                <label key={unit.value || index} className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={filters.units.includes(unit.value)}
                     onChange={() => handleUnitChange(unit.value)}
-                    className="w-3.5 h-3.5 rounded border-gray-300 text-black focus:ring-black"
+                    className="w-3.5 h-3.5 rounded border-[#F7C7D3]/40 text-[#EE4275] focus:ring-[#EE4275]"
                   />
-                  <span className="text-xs text-gray-700 hover:text-black transition-colors">
+                  <span className="text-xs text-gray-700 hover:text-[#EE4275] transition-colors" style={{ fontFamily: FONT_FAMILY }}>
                     {unit.label}
                   </span>
                 </label>
@@ -2546,6 +3797,9 @@ const FilterSidebar = ({
   </div>
 );
 
+// ============================================================
+//  MAIN PRODUCTS PAGE
+// ============================================================
 export default function ProductsClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -2570,6 +3824,8 @@ export default function ProductsClient() {
   const [expandedSections, setExpandedSections] = useState({
     price: true,
     categories: true,
+    subcategories: true,
+    childSubcategories: true,
     brands: true,
     unit: true
   });
@@ -2671,49 +3927,31 @@ export default function ProductsClient() {
     fetchUnits();
   }, []);
 
-//  const fetchBrands = async () => {
-//   try {
-//     // First fetch all brands
-//     const brandsResponse = await fetch('http://localhost:5000/api/brands');
-//     const brandsData = await brandsResponse.json();
-    
-//     if (brandsData.success) {
-//       // Then fetch products to get unique brand names
-//       const productsResponse = await fetch('http://localhost:5000/api/products?limit=1000');
-//       const productsData = await productsResponse.json();
-      
-//       if (productsData.success) {
-//         // Get unique brand names from products (only where brand exists)
-//         const productBrands = new Set();
-//         productsData.data.forEach(product => {
-//           if (product.brand && product.brand.trim() !== '' && product.isActive !== false) {
-//             productBrands.add(product.brand);
-//           }
-//         });
-        
-//         // Filter brands to only those that have products
-//         const filteredBrands = brandsData.data.filter(brand => 
-//           productBrands.has(brand.name)
-//         );
-        
-//         setBrands(filteredBrands);
-//       } else {
-//         // If products fetch fails, show all brands
-//         setBrands(brandsData.data);
-//       }
-//     }
-//   } catch (error) {
-//     console.error('Error fetching brands:', error);
-//     // If error, try to fetch brands normally
-//     try {
-//       const response = await fetch('http://localhost:5000/api/brands');
-//       const data = await response.json();
-//       if (data.success) setBrands(data.data);
-//     } catch (err) {
-//       console.error('Error fetching brands fallback:', err);
-//     }
-//   }
-// };
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/categories/with-products');
+      const data = await response.json();
+      if (data.success) {
+        setCategories(data.data);
+      }
+      setCategoriesLoaded(true);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      setCategoriesLoaded(true);
+    }
+  };
+
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/products/brands/with-products');
+      const data = await response.json();
+      if (data.success) {
+        setBrands(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching brands:', error);
+    }
+  };
 
   useEffect(() => {
     if (categories.length > 0 && !initialCategorySet) {
@@ -2762,73 +4000,46 @@ export default function ProductsClient() {
     if (!loading) restoreScrollPosition();
   }, [loading]);
 
-  // useEffect(() => {
-  //   const checkAllProductsCartStatus = async () => {
-  //     if (products.length === 0) return;
-  //     const productIds = products.map(p => p._id);
-  //     const token = localStorage.getItem('token');
-  //     const sessionId = localStorage.getItem('cartSessionId');
-  //     const headers = {};
-  //     if (token) headers['Authorization'] = `Bearer ${token}`;
-  //     else if (sessionId) headers['x-session-id'] = sessionId;
-      
-  //     try {
-  //       const response = await fetch('http://localhost:5000/api/cart/check-status', {
-  //         method: 'POST',
-  //         headers: { ...headers, 'Content-Type': 'application/json' },
-  //         body: JSON.stringify({ productIds })
-  //       });
-  //       const data = await response.json();
-  //       if (data.success) setProductsInCart(data.data);
-  //     } catch (error) { console.error('Error checking cart status:', error); }
-  //   };
-  //   checkAllProductsCartStatus();
-  // }, [products]);
-
-  // ProductsClient.js - Update the checkCartStatus function
-
-const checkAllProductsCartStatus = async (productIds) => {
-  if (!productIds || productIds.length === 0) return;
-  
-  const token = localStorage.getItem('token');
-  let sessionId = localStorage.getItem('cartSessionId');
-  
-  // ✅ Generate session if missing
-  if (!token && !sessionId) {
-    sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-    localStorage.setItem('cartSessionId', sessionId);
-  }
-  
-  const headers = {};
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  } else if (sessionId) {
-    headers['x-session-id'] = sessionId;
-  }
-  
-  try {
-    // ✅ Batch check all products in one call
-    const response = await fetch('http://localhost:5000/api/cart/check-status', {
-      method: 'POST',
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productIds })
-    });
-    const data = await response.json();
-    if (data.success) {
-      setProductsInCart(data.data);
+  const checkAllProductsCartStatus = async (productIds) => {
+    if (!productIds || productIds.length === 0) return;
+    
+    const token = localStorage.getItem('token');
+    let sessionId = localStorage.getItem('cartSessionId');
+    
+    if (!token && !sessionId) {
+      sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      localStorage.setItem('cartSessionId', sessionId);
     }
-  } catch (error) {
-    console.error('Error checking cart status:', error);
-  }
-};
+    
+    const headers = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    } else if (sessionId) {
+      headers['x-session-id'] = sessionId;
+    }
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/cart/check-status', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productIds })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setProductsInCart(data.data);
+      }
+    } catch (error) {
+      console.error('Error checking cart status:', error);
+    }
+  };
 
-// ✅ Call it after products load
-useEffect(() => {
-  if (products.length > 0) {
-    const productIds = products.map(p => p._id);
-    checkAllProductsCartStatus(productIds);
-  }
-}, [products]);
+  useEffect(() => {
+    if (products.length > 0) {
+      const productIds = products.map(p => p._id);
+      checkAllProductsCartStatus(productIds);
+    }
+  }, [products]);
+
   useEffect(() => {
     const refreshCartStatus = async () => {
       if (products.length === 0) return;
@@ -2890,86 +4101,6 @@ useEffect(() => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-//  const fetchCategories = async () => {
-//   try {
-//     // First, fetch all categories
-//     const categoriesResponse = await fetch('http://localhost:5000/api/categories');
-//     const categoriesData = await categoriesResponse.json();
-    
-//     if (categoriesData.success) {
-//       // Then, fetch products to get categories that have products
-//       const productsResponse = await fetch('http://localhost:5000/api/products?limit=1000&fields=category,isActive');
-//       const productsData = await productsResponse.json();
-      
-//       if (productsData.success && productsData.data) {
-//         // Get unique category IDs from products
-//         const productCategoryIds = new Set();
-        
-//         productsData.data.forEach(product => {
-//           // Check if product has a category and is active
-//           if (product.category && product.isActive !== false) {
-//             // If category is an object with _id, use that, otherwise use the string
-//             const categoryId = typeof product.category === 'object' 
-//               ? product.category._id?.toString() 
-//               : product.category.toString();
-//             if (categoryId) {
-//               productCategoryIds.add(categoryId);
-//             }
-//           }
-//         });
-        
-//         // Filter categories - only show those that have products
-//         const filteredCategories = categoriesData.data.filter(category => {
-//           const categoryId = category._id.toString();
-//           return productCategoryIds.has(categoryId);
-//         });
-        
-//         setCategories(filteredCategories);
-//       } else {
-//         // If products fetch fails, show all categories
-//         setCategories(categoriesData.data);
-//       }
-//       setCategoriesLoaded(true);
-//     }
-//   } catch (error) {
-//     console.error('Error fetching categories:', error);
-//     setCategoriesLoaded(true);
-//   }
-// };
-
-// ProductsClient.js - Replace fetchCategories
-
-const fetchCategories = async () => {
-  try {
-    // ✅ Use lightweight endpoint
-    const response = await fetch('http://localhost:5000/api/categories/with-products');
-    const data = await response.json();
-    
-    if (data.success) {
-      setCategories(data.data);
-    }
-    setCategoriesLoaded(true);
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    setCategoriesLoaded(true);
-  }
-};
-
-// ProductsClient.js - Replace fetchBrands
-
-const fetchBrands = async () => {
-  try {
-    // ✅ Use lightweight endpoint
-    const response = await fetch('http://localhost:5000/api/products/brands/with-products');
-    const data = await response.json();
-    
-    if (data.success) {
-      setBrands(data.data);
-    }
-  } catch (error) {
-    console.error('Error fetching brands:', error);
-  }
-};
   const fetchSubcategories = async (categoryId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/categories/${categoryId}/subcategories`);
@@ -3189,41 +4320,71 @@ const fetchBrands = async () => {
     <>
       <LoadingBar isVisible={loading} />
       <Navbar />
+  {/* Hero Section - With Clear Background Image */}
+<div className="relative overflow-hidden ">
+  {/* Background Image - No fixed attachment for better clarity */}
+  <div 
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ 
+      backgroundImage: `url('/images/a1.jpg')`
+    }}
+  />
+  
+  {/* Black Overlay - Lighter opacity, no blur */}
+  <div className="absolute inset-0 bg-black/40" />
+  
+  {/* Subtle gradient overlay for depth - Keep but lighter */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+  
+  {/* Decorative Elements */}
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#EE4275]/5 rounded-full blur-3xl" />
+    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#EE4275]/5 rounded-full blur-3xl" />
+  </div>
+
+  <div className="relative z-10 container mx-auto px-4 max-w-7xl py-8 md:py-12 lg:py-12">
+    <div className="flex flex-col items-center text-center">
+      {/* Decorative line above */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-8 md:w-10 h-px bg-gradient-to-r from-transparent to-[#EE4275]" />
+        <Flower2 className="w-4 h-4 md:w-5 md:h-5 text-[#EE4275]" />
+        <div className="w-8 md:w-10 h-px bg-gradient-to-l from-transparent to-[#EE4275]" />
+      </div>
       
-      {/* Hero Section - Black/White */}
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto px-4 max-w-7xl py-6 md:py-8">
-          <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center gap-3">
-              <Package className="w-6 h-6 text-black" />
-              <h1 className="text-2xl md:text-4xl font-bold text-black text-center">All Products</h1>
-              <Package className="w-6 h-6 text-black" />
-            </div>
-            <p className="text-gray-500 text-center text-sm mt-1">Discover our collection of premium products</p>
-            
-            {/* Search Bar - Under the header */}
-            <div className="w-full max-w-2xl mt-4 md:mt-5">
-              <div className="relative flex items-center bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden focus-within:border-black focus-within:ring-2 focus-within:ring-black/10 transition-all">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchInput}
-                  onChange={handleSearchChange}
-                  className="w-full pl-10 pr-24 py-2.5 text-sm border-0 focus:outline-none bg-transparent text-black placeholder:text-gray-400"
-                />
-                {searchInput && (
-                  <button onClick={handleClearSearch} className="absolute right-3 p-1.5 text-gray-400 hover:text-black rounded-lg transition-colors">
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
+      <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-2" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>
+        Beauty <span className="text-[#EE4275]">Collection</span>
+      </h1>
+      
+      <p className="text-white/80 text-center text-xs md:text-sm max-w-2xl" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>
+        Discover our curated collection of premium beauty products
+      </p>
+      
+      {/* Search Bar */}
+      <div className="w-full max-w-xl mt-4 md:mt-5">
+        <div className="relative flex items-center bg-white/15 backdrop-blur-sm border border-white/20 rounded-full shadow-lg overflow-hidden focus-within:border-[#EE4275] focus-within:ring-2 focus-within:ring-[#EE4275]/30 transition-all">
+          <Search className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 md:w-4 md:h-4 text-white/60" />
+          <input
+            type="text"
+            placeholder="Search beauty products..."
+            value={searchInput}
+            onChange={handleSearchChange}
+            className="w-full pl-9 md:pl-11 pr-20 md:pr-24 py-2 md:py-2.5 text-xs md:text-sm border-0 focus:outline-none bg-transparent text-white placeholder:text-white/50"
+            style={{ fontFamily: FONT_FAMILY }}
+          />
+          {searchInput && (
+            <button onClick={handleClearSearch} className="absolute right-2 md:right-3 p-1 text-white/40 hover:text-white rounded-full transition-colors">
+              <X className="w-3 h-3 md:w-3.5 md:h-3.5" />
+            </button>
+          )}
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ 
+  background: 'linear-gradient(to right, #FFD2DB 0%, #FFF5F6 25%, #FFFFFF 50%, #FFF5F6 75%, #FFD2DB 100%)'
+}}>
         <div className="container mx-auto px-4 max-w-7xl py-6">
           {/* Filter and Sort Bar */}
           <div className="mb-6">
@@ -3231,19 +4392,20 @@ const fetchBrands = async () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowMobileFilters(true)}
-                  className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 hover:bg-gray-50 transition-colors text-xs font-medium text-gray-700"
+                  className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-white border border-[#F7C7D3]/30 rounded-full hover:bg-[#FFF5F6] transition-colors text-xs font-medium text-gray-700"
                 >
-                  <SlidersHorizontal className="w-3.5 h-3.5" />
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-[#EE4275]" />
                   Filters
                   {getActiveFilterCount() > 0 && (
-                    <span className="ml-1 px-1 py-0.5 bg-black text-white text-[9px] rounded-full min-w-[16px] text-center">{getActiveFilterCount()}</span>
+                    <span className="ml-1 px-1 py-0.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-[9px] rounded-full min-w-[16px] text-center">{getActiveFilterCount()}</span>
                   )}
                 </button>
 
                 <select
                   value={filters.sortBy}
                   onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-                  className="px-3 py-1.5 text-xs border border-gray-200 bg-white focus:outline-none focus:ring-1 focus:ring-black"
+                  className="px-3 py-1.5 text-xs border border-[#EE4275]/30 rounded-full bg-white  focus:outline-none focus:ring-1 focus:ring-[#EE4275]"
+                  style={{ fontFamily: FONT_FAMILY }}
                 >
                   <option value="newest">Newest First</option>
                   <option value="price_low">Price: Low to High</option>
@@ -3253,11 +4415,11 @@ const fetchBrands = async () => {
 
                 {/* Desktop view toggle */}
                 {!isMobile && (
-                  <div className="hidden md:flex items-center gap-1 bg-white border border-gray-200">
-                    <button onClick={() => setViewMode('grid')} className={`p-1.5 transition-all ${viewMode === 'grid' ? 'bg-black text-white' : 'text-gray-500 hover:bg-gray-100'}`} title="Grid View">
+                  <div className="hidden md:flex items-center gap-1 bg-white border border-[#EE4275]/30 rounded-full p-0.5">
+                    <button onClick={() => setViewMode('grid')} className={`p-1.5 rounded-full transition-all ${viewMode === 'grid' ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' : 'text-gray-500 hover:bg-[#FFF5F6]'}`} title="Grid View">
                       <Grid className="w-3.5 h-3.5" />
                     </button>
-                    <button onClick={() => setViewMode('list')} className={`p-1.5 transition-all ${viewMode === 'list' ? 'bg-black text-white' : 'text-gray-500 hover:bg-gray-100'}`} title="List View">
+                    <button onClick={() => setViewMode('list')} className={`p-1.5 rounded-full transition-all ${viewMode === 'list' ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' : 'text-gray-500 hover:bg-[#FFF5F6]'}`} title="List View">
                       <List className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -3272,11 +4434,12 @@ const fetchBrands = async () => {
                   placeholder="Search products..."
                   value={searchInput}
                   onChange={handleSearchChange}
-                  className="w-full pl-9 pr-8 py-1.5 text-xs border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black bg-white"
+                  className="w-full pl-9 pr-8 py-1.5 text-xs border border-[#EE4275]/30 rounded-full focus:outline-none focus:ring-1 focus:ring-[#EE4275] bg-white"
+                  style={{ fontFamily: FONT_FAMILY }}
                 />
                 {searchInput && (
                   <button onClick={handleClearSearch} className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <X className="w-3 h-3 text-gray-400 hover:text-gray-600" />
+                    <X className="w-3 h-3 text-gray-400 hover:text-[#EE4275] transition-colors" />
                   </button>
                 )}
               </div>
@@ -3286,44 +4449,54 @@ const fetchBrands = async () => {
             {getActiveFilterCount() > 0 && (
               <div className="mt-3 flex items-center gap-1.5 flex-wrap">
                 {filters.search && (
-                  <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-[10px]">
+                  <div className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
                     <span>🔍 "{filters.search}"</span>
-                    <button onClick={handleClearSearch} className="ml-1 hover:text-black"><X className="w-2.5 h-2.5" /></button>
+                    <button onClick={handleClearSearch} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
                   </div>
                 )}
                 {filters.categories.map(catId => {
                   const category = categories.find(c => c._id === catId);
                   return category ? (
-                    <div key={catId} className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-[10px]">
-                      <Tag className="w-2.5 h-2.5" />
-                      <span>{category.name}</span>
-                      <button onClick={() => handleRemoveCategory(catId)} className="ml-1 hover:text-black"><X className="w-2.5 h-2.5" /></button>
+                    <div key={catId} className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
+                      <Tag className="w-2.5 h-2.5 text-[#EE4275]" />
+                      <span style={{ fontFamily: FONT_FAMILY }}>{category.name}</span>
+                      <button onClick={() => handleRemoveCategory(catId)} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
+                    </div>
+                  ) : null;
+                })}
+                {filters.subcategories.map(subId => {
+                  const sub = subcategories.find(s => s._id === subId);
+                  return sub ? (
+                    <div key={subId} className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
+                      <FolderTree className="w-2.5 h-2.5 text-[#EE4275]" />
+                      <span style={{ fontFamily: FONT_FAMILY }}>{sub.name}</span>
+                      <button onClick={() => handleRemoveSubcategory(subId)} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
                     </div>
                   ) : null;
                 })}
                 {filters.brands.map(brand => (
-                  <div key={brand} className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-[10px]">
-                    <Building2 className="w-2.5 h-2.5" />
-                    <span>{brand}</span>
-                    <button onClick={() => handleRemoveBrand(brand)} className="ml-1 hover:text-black"><X className="w-2.5 h-2.5" /></button>
+                  <div key={brand} className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
+                    <Building2 className="w-2.5 h-2.5 text-[#EE4275]" />
+                    <span style={{ fontFamily: FONT_FAMILY }}>{brand}</span>
+                    <button onClick={() => handleRemoveBrand(brand)} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
                   </div>
                 ))}
                 {filters.units.map(unit => (
-                  <div key={unit} className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-[10px]">
-                    <Scale className="w-2.5 h-2.5" />
-                    <span>{unit === 'pcs' ? 'Pieces' : 'Ton'}</span>
-                    <button onClick={() => handleRemoveUnit(unit)} className="ml-1 hover:text-black"><X className="w-2.5 h-2.5" /></button>
+                  <div key={unit} className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
+                    <Scale className="w-2.5 h-2.5 text-[#EE4275]" />
+                    <span style={{ fontFamily: FONT_FAMILY }}>{unit === 'pcs' ? 'Pieces' : 'Ton'}</span>
+                    <button onClick={() => handleRemoveUnit(unit)} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
                   </div>
                 ))}
                 {(filters.priceRange.min || filters.priceRange.max) && (
-                  <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 text-[10px]">
-                    <DollarSign className="w-2.5 h-2.5" />
-                    <span>৳{filters.priceRange.min || '0'} - ৳{filters.priceRange.max || '∞'}</span>
-                    <button onClick={clearPriceRange} className="ml-1 hover:text-black"><X className="w-2.5 h-2.5" /></button>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-[#FFF5F6] text-gray-700 text-[10px] rounded-full border border-[#F7C7D3]/30">
+                    <DollarSign className="w-2.5 h-2.5 text-[#EE4275]" />
+                    <span style={{ fontFamily: FONT_FAMILY }}>৳{filters.priceRange.min || '0'} - ৳{filters.priceRange.max || '∞'}</span>
+                    <button onClick={clearPriceRange} className="ml-1 hover:text-[#EE4275] transition-colors"><X className="w-2.5 h-2.5" /></button>
                   </div>
                 )}
                 {getActiveFilterCount() > 0 && (
-                  <button onClick={clearFilters} className="px-2 py-1 text-[10px] text-gray-500 hover:text-black underline">
+                  <button onClick={clearFilters} className="px-2 py-1 text-[10px] text-[#EE4275] hover:text-[#ca4f74] underline transition-colors" style={{ fontFamily: FONT_FAMILY }}>
                     Clear All
                   </button>
                 )}
@@ -3376,8 +4549,8 @@ const fetchBrands = async () => {
               {loading ? (
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {[...Array(12)].map((_, index) => (
-                    <div key={index} className="bg-white border border-gray-200 overflow-hidden animate-pulse">
-                      <div className="h-40 bg-gray-100"></div>
+                    <div key={index} className="bg-white rounded-2xl border border-[#F7C7D3]/30 overflow-hidden animate-pulse">
+                      <div className="h-40 bg-gradient-to-br from-[#F7C7D3]/10 to-[#EE4275]/5"></div>
                       <div className="p-3">
                         <div className="h-3 bg-gray-100 rounded mb-2 w-3/4"></div>
                         <div className="h-4 bg-gray-100 rounded mb-2 w-1/2"></div>
@@ -3389,17 +4562,19 @@ const fetchBrands = async () => {
               ) : (
                 <>
                   {products.length === 0 ? (
-                    <div className="text-center py-16 bg-white border border-gray-200">
-                      <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                      <p className="text-sm text-gray-500 mb-3">No products found</p>
-                      <button onClick={clearFilters} className="px-4 py-1.5 bg-black text-white text-xs font-medium hover:bg-gray-800">Clear Filters</button>
+                    <div className="text-center py-16 bg-white rounded-2xl border border-[#F7C7D3]/30">
+                      <Package className="w-12 h-12 text-[#F7C7D3] mx-auto mb-3" />
+                      <p className="text-sm text-gray-500 mb-3" style={{ fontFamily: FONT_FAMILY }}>No products found</p>
+                      <button onClick={clearFilters} className="px-4 py-1.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-xs font-medium rounded-full hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all" style={{ fontFamily: FONT_FAMILY }}>
+                        Clear Filters
+                      </button>
                     </div>
                   ) : (
                     <>
-                      <div className="mb-3 text-xs text-gray-500"></div>
+                      {/* <div className="mb-3 text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY }}>Found {totalProducts} product{totalProducts !== 1 ? 's' : ''}</div> */}
                       
                       {(isMobile || viewMode === 'grid') ? (
-                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 ">
                           {products.map(product => (
                             <ProductGridCard key={product._id} product={product} router={router} isInCart={productsInCart[product._id] || false} onViewInCart={openCartSidebar} />
                           ))}
@@ -3415,12 +4590,14 @@ const fetchBrands = async () => {
                       {/* Pagination */}
                       {totalPages > 1 && (
                         <div className="flex justify-center items-center gap-1.5 mt-8">
-                          <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))} disabled={currentPage === 1} className="px-2 py-1 border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 text-xs">Prev</button>
+                          <button onClick={() => handlePageChange(Math.max(currentPage - 1, 1))} disabled={currentPage === 1} className="px-2 py-1 border border-[#F7C7D3]/30 rounded-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FFF5F6] text-xs transition-colors" style={{ fontFamily: FONT_FAMILY }}>
+                            Prev
+                          </button>
                           {[...Array(totalPages)].map((_, i) => {
                             const pageNum = i + 1;
                             if (pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)) {
                               return (
-                                <button key={i} onClick={() => handlePageChange(pageNum)} className={`min-w-[28px] h-7 text-xs font-medium transition-all ${currentPage === pageNum ? 'bg-black text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
+                                <button key={i} onClick={() => handlePageChange(pageNum)} className={`min-w-[28px] h-7 text-xs font-medium rounded-full transition-all ${currentPage === pageNum ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/25' : 'border border-[#F7C7D3]/30 text-gray-700 hover:bg-[#FFF5F6]'}`} style={{ fontFamily: FONT_FAMILY }}>
                                   {pageNum}
                                 </button>
                               );
@@ -3429,7 +4606,9 @@ const fetchBrands = async () => {
                             }
                             return null;
                           })}
-                          <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))} disabled={currentPage === totalPages} className="px-2 py-1 border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 text-xs">Next</button>
+                          <button onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))} disabled={currentPage === totalPages} className="px-2 py-1 border border-[#F7C7D3]/30 rounded-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FFF5F6] text-xs transition-colors" style={{ fontFamily: FONT_FAMILY }}>
+                            Next
+                          </button>
                         </div>
                       )}
                     </>
@@ -3446,9 +4625,9 @@ const fetchBrands = async () => {
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setShowMobileFilters(false)} />
           <div className="absolute right-0 top-0 h-full w-80 bg-white overflow-y-auto shadow-xl">
-            <div className="sticky top-0 bg-white p-3 border-b border-gray-200 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-black">Filters</h3>
-              <button onClick={() => setShowMobileFilters(false)} className="p-1.5 hover:bg-gray-100">
+            <div className="sticky top-0 bg-white p-3 border-b border-[#F7C7D3]/30 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY }}>Filters</h3>
+              <button onClick={() => setShowMobileFilters(false)} className="p-1.5 hover:bg-[#FFF5F6] rounded-full transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -3486,8 +4665,10 @@ const fetchBrands = async () => {
                 unitsLoading={unitsLoading}
               />
             </div>
-            <div className="sticky bottom-0 bg-white p-3 border-t border-gray-200">
-              <button onClick={() => setShowMobileFilters(false)} className="w-full py-2 bg-black text-white text-xs font-medium hover:bg-gray-800">Apply Filters</button>
+            <div className="sticky bottom-0 bg-white p-3 border-t border-[#F7C7D3]/30">
+              <button onClick={() => setShowMobileFilters(false)} className="w-full py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-xs font-medium rounded-full hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all" style={{ fontFamily: FONT_FAMILY }}>
+                Apply Filters
+              </button>
             </div>
           </div>
         </div>

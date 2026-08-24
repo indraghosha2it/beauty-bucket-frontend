@@ -10,7 +10,7 @@ function AboutLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#1E3A5F] via-[#2563EB] to-[#60A5FA] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#2D1B2E] via-[#EE4275] to-[#FF6B9D] flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 mx-auto bg-white/20 rounded-full animate-pulse mb-4"></div>
           <div className="h-6 w-48 bg-white/20 rounded mx-auto animate-pulse"></div>
@@ -22,72 +22,86 @@ function AboutLoading() {
   );
 }
 
-// Smart Gadget About Us Page SEO Metadata
+// Beauty Bucket About Us Page SEO Metadata
 export const metadata = {
-  title: "About Smart Gadget | Bangladesh's Trusted Premium Gadget Store",
-  description: "Learn about Smart Gadget - Bangladesh's premier online gadget store. We provide authentic smartphones, laptops, smartwatches, headphones, gaming accessories & electronics with official warranty and best prices.",
+  title: "About Beauty Bucket | Bangladesh's Trusted Premium Beauty & Cosmetics Store",
+  description: "Learn about Beauty Bucket - Bangladesh's premier online beauty store. We provide authentic skincare, makeup, fragrances, hair care, body care & beauty accessories with quality guarantee and best prices.",
   keywords: [
     // About us specific
-    "about smart gadget",
-    "premium gadget store bangladesh",
-    "electronics company bd",
-    "smart gadget story",
-    "gadget shop dhaka about",
+    "about beauty bucket",
+    "premium beauty store bangladesh",
+    "cosmetics company bd",
+    "beauty bucket story",
+    "cosmetics shop dhaka about",
+    "beauty brand bangladesh",
     
     // Mission & values
-    "tech company mission",
-    "gadget store values",
-    "authentic electronics bangladesh",
-    "quality gadgets bd",
-    "official warranty products",
+    "beauty company mission",
+    "cosmetics store values",
+    "authentic beauty products bangladesh",
+    "quality cosmetics bd",
+    "quality guarantee beauty products",
     
     // Trust signals
-    "why choose smart gadget",
-    "trusted electronics store bd",
-    "verified products bd",
-    "genuine gadgets bangladesh",
-    "premium tech store bd",
+    "why choose beauty bucket",
+    "trusted beauty store bd",
+    "verified cosmetics bd",
+    "genuine beauty products bangladesh",
+    "premium cosmetics store bd",
+    "authentic makeup store bd",
     
     // Team & milestones
-    "smart gadget team",
-    "tech company milestones",
-    "electronics store journey bd",
-    "gadget industry bangladesh",
+    "beauty bucket team",
+    "cosmetics company journey bd",
+    "beauty industry bangladesh",
+    "skincare company bangladesh",
     
     // Company info
-    "online gadget store about",
-    "tech product company bd",
-    "electronics retailer bangladesh",
-    "premium gadget store dhaka",
-    "authorized tech seller bd",
+    "online beauty store about",
+    "cosmetics retailer bangladesh",
+    "premium beauty store dhaka",
+    "authorized beauty seller bd",
+    "authentic cosmetics bangladesh",
     
     // Social proof
-    "happy customers gadgets bd",
-    "tech enthusiast bangladesh",
-    "smart gadget reviews",
-    "customer trust electronics bd",
+    "happy customers beauty bd",
+    "beauty enthusiasts bangladesh",
+    "beauty bucket reviews",
+    "customer trust cosmetics bd",
     "satisfied buyers bd",
-    "recommended tech store bd",
+    "recommended beauty store bd",
+    "trusted makeup store bd",
+    
+    // Beauty categories
+    "skincare products bd",
+    "makeup products bangladesh",
+    "fragrances store bd",
+    "hair care products bangladesh",
+    "body care cosmetics bd",
+    "k beauty products bangladesh",
+    "natural skincare bd",
     
     // Additional keywords
-    "best electronics price bd",
-    "original products warranty bd",
-    "certified tech seller bangladesh",
-    "trusted gadget provider dhaka",
-    "quality assurance electronics bd",
-    "after sales service bd"
+    "best beauty price bd",
+    "authentic cosmetics warranty bd",
+    "certified beauty seller bangladesh",
+    "trusted cosmetics provider dhaka",
+    "quality assurance beauty bd",
+    "beauty consultation service bd",
+    "skincare expert bd",
+    "makeup artist recommended bd"
   ],
   openGraph: {
-    title: "About Smart Gadget - Our Story | Premium Gadget Store Bangladesh",
-    description: "Discover the Smart Gadget story. We're on a mission to provide authentic premium gadgets at the best prices across Bangladesh. Official warranty, quality assurance, and exceptional service.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/about' || 'https://smartgadget.com.bd/about',
-    siteName: "Smart Gadget",
+    title: "About Beauty Bucket - Our Story | Premium Beauty & Cosmetics Store Bangladesh",
+    description: "Discover the Beauty Bucket story. We're on a mission to provide authentic premium beauty products at the best prices across Bangladesh. Quality guarantee, expert consultation, and exceptional service.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/about' || 'https://beautybucket.com.bd/about',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/about-og-smartgadget.jpg',
+        url: '/about-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'About Smart Gadget - Bangladesh\'s Premium Gadget Store',
+        alt: 'About Beauty Bucket - Bangladesh\'s Premium Beauty & Cosmetics Store',
       },
     ],
     type: 'website',
@@ -96,11 +110,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "About Smart Gadget | Premium Gadget Store Bangladesh",
-    description: "Learn about our mission to provide authentic premium gadgets with official warranty. Join 10,000+ satisfied customers!",
-    images: ['/about-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "About Beauty Bucket | Premium Beauty Store Bangladesh",
+    description: "Learn about our mission to provide authentic premium beauty products with quality guarantee. Join thousands of satisfied beauty lovers!",
+    images: ['/about-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/about',
@@ -122,25 +136,31 @@ export const metadata = {
   },
   // Additional metadata
   other: {
-    'application-name': 'Smart Gadget About',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket About',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'about-us',
-    'business-type': 'ecommerce-gadget-store',
+    'business-type': 'ecommerce-beauty-store',
     'founded-year': '2020',
     'headquarters': 'Dhaka, Bangladesh',
     'service-area': 'Nationwide Delivery',
-    'product-categories': 'Smartphones, Laptops, Smartwatches, Audio, Gaming, Smart Home',
-    'warranty': 'Official Brand Warranty Available',
-    'authenticity': '100% Genuine Products',
-    'certifications': 'Authorized Seller, Certified Tech Store',
-    'employee-count': '50+',
-    'customer-count': '10,000+ Satisfied Customers',
-    'social-responsibility': 'Supporting Digital Bangladesh',
-    'contact-email': 'support@smartgadget.com.bd',
+    'product-categories': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
+    'brands': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    'quality-guarantee': '100% Authentic Beauty Products',
+    'certifications': 'Authorized Beauty Retailer, Quality Assured Store',
+    'employee-count': '30+ Beauty Experts',
+    'customer-count': '5,000+ Satisfied Beauty Lovers',
+    'social-responsibility': 'Promoting Beauty & Wellness in Bangladesh',
+    'contact-email': 'support@beautybucket.com',
     'contact-phone': '+880123456789',
     'business-hours': '10:00 AM - 10:00 PM (Everyday)',
     'payment-methods': 'Cash on Delivery, bKash, Nagad, Rocket, Credit Card',
+    'beauty-consultants': 'Available for Expert Advice',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
+    'ingredients': 'Vitamin C, Hyaluronic Acid, Retinol, Niacinamide, Salicylic Acid, Glycolic Acid, Ceramides, Peptides, Squalane, Rosehip Oil, Shea Butter, Aloe Vera',
+    'ethical-features': 'Cruelty Free Options, Vegan Options, Eco-Friendly Packaging Options',
+    'safety-features': 'Dermatologically Tested, Hypoallergenic, Non-Comedogenic, Fragrance Free (Options Available), Paraben Free (Options Available)',
+    'beauty-commitment': 'Empowering beauty and confidence through authentic products',
   },
 };
 

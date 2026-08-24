@@ -11,76 +11,92 @@ function LoginLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
       </div>
       <Footer />
     </>
   );
 }
 
-// Smart Gadget Login Page SEO Metadata
+// Beauty Bucket Login Page SEO Metadata
 export const metadata = {
-  title: "Login to Smart Gadget | Sign In for Premium Gadgets in Bangladesh",
-  description: "Login to your Smart Gadget account to shop premium smartphones, laptops, smartwatches, headphones & more. Track orders, save wishlist, and get exclusive tech deals.",
+  title: "Login to Beauty Bucket | Sign In for Premium Beauty Products in Bangladesh",
+  description: "Login to your Beauty Bucket account to shop premium skincare, makeup, fragrances, hair care & more. Track orders, save wishlist, get beauty tips, and exclusive beauty deals.",
   keywords: [
     // Login specific
-    "login smart gadget",
-    "sign in gadget store bd",
-    "customer login bangladesh",
-    "smart gadget account access",
-    "member login gadgets",
+    "login beauty bucket",
+    "sign in cosmetics store bd",
+    "customer login bangladesh beauty",
+    "beauty bucket account access",
+    "member login cosmetics",
     
     // Account related
-    "my gadget account",
-    "tech shopping login",
-    "electronics account bd",
-    "premium gadgets login",
-    "smart gadget member sign in",
+    "my beauty account",
+    "cosmetics shopping login",
+    "beauty products account bd",
+    "premium cosmetics login",
+    "beauty bucket member sign in",
     
     // Benefits
-    "track gadget orders",
-    "save wishlist login",
-    "exclusive tech deals",
-    "gadget discount for members",
-    "tech purchase discount",
+    "track beauty orders",
+    "save wishlist login beauty",
+    "exclusive beauty deals",
+    "skincare discount for members",
+    "beauty product discount",
     
     // Authentication
-    "secure login gadgets",
-    "electronics store authentication",
-    "online gadget shop login bd",
-    "smart gadget customer portal",
+    "secure login cosmetics",
+    "beauty store authentication",
+    "online cosmetics shop login bd",
+    "beauty bucket customer portal",
     
     // User intent
-    "access my gadget account",
-    "login to buy electronics online",
-    "tech shopping account bd",
-    "gadget store sign in",
+    "access my beauty account",
+    "login to buy cosmetics online",
+    "beauty shopping account bd",
+    "cosmetics store sign in",
     
-    // Device specific
-    "smartphone account login",
-    "laptop store login bd",
-    "smartwatch account access",
-    "headphones store sign in",
-    "gaming gear login bd",
+    // Beauty specific
+    "skincare account login",
+    "makeup store login bd",
+    "fragrance account access",
+    "hair care store sign in",
+    "beauty products login bd",
+    "cosmetics account access",
+    "skincare routine account",
+    "beauty consultation login",
     
     // Local keywords
-    "login bd gadget store",
-    "premium electronics account",
-    "tech store customer login",
-    "gadget shopping account bd"
+    "login bd beauty store",
+    "premium cosmetics account",
+    "beauty store customer login",
+    "beauty shopping account bd",
+    
+    // Beauty enthusiast
+    "beauty lover account",
+    "skincare enthusiast login",
+    "makeup lover account bd",
+    "beauty community login",
+    "beauty tips account",
+    
+    // New customer
+    "create beauty account",
+    "register beauty store bd",
+    "new beauty customer",
+    "beauty account sign up"
   ],
   openGraph: {
-    title: "Login to Smart Gadget - Your Premium Tech Account | Bangladesh",
-    description: "Sign in to your Smart Gadget account to shop premium smartphones, laptops, smartwatches, headphones, gaming accessories & more. Official warranty & best prices!",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://smartgadget.com.bd/login',
-    siteName: "Smart Gadget",
+    title: "Login to Beauty Bucket - Your Premium Beauty Account | Bangladesh",
+    description: "Sign in to your Beauty Bucket account to shop premium skincare, makeup, fragrances, hair care, body care & more. Quality guarantee & best prices!",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://beautybucket.com.bd/login',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/login-og-smartgadget.jpg',
+        url: '/login-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Gadget Login - Sign in to Your Premium Tech Account',
+        alt: 'Beauty Bucket Login - Sign in to Your Premium Beauty Account',
       },
     ],
     type: 'website',
@@ -89,11 +105,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Login to Smart Gadget | Premium Tech Store Bangladesh",
-    description: "Sign in to access your gadget account, track orders, save favorites, and get exclusive member deals!",
-    images: ['/login-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Login to Beauty Bucket | Premium Beauty Store Bangladesh",
+    description: "Sign in to access your beauty account, track orders, save favorites, get skincare advice, and exclusive member deals!",
+    images: ['/login-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/login',
@@ -115,15 +131,45 @@ export const metadata = {
   },
   // Additional metadata
   other: {
-    'application-name': 'Smart Gadget Login',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket Login',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'login',
     'user-action': 'authentication',
-    'business-name': 'Smart Gadget Bangladesh',
-    'business-type': 'E-commerce Gadget Store',
+    'business-name': 'Beauty Bucket Bangladesh',
+    'business-type': 'E-commerce Beauty & Cosmetics Store',
     'secure-login': '256-bit SSL Encrypted',
     'session-timeout': '7 days',
+    
+    // Beauty specific benefits
+    'beauty-consultation': 'Available with Account',
+    'personalized-recommendations': 'Based on Skin Type & Preferences',
+    'skin-routine-saver': 'Save Your Skincare Routine',
+    'wishlist-feature': 'Save Favorite Products',
+    'price-alerts': 'Get Notified on Price Drops',
+    'exclusive-offers': 'Member-Only Discounts',
+    'early-access': 'Early Access to New Products',
+    'beauty-tips': 'Exclusive Beauty Tips & Tutorials',
+    'order-tracking': 'Real-time Order Tracking',
+    
+    // Account features
+    'saved-skin-type': 'Store Your Skin Type Preferences',
+    'saved-allergies': 'Ingredient Allergy Preferences (Optional)',
+    'shade-preferences': 'Makeup Shade Preferences (Optional)',
+    'fragrance-preferences': 'Fragrance Preferences (Optional)',
+    'product-reviews': 'Write & Read Product Reviews',
+    'beauty-history': 'View Purchase History',
+    'consultation-history': 'View Beauty Consultation History',
+    
+    // Beauty categories
+    'product-categories': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
+    'brands-available': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    
+    // Security
+    'two-factor-auth': 'Available for Enhanced Security',
+    'password-recovery': 'Secure Password Recovery',
+    'data-protection': 'GDPR & CCPA Compliant',
   },
 };
 
@@ -132,10 +178,10 @@ export const generateJsonLd = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://smartgadget.com.bd/login',
-    name: 'Login - Smart Gadget',
-    description: 'Login to your Smart Gadget account to shop premium gadgets and electronics.',
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://smartgadget.com.bd/login',
+    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://beautybucket.com.bd/login',
+    name: 'Login - Beauty Bucket',
+    description: 'Login to your Beauty Bucket account to shop premium beauty products, skincare, makeup, and cosmetics.',
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://beautybucket.com.bd/login',
     inLanguage: 'en',
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -144,20 +190,20 @@ export const generateJsonLd = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://smartgadget.com.bd'
+          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://beautybucket.com.bd'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Login',
-          item: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://smartgadget.com.bd/login'
+          item: process.env.NEXT_PUBLIC_BASE_URL + '/login' || 'https://beautybucket.com.bd/login'
         }
       ]
     },
     mainEntity: {
       '@type': 'WebApplication',
       name: 'Customer Login System',
-      description: 'Login to access your gadget account',
+      description: 'Login to access your beauty account, track orders, and get personalized recommendations',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       browserRequirements: 'Requires modern browser'

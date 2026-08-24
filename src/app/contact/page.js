@@ -11,11 +11,11 @@ function ContactLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] via-[#2563EB]/20 to-[#0F172A]/10 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF5F6] via-[#EE4275]/20 to-[#2D1B2E]/10 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 mx-auto bg-[#2563EB]/20 rounded-full animate-pulse mb-4"></div>
-          <div className="h-6 w-48 bg-[#2563EB]/20 rounded mx-auto animate-pulse"></div>
-          <div className="h-4 w-64 bg-[#2563EB]/20 rounded mx-auto mt-3 animate-pulse"></div>
+          <div className="w-16 h-16 mx-auto bg-[#EE4275]/20 rounded-full animate-pulse mb-4"></div>
+          <div className="h-6 w-48 bg-[#EE4275]/20 rounded mx-auto animate-pulse"></div>
+          <div className="h-4 w-64 bg-[#EE4275]/20 rounded mx-auto mt-3 animate-pulse"></div>
         </div>
       </div>
       <Footer />
@@ -23,99 +23,112 @@ function ContactLoading() {
   );
 }
 
-// Smart Gadget Contact Us Page SEO Metadata
+// Beauty Bucket Contact Us Page SEO Metadata
 export const metadata = {
-  title: "Contact Us | Get in Touch with Smart Gadget",
-  description: "Contact Smart Gadget customer support for questions about smartphones, laptops, smartwatches, headphones, gaming accessories, orders, delivery, or warranty. Call, email, or visit us in Dhaka. We're here to help!",
+  title: "Contact Us | Get in Touch with Beauty Bucket",
+  description: "Contact Beauty Bucket customer support for questions about skincare, makeup, fragrances, hair care, body care, orders, delivery, or product authenticity. Call, email, or visit us in Dhaka. We're here to help!",
   keywords: [
     // Contact specific
-    "contact smart gadget",
-    "gadget store customer care bd",
-    "electronics support bangladesh",
-    "smart gadget helpline",
-    "customer service gadget bd",
+    "contact beauty bucket",
+    "beauty store customer care bd",
+    "cosmetics support bangladesh",
+    "beauty bucket helpline",
+    "customer service cosmetics bd",
     
     // Contact methods
-    "gadget shop phone number",
-    "smart gadget email address",
-    "electronics store location dhaka",
-    "customer care number smart gadget",
-    "tech support bd",
-    "gadget store helpline",
+    "beauty shop phone number",
+    "beauty bucket email address",
+    "cosmetics store location dhaka",
+    "customer care number beauty bucket",
+    "beauty support bd",
+    "cosmetics store helpline",
     
     // Support inquiries
-    "smartphone order help",
-    "laptop delivery support bangladesh",
-    "smartwatch return contact",
-    "product inquiry smart gadget",
-    "warranty support electronics",
-    "gaming accessories help",
-    "audio device support bd",
+    "skincare order help",
+    "makeup delivery support bangladesh",
+    "fragrance return contact",
+    "product inquiry beauty bucket",
+    "quality guarantee support cosmetics",
+    "beauty accessories help",
+    "hair care product support bd",
     
     // Business inquiries
-    "tech business contact",
-    "gadget wholesale inquiry",
-    "electronics supplier bangladesh",
-    "partnership tech bd",
-    "brand collaboration gadget",
+    "beauty business contact",
+    "cosmetics wholesale inquiry",
+    "beauty supplier bangladesh",
+    "partnership beauty bd",
+    "brand collaboration cosmetics",
     
     // Social media
-    "smart gadget facebook",
-    "smart gadget instagram",
-    "tech store social media",
-    "gadget store youtube",
+    "beauty bucket facebook",
+    "beauty bucket instagram",
+    "cosmetics store social media",
+    "beauty store youtube",
+    "beauty bucket tiktok",
+    "beauty bucket pinterest",
     
     // Location
-    "electronics store dhaka address",
-    "gadget shop gulshan",
-    "smart gadget office location",
-    "tech store near me dhaka",
-    "gadget showroom dhaka",
+    "cosmetics store dhaka address",
+    "beauty shop gulshan",
+    "beauty bucket office location",
+    "beauty store near me dhaka",
+    "cosmetics showroom dhaka",
     
-    // Tech specific
-    "gadget consultation bd",
-    "tech advice bangladesh",
-    "smartphone help dhaka",
-    "laptop support bd",
-    "smartwatch inquiry bangladesh",
+    // Beauty specific
+    "beauty consultation bd",
+    "skincare advice bangladesh",
+    "makeup help dhaka",
+    "cosmetics support bd",
+    "beauty expert inquiry",
+    "skin care consultation dhaka",
     
     // Customer service
-    "gadget product support",
-    "electronics helpline bd",
-    "tech customer care",
-    "smart gadget assistance",
-    "tech expert help",
-    "gadget support team",
+    "beauty product support",
+    "cosmetics helpline bd",
+    "beauty customer care",
+    "beauty bucket assistance",
+    "beauty expert help",
+    "cosmetics support team",
     
-    // Warranty & Service
-    "smartphone warranty claim bd",
-    "laptop repair dhaka",
-    "battery replacement bangladesh",
-    "tech service center bd",
-    "smart gadget warranty support",
-    "electronics repair service",
-    "gadget maintenance bd",
+    // Quality & Authenticity
+    "authentic beauty products bd",
+    "cosmetics authenticity check",
+    "genuine makeup warranty bd",
+    "beauty product quality guarantee",
+    "beauty bucket authenticity support",
+    "cosmetics return policy",
+    "beauty product exchange",
     
     // Product categories
-    "smartphone support bangladesh",
-    "laptop service dhaka",
-    "smartwatch help bd",
-    "headphones support bangladesh",
-    "gaming gear service",
-    "smart home device support",
-    "accessories help bd"
+    "skincare support bangladesh",
+    "makeup service dhaka",
+    "fragrance help bd",
+    "hair care support bangladesh",
+    "body care service",
+    "beauty accessories help",
+    "natural beauty support bd",
+    "k beauty products inquiry",
+    
+    // Expert advice
+    "skincare routine advice bd",
+    "makeup tips bangladesh",
+    "fragrance selection help",
+    "beauty consultation dhaka",
+    "skin concern support bd",
+    "beauty expert guidance",
+    "cosmetics recommendation"
   ],
   openGraph: {
-    title: "Contact Smart Gadget - We're Here to Help | Premium Gadget Store Bangladesh",
-    description: "Need help with your gadget order? Have questions about smartphones, laptops, smartwatches, or warranty? Contact our friendly customer support team via phone, email, or visit our Dhaka store.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://smartgadget.com.bd/contact',
-    siteName: "Smart Gadget",
+    title: "Contact Beauty Bucket - We're Here to Help | Premium Beauty & Cosmetics Store Bangladesh",
+    description: "Need help with your beauty order? Have questions about skincare, makeup, fragrances, or product authenticity? Contact our friendly beauty experts via phone, email, or visit our Dhaka store.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://beautybucket.com.bd/contact',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/contact-og-smartgadget.jpg',
+        url: '/contact-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Contact Smart Gadget - Customer Support for Premium Gadgets & Electronics',
+        alt: 'Contact Beauty Bucket - Customer Support for Premium Beauty Products & Cosmetics',
       },
     ],
     type: 'website',
@@ -124,11 +137,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Contact Smart Gadget | Customer Support",
-    description: "Questions about gadgets, smartphones, laptops, or orders? Contact our friendly team. Call, email, or visit us in Dhaka.",
-    images: ['/contact-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Contact Beauty Bucket | Customer Support",
+    description: "Questions about skincare, makeup, fragrances, or orders? Contact our friendly beauty experts. Call, email, or visit us in Dhaka.",
+    images: ['/contact-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/contact',
@@ -150,28 +163,35 @@ export const metadata = {
   },
   // Contact page specific metadata
   other: {
-    'application-name': 'Smart Gadget Contact',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket Contact',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'contact-us',
-    'contact-email': 'support@smartgadget.com.bd',
+    'contact-email': 'support@beautybucket.com',
     'contact-phone': '+8801234567890',
-    'business-hours': 'Mon-Sat 9AM-9PM, Sun 10AM-6PM',
+    'business-hours': 'Mon-Sat 10AM-10PM, Sun 10AM-6PM',
     'address-locality': 'Dhaka',
     'address-country': 'BD',
-    'product-categories': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories, Smart Home, Accessories, Power Banks, Chargers',
-    'authenticity': '100% Genuine Products',
-    'tech-consultation': 'Available via Chat & Phone',
-    'customer-care-type': 'Tech Experts Support',
-    'warranty-support': 'Official Brand Warranty Available',
-    'service-available': 'Product Support, Warranty Claim, Product Exchange, Tech Consultation',
-    'brands-available': 'Apple, Samsung, Xiaomi, OnePlus, Realme, Lenovo, HP, ASUS, Dell, Acer, Sony, JBL, boAt',
-    'technology': '5G, WiFi 6, Bluetooth 5.3, USB-C, Fast Charging, Wireless Charging',
-    'operating-systems': 'Android, iOS, Windows, macOS, ChromeOS',
-    'connectivity': 'Bluetooth, WiFi, NFC, USB-C, Lightning, 3.5mm Audio',
+    'product-categories': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
+    'authenticity': '100% Authentic Beauty Products',
+    'beauty-consultation': 'Available via Chat & Phone',
+    'customer-care-type': 'Beauty Experts Support',
+    'quality-guarantee': '100% Authentic Products Guaranteed',
+    'service-available': 'Product Support, Authenticity Check, Product Exchange, Beauty Consultation, Skin Care Advice',
+    'brands-available': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
+    'ingredients': 'Vitamin C, Hyaluronic Acid, Retinol, Niacinamide, Salicylic Acid, Glycolic Acid, Ceramides, Peptides, Squalane, Rosehip Oil, Shea Butter, Aloe Vera',
+    'beauty-concerns': 'Acne, Aging, Hyperpigmentation, Dryness, Dullness, Fine Lines, Wrinkles, Dark Spots, Uneven Skin Tone',
+    'ethical-features': 'Cruelty Free Options, Vegan Options, Eco-Friendly Packaging Options',
+    'safety-features': 'Dermatologically Tested, Hypoallergenic, Non-Comedogenic, Fragrance Free (Options Available), Paraben Free (Options Available)',
     'return-policy': '7 Days Return Policy',
     'free-delivery': 'Free delivery over 3000 BDT',
     'payment-methods': 'Cash on Delivery, bKash, Nagad, Rocket, Credit Card',
+    'shades-available': 'Fair to Deep Skin Tones',
+    'texture-types': 'Cream, Gel, Serum, Oil, Balm, Powder, Liquid, Stick',
+    'finish-types': 'Matte, Dewy, Satin, Natural, Glow, Shimmer, Metallic',
+    'coverage-levels': 'Sheer, Light, Medium, Full, Buildable',
+    'skin-benefits': 'Hydrating, Brightening, Anti-Aging, Soothing, Calming, Firming, Plumping',
   },
 };
 
@@ -180,15 +200,15 @@ export const generateJsonLd = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://smartgadget.com.bd/contact',
-    name: 'Contact Smart Gadget - Customer Support',
-    description: 'Contact Smart Gadget customer support for questions about smartphones, laptops, smartwatches, headphones, gaming accessories, orders, delivery, or warranty.',
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://smartgadget.com.bd/contact',
+    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://beautybucket.com.bd/contact',
+    name: 'Contact Beauty Bucket - Customer Support',
+    description: 'Contact Beauty Bucket customer support for questions about skincare, makeup, fragrances, hair care, body care, orders, delivery, or product authenticity.',
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://beautybucket.com.bd/contact',
     inLanguage: 'en',
     about: {
       '@type': 'Thing',
-      name: 'Gadget Customer Support',
-      description: 'Support for smartphones, laptops, smartwatches, headphones, gaming accessories, and electronics'
+      name: 'Beauty & Cosmetics Customer Support',
+      description: 'Support for skincare, makeup, fragrances, hair care, body care, and beauty accessories'
     },
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -197,21 +217,21 @@ export const generateJsonLd = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://smartgadget.com.bd'
+          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://beautybucket.com.bd'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Contact Us',
-          item: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://smartgadget.com.bd/contact'
+          item: process.env.NEXT_PUBLIC_BASE_URL + '/contact' || 'https://beautybucket.com.bd/contact'
         }
       ]
     },
     mainEntity: {
       '@type': 'Organization',
-      name: 'Smart Gadget Bangladesh',
-      url: process.env.NEXT_PUBLIC_BASE_URL || 'https://smartgadget.com.bd',
-      email: 'support@smartgadget.com.bd',
+      name: 'Beauty Bucket Bangladesh',
+      url: process.env.NEXT_PUBLIC_BASE_URL || 'https://beautybucket.com.bd',
+      email: 'support@beautybucket.com',
       telephone: '+8801234567890',
       address: {
         '@type': 'PostalAddress',
@@ -229,17 +249,19 @@ export const generateJsonLd = () => {
         hoursAvailable: {
           '@type': 'OpeningHoursSpecification',
           dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-          opens: '09:00',
-          closes: '21:00'
+          opens: '10:00',
+          closes: '22:00'
         }
       },
       sameAs: [
-        'https://facebook.com/smartgadgetbd',
-        'https://instagram.com/smartgadget.bd',
-        'https://twitter.com/SmartGadgetBD',
-        'https://youtube.com/smartgadgetbd'
+        'https://facebook.com/beautybucketbd',
+        'https://instagram.com/beautybucket.bd',
+        'https://twitter.com/BeautyBucketBD',
+        'https://pinterest.com/beautybucketbd',
+        'https://youtube.com/beautybucketbd',
+        'https://tiktok.com/@beautybucketbd'
       ],
-      openingHours: ['Mo-Sa 09:00-21:00', 'Su 10:00-18:00']
+      openingHours: ['Mo-Sa 10:00-22:00', 'Su 10:00-18:00']
     }
   };
 };

@@ -11,77 +11,98 @@ function RegisterLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen bg-[#FFF5F6] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
       </div>
       <Footer />
     </>
   );
 }
 
-// Smart Gadget Register Page SEO Metadata
+// Beauty Bucket Register Page SEO Metadata
 export const metadata = {
-  title: "Create Account | Join Smart Gadget - Premium Tech Store Bangladesh",
-  description: "Create your Smart Gadget account today! Get exclusive tech deals, track orders, save wishlist, and access premium gadgets. Join thousands of satisfied tech enthusiasts in Bangladesh.",
+  title: "Create Account | Join Beauty Bucket - Premium Beauty Store Bangladesh",
+  description: "Create your Beauty Bucket account today! Get exclusive beauty deals, track orders, save wishlist, receive personalized skincare advice, and access premium beauty products. Join thousands of satisfied beauty lovers in Bangladesh.",
   keywords: [
     // Registration specific
-    "create account smart gadget",
-    "sign up gadget store bd",
-    "register electronics bangladesh",
-    "smart gadget account creation",
-    "new customer registration tech",
+    "create account beauty bucket",
+    "sign up cosmetics store bd",
+    "register beauty products bangladesh",
+    "beauty bucket account creation",
+    "new customer registration beauty",
     
     // Benefits
-    "first purchase discount gadgets",
-    "tech membership benefits",
-    "premium gadget club bd",
-    "gadget loyalty program",
-    "exclusive tech deals members",
+    "first purchase discount cosmetics",
+    "beauty membership benefits",
+    "premium beauty club bd",
+    "cosmetics loyalty program",
+    "exclusive beauty deals members",
+    "welcome gift new members",
     
     // Account features
-    "track gadget orders online",
-    "save favorite electronics",
-    "gadget wishlist account",
-    "fast checkout gadgets",
-    "tech purchase history",
+    "track beauty orders online",
+    "save favorite cosmetics",
+    "beauty wishlist account",
+    "fast checkout beauty products",
+    "beauty purchase history",
+    "skincare routine saver",
+    "beauty consultation access",
     
     // User intent
-    "join tech community bd",
-    "become gadget member",
-    "sign up for tech deals",
-    "create electronics account bd",
-    "register for gadget shopping",
+    "join beauty community bd",
+    "become beauty member",
+    "sign up for beauty deals",
+    "create cosmetics account bd",
+    "register for beauty shopping",
     
     // Trust signals
-    "safe gadget shopping account",
-    "secure registration tech",
-    "verified electronics store bd",
-    "trusted gadget store",
+    "safe beauty shopping account",
+    "secure registration cosmetics",
+    "verified beauty store bd",
+    "trusted cosmetics store",
+    "authentic beauty products guaranteed",
     
-    // Device specific
-    "smartphone account registration",
-    "laptop store sign up bd",
-    "smartwatch account create",
-    "headphones store register",
-    "gaming gear sign up bd",
+    // Beauty specific
+    "skincare account registration",
+    "makeup store sign up bd",
+    "fragrance account create",
+    "hair care store register",
+    "beauty products sign up bd",
+    "cosmetics account creation",
+    "skincare routine account",
+    "beauty tips subscription",
     
     // Local keywords
-    "premium tech account bd",
-    "gadget store registration",
-    "electronics shopping account",
-    "tech store member sign up"
+    "premium beauty account bd",
+    "cosmetics store registration",
+    "beauty shopping account",
+    "beauty store member sign up",
+    
+    // Beauty enthusiast
+    "beauty lover account bd",
+    "skincare enthusiast sign up",
+    "makeup lover account create",
+    "beauty community member",
+    "beauty expert tips account",
+    
+    // Additional benefits
+    "personalized beauty recommendations",
+    "skin type based suggestions",
+    "beauty product alerts",
+    "new collection notifications",
+    "beauty event invitations"
   ],
   openGraph: {
-    title: "Join Smart Gadget - Create Your Premium Tech Account | Bangladesh",
-    description: "Sign up for Smart Gadget and get exclusive tech deals! Shop premium smartphones, laptops, smartwatches, headphones, gaming accessories & more. Official warranty & best prices.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://smartgadget.com.bd/register',
-    siteName: "Smart Gadget",
+    title: "Join Beauty Bucket - Create Your Premium Beauty Account | Bangladesh",
+    description: "Sign up for Beauty Bucket and get exclusive beauty deals! Shop premium skincare, makeup, fragrances, hair care, body care & more. Quality guarantee & best prices.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://beautybucket.com.bd/register',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/register-og-smartgadget.jpg',
+        url: '/register-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Gadget Register - Join Thousands of Tech Enthusiasts',
+        alt: 'Beauty Bucket Register - Join Thousands of Beauty Lovers',
       },
     ],
     type: 'website',
@@ -90,11 +111,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Join Smart Gadget - Create Your Account | Premium Tech Store Bangladesh",
-    description: "Get exclusive tech deals! Track orders, save favorites, and access premium gadgets. Join thousands of satisfied tech enthusiasts today!",
-    images: ['/register-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Join Beauty Bucket - Create Your Account | Premium Beauty Store Bangladesh",
+    description: "Get exclusive beauty deals! Track orders, save favorites, get skincare advice, and access premium beauty products. Join thousands of satisfied beauty lovers today!",
+    images: ['/register-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/register',
@@ -116,15 +137,56 @@ export const metadata = {
   },
   // Additional metadata
   other: {
-    'application-name': 'Smart Gadget Registration',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket Registration',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'registration',
     'user-action': 'signup',
-    'business-name': 'Smart Gadget Bangladesh',
-    'business-type': 'E-commerce Gadget Store',
+    'business-name': 'Beauty Bucket Bangladesh',
+    'business-type': 'E-commerce Beauty & Cosmetics Store',
     'secure-registration': '256-bit SSL Encrypted',
     'welcome-offer': 'Exclusive Deals for New Members',
+    
+    // Beauty specific benefits
+    'beauty-consultation': 'Free Consultation for New Members',
+    'personalized-recommendations': 'Based on Skin Type & Preferences',
+    'skin-routine-saver': 'Save Your Skincare Routine',
+    'welcome-gift': 'Special Welcome Gift',
+    'birthday-benefits': 'Birthday Discounts & Offers',
+    'exclusive-access': 'Early Access to New Collections',
+    'beauty-tips': 'Monthly Beauty Tips & Tutorials',
+    
+    // Account features
+    'saved-skin-type': 'Store Your Skin Type Preferences',
+    'saved-allergies': 'Ingredient Allergy Preferences (Optional)',
+    'shade-preferences': 'Makeup Shade Preferences (Optional)',
+    'fragrance-preferences': 'Fragrance Preferences (Optional)',
+    'product-reviews': 'Write & Read Product Reviews',
+    'beauty-history': 'View Purchase History',
+    'consultation-history': 'View Beauty Consultation History',
+    
+    // Beauty categories
+    'product-categories': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
+    'brands-available': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    
+    // Customer commitment
+    'authenticity-guarantee': '100% Authentic Beauty Products',
+    'quality-assurance': 'Quality Guaranteed',
+    'satisfaction-guarantee': 'Money Back Guarantee',
+    'return-policy': '7 Days Return Policy',
+    'free-delivery': 'Free delivery over 3000 BDT',
+    
+    // Security
+    'two-factor-auth': 'Available for Enhanced Security',
+    'password-recovery': 'Secure Password Recovery',
+    'data-protection': 'GDPR & CCPA Compliant',
+    
+    // Beauty education
+    'skincare-guides': 'Free Skincare Guides',
+    'makeup-tutorials': 'Makeup Tutorials Access',
+    'beauty-blog': 'Beauty Blog Access',
+    'expert-advice': 'Expert Beauty Advice',
   },
 };
 
@@ -133,10 +195,10 @@ export const generateJsonLd = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://smartgadget.com.bd/register',
-    name: 'Register - Smart Gadget',
-    description: 'Create your Smart Gadget account to shop premium gadgets and electronics.',
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://smartgadget.com.bd/register',
+    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://beautybucket.com.bd/register',
+    name: 'Register - Beauty Bucket',
+    description: 'Create your Beauty Bucket account to shop premium beauty products, skincare, makeup, and cosmetics.',
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://beautybucket.com.bd/register',
     inLanguage: 'en',
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -145,20 +207,20 @@ export const generateJsonLd = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://smartgadget.com.bd'
+          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://beautybucket.com.bd'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Register',
-          item: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://smartgadget.com.bd/register'
+          item: process.env.NEXT_PUBLIC_BASE_URL + '/register' || 'https://beautybucket.com.bd/register'
         }
       ]
     },
     mainEntity: {
       '@type': 'WebApplication',
       name: 'Customer Registration System',
-      description: 'Create account to shop premium gadgets',
+      description: 'Create account to shop premium beauty products, get personalized skincare advice, and join the beauty community',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       browserRequirements: 'Requires modern browser'

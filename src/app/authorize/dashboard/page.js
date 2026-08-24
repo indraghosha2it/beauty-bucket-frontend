@@ -1,5 +1,4 @@
 
-
 // // src/app/authorize/dashboard/page.js
 // 'use client';
 
@@ -137,7 +136,7 @@
 // const StatCard = ({ title, value, icon, color, subtitle, onClick, loading }) => {
 //   if (loading) {
 //     return (
-//       <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#06B6D4]/20 animate-pulse">
+//       <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 animate-pulse">
 //         <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
 //         <div className="h-7 bg-gray-200 rounded w-3/4"></div>
 //       </div>
@@ -146,14 +145,14 @@
 
 //   return (
 //     <div 
-//       className={`bg-white rounded-2xl p-4 shadow-sm border border-[#06B6D4]/20 hover:shadow-md transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+//       className={`bg-white rounded-2xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
 //       onClick={onClick}
 //     >
 //       <div className="flex items-start justify-between">
 //         <div>
-//           <p className="text-xs text-[#64748B] font-medium uppercase tracking-wide">{title}</p>
-//           <p className="text-xl font-bold text-[#004767] mt-0.5">{value}</p>
-//           {subtitle && <p className="text-[10px] text-[#64748B] mt-0.5">{subtitle}</p>}
+//           <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{title}</p>
+//           <p className="text-xl font-bold text-gray-900 mt-0.5">{value}</p>
+//           {subtitle && <p className="text-[10px] text-gray-500 mt-0.5">{subtitle}</p>}
 //         </div>
 //         <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${color}`}>
 //           {icon}
@@ -218,8 +217,8 @@
 
 //   if (!products || products.length === 0) {
 //     return (
-//       <div className="text-center py-6 text-[#64748B] text-xs">
-//         <FaBox className="w-6 h-6 mx-auto mb-1 text-[#06B6D4]/30" />
+//       <div className="text-center py-6 text-gray-500 text-xs">
+//         <FaBox className="w-6 h-6 mx-auto mb-1 text-gray-300" />
 //         No sales data available
 //       </div>
 //     );
@@ -243,16 +242,16 @@
 //         return (
 //           <div 
 //             key={uniqueKey}
-//             className="flex items-center gap-2 p-1.5 bg-[#E2E7EA]/20 rounded-lg hover:bg-[#E2E7EA]/40 transition-colors"
+//             className="flex items-center gap-2 p-1.5 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
 //           >
-//             <div className="flex-shrink-0 w-5 text-center font-bold text-[10px] text-[#64748B]">
+//             <div className="flex-shrink-0 w-5 text-center font-bold text-[10px] text-gray-500">
 //               #{index + 1}
 //             </div>
 //             {product.image ? (
 //               <img 
 //                 src={product.image} 
 //                 alt={product.name} 
-//                 className="w-7 h-7 rounded-lg object-cover border border-[#06B6D4]/20"
+//                 className="w-7 h-7 rounded-lg object-cover border border-gray-200"
 //               />
 //             ) : (
 //               <div className="w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center">
@@ -261,12 +260,12 @@
 //             )}
 //             <div className="flex-1 min-w-0">
 //               <div className="flex items-center gap-1">
-//                 <p className="text-[11px] font-medium text-[#004767] truncate">{product.name}</p>
+//                 <p className="text-[11px] font-medium text-gray-900 truncate">{product.name}</p>
 //                 {icon}
 //               </div>
 //               <div className="flex items-center gap-1.5 flex-wrap">
-//                 <p className="text-[9px] text-[#64748B]">{product.sales || 0} sales</p>
-//                 <p className="text-[9px] font-semibold text-[#06B6D4]">@{formatCurrency(sellingPrice)}</p>
+//                 <p className="text-[9px] text-gray-500">{product.sales || 0} sales</p>
+//                 <p className="text-[9px] font-semibold text-blue-600">@{formatCurrency(sellingPrice)}</p>
 //                 {product.discountPrice && product.discountPrice < product.regularPrice && (
 //                   <span className="text-[8px] text-red-500 bg-red-50 px-1 rounded">
 //                     -{Math.round(((product.regularPrice - product.discountPrice) / product.regularPrice) * 100)}%
@@ -291,7 +290,7 @@
 //     return (
 //       <div className="space-y-1.5">
 //         {[...Array(5)].map((_, i) => (
-//           <div key={`recent-loading-${i}`} className="flex items-center gap-2 animate-pulse p-1.5 border-b border-[#06B6D4]/20">
+//           <div key={`recent-loading-${i}`} className="flex items-center gap-2 animate-pulse p-1.5 border-b border-gray-100">
 //             <div className="h-2.5 bg-gray-200 rounded w-16"></div>
 //             <div className="flex-1">
 //               <div className="h-2.5 bg-gray-200 rounded w-1/3 mb-0.5"></div>
@@ -306,8 +305,8 @@
 
 //   if (!orders || orders.length === 0) {
 //     return (
-//       <div className="text-center py-6 text-[#64748B] text-xs">
-//         <FaShoppingCart className="w-6 h-6 mx-auto mb-1 text-[#06B6D4]/30" />
+//       <div className="text-center py-6 text-gray-500 text-xs">
+//         <FaShoppingCart className="w-6 h-6 mx-auto mb-1 text-gray-300" />
 //         No recent orders
 //       </div>
 //     );
@@ -323,7 +322,7 @@
 //         return (
 //           <div 
 //             key={order._id || `order-${Math.random()}`}
-//             className="flex items-center gap-2 p-1.5 hover:bg-[#E2E7EA]/20 rounded-lg transition-colors cursor-pointer border-b border-[#06B6D4]/10 last:border-0"
+//             className="flex items-center gap-2 p-1.5 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer border-b border-gray-100 last:border-0"
 //             onClick={() => onViewOrder && onViewOrder(order._id)}
 //           >
 //             <div className="flex-shrink-0">
@@ -332,16 +331,16 @@
 //               </span>
 //             </div>
 //             <div className="flex-1 min-w-0">
-//               <p className="text-[11px] font-medium text-[#004767] truncate">
+//               <p className="text-[11px] font-medium text-gray-900 truncate">
 //                 {order.orderNumber || order._id?.slice(-8).toUpperCase()}
 //               </p>
-//               <p className="text-[9px] text-[#64748B] truncate">
+//               <p className="text-[9px] text-gray-500 truncate">
 //                 {order.customerInfo?.fullName || 'Guest'} • {order.customerInfo?.phone || 'N/A'}
 //               </p>
 //             </div>
 //             <div className="text-right">
-//               <p className="text-[11px] font-semibold text-[#06B6D4]">{formatCurrency(order.total)}</p>
-//               <p className="text-[8px] text-[#64748B]">{formatDate(order.createdAt)}</p>
+//               <p className="text-[11px] font-semibold text-blue-600">{formatCurrency(order.total)}</p>
+//               <p className="text-[8px] text-gray-500">{formatDate(order.createdAt)}</p>
 //               {isPaid && (
 //                 <span className="text-[7px] text-green-600 bg-green-50 px-1 py-0.5 rounded">Paid</span>
 //               )}
@@ -651,7 +650,7 @@
 
 //   return (
 //     <ProtectedRoute pageKey="dashboard">
-//       <div className="min-h-screen bg-[#f0f7fa] p-4 md:p-6">
+//       <div className="min-h-screen bg-white p-4 md:p-6">
 //         <div className="max-w-7xl mx-auto">
 
 //           {/* ============================================================
@@ -659,16 +658,16 @@
 //               ============================================================ */}
 //           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-4">
 //             <div className="flex items-center gap-3">
-//               <div className="w-10 h-10 bg-gradient-to-br from-[#06B6D4] to-[#004767] rounded-xl flex items-center justify-center shadow-lg shadow-[#06B6D4]/25">
+//               <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
 //                 <FaChartLine className="w-4 h-4 text-white" />
 //               </div>
 //               <div>
-//                 <h1 className="text-xl font-bold text-[#004767]" style={{ fontFamily: '"Playfair Display"' }}>
+//                 <h1 className="text-xl font-bold text-gray-900" style={{ fontFamily: '"Playfair Display"' }}>
 //                   Dashboard
 //                 </h1>
-//                 <p className="text-xs text-[#64748B]">
+//                 <p className="text-xs text-gray-500">
 //                   Welcome back! Here's what's happening.
-//                   <span className="ml-1.5 text-[10px] text-[#06B6D4] font-medium bg-[#06B6D4]/10 px-2 py-0.5 rounded-full">
+//                   <span className="ml-1.5 text-[10px] text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full">
 //                     {getFilterLabel()}
 //                   </span>
 //                 </p>
@@ -678,7 +677,7 @@
 //             <button
 //               onClick={handleRefresh}
 //               disabled={refreshing}
-//               className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#06B6D4]/30 text-[#004767] rounded-lg hover:bg-[#06B6D4]/5 transition-colors text-xs disabled:opacity-50"
+//               className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-xs disabled:opacity-50"
 //             >
 //               <FaSpinner className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
 //               Refresh
@@ -688,14 +687,14 @@
 //           {/* ============================================================
 //               COMPACT FILTERS - ALWAYS VISIBLE
 //               ============================================================ */}
-//           <div className="bg-white rounded-xl border border-[#06B6D4]/30 shadow-sm overflow-hidden mb-4">
+//           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-4">
 //             <div className="flex flex-wrap items-center gap-2 p-2.5">
-//               <span className="text-[10px] font-medium text-[#64748B] mr-1">View:</span>
+//               <span className="text-[10px] font-medium text-gray-500 mr-1">View:</span>
               
 //               <button
 //                 onClick={() => setFilterType('all')}
 //                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-//                   filterType === 'all' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                   filterType === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
 //                 }`}
 //               >
 //                 All
@@ -704,7 +703,7 @@
 //               <button
 //                 onClick={() => setFilterType('month')}
 //                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-//                   filterType === 'month' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                   filterType === 'month' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
 //                 }`}
 //               >
 //                 Monthly
@@ -713,20 +712,20 @@
 //               <button
 //                 onClick={() => setFilterType('year')}
 //                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-//                   filterType === 'year' ? 'bg-[#06B6D4] text-white shadow-sm' : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-[#06B6D4]/20'
+//                   filterType === 'year' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
 //                 }`}
 //               >
 //                 Yearly
 //               </button>
 
-//               <div className="h-5 w-px bg-[#06B6D4]/20 mx-1"></div>
+//               <div className="h-5 w-px bg-gray-200 mx-1"></div>
 
 //               {filterType === 'month' && (
 //                 <div className="flex items-center gap-1.5">
 //                   <select
 //                     value={selectedMonth}
 //                     onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-//                     className="px-2 py-1 text-[10px] border border-[#06B6D4]/30 rounded-lg focus:ring-1 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767]"
+//                     className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
 //                   >
 //                     {months.map(month => (
 //                       <option key={month.value} value={month.value}>{month.name}</option>
@@ -735,7 +734,7 @@
 //                   <select
 //                     value={selectedYear}
 //                     onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                     className="px-2 py-1 text-[10px] border border-[#06B6D4]/30 rounded-lg focus:ring-1 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767]"
+//                     className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
 //                   >
 //                     {getYears().map(year => (
 //                       <option key={year} value={year}>{year}</option>
@@ -748,7 +747,7 @@
 //                 <select
 //                   value={selectedYear}
 //                   onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                   className="px-2 py-1 text-[10px] border border-[#06B6D4]/30 rounded-lg focus:ring-1 focus:ring-[#06B6D4] focus:border-transparent bg-white text-[#004767]"
+//                   className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
 //                 >
 //                   {getYears().map(year => (
 //                     <option key={year} value={year}>{year}</option>
@@ -759,7 +758,7 @@
 //               <button
 //                 onClick={handleRefresh}
 //                 disabled={refreshing}
-//                 className="ml-auto px-2.5 py-1 bg-[#06B6D4] text-white text-[10px] font-medium rounded-lg hover:bg-[#0891B2] transition-colors disabled:opacity-50"
+//                 className="ml-auto px-2.5 py-1 bg-blue-600 text-white text-[10px] font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
 //               >
 //                 Apply
 //               </button>
@@ -784,8 +783,8 @@
 //               <StatCard
 //                 title="Profit"
 //                 value={formatCurrency(stats.totalProfit)}
-//                 icon={<FaChartLine className="w-3.5 h-3.5 text-[#06B6D4]" />}
-//                 color="bg-[#06B6D4]/10"
+//                 icon={<FaChartLine className="w-3.5 h-3.5 text-blue-600" />}
+//                 color="bg-blue-50"
 //                 subtitle={`${stats.averageProfitMargin?.toFixed(1) || 0}% margin`}
 //                 loading={loading}
 //               />
@@ -800,8 +799,8 @@
 //               <StatCard
 //                 title="Products"
 //                 value={stats.totalProducts}
-//                 icon={<FaBox className="w-3.5 h-3.5 text-[#06B6D4]" />}
-//                 color="bg-[#06B6D4]/10"
+//                 icon={<FaBox className="w-3.5 h-3.5 text-blue-600" />}
+//                 color="bg-blue-50"
 //                 loading={loading}
 //               />
 //             </div>
@@ -821,8 +820,8 @@
 //               <StatCard
 //                 title="Products"
 //                 value={stats.totalProducts}
-//                 icon={<FaBox className="w-3.5 h-3.5 text-[#06B6D4]" />}
-//                 color="bg-[#06B6D4]/10"
+//                 icon={<FaBox className="w-3.5 h-3.5 text-blue-600" />}
+//                 color="bg-blue-50"
 //                 loading={loading}
 //               />
 //               <StatCard
@@ -841,18 +840,18 @@
 
 //           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
 //             {/* Order Status Cards */}
-//             <div className="lg:col-span-2 bg-white rounded-xl p-4 shadow-sm border border-[#06B6D4]/20">
+//             <div className="lg:col-span-2 bg-white rounded-xl p-4 shadow-sm border border-gray-200">
 //               <div className="flex items-center justify-between mb-3">
-//                 <h2 className="text-sm font-semibold text-[#004767] flex items-center gap-1.5">
-//                   <FaClock className="w-4 h-4 text-[#06B6D4]" />
+//                 <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
+//                   <FaClock className="w-4 h-4 text-blue-600" />
 //                   Order Status
-//                   <span className="text-[10px] font-normal text-[#64748B] bg-[#E2E7EA]/50 px-1.5 py-0.5 rounded-full">
+//                   <span className="text-[10px] font-normal text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
 //                     {getFilterLabel()}
 //                   </span>
 //                 </h2>
 //                 <button
 //                   onClick={() => router.push('/authorize/orders')}
-//                   className="text-[10px] text-[#06B6D4] hover:text-[#0891B2] flex items-center gap-0.5"
+//                   className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
 //                 >
 //                   View All <FaArrowRight className="w-2.5 h-2.5" />
 //                 </button>
@@ -861,15 +860,15 @@
 //               {loading ? (
 //                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
 //                   {[...Array(4)].map((_, i) => (
-//                     <div key={`status-loading-${i}`} className="p-2 rounded-xl border border-[#06B6D4]/20 animate-pulse">
+//                     <div key={`status-loading-${i}`} className="p-2 rounded-xl border border-gray-200 animate-pulse">
 //                       <div className="h-2.5 bg-gray-200 rounded w-1/2 mb-1.5"></div>
 //                       <div className="h-5 bg-gray-200 rounded w-1/3"></div>
 //                     </div>
 //                   ))}
 //                 </div>
 //               ) : activeStatuses.length === 0 ? (
-//                 <div className="text-center py-4 text-[#64748B] text-xs">
-//                   <FaClipboardList className="w-5 h-5 mx-auto mb-1 text-[#06B6D4]/30" />
+//                 <div className="text-center py-4 text-gray-500 text-xs">
+//                   <FaClipboardList className="w-5 h-5 mx-auto mb-1 text-gray-300" />
 //                   No orders found for {getFilterLabel()}
 //                 </div>
 //               ) : (
@@ -888,15 +887,15 @@
 //             </div>
 
 //             {/* Top Selling Products */}
-//             <div className="bg-white rounded-xl p-4 shadow-sm border border-[#06B6D4]/20">
+//             <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
 //               <div className="flex items-center justify-between mb-3">
-//                 <h2 className="text-sm font-semibold text-[#004767] flex items-center gap-1.5">
-//                   <FaFire className="w-4 h-4 text-[#06B6D4]" />
+//                 <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
+//                   <FaFire className="w-4 h-4 text-blue-600" />
 //                   Top Products
 //                 </h2>
 //                 <button
 //                   onClick={() => router.push('/authorize/all-products')}
-//                   className="text-[10px] text-[#06B6D4] hover:text-[#0891B2] flex items-center gap-0.5"
+//                   className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
 //                 >
 //                   View All <FaArrowRight className="w-2.5 h-2.5" />
 //                 </button>
@@ -939,18 +938,18 @@
 //               RECENT ORDERS (ALL ORDERS - NOT JUST PAID)
 //               ============================================================ */}
 
-//           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#06B6D4]/20">
+//           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
 //             <div className="flex items-center justify-between mb-3">
-//               <h2 className="text-sm font-semibold text-[#004767] flex items-center gap-1.5">
-//                 <FaTruck className="w-4 h-4 text-[#06B6D4]" />
+//               <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
+//                 <FaTruck className="w-4 h-4 text-blue-600" />
 //                 Recent Orders
-//                 <span className="text-[10px] font-normal text-[#64748B] bg-[#E2E7EA]/50 px-1.5 py-0.5 rounded-full">
+//                 <span className="text-[10px] font-normal text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
 //                   {getFilterLabel()}
 //                 </span>
 //               </h2>
 //               <button
 //                 onClick={() => router.push('/authorize/orders')}
-//                 className="text-[10px] text-[#06B6D4] hover:text-[#0891B2] flex items-center gap-0.5"
+//                 className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
 //               >
 //                 View All <FaArrowRight className="w-2.5 h-2.5" />
 //               </button>
@@ -967,10 +966,10 @@
 //               ROLE INDICATOR
 //               ============================================================ */}
 
-//           <div className="mt-4 text-center text-[10px] text-[#64748B]">
-//             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white rounded-full border border-[#06B6D4]/20">
-//               <FaUserCircle className="w-3 h-3 text-[#06B6D4]" />
-//               Role: <span className="font-medium text-[#004767]">
+//           <div className="mt-4 text-center text-[10px] text-gray-500">
+//             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white rounded-full border border-gray-200">
+//               <FaUserCircle className="w-3 h-3 text-blue-600" />
+//               Role: <span className="font-medium text-gray-900">
 //                 {userRole ? userRole.replace('_', ' ').toUpperCase() : 'Unknown'}
 //               </span>
 //               {isAdminOrSuperAdmin && (
@@ -1038,6 +1037,12 @@ import {
 import ProtectedRoute from '@/app/components/ProtectedRoute';
 
 // ============================================================
+// FONT CONSTANTS - BEAUTY BUCKET STYLE
+// ============================================================
+const FONT_FAMILY_SERIF = " serif";
+const FONT_FAMILY_CURSIVE = "'Courgette', cursive";
+
+// ============================================================
 // HELPER FUNCTIONS
 // ============================================================
 
@@ -1073,27 +1078,27 @@ const formatDate = (date) => {
   });
 };
 
-// ========== UPDATED: GET STATUS COLOR ==========
+// ========== UPDATED: GET STATUS COLOR - BEAUTY BUCKET STYLE ==========
 const getStatusColor = (status) => {
   const colors = {
-    placed: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    follow_up: 'bg-blue-100 text-blue-800 border-blue-200',
-    reminder: 'bg-orange-100 text-orange-800 border-orange-200',
-    accepted: 'bg-purple-100 text-purple-800 border-purple-200',
-    approved: 'bg-indigo-100 text-indigo-800 border-indigo-200',
-    hold: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    ready_to_ship: 'bg-cyan-100 text-cyan-800 border-cyan-200',
-    courier_assigned: 'bg-pink-100 text-pink-800 border-pink-200',
-    processing: 'bg-blue-100 text-blue-800 border-blue-200',
-    shipped: 'bg-blue-100 text-blue-800 border-blue-200',
-    out_for_delivery: 'bg-orange-100 text-orange-800 border-orange-200',
-    delivered: 'bg-green-100 text-green-800 border-green-200',
-    cancelled: 'bg-red-100 text-red-800 border-red-200',
-    rejected: 'bg-red-100 text-red-800 border-red-200',
-    returned: 'bg-purple-100 text-purple-800 border-purple-200',
-    refunded: 'bg-gray-100 text-gray-800 border-gray-200',
-    failed: 'bg-red-100 text-red-800 border-red-200',
-    partial_delivery: 'bg-yellow-100 text-yellow-800 border-yellow-200'
+    placed: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    follow_up: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    reminder: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    accepted: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    approved: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    hold: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    ready_to_ship: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    courier_assigned: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    processing: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    shipped: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    out_for_delivery: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30',
+    delivered: 'bg-[#EE4275]/10 text-[#EE4275] border-[#EE4275]/20',
+    cancelled: 'bg-red-50 text-red-600 border-red-200',
+    rejected: 'bg-red-50 text-red-600 border-red-200',
+    returned: 'bg-purple-50 text-purple-600 border-purple-200',
+    refunded: 'bg-gray-100 text-gray-600 border-gray-200',
+    failed: 'bg-red-50 text-red-600 border-red-200',
+    partial_delivery: 'bg-[#FFF5F6] text-[#EE4275] border-[#F7C7D3]/30'
   };
   return colors[status] || 'bg-gray-100 text-gray-800 border-gray-200';
 };
@@ -1124,29 +1129,29 @@ const getStatusLabel = (status) => {
 };
 
 // ============================================================
-// STAT CARD COMPONENT
+// STAT CARD COMPONENT - BEAUTY BUCKET STYLE
 // ============================================================
 
 const StatCard = ({ title, value, icon, color, subtitle, onClick, loading }) => {
   if (loading) {
     return (
-      <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 animate-pulse">
-        <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
-        <div className="h-7 bg-gray-200 rounded w-3/4"></div>
+      <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#F7C7D3]/30 animate-pulse">
+        <div className="h-3 bg-[#F7C7D3]/30 rounded w-1/2 mb-2"></div>
+        <div className="h-7 bg-[#F7C7D3]/30 rounded w-3/4"></div>
       </div>
     );
   }
 
   return (
     <div 
-      className={`bg-white rounded-2xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+      className={`bg-white rounded-2xl p-4 shadow-sm border border-[#F7C7D3]/30 hover:shadow-[0_8px_25px_rgba(238,66,117,0.12)] transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
       onClick={onClick}
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">{title}</p>
-          <p className="text-xl font-bold text-gray-900 mt-0.5">{value}</p>
-          {subtitle && <p className="text-[10px] text-gray-500 mt-0.5">{subtitle}</p>}
+          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide" style={{ fontFamily: FONT_FAMILY_SERIF }}>{title}</p>
+          <p className="text-xl font-bold text-[#2D1B2E] mt-0.5" style={{ fontFamily: FONT_FAMILY_SERIF }}>{value}</p>
+          {subtitle && <p className="text-[10px] text-gray-500 mt-0.5" style={{ fontFamily: FONT_FAMILY_SERIF }}>{subtitle}</p>}
         </div>
         <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${color}`}>
           {icon}
@@ -1157,7 +1162,7 @@ const StatCard = ({ title, value, icon, color, subtitle, onClick, loading }) => 
 };
 
 // ============================================================
-// ORDER STATUS CARD COMPONENT
+// ORDER STATUS CARD COMPONENT - BEAUTY BUCKET STYLE
 // ============================================================
 
 const OrderStatusCard = ({ status, count, totalOrders, onClick }) => {
@@ -1167,19 +1172,19 @@ const OrderStatusCard = ({ status, count, totalOrders, onClick }) => {
 
   return (
     <div 
-      className={`p-2.5 rounded-xl border ${colorClass} hover:shadow-md transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+      className={`p-2.5 rounded-xl border ${colorClass} hover:shadow-[0_4px_12px_rgba(238,66,117,0.1)] transition-all ${onClick ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-[10px] font-medium">{label}</p>
-          <p className="text-lg font-bold">{count}</p>
+          <p className="text-[10px] font-medium" style={{ fontFamily: FONT_FAMILY_SERIF }}>{label}</p>
+          <p className="text-lg font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{count}</p>
         </div>
-        <div className="text-[10px] font-medium">{percentage}%</div>
+        <div className="text-[10px] font-medium text-[#EE4275]">{percentage}%</div>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-1 mt-1">
+      <div className="w-full bg-[#F7C7D3]/30 rounded-full h-1 mt-1">
         <div 
-          className="h-1 rounded-full bg-current"
+          className="h-1 rounded-full bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]"
           style={{ width: `${Math.min(percentage, 100)}%` }}
         />
       </div>
@@ -1188,7 +1193,7 @@ const OrderStatusCard = ({ status, count, totalOrders, onClick }) => {
 };
 
 // ============================================================
-// TOP PRODUCTS COMPONENT
+// TOP PRODUCTS COMPONENT - BEAUTY BUCKET STYLE
 // ============================================================
 
 const TopProductsList = ({ products, loading }) => {
@@ -1197,12 +1202,12 @@ const TopProductsList = ({ products, loading }) => {
       <div className="space-y-2">
         {[...Array(5)].map((_, i) => (
           <div key={`loading-${i}`} className="flex items-center gap-2 animate-pulse">
-            <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
+            <div className="w-2 h-2 bg-[#F7C7D3]/30 rounded-full"></div>
             <div className="flex-1">
-              <div className="h-2.5 bg-gray-200 rounded w-3/4 mb-1"></div>
-              <div className="h-2 bg-gray-200 rounded w-1/2"></div>
+              <div className="h-2.5 bg-[#F7C7D3]/30 rounded w-3/4 mb-1"></div>
+              <div className="h-2 bg-[#F7C7D3]/30 rounded w-1/2"></div>
             </div>
-            <div className="h-3.5 bg-gray-200 rounded w-14"></div>
+            <div className="h-3.5 bg-[#F7C7D3]/30 rounded w-14"></div>
           </div>
         ))}
       </div>
@@ -1211,8 +1216,8 @@ const TopProductsList = ({ products, loading }) => {
 
   if (!products || products.length === 0) {
     return (
-      <div className="text-center py-6 text-gray-500 text-xs">
-        <FaBox className="w-6 h-6 mx-auto mb-1 text-gray-300" />
+      <div className="text-center py-6 text-gray-500 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+        <FaBox className="w-6 h-6 mx-auto mb-1 text-[#F7C7D3]" />
         No sales data available
       </div>
     );
@@ -1223,9 +1228,9 @@ const TopProductsList = ({ products, loading }) => {
       {products.map((product, index) => {
         const isTop = index < 3;
         const icon = isTop ? (
-          index === 0 ? <FaFire className="w-2.5 h-2.5 text-red-500" /> :
-          index === 1 ? <FaChartBar className="w-2.5 h-2.5 text-orange-500" /> :
-          <FaAward className="w-2.5 h-2.5 text-yellow-500" />
+          index === 0 ? <FaFire className="w-2.5 h-2.5 text-[#EE4275]" /> :
+          index === 1 ? <FaChartBar className="w-2.5 h-2.5 text-[#FF6B9D]" /> :
+          <FaAward className="w-2.5 h-2.5 text-[#EE4275]" />
         ) : null;
 
         const sellingPrice = product.discountPrice || product.regularPrice || 0;
@@ -1236,38 +1241,37 @@ const TopProductsList = ({ products, loading }) => {
         return (
           <div 
             key={uniqueKey}
-            className="flex items-center gap-2 p-1.5 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            className="flex items-center gap-2 p-1.5 bg-[#FFF5F6] rounded-lg hover:bg-[#F7C7D3]/20 transition-colors"
           >
-            <div className="flex-shrink-0 w-5 text-center font-bold text-[10px] text-gray-500">
+            <div className="flex-shrink-0 w-5 text-center font-bold text-[10px] text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>
               #{index + 1}
             </div>
             {product.image ? (
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="w-7 h-7 rounded-lg object-cover border border-gray-200"
+                className="w-7 h-7 rounded-lg object-cover border border-[#F7C7D3]/30"
               />
             ) : (
-              <div className="w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center">
-                <FaBox className="w-3.5 h-3.5 text-gray-400" />
+              <div className="w-7 h-7 rounded-lg bg-[#FFF5F6] flex items-center justify-center">
+                <FaBox className="w-3.5 h-3.5 text-[#F7C7D3]" />
               </div>
             )}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1">
-                <p className="text-[11px] font-medium text-gray-900 truncate">{product.name}</p>
+                <p className="text-[11px] font-medium text-[#2D1B2E] truncate" style={{ fontFamily: FONT_FAMILY_SERIF }}>{product.name}</p>
                 {icon}
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
-                <p className="text-[9px] text-gray-500">{product.sales || 0} sales</p>
-                <p className="text-[9px] font-semibold text-blue-600">@{formatCurrency(sellingPrice)}</p>
+                <p className="text-[9px] text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>{product.sales || 0} sales</p>
+                <p className="text-[9px] font-semibold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>@{formatCurrency(sellingPrice)}</p>
                 {product.discountPrice && product.discountPrice < product.regularPrice && (
-                  <span className="text-[8px] text-red-500 bg-red-50 px-1 rounded">
+                  <span className="text-[8px] text-[#EE4275] bg-[#FFF5F6] px-1 rounded">
                     -{Math.round(((product.regularPrice - product.discountPrice) / product.regularPrice) * 100)}%
                   </span>
                 )}
               </div>
             </div>
-          
           </div>
         );
       })}
@@ -1276,7 +1280,7 @@ const TopProductsList = ({ products, loading }) => {
 };
 
 // ============================================================
-// RECENT ORDERS COMPONENT
+// RECENT ORDERS COMPONENT - BEAUTY BUCKET STYLE
 // ============================================================
 
 const RecentOrdersList = ({ orders, loading, onViewOrder }) => {
@@ -1284,13 +1288,13 @@ const RecentOrdersList = ({ orders, loading, onViewOrder }) => {
     return (
       <div className="space-y-1.5">
         {[...Array(5)].map((_, i) => (
-          <div key={`recent-loading-${i}`} className="flex items-center gap-2 animate-pulse p-1.5 border-b border-gray-100">
-            <div className="h-2.5 bg-gray-200 rounded w-16"></div>
+          <div key={`recent-loading-${i}`} className="flex items-center gap-2 animate-pulse p-1.5 border-b border-[#F7C7D3]/20">
+            <div className="h-2.5 bg-[#F7C7D3]/30 rounded w-16"></div>
             <div className="flex-1">
-              <div className="h-2.5 bg-gray-200 rounded w-1/3 mb-0.5"></div>
-              <div className="h-2 bg-gray-200 rounded w-1/4"></div>
+              <div className="h-2.5 bg-[#F7C7D3]/30 rounded w-1/3 mb-0.5"></div>
+              <div className="h-2 bg-[#F7C7D3]/30 rounded w-1/4"></div>
             </div>
-            <div className="h-3.5 bg-gray-200 rounded w-14"></div>
+            <div className="h-3.5 bg-[#F7C7D3]/30 rounded w-14"></div>
           </div>
         ))}
       </div>
@@ -1299,8 +1303,8 @@ const RecentOrdersList = ({ orders, loading, onViewOrder }) => {
 
   if (!orders || orders.length === 0) {
     return (
-      <div className="text-center py-6 text-gray-500 text-xs">
-        <FaShoppingCart className="w-6 h-6 mx-auto mb-1 text-gray-300" />
+      <div className="text-center py-6 text-gray-500 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+        <FaShoppingCart className="w-6 h-6 mx-auto mb-1 text-[#F7C7D3]" />
         No recent orders
       </div>
     );
@@ -1316,27 +1320,27 @@ const RecentOrdersList = ({ orders, loading, onViewOrder }) => {
         return (
           <div 
             key={order._id || `order-${Math.random()}`}
-            className="flex items-center gap-2 p-1.5 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer border-b border-gray-100 last:border-0"
+            className="flex items-center gap-2 p-1.5 hover:bg-[#FFF5F6] rounded-lg transition-colors cursor-pointer border-b border-[#F7C7D3]/20 last:border-0"
             onClick={() => onViewOrder && onViewOrder(order._id)}
           >
             <div className="flex-shrink-0">
-              <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-medium ${statusColor}`}>
+              <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-medium ${statusColor}`} style={{ fontFamily: FONT_FAMILY_SERIF }}>
                 {statusLabel}
               </span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-medium text-gray-900 truncate">
+              <p className="text-[11px] font-medium text-[#2D1B2E] truncate" style={{ fontFamily: FONT_FAMILY_SERIF }}>
                 {order.orderNumber || order._id?.slice(-8).toUpperCase()}
               </p>
-              <p className="text-[9px] text-gray-500 truncate">
+              <p className="text-[9px] text-gray-500 truncate" style={{ fontFamily: FONT_FAMILY_SERIF }}>
                 {order.customerInfo?.fullName || 'Guest'} • {order.customerInfo?.phone || 'N/A'}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-[11px] font-semibold text-blue-600">{formatCurrency(order.total)}</p>
-              <p className="text-[8px] text-gray-500">{formatDate(order.createdAt)}</p>
+              <p className="text-[11px] font-semibold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatCurrency(order.total)}</p>
+              <p className="text-[8px] text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatDate(order.createdAt)}</p>
               {isPaid && (
-                <span className="text-[7px] text-green-600 bg-green-50 px-1 py-0.5 rounded">Paid</span>
+                <span className="text-[7px] text-[#EE4275] bg-[#FFF5F6] px-1 py-0.5 rounded">Paid</span>
               )}
             </div>
           </div>
@@ -1528,7 +1532,7 @@ export default function AdminDashboard() {
       const totalOrders = orderStats.totalOrders || 0;
       const pendingPayment = orderStats.pendingPayment || 0;
 
-      // ========== UPDATED: Order status distribution (FILTERED) ==========
+      // Order status distribution (FILTERED)
       const orderStatuses = {
         placed: orderStats.placedOrders || 0,
         follow_up: orderStats.followUpOrders || 0,
@@ -1644,7 +1648,7 @@ export default function AdminDashboard() {
 
   return (
     <ProtectedRoute pageKey="dashboard">
-      <div className="min-h-screen bg-white p-4 md:p-6">
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF5F6]/30 to-white p-4 md:p-6">
         <div className="max-w-7xl mx-auto">
 
           {/* ============================================================
@@ -1652,16 +1656,16 @@ export default function AdminDashboard() {
               ============================================================ */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+              <div className="w-10 h-10 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl flex items-center justify-center shadow-lg shadow-[#EE4275]/20">
                 <FaChartLine className="w-4 h-4 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900" style={{ fontFamily: '"Playfair Display"' }}>
+                <h1 className="text-xl font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>
                   Dashboard
                 </h1>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>
                   Welcome back! Here's what's happening.
-                  <span className="ml-1.5 text-[10px] text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full">
+                  <span className="ml-1.5 text-[10px] text-[#EE4275] font-medium bg-[#FFF5F6] px-2 py-0.5 rounded-full border border-[#F7C7D3]/30">
                     {getFilterLabel()}
                   </span>
                 </p>
@@ -1671,7 +1675,7 @@ export default function AdminDashboard() {
             <button
               onClick={handleRefresh}
               disabled={refreshing}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-xs disabled:opacity-50"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#F7C7D3]/30 text-[#2D1B2E] rounded-lg hover:bg-[#FFF5F6] transition-colors text-xs disabled:opacity-50"
             >
               <FaSpinner className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
@@ -1681,15 +1685,16 @@ export default function AdminDashboard() {
           {/* ============================================================
               COMPACT FILTERS - ALWAYS VISIBLE
               ============================================================ */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-4">
+          <div className="bg-white rounded-xl border border-[#F7C7D3]/30 shadow-sm overflow-hidden mb-4">
             <div className="flex flex-wrap items-center gap-2 p-2.5">
-              <span className="text-[10px] font-medium text-gray-500 mr-1">View:</span>
+              <span className="text-[10px] font-medium text-gray-500 mr-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>View:</span>
               
               <button
                 onClick={() => setFilterType('all')}
                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-                  filterType === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
+                  filterType === 'all' ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-[#FFF5F6] border border-[#F7C7D3]/30'
                 }`}
+                style={{ fontFamily: FONT_FAMILY_SERIF }}
               >
                 All
               </button>
@@ -1697,8 +1702,9 @@ export default function AdminDashboard() {
               <button
                 onClick={() => setFilterType('month')}
                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-                  filterType === 'month' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
+                  filterType === 'month' ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-[#FFF5F6] border border-[#F7C7D3]/30'
                 }`}
+                style={{ fontFamily: FONT_FAMILY_SERIF }}
               >
                 Monthly
               </button>
@@ -1706,20 +1712,22 @@ export default function AdminDashboard() {
               <button
                 onClick={() => setFilterType('year')}
                 className={`px-2.5 py-1 text-[10px] font-medium rounded-lg transition-colors ${
-                  filterType === 'year' ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200'
+                  filterType === 'year' ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-sm' : 'bg-white text-gray-500 hover:bg-[#FFF5F6] border border-[#F7C7D3]/30'
                 }`}
+                style={{ fontFamily: FONT_FAMILY_SERIF }}
               >
                 Yearly
               </button>
 
-              <div className="h-5 w-px bg-gray-200 mx-1"></div>
+              <div className="h-5 w-px bg-[#F7C7D3]/30 mx-1"></div>
 
               {filterType === 'month' && (
                 <div className="flex items-center gap-1.5">
                   <select
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                    className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
+                    className="px-2 py-1 text-[10px] border border-[#F7C7D3]/30 rounded-lg focus:ring-1 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E]"
+                    style={{ fontFamily: FONT_FAMILY_SERIF }}
                   >
                     {months.map(month => (
                       <option key={month.value} value={month.value}>{month.name}</option>
@@ -1728,7 +1736,8 @@ export default function AdminDashboard() {
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                    className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
+                    className="px-2 py-1 text-[10px] border border-[#F7C7D3]/30 rounded-lg focus:ring-1 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E]"
+                    style={{ fontFamily: FONT_FAMILY_SERIF }}
                   >
                     {getYears().map(year => (
                       <option key={year} value={year}>{year}</option>
@@ -1741,7 +1750,8 @@ export default function AdminDashboard() {
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                  className="px-2 py-1 text-[10px] border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-600 focus:border-transparent bg-white text-gray-900"
+                  className="px-2 py-1 text-[10px] border border-[#F7C7D3]/30 rounded-lg focus:ring-1 focus:ring-[#EE4275] focus:border-transparent bg-white text-[#2D1B2E]"
+                  style={{ fontFamily: FONT_FAMILY_SERIF }}
                 >
                   {getYears().map(year => (
                     <option key={year} value={year}>{year}</option>
@@ -1752,7 +1762,8 @@ export default function AdminDashboard() {
               <button
                 onClick={handleRefresh}
                 disabled={refreshing}
-                className="ml-auto px-2.5 py-1 bg-blue-600 text-white text-[10px] font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                className="ml-auto px-2.5 py-1 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-[10px] font-medium rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all disabled:opacity-50"
+                style={{ fontFamily: FONT_FAMILY_SERIF }}
               >
                 Apply
               </button>
@@ -1769,32 +1780,32 @@ export default function AdminDashboard() {
               <StatCard
                 title="Revenue"
                 value={formatCurrency(stats.totalRevenue)}
-                icon={<FaMoneyBillWave className="w-3.5 h-3.5 text-emerald-500" />}
-                color="bg-emerald-50"
+                icon={<FaMoneyBillWave className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 subtitle={`${getFilterLabel()}`}
                 loading={loading}
               />
               <StatCard
                 title="Profit"
                 value={formatCurrency(stats.totalProfit)}
-                icon={<FaChartLine className="w-3.5 h-3.5 text-blue-600" />}
-                color="bg-blue-50"
+                icon={<FaChartLine className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 subtitle={`${stats.averageProfitMargin?.toFixed(1) || 0}% margin`}
                 loading={loading}
               />
               <StatCard
                 title="Orders"
                 value={stats.totalOrders}
-                icon={<FaShoppingCart className="w-3.5 h-3.5 text-purple-500" />}
-                color="bg-purple-50"
+                icon={<FaShoppingCart className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 subtitle={`${stats.paidOrders} delivered & paid`}
                 loading={loading}
               />
               <StatCard
                 title="Products"
                 value={stats.totalProducts}
-                icon={<FaBox className="w-3.5 h-3.5 text-blue-600" />}
-                color="bg-blue-50"
+                icon={<FaBox className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 loading={loading}
               />
             </div>
@@ -1806,23 +1817,23 @@ export default function AdminDashboard() {
               <StatCard
                 title="Orders"
                 value={stats.totalOrders}
-                icon={<FaShoppingCart className="w-3.5 h-3.5 text-purple-500" />}
-                color="bg-purple-50"
+                icon={<FaShoppingCart className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 subtitle={`${getFilterLabel()}`}
                 loading={loading}
               />
               <StatCard
                 title="Products"
                 value={stats.totalProducts}
-                icon={<FaBox className="w-3.5 h-3.5 text-blue-600" />}
-                color="bg-blue-50"
+                icon={<FaBox className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 loading={loading}
               />
               <StatCard
                 title="Reviews"
                 value={stats.totalReviews}
-                icon={<FaStar className="w-3.5 h-3.5 text-yellow-500" />}
-                color="bg-yellow-50"
+                icon={<FaStar className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 loading={loading}
               />
             </div>
@@ -1834,18 +1845,19 @@ export default function AdminDashboard() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
             {/* Order Status Cards */}
-            <div className="lg:col-span-2 bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <div className="lg:col-span-2 bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/30">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
-                  <FaClock className="w-4 h-4 text-blue-600" />
+                <h2 className="text-sm font-semibold text-[#2D1B2E] flex items-center gap-1.5" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                  <FaClock className="w-4 h-4 text-[#EE4275]" />
                   Order Status
-                  <span className="text-[10px] font-normal text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-normal text-gray-500 bg-[#FFF5F6] px-1.5 py-0.5 rounded-full border border-[#F7C7D3]/30">
                     {getFilterLabel()}
                   </span>
                 </h2>
                 <button
                   onClick={() => router.push('/authorize/orders')}
-                  className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
+                  className="text-[10px] text-[#EE4275] hover:text-[#ca4f74] flex items-center gap-0.5 transition-colors"
+                  style={{ fontFamily: FONT_FAMILY_SERIF }}
                 >
                   View All <FaArrowRight className="w-2.5 h-2.5" />
                 </button>
@@ -1854,15 +1866,15 @@ export default function AdminDashboard() {
               {loading ? (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   {[...Array(4)].map((_, i) => (
-                    <div key={`status-loading-${i}`} className="p-2 rounded-xl border border-gray-200 animate-pulse">
-                      <div className="h-2.5 bg-gray-200 rounded w-1/2 mb-1.5"></div>
-                      <div className="h-5 bg-gray-200 rounded w-1/3"></div>
+                    <div key={`status-loading-${i}`} className="p-2 rounded-xl border border-[#F7C7D3]/30 animate-pulse">
+                      <div className="h-2.5 bg-[#F7C7D3]/30 rounded w-1/2 mb-1.5"></div>
+                      <div className="h-5 bg-[#F7C7D3]/30 rounded w-1/3"></div>
                     </div>
                   ))}
                 </div>
               ) : activeStatuses.length === 0 ? (
-                <div className="text-center py-4 text-gray-500 text-xs">
-                  <FaClipboardList className="w-5 h-5 mx-auto mb-1 text-gray-300" />
+                <div className="text-center py-4 text-gray-500 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                  <FaClipboardList className="w-5 h-5 mx-auto mb-1 text-[#F7C7D3]" />
                   No orders found for {getFilterLabel()}
                 </div>
               ) : (
@@ -1881,15 +1893,16 @@ export default function AdminDashboard() {
             </div>
 
             {/* Top Selling Products */}
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/30">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
-                  <FaFire className="w-4 h-4 text-blue-600" />
+                <h2 className="text-sm font-semibold text-[#2D1B2E] flex items-center gap-1.5" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                  <FaFire className="w-4 h-4 text-[#EE4275]" />
                   Top Products
                 </h2>
                 <button
                   onClick={() => router.push('/authorize/all-products')}
-                  className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
+                  className="text-[10px] text-[#EE4275] hover:text-[#ca4f74] flex items-center gap-0.5 transition-colors"
+                  style={{ fontFamily: FONT_FAMILY_SERIF }}
                 >
                   View All <FaArrowRight className="w-2.5 h-2.5" />
                 </button>
@@ -1911,8 +1924,8 @@ export default function AdminDashboard() {
               <StatCard
                 title="Delivered & Paid Orders"
                 value={stats.paidOrders}
-                icon={<FaCheckCircle className="w-3.5 h-3.5 text-green-500" />}
-                color="bg-green-50"
+                icon={<FaCheckCircle className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 subtitle={`${getFilterLabel()}`}
                 loading={loading}
                 onClick={() => router.push('/authorize/orders?status=delivered')}
@@ -1920,8 +1933,8 @@ export default function AdminDashboard() {
               <StatCard
                 title="Pending Payments"
                 value={stats.pendingPayment}
-                icon={<FaClock className="w-3.5 h-3.5 text-yellow-500" />}
-                color="bg-yellow-50"
+                icon={<FaClock className="w-3.5 h-3.5 text-[#EE4275]" />}
+                color="bg-[#FFF5F6]"
                 loading={loading}
                 onClick={() => router.push('/authorize/orders?payment=pending')}
               />
@@ -1932,18 +1945,19 @@ export default function AdminDashboard() {
               RECENT ORDERS (ALL ORDERS - NOT JUST PAID)
               ============================================================ */}
 
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/30">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
-                <FaTruck className="w-4 h-4 text-blue-600" />
+              <h2 className="text-sm font-semibold text-[#2D1B2E] flex items-center gap-1.5" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                <FaTruck className="w-4 h-4 text-[#EE4275]" />
                 Recent Orders
-                <span className="text-[10px] font-normal text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-normal text-gray-500 bg-[#FFF5F6] px-1.5 py-0.5 rounded-full border border-[#F7C7D3]/30">
                   {getFilterLabel()}
                 </span>
               </h2>
               <button
                 onClick={() => router.push('/authorize/orders')}
-                className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
+                className="text-[10px] text-[#EE4275] hover:text-[#ca4f74] flex items-center gap-0.5 transition-colors"
+                style={{ fontFamily: FONT_FAMILY_SERIF }}
               >
                 View All <FaArrowRight className="w-2.5 h-2.5" />
               </button>
@@ -1960,19 +1974,19 @@ export default function AdminDashboard() {
               ROLE INDICATOR
               ============================================================ */}
 
-          <div className="mt-4 text-center text-[10px] text-gray-500">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white rounded-full border border-gray-200">
-              <FaUserCircle className="w-3 h-3 text-blue-600" />
-              Role: <span className="font-medium text-gray-900">
+          <div className="mt-4 text-center text-[10px] text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-white rounded-full border border-[#F7C7D3]/30">
+              <FaUserCircle className="w-3 h-3 text-[#EE4275]" />
+              Role: <span className="font-medium text-[#2D1B2E]">
                 {userRole ? userRole.replace('_', ' ').toUpperCase() : 'Unknown'}
               </span>
               {isAdminOrSuperAdmin && (
-                <span className="text-[8px] text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded-full">
+                <span className="text-[8px] text-[#EE4275] bg-[#FFF5F6] px-1 py-0.5 rounded-full border border-[#F7C7D3]/30">
                   Full Access
                 </span>
               )}
               {isModerator && (
-                <span className="text-[8px] text-blue-600 bg-blue-50 px-1 py-0.5 rounded-full">
+                <span className="text-[8px] text-[#EE4275] bg-[#FFF5F6] px-1 py-0.5 rounded-full border border-[#F7C7D3]/30">
                   Limited
                 </span>
               )}

@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -26,13 +27,15 @@ import {
   Tag,
   Hash,
   Heart,
-  Truck
+  Truck,
+  Flower2
 } from 'lucide-react';
 import { toast } from 'sonner';
 import CartSidebar from '../CartSidebar';
 
 // Font constants matching Navbar and Categories
 const FONT_FAMILY = " serif";
+const FONT_FAMILY_CURSIVE = "'Courgette', cursive";
 
 // Helper functions
 const calculateDiscountPercentage = (regularPrice, discountPrice) => {
@@ -61,12 +64,12 @@ const getUnitLabel = (unit) => {
   return units[unit] || unit;
 };
 
-// Product Card Component
-// const FeaturedProductCard = ({ 
-//   product, 
-//   isInCart: propIsInCart, 
-//   onCartStatusChange, 
-//   onViewInCart 
+// Product Card Component - KEEP EXACTLY AS IS
+// const FeaturedProductCard = ({
+//   product,
+//   isInCart: propIsInCart,
+//   onCartStatusChange,
+//   onViewInCart
 // }) => {
 //   const [cartStatusLoading, setCartStatusLoading] = useState(false);
 //   const [isInCart, setIsInCart] = useState(propIsInCart || false);
@@ -76,500 +79,1617 @@ const getUnitLabel = (unit) => {
 //   const [isLiked, setIsLiked] = useState(false);
 //   const [imageErrors, setImageErrors] = useState({});
 //   const [isCartHovered, setIsCartHovered] = useState(false);
-  
-//   // Safe data extraction
-//   const productId = product?._id || product?.id || 'unknown';
-//   const productName = product?.productName || product?.name || 'Product';
-//   const regularPrice = product?.regularPrice || product?.price || 0;
-//   const discountPrice = product?.discountPrice || 0;
-//   const stockQuantity = product?.stockQuantity || 0;
-//   const unit = product?.unit || 'pcs';
-  
-//   // Safe category extraction - handle object case
-//   const category = product?.category 
-//     ? (typeof product.category === 'string' 
-//         ? product.category 
-//         : product.category?.name || product.category?.title || 'General')
-//     : product?.categoryName || 'General';
-  
-//   // Safe image extraction
+
+//   // =========================================================
+//   // SAFE PRODUCT DATA
+//   // =========================================================
+
+//   const productId =
+//     product?._id ||
+//     product?.id ||
+//     'unknown';
+
+//   const productName =
+//     product?.productName ||
+//     product?.name ||
+//     'Product';
+
+//   const regularPrice =
+//     Number(
+//       product?.regularPrice ||
+//       product?.price ||
+//       0
+//     );
+
+//   const discountPrice =
+//     Number(
+//       product?.discountPrice || 0
+//     );
+
+//   const stockQuantity =
+//     Number(
+//       product?.stockQuantity || 0
+//     );
+
+//   // =========================================================
+//   // CATEGORY
+//   // =========================================================
+
+//   const category = product?.category
+//     ? typeof product.category === 'string'
+//       ? product.category
+//       : product.category?.name ||
+//         product.category?.title ||
+//         'General'
+//     : product?.categoryName ||
+//       'General';
+
+//   // =========================================================
+//   // BRAND
+//   // =========================================================
+
+//   const brand = product?.brand
+//     ? typeof product.brand === 'string'
+//       ? product.brand
+//       : product.brand?.name ||
+//         product.brand?.title ||
+//         'General'
+//     : product?.brandName ||
+//       'General';
+
+//   // =========================================================
+//   // IMAGES
+//   // =========================================================
+
 //   let productImages = [];
-//   if (product?.images && Array.isArray(product.images)) {
-//     productImages = product.images.map(img => {
-//       if (typeof img === 'string') return img;
-//       if (img?.url) return img.url;
-//       return null;
-//     }).filter(Boolean);
+
+//   if (
+//     product?.images &&
+//     Array.isArray(product.images)
+//   ) {
+//     productImages = product.images
+//       .map((img) => {
+//         if (typeof img === 'string') {
+//           return img;
+//         }
+
+//         if (img?.url) {
+//           return img.url;
+//         }
+
+//         return null;
+//       })
+//       .filter(Boolean);
 //   }
-//   if (productImages.length === 0 && product?.image) {
-//     productImages = [typeof product.image === 'string' ? product.image : product.image?.url || ''].filter(Boolean);
+
+//   if (
+//     productImages.length === 0 &&
+//     product?.image
+//   ) {
+//     productImages = [
+//       typeof product.image === 'string'
+//         ? product.image
+//         : product.image?.url || ''
+//     ].filter(Boolean);
 //   }
-//   if (productImages.length === 0) {
-//     productImages = ['/placeholder-product.jpg'];
+
+//   if (
+//     productImages.length === 0
+//   ) {
+//     productImages = [
+//       '/placeholder-product.jpg'
+//     ];
 //   }
-  
-//   // Safe tags extraction
+
+//   // =========================================================
+//   // TAGS
+//   // =========================================================
+
 //   let tagNames = [];
-//   if (product?.tags && Array.isArray(product.tags)) {
-//     tagNames = product.tags.map(tag => {
-//       if (typeof tag === 'string') return tag;
-//       if (tag?.name) return tag.name;
-//       if (tag && typeof tag === 'object') {
-//         if (tag.name) return tag.name;
-//       }
-//       return null;
-//     }).filter(Boolean);
+
+//   if (
+//     product?.tags &&
+//     Array.isArray(product.tags)
+//   ) {
+//     tagNames = product.tags
+//       .map((tag) => {
+//         if (typeof tag === 'string') {
+//           return tag;
+//         }
+
+//         if (tag?.name) {
+//           return tag.name;
+//         }
+
+//         return null;
+//       })
+//       .filter(Boolean);
 //   }
 
-//   // Safe brand extraction
-// const brand = product?.brand 
-//   ? (typeof product.brand === 'string' 
-//       ? product.brand 
-//       : product.brand?.name || product.brand?.title || 'General')
-//   : product?.brandName || 'General';
-  
-//   const discountPercent = calculateDiscountPercentage(regularPrice, discountPrice);
-//   const hasMultipleImages = productImages.length > 1;
-//   const currentPrice = discountPrice && discountPrice < regularPrice ? discountPrice : regularPrice;
-//   const originalPrice = regularPrice;
-//   const primaryTag = tagNames[0] || null;
-  
-//   const isLowStock = product?.stockAlertQuantity > 0 && stockQuantity <= product.stockAlertQuantity;
-//   const isOutOfStock = stockQuantity <= 0;
-  
-//   // Get rating from backend or generate random
-//   const rating = product?.rating || (3.5 + Math.random() * 1.5).toFixed(1);
-//   const fullStars = Math.floor(parseFloat(rating));
-//   const hasHalfStar = parseFloat(rating) - fullStars >= 0.5;
+//   const primaryTag =
+//     tagNames[0] || null;
 
-//   // Image navigation functions
+//   // =========================================================
+//   // PRICE
+//   // =========================================================
+
+//   const discountPercent =
+//     calculateDiscountPercentage(
+//       regularPrice,
+//       discountPrice
+//     );
+
+//   const currentPrice =
+//     discountPrice > 0 &&
+//     discountPrice < regularPrice
+//       ? discountPrice
+//       : regularPrice;
+
+//   const originalPrice =
+//     regularPrice;
+
+//   // =========================================================
+//   // STOCK
+//   // =========================================================
+
+//   const isLowStock =
+//     product?.stockAlertQuantity > 0 &&
+//     stockQuantity <=
+//       product.stockAlertQuantity;
+
+//   const isOutOfStock =
+//     stockQuantity <= 0;
+
+//   // =========================================================
+//   // RATING
+//   // =========================================================
+
+//   const rating = product?.rating
+//     ? Number(product.rating)
+//     : 4.7;
+
+//   const reviewCount =
+//     product?.reviewStats?.totalReviews ||
+//     product?.reviews?.length ||
+//     0;
+
+//   const fullStars =
+//     Math.floor(rating);
+
+//   const hasHalfStar =
+//     rating - fullStars >= 0.5;
+
+//   // =========================================================
+//   // MULTIPLE IMAGES
+//   // =========================================================
+
+//   const hasMultipleImages =
+//     productImages.length > 1;
+
+//   // =========================================================
+//   // MOBILE DETECTION
+//   // =========================================================
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(
+//         window.innerWidth < 768
+//       );
+//     };
+
+//     checkMobile();
+
+//     window.addEventListener(
+//       'resize',
+//       checkMobile
+//     );
+
+//     return () => {
+//       window.removeEventListener(
+//         'resize',
+//         checkMobile
+//       );
+//     };
+//   }, []);
+
+//   // =========================================================
+//   // CART PROP SYNC
+//   // =========================================================
+
+//   useEffect(() => {
+//     setIsInCart(
+//       propIsInCart || false
+//     );
+//   }, [propIsInCart]);
+
+//   // =========================================================
+//   // IMAGE NAVIGATION
+//   // =========================================================
+
 //   const nextImage = (e) => {
 //     e.preventDefault();
 //     e.stopPropagation();
+
 //     if (hasMultipleImages) {
-//       setActiveIndex((prev) => (prev + 1) % productImages.length);
+//       setActiveIndex(
+//         (prev) =>
+//           (prev + 1) %
+//           productImages.length
+//       );
 //     }
 //   };
 
 //   const prevImage = (e) => {
 //     e.preventDefault();
 //     e.stopPropagation();
+
 //     if (hasMultipleImages) {
-//       setActiveIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+//       setActiveIndex(
+//         (prev) =>
+//           (prev -
+//             1 +
+//             productImages.length) %
+//           productImages.length
+//       );
 //     }
 //   };
 
 //   const goToImage = (e, index) => {
 //     e.preventDefault();
 //     e.stopPropagation();
+
 //     setActiveIndex(index);
 //   };
 
 //   const handleImageError = (index) => {
-//     setImageErrors(prev => ({
+//     setImageErrors((prev) => ({
 //       ...prev,
 //       [index]: true
 //     }));
 //   };
 
-//   useEffect(() => {
-//     const checkMobile = () => {
-//       setIsMobile(window.innerWidth < 768);
-//     };
-//     checkMobile();
-//     window.addEventListener('resize', checkMobile);
-//     return () => window.removeEventListener('resize', checkMobile);
-//   }, []);
+//   const getCurrentImage = () => {
+//     const image =
+//       productImages[activeIndex] ||
+//       productImages[0];
 
-//   useEffect(() => {
-//     setIsInCart(propIsInCart || false);
-//   }, [propIsInCart]);
+//     if (
+//       imageErrors[activeIndex]
+//     ) {
+//       return '/placeholder-product.jpg';
+//     }
+
+//     return image;
+//   };
+
+//   // =========================================================
+//   // ADD TO CART
+//   // =========================================================
 
 //   const handleAddToCart = async (e) => {
 //     e.preventDefault();
 //     e.stopPropagation();
-    
+
 //     if (isInCart) {
-//       onViewInCart();
+//       if (onViewInCart) {
+//         onViewInCart();
+//       }
+
 //       return;
 //     }
-    
-//     if (stockQuantity <= 0) {
-//       toast.error('Product is out of stock!');
+
+//     if (isOutOfStock) {
+//       toast.error(
+//         'Product is out of stock!'
+//       );
+
 //       return;
 //     }
-    
+
 //     setCartStatusLoading(true);
-//     const toastId = toast.loading('Adding to cart...');
-    
+
+//     const toastId =
+//       toast.loading(
+//         'Adding to cart...'
+//       );
+
 //     try {
-//       const token = localStorage.getItem('token');
-//       let sessionId = localStorage.getItem('cartSessionId');
-      
-//       const headers = { 'Content-Type': 'application/json' };
-      
-//       if (!token && !sessionId) {
-//         sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-//         localStorage.setItem('cartSessionId', sessionId);
+//       const token =
+//         localStorage.getItem(
+//           'token'
+//         );
+
+//       let sessionId =
+//         localStorage.getItem(
+//           'cartSessionId'
+//         );
+
+//       const headers = {
+//         'Content-Type':
+//           'application/json'
+//       };
+
+//       // Guest session
+//       if (
+//         !token &&
+//         !sessionId
+//       ) {
+//         sessionId =
+//           `guest_${Date.now()}_${Math.random()
+//             .toString(36)
+//             .substring(7)}`;
+
+//         localStorage.setItem(
+//           'cartSessionId',
+//           sessionId
+//         );
 //       }
-      
+
+//       // Authentication
 //       if (token) {
-//         headers['Authorization'] = `Bearer ${token}`;
+//         headers.Authorization =
+//           `Bearer ${token}`;
 //       } else if (sessionId) {
-//         headers['x-session-id'] = sessionId;
+//         headers['x-session-id'] =
+//           sessionId;
 //       }
-      
-//       const response = await fetch('http://localhost:5000/api/cart', {
-//         method: 'POST',
-//         headers: headers,
-//         body: JSON.stringify({ productId: productId, quantity: 1 })
-//       });
-      
-//       const data = await response.json();
-      
+
+//       // API request
+//       const response =
+//         await fetch(
+//           'http://localhost:5000/api/cart',
+//           {
+//             method: 'POST',
+//             headers,
+//             body: JSON.stringify({
+//               productId:
+//                 productId,
+//               quantity: 1
+//             })
+//           }
+//         );
+
+//       const data =
+//         await response.json();
+
 //       if (data.success) {
-//         if (data.sessionId && !token) {
-//           localStorage.setItem('cartSessionId', data.sessionId);
+//         if (
+//           data.sessionId &&
+//           !token
+//         ) {
+//           localStorage.setItem(
+//             'cartSessionId',
+//             data.sessionId
+//           );
 //         }
-//         toast.success('Added to cart!', { id: toastId });
+
+//         toast.success(
+//           'Added to cart!',
+//           {
+//             id: toastId
+//           }
+//         );
+
 //         setIsInCart(true);
-//         if (onCartStatusChange) {
-//           onCartStatusChange(productId, true);
+
+//         if (
+//           onCartStatusChange
+//         ) {
+//           onCartStatusChange(
+//             productId,
+//             true
+//           );
 //         }
-//         window.dispatchEvent(new Event('cart-update'));
+
+//         window.dispatchEvent(
+//           new Event(
+//             'cart-update'
+//           )
+//         );
 //       } else {
-//         toast.error(data.error || 'Failed to add to cart', { id: toastId });
+//         toast.error(
+//           data.error ||
+//             'Failed to add to cart',
+//           {
+//             id: toastId
+//           }
+//         );
 //       }
 //     } catch (error) {
-//       console.error('Add to cart error:', error);
-//       toast.error('Network error. Please try again.', { id: toastId });
+//       console.error(
+//         'Add to cart error:',
+//         error
+//       );
+
+//       toast.error(
+//         'Network error. Please try again.',
+//         {
+//           id: toastId
+//         }
+//       );
 //     } finally {
-//       setCartStatusLoading(false);
+//       setCartStatusLoading(
+//         false
+//       );
 //     }
 //   };
+
+//   // =========================================================
+//   // WISHLIST
+//   // =========================================================
 
 //   const handleLike = (e) => {
 //     e.preventDefault();
 //     e.stopPropagation();
-//     setIsLiked(!isLiked);
+
+//     setIsLiked(
+//       (prev) => !prev
+//     );
 //   };
 
-//   // Render stars for rating
+//   // =========================================================
+//   // RATING STARS
+//   // =========================================================
+
 //   const renderStars = () => {
 //     const stars = [];
-//     const numFullStars = Math.floor(parseFloat(rating));
-    
+
 //     for (let i = 0; i < 5; i++) {
-//       if (i < numFullStars) {
-//         stars.push(<Star key={i} className="size-3 fill-current text-yellow-400" />);
-//       } else if (i === numFullStars && hasHalfStar) {
+//       if (i < fullStars) {
 //         stars.push(
-//           <div key={i} className="relative">
-//             <Star className="size-3 text-yellow-400" />
-//             <div className="absolute inset-0 overflow-hidden w-1/2">
-//               <Star className="size-3 fill-current text-yellow-400" />
+//           <Star
+//             key={i}
+//             className="
+//               h-3
+//               w-3
+//               fill-current
+//               text-yellow-400
+//             "
+//           />
+//         );
+//       } else if (
+//         i === fullStars &&
+//         hasHalfStar
+//       ) {
+//         stars.push(
+//           <div
+//             key={i}
+//             className="
+//               relative
+//               h-3
+//               w-3
+//             "
+//           >
+//             <Star
+//               className="
+//                 absolute
+//                 h-3
+//                 w-3
+//                 text-gray-200
+//               "
+//             />
+
+//             <div
+//               className="
+//                 absolute
+//                 left-0
+//                 top-0
+//                 h-3
+//                 w-1/2
+//                 overflow-hidden
+//               "
+//             >
+//               <Star
+//                 className="
+//                   h-3
+//                   w-3
+//                   fill-current
+//                   text-yellow-400
+//                 "
+//               />
 //             </div>
 //           </div>
 //         );
 //       } else {
-//         stars.push(<Star key={i} className="size-3 text-[#F7C7D3]" />);
+//         stars.push(
+//           <Star
+//             key={i}
+//             className="
+//               h-3
+//               w-3
+//               text-[#F7C7D3]
+//             "
+//           />
+//         );
 //       }
 //     }
+
 //     return stars;
 //   };
 
-//   // Get the current image with error handling
-//   const getCurrentImage = () => {
-//     const img = productImages[activeIndex] || productImages[0];
-//     if (imageErrors[activeIndex]) {
-//       return '/placeholder-product.jpg';
+//   // =========================================================
+//   // TAG ICON
+//   // =========================================================
+
+//   const getTagIcon = () => {
+//     if (!primaryTag) {
+//       return null;
 //     }
-//     return img;
+
+//     const name =
+//       primaryTag.toLowerCase();
+
+//     if (
+//       name.includes('best') ||
+//       name.includes('seller')
+//     ) {
+//       return (
+//         <Star className="
+//           h-2.5
+//           w-2.5
+//           fill-current
+//         " />
+//       );
+//     }
+
+//     if (
+//       name.includes('trend')
+//     ) {
+//       return (
+//         <Flame className="
+//           h-2.5
+//           w-2.5
+//         " />
+//       );
+//     }
+
+//     if (
+//       name.includes('new')
+//     ) {
+//       return (
+//         <Sparkles className="
+//           h-2.5
+//           w-2.5
+//         " />
+//       );
+//     }
+
+//     if (
+//       name.includes('sale') ||
+//       name.includes('offer')
+//     ) {
+//       return (
+//         <Zap className="
+//           h-2.5
+//           w-2.5
+//         " />
+//       );
+//     }
+
+//     return (
+//       <Tag className="
+//         h-2.5
+//         w-2.5
+//       " />
+//     );
 //   };
+
+//   // =========================================================
+//   // RETURN
+//   // =========================================================
 
 //   return (
 //     <motion.div
-//       initial={{ opacity: 0, y: 20 }}
-//       whileInView={{ opacity: 1, y: 0 }}
-//       viewport={{ once: true }}
-//       transition={{ duration: 0.4 }}
+//       initial={{
+//         opacity: 0,
+//         y: 20
+//       }}
+//       whileInView={{
+//         opacity: 1,
+//         y: 0
+//       }}
+//       viewport={{
+//         once: true
+//       }}
+//       transition={{
+//         duration: 0.4
+//       }}
 //       className="group w-full"
-//       onMouseEnter={() => setIsHovered(true)}
-//       onMouseLeave={() => setIsHovered(false)}
+//       onMouseEnter={() =>
+//         setIsHovered(true)
+//       }
+//       onMouseLeave={() =>
+//         setIsHovered(false)
+//       }
 //     >
-//       <Link href={`/product/${product?.slug || productId}`} className="block">
-//         <article className="relative flex flex-col rounded-2xl border border-[#F7C7D3]/30 bg-white p-2 shadow-[0_2px_9px_rgba(238,66,117,0.06)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_10px_24px_rgba(238,66,117,0.14)]">
-     
+//       <Link
+//         href={`/product/${
+//           product?.slug ||
+//           productId
+//         }`}
+//         className="block h-full"
+//       >
+//         <article
+//           className="
+//             relative
+//             flex
+//             h-full
+//             flex-col
+//             overflow-hidden
+//             rounded-2xl
+//             border
+//             border-[#F7C7D3]/30
+//             bg-white
+//             p-2
+//             shadow-[0_2px_9px_rgba(238,66,117,0.06)]
+//             transition-all
+//             duration-300
+//             hover:-translate-y-1.5
+//             hover:border-[#F7C7D3]
+//             hover:shadow-[0_18px_40px_rgba(238,66,117,0.12)]
+//           "
+//         >
 
-//           {/* Product Image Section */}
-//           <div className="relative overflow-hidden rounded-xl bg-[#F7C7D3]/10">
-//             <div className="relative w-full aspect-[1/1] overflow-hidden">
+//           {/* =====================================================
+//               PRODUCT IMAGE SECTION
+//           ====================================================== */}
+
+//           <div
+//             className="
+//               relative
+//               overflow-hidden
+//               rounded-xl
+//               bg-[#F7C7D3]/10
+//             "
+//           >
+
+//             <div
+//               className="
+//                 relative
+//                 aspect-square
+//                 w-full
+//                 overflow-hidden
+//               "
+//             >
+
+//               {/* PRODUCT IMAGE */}
+
 //               <Image
 //                 src={getCurrentImage()}
 //                 alt={productName}
 //                 fill
-//                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-//                 className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-//                 onError={() => handleImageError(activeIndex)}
-//                 priority={activeIndex === 0}
-//                 quality={85}
+//                 sizes="
+//                   (max-width: 640px) 50vw,
+//                   (max-width: 768px) 33vw,
+//                   (max-width: 1024px) 25vw,
+//                   20vw
+//                 "
+//                 className="
+//                   object-contain
+//                   p-4
+//                   transition-transform
+//                   duration-500
+//                   ease-out
+//                   group-hover:scale-[1.06]
+//                 "
+//                 onError={() =>
+//                   handleImageError(
+//                     activeIndex
+//                   )
+//                 }
+//                 priority={
+//                   activeIndex === 0
+//                 }
+//                 quality={90}
 //               />
-              
-//               {/* Discount Badge with Zigzag Bottom - with shimmer effect on hover */}
+
+//               {/* =================================================
+//                   DISCOUNT BADGE
+//               ================================================== */}
+
 //               {discountPercent > 0 && (
-//                 <motion.div 
-//                   className="absolute left-2 top-2 z-10"
-//                   animate={isHovered ? {
-//                     scale: [1, 1.05, 1],
-//                     rotate: [0, -2, 2, 0]
-//                   } : {}}
-//                   transition={{ duration: 0.5, repeat: isHovered ? Infinity : 0, repeatDelay: 1 }}
+//                 <motion.div
+//                   className="
+//                     absolute
+//                     left-2
+//                     top-2
+//                     z-10
+//                   "
+//                   animate={
+//                     isHovered
+//                       ? {
+//                           scale: [
+//                             1,
+//                             1.05,
+//                             1
+//                           ],
+//                           rotate: [
+//                             0,
+//                             -2,
+//                             2,
+//                             0
+//                           ]
+//                         }
+//                       : {}
+//                   }
+//                   transition={{
+//                     duration: 0.5,
+//                     repeat:
+//                       isHovered
+//                         ? Infinity
+//                         : 0,
+//                     repeatDelay: 1
+//                   }}
 //                 >
-//                   <div 
-//                     className="relative flex h-12 w-10 items-start justify-center bg-[#EE4275] px-1 pt-2 text-center text-[9px] font-bold uppercase leading-[0.9] tracking-wide text-white overflow-hidden"
+//                   <div
+//                     className="
+//                       relative
+//                       flex
+//                       h-12
+//                       w-10
+//                       items-start
+//                       justify-center
+//                       overflow-hidden
+//                       bg-[#EE4275]
+//                       px-1
+//                       pt-2
+//                       text-center
+//                       text-[9px]
+//                       font-bold
+//                       uppercase
+//                       leading-[0.9]
+//                       tracking-wide
+//                       text-white
+//                     "
 //                     style={{
-//                       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 85% 91%, 70% 100%, 55% 91%, 40% 100%, 25% 91%, 0 100%)',
-//                       fontFamily: FONT_FAMILY
+//                       clipPath:
+//                         'polygon(0 0, 100% 0, 100% 100%, 85% 91%, 70% 100%, 55% 91%, 40% 100%, 25% 91%, 0 100%)',
+//                       fontFamily:
+//                         FONT_FAMILY
 //                     }}
 //                   >
-//                     {/* Shimmer effect */}
+
+//                     {/* SHIMMER */}
+
 //                     {isHovered && (
-//                       <motion.div 
-//                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
-//                         initial={{ x: '-100%' }}
-//                         animate={{ x: '200%' }}
-//                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+//                       <motion.div
+//                         className="
+//                           absolute
+//                           inset-0
+//                           -skew-x-12
+//                           bg-gradient-to-r
+//                           from-transparent
+//                           via-white/30
+//                           to-transparent
+//                         "
+//                         initial={{
+//                           x: '-100%'
+//                         }}
+//                         animate={{
+//                           x: '200%'
+//                         }}
+//                         transition={{
+//                           duration: 1.5,
+//                           repeat: Infinity,
+//                           ease: 'easeInOut'
+//                         }}
 //                       />
 //                     )}
-//                     <span className="leading-tight block relative z-10">
-//                       {discountPercent}%<br />OFF
+
+//                     <span
+//                       className="
+//                         relative
+//                         z-10
+//                         block
+//                         leading-tight
+//                       "
+//                     >
+//                       {discountPercent}%
+//                       <br />
+//                       OFF
 //                     </span>
+
 //                   </div>
 //                 </motion.div>
 //               )}
-              
-//               {/* Tag Badge */}
+
+//               {/* =================================================
+//                   TAG BADGE
+//               ================================================== */}
+
 //               {primaryTag && (
-//                 <div className="absolute top-2 right-2 bg-black/80 text-white text-[9px] px-2 py-1 font-medium z-10 flex items-center gap-1 backdrop-blur-sm rounded">
-//                   <Sparkles className="w-2.5 h-2.5" />
-//                   <span style={{ fontFamily: FONT_FAMILY }}>{primaryTag}</span>
+//                 <div
+//                   className="
+//                     absolute
+//                     right-2
+//                     top-2
+//                     z-10
+//                     flex
+//                     items-center
+//                     gap-1
+//                     rounded
+//                     bg-black/80
+//                     px-2
+//                     py-1
+//                     text-[9px]
+//                     font-medium
+//                     text-white
+//                     backdrop-blur-sm
+//                   "
+//                 >
+//                   <Sparkles
+//                     className="
+//                       h-2.5
+//                       w-2.5
+//                     "
+//                   />
+
+//                   <span
+//                     style={{
+//                       fontFamily:
+//                         FONT_FAMILY
+//                     }}
+//                   >
+//                     {primaryTag}
+//                   </span>
 //                 </div>
 //               )}
-              
-//               {/* Out of Stock Overlay */}
+
+//               {/* =================================================
+//                   OUT OF STOCK
+//               ================================================== */}
+
 //               {isOutOfStock && (
-//                 <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-20 rounded-xl">
-//                   <span className="bg-black text-white text-xs font-medium px-3 py-1.5 rounded-full" style={{ fontFamily: FONT_FAMILY }}>
+//                 <div
+//                   className="
+//                     absolute
+//                     inset-0
+//                     z-20
+//                     flex
+//                     items-center
+//                     justify-center
+//                     rounded-xl
+//                     bg-black/60
+//                   "
+//                 >
+//                   <span
+//                     className="
+//                       rounded-full
+//                       bg-black
+//                       px-3
+//                       py-1.5
+//                       text-xs
+//                       font-medium
+//                       text-white
+//                     "
+//                     style={{
+//                       fontFamily:
+//                         FONT_FAMILY
+//                     }}
+//                   >
 //                     Out of Stock
 //                   </span>
 //                 </div>
 //               )}
-              
-//               {/* Low Stock Badge */}
-//               {!isOutOfStock && isLowStock && (
-//                 <div className="absolute bottom-2 left-2 bg-orange-500 text-white text-[9px] font-medium px-2 py-1 rounded z-10 flex items-center gap-1">
-//                   <AlertTriangle className="w-2.5 h-2.5" />
-//                   <span style={{ fontFamily: FONT_FAMILY }}>Only {stockQuantity} left</span>
-//                 </div>
-//               )}
 
-//               {/* Hover Icons - Right Side Center */}
+//               {/* =================================================
+//                   LOW STOCK
+//               ================================================== */}
+
+//               {!isOutOfStock &&
+//                 isLowStock && (
+//                   <div
+//                     className="
+//                       absolute
+//                       bottom-2
+//                       left-2
+//                       z-10
+//                       flex
+//                       items-center
+//                       gap-1
+//                       rounded
+//                       bg-orange-500
+//                       px-2
+//                       py-1
+//                       text-[9px]
+//                       font-medium
+//                       text-white
+//                     "
+//                   >
+//                     <AlertTriangle
+//                       className="
+//                         h-2.5
+//                         w-2.5
+//                       "
+//                     />
+
+//                     <span
+//                       style={{
+//                         fontFamily:
+//                           FONT_FAMILY
+//                       }}
+//                     >
+//                       Only {stockQuantity} left
+//                     </span>
+//                   </div>
+//                 )}
+
+//               {/* =================================================
+//                   DESKTOP HOVER ACTIONS
+//               ================================================== */}
+
 //               {!isMobile && (
-//                 <div className={`absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-30 transition-all duration-300 ${
-//                   isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
-//                 }`}>
-//                   <motion.div 
-//                     className="w-8 h-8 bg-white shadow-md hover:bg-[#EE4275] rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 border border-[#F7C7D3]/30 group/icon"
-//                     whileHover={{ scale: 1.1 }}
-//                     whileTap={{ scale: 0.9 }}
-//                   >
-//                     <Eye className="w-3.5 h-3.5 text-gray-700 group-hover/icon:text-white transition-colors" />
-//                   </motion.div>
-//                   <motion.div 
-//                     onClick={handleAddToCart}
-//                     className={`w-8 h-8 bg-white shadow-md hover:bg-[#EE4275] rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 border border-[#F7C7D3]/30 group/icon ${
-//                       cartStatusLoading ? 'opacity-50 pointer-events-none' : ''
-//                     }`}
-//                     whileHover={{ scale: 1.1 }}
-//                     whileTap={{ scale: 0.9 }}
-//                     animate={isCartHovered ? { rotate: [0, -15, 15, -10, 10, 0] } : {}}
-//                     transition={{ duration: 0.5 }}
-//                   >
-//                     {cartStatusLoading ? (
-//                       <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-700" />
-//                     ) : isInCart ? (
-//                       <ShoppingCart className="w-3.5 h-3.5 text-[#EE4275] group-hover/icon:text-white transition-colors" />
-//                     ) : (
-//                       <ShoppingCart className="w-3.5 h-3.5 text-gray-700 group-hover/icon:text-white transition-colors" />
-//                     )}
-//                   </motion.div>
-//                 </div>
-//               )}
-              
-//               {/* Mobile Icons - Bottom Center */}
-//               {isMobile && (
-//                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-//                   <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md border border-[#F7C7D3]/30">
-//                     <Eye className="w-3.5 h-3.5 text-gray-700" />
-//                   </div>
-//                   <div 
-//                     onClick={handleAddToCart}
-//                     className={`w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md border ${
-//                       isOutOfStock ? 'border-gray-200 bg-gray-100' : 'border-[#F7C7D3]/30'
-//                     }`}
-//                   >
-//                     {cartStatusLoading ? (
-//                       <Loader2 className="w-3.5 h-3.5 animate-spin text-gray-500" />
-//                     ) : isInCart ? (
-//                       <ShoppingCart className="w-3.5 h-3.5 text-[#EE4275]" />
-//                     ) : (
-//                       <ShoppingCart className="w-3.5 h-3.5 text-black" />
-//                     )}
-//                   </div>
-//                 </div>
-//               )}
+//                 <div
+//                   className={`
+//                     absolute
+//                     right-2
+//                     top-1/2
+//                     z-30
+//                     flex
+//                     -translate-y-1/2
+//                     flex-col
+//                     gap-2
+//                     transition-all
+//                     duration-300
+//                     ${
+//                       isHovered
+//                         ? 'translate-x-0 opacity-100'
+//                         : 'translate-x-2 opacity-0'
+//                     }
+//                   `}
+//                 >
 
-//               {/* Navigation - Left/Right Arrows + Dots at Bottom Center - No BG, Pink-Purple Gradient */}
-//               {hasMultipleImages && (
-//                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-//                   {/* Left Arrow - Pink-Purple Gradient */}
+//                   {/* VIEW */}
+
 //                   <motion.button
-//                     onClick={prevImage}
-//                     className="p-0.5 rounded-full transition-colors"
-//                     aria-label="Previous image"
-//                     whileHover={{ scale: 1.2 }}
-//                     whileTap={{ scale: 0.9 }}
+//                     type="button"
+//                     whileHover={{
+//                       scale: 1.1
+//                     }}
+//                     whileTap={{
+//                       scale: 0.9
+//                     }}
+//                     className="
+//                       flex
+//                       h-8
+//                       w-8
+//                       items-center
+//                       justify-center
+//                       rounded-full
+//                       border
+//                       border-[#F7C7D3]/30
+//                       bg-white
+//                       text-gray-700
+//                       shadow-md
+//                       transition-all
+//                       hover:bg-[#EE4275]
+//                       hover:text-white
+//                     "
+//                     aria-label="View product"
 //                   >
-//                     <ChevronLeft className="w-4 h-4 text-transparent bg-gradient-to-r from-[#EE4275] to-[#9B59B6] bg-clip-text" stroke="url(#pinkPurpleGradient)" />
+//                     <Eye
+//                       className="
+//                         h-3.5
+//                         w-3.5
+//                       "
+//                     />
 //                   </motion.button>
 
-//                   {/* Dots - Pink-Purple Gradient */}
-//                   <div className="flex items-center gap-1.5">
-//                     {productImages.map((_, index) => (
-//                       <motion.button
-//                         key={index}
-//                         onClick={(e) => goToImage(e, index)}
-//                         className={`transition-all duration-200 rounded-full ${
-//                           activeIndex === index 
-//                             ? 'w-2 h-2 bg-gradient-to-r from-[#EE4275] to-[#9B59B6]' 
-//                             : 'w-1.5 h-1.5 bg-[#F7C7D3]/50 hover:bg-[#EE4275]/50'
-//                         }`}
-//                         whileHover={{ scale: 1.3 }}
-//                         aria-label={`Go to image ${index + 1}`}
+//                   {/* CART */}
+
+//                   <motion.button
+//                     type="button"
+//                     onClick={
+//                       handleAddToCart
+//                     }
+//                     disabled={
+//                       isOutOfStock ||
+//                       cartStatusLoading
+//                     }
+//                     whileHover={{
+//                       scale: 1.1
+//                     }}
+//                     whileTap={{
+//                       scale: 0.9
+//                     }}
+//                     className={`
+//                       flex
+//                       h-8
+//                       w-8
+//                       items-center
+//                       justify-center
+//                       rounded-full
+//                       border
+//                       border-[#F7C7D3]/30
+//                       bg-white
+//                       shadow-md
+//                       transition-all
+//                       hover:bg-[#EE4275]
+//                       hover:text-white
+//                       ${
+//                         cartStatusLoading
+//                           ? 'pointer-events-none opacity-50'
+//                           : ''
+//                       }
+//                     `}
+//                     aria-label="Add to cart"
+//                   >
+//                     {cartStatusLoading ? (
+//                       <Loader2
+//                         className="
+//                           h-3.5
+//                           w-3.5
+//                           animate-spin
+//                         "
 //                       />
-//                     ))}
-//                   </div>
-
-//                   {/* Right Arrow - Pink-Purple Gradient */}
-//                   <motion.button
-//                     onClick={nextImage}
-//                     className="p-0.5 rounded-full transition-colors"
-//                     aria-label="Next image"
-//                     whileHover={{ scale: 1.2 }}
-//                     whileTap={{ scale: 0.9 }}
-//                   >
-//                     <ChevronRight className="w-4 h-4 text-transparent bg-gradient-to-r from-[#EE4275] to-[#9B59B6] bg-clip-text" stroke="url(#pinkPurpleGradient)" />
+//                     ) : (
+//                       <ShoppingCart
+//                         className="
+//                           h-3.5
+//                           w-3.5
+//                         "
+//                       />
+//                     )}
 //                   </motion.button>
+
 //                 </div>
 //               )}
 
-//               {/* SVG Gradient Definition for Arrows */}
-//               <svg width="0" height="0" style={{ position: 'absolute' }}>
-//                 <defs>
-//                   <linearGradient id="pinkPurpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-//                     <stop offset="0%" stopColor="#EE4275" />
-//                     <stop offset="100%" stopColor="#9B59B6" />
-//                   </linearGradient>
-//                 </defs>
-//               </svg>
+//               {/* =================================================
+//                   MOBILE ACTIONS
+//               ================================================== */}
+
+//               {isMobile && (
+//                 <div
+//                   className="
+//                     absolute
+//                     bottom-10
+//                     left-1/2
+//                     z-30
+//                     flex
+//                     -translate-x-1/2
+//                     gap-2
+//                   "
+//                 >
+
+//                   {/* VIEW */}
+
+//                   <div
+//                     className="
+//                       flex
+//                       h-8
+//                       w-8
+//                       items-center
+//                       justify-center
+//                       rounded-full
+//                       border
+//                       border-[#F7C7D3]/30
+//                       bg-white/90
+//                       shadow-md
+//                       backdrop-blur-sm
+//                     "
+//                   >
+//                     <Eye
+//                       className="
+//                         h-3.5
+//                         w-3.5
+//                         text-gray-700
+//                       "
+//                     />
+//                   </div>
+
+//                   {/* CART */}
+
+//                   <div
+//                     onClick={
+//                       handleAddToCart
+//                     }
+//                     className={`
+//                       flex
+//                       h-8
+//                       w-8
+//                       items-center
+//                       justify-center
+//                       rounded-full
+//                       border
+//                       bg-white/90
+//                       shadow-md
+//                       backdrop-blur-sm
+//                       ${
+//                         isOutOfStock
+//                           ? 'border-gray-200 bg-gray-100'
+//                           : 'border-[#F7C7D3]/30'
+//                       }
+//                     `}
+//                   >
+//                     {cartStatusLoading ? (
+//                       <Loader2
+//                         className="
+//                           h-3.5
+//                           w-3.5
+//                           animate-spin
+//                           text-gray-500
+//                         "
+//                       />
+//                     ) : (
+//                       <ShoppingCart
+//                         className={`
+//                           h-3.5
+//                           w-3.5
+//                           ${
+//                             isInCart
+//                               ? 'text-[#EE4275]'
+//                               : 'text-black'
+//                           }
+//                         `}
+//                       />
+//                     )}
+//                   </div>
+
+//                 </div>
+//               )}
+
+//               {/* =================================================
+//                   IMAGE NAVIGATION
+//               ================================================== */}
+
+//               {hasMultipleImages && (
+//                 <div
+//                   className="
+//                     absolute
+//                     bottom-2
+//                     left-1/2
+//                     z-20
+//                     flex
+//                     -translate-x-1/2
+//                     items-center
+//                     gap-2
+//                   "
+//                 >
+
+//                   {/* PREVIOUS */}
+
+//                   <motion.button
+//                     type="button"
+//                     onClick={
+//                       prevImage
+//                     }
+//                     className="
+//                       rounded-full
+//                       p-0.5
+//                     "
+//                     aria-label="Previous image"
+//                     whileHover={{
+//                       scale: 1.2
+//                     }}
+//                     whileTap={{
+//                       scale: 0.9
+//                     }}
+//                   >
+//                     <ChevronLeft
+//                       className="
+//                         h-4
+//                         w-4
+//                         text-[#EE4275]
+//                       "
+//                     />
+//                   </motion.button>
+
+//                   {/* DOTS */}
+
+//                   <div
+//                     className="
+//                       flex
+//                       items-center
+//                       gap-1.5
+//                     "
+//                   >
+//                     {productImages.map(
+//                       (_, index) => (
+//                         <motion.button
+//                           key={index}
+//                           type="button"
+//                           onClick={(e) =>
+//                             goToImage(
+//                               e,
+//                               index
+//                             )
+//                           }
+//                           className={`
+//                             rounded-full
+//                             transition-all
+//                             duration-200
+//                             ${
+//                               activeIndex ===
+//                               index
+//                                 ? 'h-2 w-2 bg-gradient-to-r from-[#EE4275] to-[#9B59B6]'
+//                                 : 'h-1.5 w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'
+//                             }
+//                           `}
+//                           whileHover={{
+//                             scale: 1.3
+//                           }}
+//                           aria-label={`Go to image ${
+//                             index + 1
+//                           }`}
+//                         />
+//                       )
+//                     )}
+//                   </div>
+
+//                   {/* NEXT */}
+
+//                   <motion.button
+//                     type="button"
+//                     onClick={
+//                       nextImage
+//                     }
+//                     className="
+//                       rounded-full
+//                       p-0.5
+//                     "
+//                     aria-label="Next image"
+//                     whileHover={{
+//                       scale: 1.2
+//                     }}
+//                     whileTap={{
+//                       scale: 0.9
+//                     }}
+//                   >
+//                     <ChevronRight
+//                       className="
+//                         h-4
+//                         w-4
+//                         text-[#9B59B6]
+//                       "
+//                     />
+//                   </motion.button>
+
+//                 </div>
+//               )}
+
 //             </div>
 //           </div>
 
-//           {/* Product Info */}
-//           <div className="flex flex-col px-1 pb-1 pt-2">
-//             {/* Product Name - 1 line only */}
-//             <h3 
-//               className="text-[13px] font-semibold text-gray-800 truncate"
-//               style={{ fontFamily: FONT_FAMILY }}
+//           {/* =====================================================
+//               PRODUCT INFORMATION
+//           ====================================================== */}
+
+//           <div
+//             className="
+//               flex
+//               flex-1
+//               flex-col
+//               px-1.5
+//               pb-1
+//               pt-3
+//             "
+//           >
+
+//             {/* BRAND + STOCK STATUS */}
+
+//             <div
+//               className="
+//                 mb-1
+//                 flex
+//                 items-center
+//                 justify-between
+//                 gap-2
+//               "
+//             >
+//               {/* BRAND */}
+//               <span
+//                 className="
+//                   min-w-0
+//                   truncate
+//                   text-[8px]
+//                   font-semibold
+//                   uppercase
+//                   tracking-[0.12em]
+//                   text-[#EE4275]
+//                 "
+//                 style={{
+//                   fontFamily: FONT_FAMILY
+//                 }}
+//               >
+//                 {brand}
+//               </span>
+
+//               {/* STOCK STATUS */}
+//               <div
+//                 className="
+//                   flex
+//                   shrink-0
+//                   items-center
+//                   gap-1
+//                 "
+//               >
+//                 <span
+//                   className={`
+//                     h-1.5
+//                     w-1.5
+//                     rounded-full
+//                     ${
+//                       stockQuantity > 0
+//                         ? 'bg-emerald-500'
+//                         : 'bg-red-500'
+//                     }
+//                   `}
+//                 />
+
+//                 <span
+//                   className={`
+//                     text-[8px]
+//                     font-medium
+//                     ${
+//                       stockQuantity > 0
+//                         ? 'text-emerald-600'
+//                         : 'text-red-500'
+//                     }
+//                   `}
+//                   style={{
+//                     fontFamily: FONT_FAMILY
+//                   }}
+//                 >
+//                   {stockQuantity > 0
+//                     ? 'In Stock'
+//                     : 'Out of Stock'}
+//                 </span>
+//               </div>
+//             </div>
+
+//             {/* PRODUCT NAME */}
+
+//             <h3
+//               className="
+//                 min-h-[34px]
+//                 line-clamp-2
+//                 text-[13px]
+//                 font-semibold
+//                 leading-[1.3]
+//                 text-gray-800
+//                 transition-colors
+//                 group-hover:text-[#EE4275]
+//               "
+//               style={{
+//                 fontFamily:
+//                   FONT_FAMILY
+//               }}
 //               title={productName}
 //             >
-//               {truncateText(productName, 25)}
+//               {truncateText(
+//                 productName,
+//                 45
+//               )}
 //             </h3>
 
-//             {/* Rating Stars - from backend */}
-//             <div className="mt-1 flex items-center gap-1">
-//               <div className="flex items-center gap-0.5">
+//             {/* RATING */}
+
+//             <div
+//               className="
+//                 mt-2
+//                 flex
+//                 items-center
+//                 gap-1.5
+//               "
+//             >
+//               <div
+//                 className="
+//                   flex
+//                   items-center
+//                   gap-0.5
+//                 "
+//               >
 //                 {renderStars()}
 //               </div>
-//               <span className="text-[9px] text-gray-400" style={{ fontFamily: FONT_FAMILY }}>
-//                 ({parseFloat(rating).toFixed(1)})
+
+//               <span
+//                 className="
+//                   text-[9px]
+//                   font-medium
+//                   text-gray-500
+//                 "
+//                 style={{
+//                   fontFamily:
+//                     FONT_FAMILY
+//                 }}
+//               >
+//                 {rating.toFixed(1)}
 //               </span>
+
+//               {reviewCount > 0 && (
+//                 <>
+//                   <span className="text-gray-300">
+//                     •
+//                   </span>
+
+//                   <span
+//                     className="
+//                       text-[9px]
+//                       text-gray-400
+//                     "
+//                     style={{
+//                       fontFamily:
+//                         FONT_FAMILY
+//                     }}
+//                   >
+//                     {reviewCount} reviews
+//                   </span>
+//                 </>
+//               )}
 //             </div>
 
-//             {/* brand and Stock Status */}
-//           <div className="mt-1.5 flex items-center justify-between text-[10px]">
-//   <span className="px-1.5 py-0.5 rounded-full text-[8px] font-medium bg-[#F7C7D3]/30 text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
-//     {brand}
-//   </span>
-//   <span className={`font-medium ${stockQuantity > 0 ? 'text-[#EE4275]' : 'text-red-500'}`} style={{ fontFamily: FONT_FAMILY }}>
-//     {stockQuantity > 0 ? 'In Stock' : 'Out of Stock'}
-//   </span>
-// </div>
+//             {/* DIVIDER */}
 
-//             {/* Price and Cart */}
-//           <div className="mt-auto flex items-center justify-between pt-2">
-//   <div className="flex items-center gap-1.5 flex-wrap">
-//     <span className="text-sm font-bold text-gray-800" style={{ fontFamily: FONT_FAMILY }}>
-//       ৳{formatPrice(currentPrice)}
-//     </span>
-//     {discountPercent > 0 && (
-//       <>
-//         <span className="text-[9px] text-gray-400 line-through" style={{ fontFamily: FONT_FAMILY }}>
-//           ৳{formatPrice(originalPrice)}
-//         </span>
-//         <span className="px-1.5 py-0.5 rounded-full text-[8px] font-bold bg-[#EE4275]/10 text-[#EE4275]" style={{ fontFamily: FONT_FAMILY }}>
-//           -{discountPercent}%
-//         </span>
-//       </>
-//     )}
-//   </div>
-//   <motion.button
-//     type="button"
-//     onClick={handleAddToCart}
-//     disabled={isOutOfStock}
-//     onMouseEnter={() => setIsCartHovered(true)}
-//     onMouseLeave={() => setIsCartHovered(false)}
-//     aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
-//     className={`flex size-8 items-center justify-center rounded-full border transition ${
-//       isInCart 
-//         ? 'border-[#EE4275] bg-[#EE4275] text-white' 
-//         : isOutOfStock
-//         ? 'border-[#F7C7D3]/30 text-[#b0c0bf] cursor-not-allowed'
-//         : 'border-[#F7C7D3]/50 text-[#EE4275] hover:bg-[#F7C7D3]/20'
-//     }`}
-//     whileHover={!isOutOfStock ? { scale: 1.15, rotate: [0, -10, 10, -5, 5, 0] } : {}}
-//     whileTap={!isOutOfStock ? { scale: 0.9 } : {}}
-//     animate={isCartHovered && !isOutOfStock ? { 
-//       rotate: [0, -15, 15, -10, 10, -5, 5, 0],
-//       transition: { duration: 0.6, repeat: 1 }
-//     } : {}}
-//     transition={{ duration: 0.3 }}
-//   >
-//     {cartStatusLoading ? (
-//       <Loader2 className="size-3.5 animate-spin" />
-//     ) : (
-//       <ShoppingCart className="size-3.5" />
-//     )}
-//   </motion.button>
-// </div>
+//             <div
+//               className="
+//                 my-2.5
+//                 h-px
+//                 bg-gray-100
+//               "
+//             />
+
+//             {/* PRICE + CART */}
+
+//             <div
+//               className="
+//                 mt-auto
+//                 flex
+//                 items-center
+//                 justify-between
+//                 gap-2
+//                 pt-1
+//               "
+//             >
+//               {/* PRICE */}
+//               <div
+//                 className="
+//                   flex
+//                   min-w-0
+//                   items-center
+//                   gap-1.5
+//                   whitespace-nowrap
+//                 "
+//               >
+//                 {/* CURRENT PRICE */}
+//                 <span
+//                   className="
+//                     text-[15px]
+//                     font-bold
+//                     tracking-tight
+//                     text-gray-900
+//                   "
+//                   style={{
+//                     fontFamily: FONT_FAMILY
+//                   }}
+//                 >
+//                   ৳{formatPrice(currentPrice)}
+//                 </span>
+
+//                 {/* ORIGINAL PRICE */}
+//                 {discountPercent > 0 && (
+//                   <span
+//                     className="
+//                       text-[8px]
+//                       text-gray-400
+//                       line-through
+//                     "
+//                     style={{
+//                       fontFamily: FONT_FAMILY
+//                     }}
+//                   >
+//                     ৳{formatPrice(originalPrice)}
+//                   </span>
+//                 )}
+
+//                 {/* SAVE */}
+//                 {discountPercent > 0 && (
+//                   <span
+//                     className="
+//                       text-[8px]
+//                       font-semibold
+//                       text-[#EE4275]
+//                     "
+//                     style={{
+//                       fontFamily: FONT_FAMILY
+//                     }}
+//                   >
+//                     Save {discountPercent}%
+//                   </span>
+//                 )}
+//               </div>
+
+//               {/* CART BUTTON */}
+//               <motion.button
+//                 type="button"
+//                 onClick={handleAddToCart}
+//                 disabled={isOutOfStock || cartStatusLoading}
+//                 onMouseEnter={() =>
+//                   setIsCartHovered(true)
+//                 }
+//                 onMouseLeave={() =>
+//                   setIsCartHovered(false)
+//                 }
+//                 whileHover={
+//                   !isOutOfStock
+//                     ? { scale: 1.08 }
+//                     : {}
+//                 }
+//                 whileTap={
+//                   !isOutOfStock
+//                     ? { scale: 0.92 }
+//                     : {}
+//                 }
+//                 animate={
+//                   isCartHovered && !isOutOfStock
+//                     ? {
+//                         rotate: [
+//                           0,
+//                           -10,
+//                           10,
+//                           -6,
+//                           6,
+//                           0
+//                         ]
+//                       }
+//                     : {}
+//                 }
+//                 transition={{
+//                   duration: 0.5
+//                 }}
+//                 aria-label={
+//                   isInCart
+//                     ? 'View cart'
+//                     : 'Add to cart'
+//                 }
+//                 className={`
+//                   flex
+//                   h-8
+//                   w-8
+//                   shrink-0
+//                   items-center
+//                   justify-center
+//                   rounded-full
+//                   transition-all
+//                   duration-200
+
+//                   ${
+//                     isInCart
+//                       ? 'bg-[#EE4275] text-white shadow-[0_4px_12px_rgba(238,66,117,0.22)]'
+//                       : isOutOfStock
+//                       ? 'cursor-not-allowed bg-gray-100 text-gray-300'
+//                       : 'border border-[#F7C7D3] bg-white text-[#EE4275] hover:border-[#EE4275] hover:bg-[#EE4275] hover:text-white hover:shadow-[0_4px_12px_rgba(238,66,117,0.18)]'
+//                   }
+//                 `}
+//               >
+//                 {cartStatusLoading ? (
+//                   <Loader2
+//                     className="
+//                       h-3.5
+//                       w-3.5
+//                       animate-spin
+//                     "
+//                   />
+//                 ) : (
+//                   <ShoppingCart
+//                     className="
+//                       h-3.5
+//                       w-3.5
+//                     "
+//                   />
+//                 )}
+//               </motion.button>
+//             </div>
+
 //           </div>
+
 //         </article>
 //       </Link>
 //     </motion.div>
 //   );
 // };
 
-// Product Card Component
+// Product Card Component - Updated for mobile
 const FeaturedProductCard = ({
   product,
   isInCart: propIsInCart,
@@ -1045,8 +2165,8 @@ const FeaturedProductCard = ({
           <Star
             key={i}
             className="
-              h-3
-              w-3
+              h-2.5 sm:h-3
+              w-2.5 sm:w-3
               fill-current
               text-yellow-400
             "
@@ -1061,15 +2181,15 @@ const FeaturedProductCard = ({
             key={i}
             className="
               relative
-              h-3
-              w-3
+              h-2.5 sm:h-3
+              w-2.5 sm:w-3
             "
           >
             <Star
               className="
                 absolute
-                h-3
-                w-3
+                h-2.5 sm:h-3
+                w-2.5 sm:w-3
                 text-gray-200
               "
             />
@@ -1079,15 +2199,15 @@ const FeaturedProductCard = ({
                 absolute
                 left-0
                 top-0
-                h-3
+                h-2.5 sm:h-3
                 w-1/2
                 overflow-hidden
               "
             >
               <Star
                 className="
-                  h-3
-                  w-3
+                  h-2.5 sm:h-3
+                  w-2.5 sm:w-3
                   fill-current
                   text-yellow-400
                 "
@@ -1100,8 +2220,8 @@ const FeaturedProductCard = ({
           <Star
             key={i}
             className="
-              h-3
-              w-3
+              h-2.5 sm:h-3
+              w-2.5 sm:w-3
               text-[#F7C7D3]
             "
           />
@@ -1225,7 +2345,7 @@ const FeaturedProductCard = ({
             border
             border-[#F7C7D3]/30
             bg-white
-            p-2
+            p-1.5 sm:p-2
             shadow-[0_2px_9px_rgba(238,66,117,0.06)]
             transition-all
             duration-300
@@ -1271,7 +2391,7 @@ const FeaturedProductCard = ({
                 "
                 className="
                   object-contain
-                  p-4
+                  p-2 sm:p-4
                   transition-transform
                   duration-500
                   ease-out
@@ -1289,15 +2409,15 @@ const FeaturedProductCard = ({
               />
 
               {/* =================================================
-                  DISCOUNT BADGE
+                  DISCOUNT BADGE - Smaller on mobile
               ================================================== */}
 
               {discountPercent > 0 && (
                 <motion.div
                   className="
                     absolute
-                    left-2
-                    top-2
+                    left-1.5 sm:left-2
+                    top-1.5 sm:top-2
                     z-10
                   "
                   animate={
@@ -1330,19 +2450,19 @@ const FeaturedProductCard = ({
                     className="
                       relative
                       flex
-                      h-12
-                      w-10
+                      h-9 sm:h-12
+                      w-7 sm:w-10
                       items-start
                       justify-center
                       overflow-hidden
                       bg-[#EE4275]
-                      px-1
-                      pt-2
+                      px-0.5 sm:px-1
+                      pt-1 sm:pt-2
                       text-center
-                      text-[9px]
+                      text-[7px] sm:text-[9px]
                       font-bold
                       uppercase
-                      leading-[0.9]
+                      leading-[0.8] sm:leading-[0.9]
                       tracking-wide
                       text-white
                     "
@@ -1399,24 +2519,24 @@ const FeaturedProductCard = ({
               )}
 
               {/* =================================================
-                  TAG BADGE
+                  TAG BADGE - Smaller on mobile
               ================================================== */}
 
               {primaryTag && (
                 <div
                   className="
                     absolute
-                    right-2
-                    top-2
+                    right-1.5 sm:right-2
+                    top-1.5 sm:top-2
                     z-10
                     flex
                     items-center
-                    gap-1
+                    gap-0.5 sm:gap-1
                     rounded
                     bg-black/80
-                    px-2
-                    py-1
-                    text-[9px]
+                    px-1 sm:px-2
+                    py-0.5 sm:py-1
+                    text-[7px] sm:text-[9px]
                     font-medium
                     text-white
                     backdrop-blur-sm
@@ -1424,12 +2544,12 @@ const FeaturedProductCard = ({
                 >
                   <Sparkles
                     className="
-                      h-2.5
-                      w-2.5
+                      h-1.5 w-1.5 sm:h-2.5 sm:w-2.5
                     "
                   />
 
                   <span
+                    className="truncate max-w-[25px] sm:max-w-none"
                     style={{
                       fontFamily:
                         FONT_FAMILY
@@ -1461,9 +2581,9 @@ const FeaturedProductCard = ({
                     className="
                       rounded-full
                       bg-black
-                      px-3
-                      py-1.5
-                      text-xs
+                      px-2 sm:px-3
+                      py-1 sm:py-1.5
+                      text-[10px] sm:text-xs
                       font-medium
                       text-white
                     "
@@ -1478,7 +2598,7 @@ const FeaturedProductCard = ({
               )}
 
               {/* =================================================
-                  LOW STOCK
+                  LOW STOCK - Smaller on mobile
               ================================================== */}
 
               {!isOutOfStock &&
@@ -1491,30 +2611,39 @@ const FeaturedProductCard = ({
                       z-10
                       flex
                       items-center
-                      gap-1
+                      gap-0.5 sm:gap-1
                       rounded
                       bg-orange-500
-                      px-2
-                      py-1
-                      text-[9px]
+                      px-1 sm:px-2
+                      py-0.5 sm:py-1
+                      text-[7px] sm:text-[9px]
                       font-medium
                       text-white
                     "
                   >
                     <AlertTriangle
                       className="
-                        h-2.5
-                        w-2.5
+                        h-1.5 w-1.5 sm:h-2.5 sm:w-2.5
                       "
                     />
 
                     <span
+                      className="hidden xs:inline"
                       style={{
                         fontFamily:
                           FONT_FAMILY
                       }}
                     >
                       Only {stockQuantity} left
+                    </span>
+                    <span
+                      className="xs:hidden"
+                      style={{
+                        fontFamily:
+                          FONT_FAMILY
+                      }}
+                    >
+                      {stockQuantity} left
                     </span>
                   </div>
                 )}
@@ -1627,6 +2756,14 @@ const FeaturedProductCard = ({
                           animate-spin
                         "
                       />
+                    ) : isInCart ? (
+                      <ShoppingCart
+                        className="
+                          h-3.5
+                          w-3.5
+                          text-green-500
+                        "
+                      />
                     ) : (
                       <ShoppingCart
                         className="
@@ -1641,14 +2778,14 @@ const FeaturedProductCard = ({
               )}
 
               {/* =================================================
-                  MOBILE ACTIONS
+                  MOBILE ACTIONS - Smaller & Lower
               ================================================== */}
 
               {isMobile && (
                 <div
                   className="
                     absolute
-                    bottom-10
+                    bottom-2
                     left-1/2
                     z-30
                     flex
@@ -1659,59 +2796,63 @@ const FeaturedProductCard = ({
 
                   {/* VIEW */}
 
-                  <div
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.location.href = `/product/${product?.slug || productId}`;
+                    }}
                     className="
                       flex
-                      h-8
-                      w-8
+                      h-6 w-6
                       items-center
                       justify-center
                       rounded-full
-                      border
-                      border-[#F7C7D3]/30
-                      bg-white/90
+                      bg-white/80
                       shadow-md
                       backdrop-blur-sm
+                      border
+                      border-[#F7C7D3]/30
                     "
+                    aria-label="View product"
                   >
                     <Eye
                       className="
-                        h-3.5
-                        w-3.5
+                        h-2.5 w-2.5
                         text-gray-700
                       "
                     />
-                  </div>
+                  </button>
 
                   {/* CART */}
 
-                  <div
-                    onClick={
-                      handleAddToCart
-                    }
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    disabled={isOutOfStock || cartStatusLoading}
                     className={`
                       flex
-                      h-8
-                      w-8
+                      h-6 w-6
                       items-center
                       justify-center
                       rounded-full
-                      border
-                      bg-white/90
+                      bg-white/80
                       shadow-md
                       backdrop-blur-sm
+                      border
                       ${
                         isOutOfStock
-                          ? 'border-gray-200 bg-gray-100'
+                          ? 'border-gray-200 bg-gray-100/80'
                           : 'border-[#F7C7D3]/30'
                       }
                     `}
+                    aria-label="Add to cart"
                   >
                     {cartStatusLoading ? (
                       <Loader2
                         className="
-                          h-3.5
-                          w-3.5
+                          h-2.5 w-2.5
                           animate-spin
                           text-gray-500
                         "
@@ -1719,23 +2860,22 @@ const FeaturedProductCard = ({
                     ) : (
                       <ShoppingCart
                         className={`
-                          h-3.5
-                          w-3.5
+                          h-2.5 w-2.5
                           ${
                             isInCart
                               ? 'text-[#EE4275]'
-                              : 'text-black'
+                              : 'text-gray-700'
                           }
                         `}
                       />
                     )}
-                  </div>
+                  </button>
 
                 </div>
               )}
 
               {/* =================================================
-                  IMAGE NAVIGATION
+                  IMAGE NAVIGATION - Smaller on mobile
               ================================================== */}
 
               {hasMultipleImages && (
@@ -1748,7 +2888,7 @@ const FeaturedProductCard = ({
                     flex
                     -translate-x-1/2
                     items-center
-                    gap-2
+                    gap-1 sm:gap-2
                   "
                 >
 
@@ -1773,20 +2913,19 @@ const FeaturedProductCard = ({
                   >
                     <ChevronLeft
                       className="
-                        h-4
-                        w-4
+                        h-3 w-3 sm:h-4 sm:w-4
                         text-[#EE4275]
                       "
                     />
                   </motion.button>
 
-                  {/* DOTS */}
+                  {/* DOTS - Smaller on mobile */}
 
                   <div
                     className="
                       flex
                       items-center
-                      gap-1.5
+                      gap-0.5 sm:gap-1.5
                     "
                   >
                     {productImages.map(
@@ -1807,8 +2946,8 @@ const FeaturedProductCard = ({
                             ${
                               activeIndex ===
                               index
-                                ? 'h-2 w-2 bg-gradient-to-r from-[#EE4275] to-[#9B59B6]'
-                                : 'h-1.5 w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'
+                                ? 'h-1.5 w-1.5 sm:h-2 sm:w-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D]'
+                                : 'h-1 w-1 sm:h-1.5 sm:w-1.5 bg-[#F7C7D3]/60 hover:bg-[#EE4275]/50'
                             }
                           `}
                           whileHover={{
@@ -1843,9 +2982,8 @@ const FeaturedProductCard = ({
                   >
                     <ChevronRight
                       className="
-                        h-4
-                        w-4
-                        text-[#9B59B6]
+                        h-3 w-3 sm:h-4 sm:w-4
+                        text-[#FF6B9D]
                       "
                     />
                   </motion.button>
@@ -1865,95 +3003,92 @@ const FeaturedProductCard = ({
               flex
               flex-1
               flex-col
-              px-1.5
+              px-1 sm:px-1.5
               pb-1
-              pt-3
+              pt-1.5 sm:pt-3
             "
           >
 
-            {/* BRAND */}
+            {/* BRAND + STOCK STATUS - Smaller on mobile */}
 
-          {/* BRAND + STOCK STATUS */}
+            <div
+              className="
+                mb-0.5 sm:mb-1
+                flex
+                items-center
+                justify-between
+                gap-2
+              "
+            >
+              {/* BRAND */}
+              <span
+                className="
+                  min-w-0
+                  truncate
+                  text-[7px] sm:text-[8px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.12em]
+                  text-[#EE4275]
+                "
+                style={{
+                  fontFamily: FONT_FAMILY
+                }}
+              >
+                {brand}
+              </span>
 
-<div
-  className="
-    mb-1
-    flex
-    items-center
-    justify-between
-    gap-2
-  "
->
-  {/* BRAND */}
-  <span
-    className="
-      min-w-0
-      truncate
-      text-[8px]
-      font-semibold
-      uppercase
-      tracking-[0.12em]
-      text-[#EE4275]
-    "
-    style={{
-      fontFamily: FONT_FAMILY
-    }}
-  >
-    {brand}
-  </span>
+              {/* STOCK STATUS */}
+              <div
+                className="
+                  flex
+                  shrink-0
+                  items-center
+                  gap-0.5 sm:gap-1
+                "
+              >
+                <span
+                  className={`
+                    h-1 w-1 sm:h-1.5 sm:w-1.5
+                    rounded-full
+                    ${
+                      stockQuantity > 0
+                        ? 'bg-emerald-500'
+                        : 'bg-red-500'
+                    }
+                  `}
+                />
 
-  {/* STOCK STATUS */}
-  <div
-    className="
-      flex
-      shrink-0
-      items-center
-      gap-1
-    "
-  >
-    <span
-      className={`
-        h-1.5
-        w-1.5
-        rounded-full
-        ${
-          stockQuantity > 0
-            ? 'bg-emerald-500'
-            : 'bg-red-500'
-        }
-      `}
-    />
+                <span
+                  className={`
+                    text-[6px] sm:text-[8px]
+                    font-medium
+                    ${
+                      stockQuantity > 0
+                        ? 'text-emerald-600'
+                        : 'text-red-500'
+                    }
+                  `}
+                  style={{
+                    fontFamily: FONT_FAMILY
+                  }}
+                >
+                  {stockQuantity > 0
+                    ? 'In Stock'
+                    : 'Out of Stock'}
+                </span>
+              </div>
+            </div>
 
-    <span
-      className={`
-        text-[8px]
-        font-medium
-        ${
-          stockQuantity > 0
-            ? 'text-emerald-600'
-            : 'text-red-500'
-        }
-      `}
-      style={{
-        fontFamily: FONT_FAMILY
-      }}
-    >
-      {stockQuantity > 0
-        ? 'In Stock'
-        : 'Out of Stock'}
-    </span>
-  </div>
-</div>
-
-            {/* PRODUCT NAME */}
+            {/* PRODUCT NAME - Smaller on mobile */}
 
             <h3
               className="
-                min-h-[34px]
+                min-h-[26px] sm:min-h-[34px]
                 line-clamp-2
-                text-[13px]
+                text-[11px] sm:text-[13px]
                 font-semibold
-                leading-[1.3]
+                leading-[1.2] sm:leading-[1.3]
                 text-gray-800
                 transition-colors
                 group-hover:text-[#EE4275]
@@ -1966,18 +3101,18 @@ const FeaturedProductCard = ({
             >
               {truncateText(
                 productName,
-                45
+                35
               )}
             </h3>
 
-            {/* RATING */}
+            {/* RATING - Smaller on mobile */}
 
             <div
               className="
-                mt-2
+                mt-1 sm:mt-2
                 flex
                 items-center
-                gap-1.5
+                gap-0.5 sm:gap-1.5
               "
             >
               <div
@@ -1992,7 +3127,7 @@ const FeaturedProductCard = ({
 
               <span
                 className="
-                  text-[9px]
+                  text-[8px] sm:text-[9px]
                   font-medium
                   text-gray-500
                 "
@@ -2006,14 +3141,15 @@ const FeaturedProductCard = ({
 
               {reviewCount > 0 && (
                 <>
-                  <span className="text-gray-300">
+                  <span className="text-gray-300 hidden xs:inline">
                     •
                   </span>
 
                   <span
                     className="
-                      text-[9px]
+                      text-[7px] sm:text-[9px]
                       text-gray-400
+                      hidden xs:inline
                     "
                     style={{
                       fontFamily:
@@ -2026,171 +3162,173 @@ const FeaturedProductCard = ({
               )}
             </div>
 
-
-            {/* DIVIDER */}
+            {/* DIVIDER - Thinner on mobile */}
 
             <div
               className="
-                my-2.5
+                my-1.5 sm:my-2.5
                 h-px
-                bg-gray-100
+                bg-gradient-to-r
+                from-[#F7C7D3]/30
+                to-transparent
               "
             />
 
-            {/* PRICE */}
-{/* =====================================================
-    PRICE + CART
-====================================================== */}
+            {/* PRICE + CART - Smaller on mobile */}
 
-<div
-  className="
-    mt-auto
-    flex
-    items-center
-    justify-between
-    gap-2
-    pt-1
-  "
->
-  {/* PRICE */}
-  <div
-    className="
-      flex
-      min-w-0
-      items-center
-      gap-1.5
-      whitespace-nowrap
-    "
-  >
-    {/* CURRENT PRICE */}
-    <span
-      className="
-        text-[15px]
-        font-bold
-        tracking-tight
-        text-gray-900
-      "
-      style={{
-        fontFamily: FONT_FAMILY
-      }}
-    >
-      ৳{formatPrice(currentPrice)}
-    </span>
+            <div
+              className="
+                mt-auto
+                flex
+                items-center
+                justify-between
+                gap-2
+                pt-0.5 sm:pt-1
+              "
+            >
+              {/* PRICE */}
+              <div
+                className="
+                  flex
+                  min-w-0
+                  items-center
+                  gap-1 sm:gap-1.5
+                  whitespace-nowrap
+                "
+              >
+                {/* CURRENT PRICE */}
+                <span
+                  className="
+                    text-[13px] sm:text-[15px]
+                    font-bold
+                    tracking-tight
+                    text-[#EE4275]
+                  "
+                  style={{
+                    fontFamily: FONT_FAMILY
+                  }}
+                >
+                  ৳{formatPrice(currentPrice)}
+                </span>
 
-    {/* ORIGINAL PRICE */}
-    {discountPercent > 0 && (
-      <span
-        className="
-          text-[8px]
-          text-gray-400
-          line-through
-        "
-        style={{
-          fontFamily: FONT_FAMILY
-        }}
-      >
-        ৳{formatPrice(originalPrice)}
-      </span>
-    )}
+                {/* ORIGINAL PRICE */}
+                {discountPercent > 0 && (
+                  <span
+                    className="
+                      text-[6px] sm:text-[8px]
+                      text-gray-400
+                      line-through
+                    "
+                    style={{
+                      fontFamily: FONT_FAMILY
+                    }}
+                  >
+                    ৳{formatPrice(originalPrice)}
+                  </span>
+                )}
 
-    {/* SAVE */}
-    {discountPercent > 0 && (
-      <span
-        className="
-          text-[8px]
-          font-semibold
-          text-[#EE4275]
-        "
-        style={{
-          fontFamily: FONT_FAMILY
-        }}
-      >
-        Save {discountPercent}%
-      </span>
-    )}
-  </div>
+                {/* SAVE - Hide on mobile */}
+                {discountPercent > 0 && (
+                  <span
+                    className="
+                      text-[6px] sm:text-[8px]
+                      font-semibold
+                      text-white
+                      bg-gradient-to-r
+                      from-[#EE4275]
+                      to-[#FF6B9D]
+                      px-0.5 sm:px-1
+                      py-0.5
+                      rounded
+                      hidden sm:inline-block
+                    "
+                    style={{
+                      fontFamily: FONT_FAMILY
+                    }}
+                  >
+                    Save {discountPercent}%
+                  </span>
+                )}
+              </div>
 
-  {/* CART BUTTON */}
-  <motion.button
-    type="button"
-    onClick={handleAddToCart}
-    disabled={isOutOfStock || cartStatusLoading}
-    onMouseEnter={() =>
-      setIsCartHovered(true)
-    }
-    onMouseLeave={() =>
-      setIsCartHovered(false)
-    }
-    whileHover={
-      !isOutOfStock
-        ? { scale: 1.08 }
-        : {}
-    }
-    whileTap={
-      !isOutOfStock
-        ? { scale: 0.92 }
-        : {}
-    }
-    animate={
-      isCartHovered && !isOutOfStock
-        ? {
-            rotate: [
-              0,
-              -10,
-              10,
-              -6,
-              6,
-              0
-            ]
-          }
-        : {}
-    }
-    transition={{
-      duration: 0.5
-    }}
-    aria-label={
-      isInCart
-        ? 'View cart'
-        : 'Add to cart'
-    }
-    className={`
-      flex
-      h-8
-      w-8
-      shrink-0
-      items-center
-      justify-center
-      rounded-full
-      transition-all
-      duration-200
+              {/* CART BUTTON - Smaller on mobile */}
+              <motion.button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isOutOfStock || cartStatusLoading}
+                onMouseEnter={() =>
+                  setIsCartHovered(true)
+                }
+                onMouseLeave={() =>
+                  setIsCartHovered(false)
+                }
+                whileHover={
+                  !isOutOfStock
+                    ? { scale: 1.08 }
+                    : {}
+                }
+                whileTap={
+                  !isOutOfStock
+                    ? { scale: 0.92 }
+                    : {}
+                }
+                animate={
+                  isCartHovered && !isOutOfStock
+                    ? {
+                        rotate: [
+                          0,
+                          -10,
+                          10,
+                          -6,
+                          6,
+                          0
+                        ]
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 0.5
+                }}
+                aria-label={
+                  isInCart
+                    ? 'View cart'
+                    : 'Add to cart'
+                }
+                className={`
+                  flex
+                  h-6 w-6 sm:h-8 sm:w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-200
 
-      ${
-        isInCart
-          ? 'bg-[#EE4275] text-white shadow-[0_4px_12px_rgba(238,66,117,0.22)]'
-          : isOutOfStock
-          ? 'cursor-not-allowed bg-gray-100 text-gray-300'
-          : 'border border-[#F7C7D3] bg-white text-[#EE4275] hover:border-[#EE4275] hover:bg-[#EE4275] hover:text-white hover:shadow-[0_4px_12px_rgba(238,66,117,0.18)]'
-      }
-    `}
-  >
-    {cartStatusLoading ? (
-      <Loader2
-        className="
-          h-3.5
-          w-3.5
-          animate-spin
-        "
-      />
-    ) : (
-      <ShoppingCart
-        className="
-          h-3.5
-          w-3.5
-        "
-      />
-    )}
-  </motion.button>
-</div>
+                  ${
+                    isInCart
+                      ? 'bg-[#EE4275] text-white shadow-[0_4px_12px_rgba(238,66,117,0.22)]'
+                      : isOutOfStock
+                      ? 'cursor-not-allowed bg-gray-100 text-gray-300'
+                      : 'border border-[#F7C7D3] bg-white text-[#EE4275] hover:border-[#EE4275] hover:bg-[#EE4275] hover:text-white hover:shadow-[0_4px_12px_rgba(238,66,117,0.18)]'
+                  }
+                `}
+              >
+                {cartStatusLoading ? (
+                  <Loader2
+                    className="
+                      h-2.5 w-2.5 sm:h-3.5 sm:w-3.5
+                      animate-spin
+                    "
+                  />
+                ) : (
+                  <ShoppingCart
+                    className="
+                      h-2.5 w-2.5 sm:h-3.5 sm:w-3.5
+                    "
+                  />
+                )}
+              </motion.button>
+            </div>
 
           </div>
 
@@ -2200,7 +3338,7 @@ const FeaturedProductCard = ({
   );
 };
 
-// Main Featured Products Component
+// Main Featured Products Component - WITH PAGINATION
 export default function FeaturedProducts() {
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -2208,50 +3346,25 @@ export default function FeaturedProducts() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [productsInCart, setProductsInCart] = useState({});
   const [activeTag, setActiveTag] = useState('all');
-  const [visibleCount, setVisibleCount] = useState(5);
   const [availableTags, setAvailableTags] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const [allTags, setAllTags] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   
-  const itemsPerLoad = 5;
-  const itemsPerLoadMobile = 4;
-  
-  const [tagContainerRef, setTagContainerRef] = useState(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
+  const productsPerPage = 4; // Same as beauty featured products
+
+  // Default banner image
+  const DEFAULT_BANNER_IMAGE = '/images/featured-banner2.jpg';
 
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      setVisibleCount(mobile ? 4 : 5);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const checkScrollButtons = () => {
-    if (tagContainerRef) {
-      const { scrollLeft, scrollWidth, clientWidth } = tagContainerRef;
-      setCanScrollLeft(scrollLeft > 5);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
-    }
-  };
-
-  const scrollLeft = () => {
-    if (tagContainerRef) {
-      const scrollAmount = tagContainerRef.clientWidth * 0.7;
-      tagContainerRef.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (tagContainerRef) {
-      const scrollAmount = tagContainerRef.clientWidth * 0.7;
-      tagContainerRef.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
 
   const fetchAllTags = async () => {
     try {
@@ -2266,6 +3379,26 @@ export default function FeaturedProducts() {
       console.error('Error fetching tags:', error);
       return [];
     }
+  };
+
+  // Get tag image for banner
+  const getTagImage = (tagId) => {
+    if (tagId === 'all') return DEFAULT_BANNER_IMAGE;
+    const tag = availableTags.find(t => t._id === tagId);
+    if (tag && typeof tag === 'object' && tag.image) {
+      return tag.image.url || tag.image || DEFAULT_BANNER_IMAGE;
+    }
+    return DEFAULT_BANNER_IMAGE;
+  };
+
+  const getCurrentTagName = () => {
+    if (activeTag === 'all') return 'All Products';
+    const tag = availableTags.find(t => t._id === activeTag);
+    return tag?.name || 'Products';
+  };
+
+  const getCurrentTagImage = () => {
+    return getTagImage(activeTag);
   };
 
   useEffect(() => {
@@ -2392,266 +3525,319 @@ export default function FeaturedProducts() {
     }
     
     try {
-      const response = await fetch('http://localhost:5000/api/cart/check-status', {
-        method: 'POST',
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productIds })
-      });
-      
-      const data = await response.json();
-      if (data.success) {
-        setProductsInCart(data.data);
-      } else {
-        const emptyCartStatus = {};
-        productIds.forEach(id => { emptyCartStatus[id] = false; });
-        setProductsInCart(emptyCartStatus);
-      }
-    } catch (error) {
-      console.error('Error refreshing cart status:', error);
-    }
-  }, [allProducts]);
+      const response = await fetch('http://localhost:5000/api/cart/check-status', { 
+        method: 'POST', 
+        headers: { ...headers, 'Content-Type': 'application/json' }, 
+        body: JSON.stringify({ productIds }) 
+      }); 
+       
+      const data = await response.json(); 
+      if (data.success) { 
+        setProductsInCart(data.data); 
+      } else { 
+        const emptyCartStatus = {}; 
+        productIds.forEach(id => { emptyCartStatus[id] = false; }); 
+        setProductsInCart(emptyCartStatus); 
+      } 
+    } catch (error) { 
+      console.error('Error refreshing cart status:', error); 
+    } 
+  }, [allProducts]); 
+ 
+  useEffect(() => { 
+    const handleCartUpdate = () => { 
+      updateCartStatus(); 
+    }; 
+     
+    window.addEventListener('cart-update', handleCartUpdate); 
+    window.addEventListener('auth-change', handleCartUpdate); 
+    return () => { 
+      window.removeEventListener('cart-update', handleCartUpdate); 
+      window.removeEventListener('auth-change', handleCartUpdate); 
+    }; 
+  }, [updateCartStatus]); 
+ 
+  useEffect(() => { 
+    if (activeTag === 'all') { 
+      setFilteredProducts(allProducts); 
+    } else { 
+      setFilteredProducts(allProducts.filter(p => { 
+        const tags = p.tags || []; 
+        return tags.some(t => { 
+          if (typeof t === 'object' && t._id) { 
+            return t._id.toString() === activeTag; 
+          } 
+          if (typeof t === 'string') { 
+            return t === activeTag; 
+          } 
+          return false; 
+        }); 
+      })); 
+    } 
+    setCurrentPage(1); // Reset to first page when tag changes
+  }, [activeTag, allProducts]); 
+ 
+  const onCartStatusChange = useCallback((productId, isInCart) => { 
+    setProductsInCart(prev => ({ 
+      ...prev, 
+      [productId]: isInCart 
+    })); 
+  }, []); 
+ 
+  const openCartSidebar = () => { 
+    setIsCartOpen(true); 
+  }; 
+ 
+  const closeCartSidebar = () => { 
+    setIsCartOpen(false); 
+  }; 
 
-  useEffect(() => {
-    const handleCartUpdate = () => {
-      updateCartStatus();
-    };
-    
-    window.addEventListener('cart-update', handleCartUpdate);
-    window.addEventListener('auth-change', handleCartUpdate);
-    return () => {
-      window.removeEventListener('cart-update', handleCartUpdate);
-      window.removeEventListener('auth-change', handleCartUpdate);
-    };
-  }, [updateCartStatus]);
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentProducts = filteredProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
-  useEffect(() => {
-    if (activeTag === 'all') {
-      setFilteredProducts(allProducts);
-    } else {
-      setFilteredProducts(allProducts.filter(p => {
-        const tags = p.tags || [];
-        return tags.some(t => {
-          if (typeof t === 'object' && t._id) {
-            return t._id.toString() === activeTag;
-          }
-          if (typeof t === 'string') {
-            return t === activeTag;
-          }
-          return false;
-        });
-      }));
-    }
-    setVisibleCount(isMobile ? 4 : 5);
-  }, [activeTag, allProducts, isMobile]);
-
-  const onCartStatusChange = useCallback((productId, isInCart) => {
-    setProductsInCart(prev => ({
-      ...prev,
-      [productId]: isInCart
-    }));
-  }, []);
-
-  const openCartSidebar = () => {
-    setIsCartOpen(true);
+  const goToPage = (page) => {
+    setCurrentPage(page);
   };
+ 
+  const getTagIcon = (tagName) => { 
+    const name = tagName.toLowerCase(); 
+    if (name.includes('best seller') || name.includes('bestseller')) return <Star className="w-3.5 h-3.5" />; 
+    if (name.includes('trending')) return <Flame className="w-3.5 h-3.5" />; 
+    if (name.includes('new')) return <Sparkles className="w-3.5 h-3.5" />; 
+    if (name.includes('limited') || name.includes('offer')) return <Clock className="w-3.5 h-3.5" />; 
+    if (name.includes('flash') || name.includes('sale')) return <Zap className="w-3.5 h-3.5" />; 
+    if (name.includes('clearance')) return <Tag className="w-3.5 h-3.5" />; 
+    return <Hash className="w-3.5 h-3.5" />; 
+  }; 
+ 
+  if (isLoading) { 
+    return ( 
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF5F6]/30 to-white"> 
+        <div className="container mx-auto px-4 py-16 flex justify-center items-center"> 
+          <Loader2 className="w-8 h-8 animate-spin text-[#EE4275]" /> 
+        </div> 
+      </div> 
+    ); 
+  } 
+ 
+  if (allProducts.length === 0) { 
+    return null; 
+  } 
+ 
+  return ( 
+    <> 
+      {/* NEW LAYOUT - Matching Beauty Featured Products Style */}
+      <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF5F6]/30 to-white">
+        {/* Top Decorative Border */}
+        <div className="w-full h-3 bg-gradient-to-r from-[#EE4275]/20 via-[#F7C7D3]/40 to-[#EE4275]/20"></div>
 
-  const closeCartSidebar = () => {
-    setIsCartOpen(false);
-  };
-
-  const visibleProducts = filteredProducts.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredProducts.length;
-  const hasLess = visibleCount > (isMobile ? 4 : 5);
-
-  const showMore = () => {
-    const increment = isMobile ? itemsPerLoadMobile : itemsPerLoad;
-    setVisibleCount(prev => Math.min(prev + increment, filteredProducts.length));
-  };
-
-  const showLess = () => {
-    setVisibleCount(isMobile ? 4 : 5);
-  };
-
-  const getTagIcon = (tagName) => {
-    const name = tagName.toLowerCase();
-    if (name.includes('best seller') || name.includes('bestseller')) return <Star className="w-3.5 h-3.5" />;
-    if (name.includes('trending')) return <Flame className="w-3.5 h-3.5" />;
-    if (name.includes('new')) return <Sparkles className="w-3.5 h-3.5" />;
-    if (name.includes('limited') || name.includes('offer')) return <Clock className="w-3.5 h-3.5" />;
-    if (name.includes('flash') || name.includes('sale')) return <Zap className="w-3.5 h-3.5" />;
-    if (name.includes('clearance')) return <Tag className="w-3.5 h-3.5" />;
-    return <Hash className="w-3.5 h-3.5" />;
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white py-16 flex justify-center items-center">
-        <Loader2 className="w-8 h-8 animate-spin text-[#EE4275]" />
-      </div>
-    );
-  }
-
-  if (allProducts.length === 0) {
-    return null;
-  }
-
-  return (
-    <>
-      <div className="bg-gradient-to-b from-[#F7C7D3]/5 via-white to-white py-8 md:py-12">
-        <div className="container mx-auto px-4 max-w-7xl">
-          {/* Header */}
-          <div className="mb-8 md:mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EE4275]/10 rounded-full mb-3">
-              <Flame className="w-3.5 h-3.5 text-[#EE4275]" />
-              <span 
-                className="text-xs font-medium text-[#EE4275] tracking-wider uppercase"
-                style={{ fontFamily: FONT_FAMILY }}
-              >
-                Trending Now
-              </span>
-              <Flame className="w-3.5 h-3.5 text-[#EE4275]" />
-            </div>
-            <div className="flex items-end justify-between">
-              <div>
-                <h2 
-                  className="text-balance text-2xl md:text-3xl font-bold tracking-tight text-gray-900"
-                  style={{ fontFamily: FONT_FAMILY }}
-                >
-                  Featured <span className="text-[#EE4275]">Products</span>
-                </h2>
-                <p 
-                  className="text-gray-500 mt-1.5 text-sm"
-                  style={{ fontFamily: FONT_FAMILY }}
-                >
-                  Discover our handpicked selection of trending gadgets and electronics, curated just for you.
-                </p>
+        {/* Main Content */}
+        <div className="bg-white min-h-screen px-3 sm:px-8 pt-4 sm:pt-2 pb-0">
+          <div className="container mx-auto max-w-7xl">
+            
+            {/* Header with Dynamic Tags - Professional Style */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-12 gap-3 sm:gap-4">
+              <div className="flex flex-col items-start gap-1 -mb-1 lg:-mb-6">
+                {/* Trending Badge - Separate line above */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 mt-2 md:mt-6 bg-[#F7C7D3]/30 rounded-full border border-[#F7C7D3]/40">
+                  <Flame className="w-3.5 h-3.5 text-[#EE4275]" />
+                  <span className="text-xs font-medium text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>
+                    Trending Now
+                  </span>
+                </div>
+                {/* Featured Products - One line */}
+                <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-[#2D1B2E] leading-none" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>
+                  <span className="text-[#EE4275]">Featured</span> Products
+                </h1>
               </div>
-              <button 
-                type="button" 
-                className="text-xs font-semibold text-[#EE4275] underline-offset-4 hover:underline hidden sm:block"
-                style={{ fontFamily: FONT_FAMILY }}
-                onClick={() => setActiveTag('all')}
-              >
-                View all
-              </button>
+               
+              {/* Professional Tabs */}
+              <nav className="flex gap-0 sm:gap-1 text-xs sm:text-sm font-medium overflow-x-auto pb-0 w-full sm:w-auto scrollbar-hide border-b border-[#F7C7D3]/30">
+                {availableTags.map((tag) => (
+                  <button
+                    key={tag._id}
+                    onClick={() => setActiveTag(tag._id)}
+                    className={`px-3 sm:px-5 py-2 sm:py-2.5 transition-all duration-300 whitespace-nowrap relative flex items-center gap-1.5 ${
+                      activeTag === tag._id
+                        ? 'text-[#EE4275] font-semibold'
+                        : 'text-[#8B7A8C] hover:text-[#2D1B2E]'
+                    }`}
+                    style={{ fontFamily: FONT_FAMILY_CURSIVE }}
+                  >
+                    <span>{tag.name}</span>
+                    {activeTag === tag._id && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#EE4275] rounded-full"></span>
+                    )}
+                  </button>
+                ))}
+              </nav>
             </div>
-          </div>
 
-          {/* Tag Filters */}
-          {availableTags.length > 0 && (
-            <div className="relative mb-6 md:mb-8">
-              {canScrollLeft && (
-                <button
-                  onClick={scrollLeft}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-1.5 md:p-2 border border-[#F7C7D3]/30 hover:bg-gray-50 transition-colors lg:flex hidden"
-                  aria-label="Scroll left"
+            {/* Content Container - Left Banner + Right Products */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 mb-16 items-stretch">
+              {/* Left Side - Featured Banner with Dynamic Tag Image */}
+              <div className="w-[27.5%] lg:w-[27.5%] flex-shrink-0 h-[380px] hidden lg:block">
+                <div
+                  className="relative rounded-3xl w-full h-full overflow-hidden shadow-xl"
+                  style={{
+                    backgroundImage: `url(${getCurrentTagImage()})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
                 >
-                  <ChevronLeft className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-600" />
-                </button>
-              )}
+                  {/* Pink Gradient Overlay - Soft and elegant */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#EE4275]/15 via-[#FF6B9D]/5 to-transparent z-10"></div>
 
-              <div
-                ref={(el) => {
-                  setTagContainerRef(el);
-                  if (el) {
-                    checkScrollButtons();
-                    el.addEventListener('scroll', checkScrollButtons);
-                  }
-                }}
-                className="flex gap-2 overflow-x-auto scrollbar-hide px-8 md:px-10 py-1 scroll-smooth lg:justify-center"
-                style={{
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  WebkitOverflowScrolling: 'touch'
-                }}
-              >
-                {availableTags.map((tag) => {
-                  const isActive = activeTag === tag._id;
-                  const tagName = tag.name || 'Unknown';
-                  
-                  return (
-                    <button
-                      key={tag._id}
-                      onClick={() => setActiveTag(tag._id)}
-                      className={`flex items-center gap-1 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full transition-all duration-300 text-xs md:text-sm font-medium whitespace-nowrap flex-shrink-0 ${
-                        isActive
-                          ? 'bg-[#EE4275] text-white shadow-md'
-                          : 'bg-white text-[#EE4275] hover:bg-[#F7C7D3]/20 border border-[#F7C7D3]/30'
-                      }`}
-                      style={{ fontFamily: FONT_FAMILY }}
-                    >
-                      <span className="flex items-center">
-                        {tag._id === 'all' ? <Package className="w-3.5 h-3.5" /> : getTagIcon(tagName)}
+                  {/* Pink Border Frame */}
+                  <div className="absolute inset-2 rounded-2xl border border-[#EE4275]/20 z-10"></div>
+
+                  {/* Inner Pink Glow */}
+                  <div className="absolute inset-0 rounded-3xl shadow-inner shadow-[#EE4275]/10 z-10"></div>
+
+                  {/* Floating Sparkles - Subtle animation */}
+                  <motion.div
+                    className="absolute top-1/3 right-8 z-20"
+                    animate={{
+                      y: [0, -8, 0],
+                      opacity: [0.4, 0.8, 0.4],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Sparkles className="w-3 h-3 text-[#EE4275]/40" />
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute bottom-1/3 left-8 z-20"
+                    animate={{
+                      y: [0, 8, 0],
+                      opacity: [0.3, 0.7, 0.3],
+                    }}
+                    transition={{
+                      duration: 3.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                  >
+                    <Sparkles className="w-2.5 h-2.5 text-[#FF6B9D]/40" />
+                  </motion.div>
+
+                  {/* Bottom overlay with tag name - Elegant pink gradient */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#EE4275]/80 via-[#EE4275]/40 to-transparent p-5 z-20"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-white text-sm font-semibold" style={{ fontFamily: FONT_FAMILY }}>
+                        {getCurrentTagName()}
                       </span>
-                      <span>{tagName}</span>
-                    </button>
-                  );
-                })}
+                      <motion.div
+                        animate={{
+                          x: [0, 4, 0]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      >
+                        <ArrowRight className="w-3 h-3 text-white/60" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Decorative line - Pink */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#EE4275]/40 to-transparent z-20"></div>
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[#EE4275]/40 to-transparent z-20"></div>
+                </div>
               </div>
 
-              {canScrollRight && (
-                <button
-                  onClick={scrollRight}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-1.5 md:p-2 border border-[#F7C7D3]/30 hover:bg-gray-50 transition-colors lg:flex hidden"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-600" />
-                </button>
-              )}
+              {/* Right Side - Product Grid */}
+              <div className="flex-1">
+                {filteredProducts.length === 0 ? (
+                  <div className="text-center py-16 bg-white rounded-2xl border border-[#F7C7D3]/40">
+                    <Package className="w-12 h-12 text-[#F7C7D3] mx-auto mb-3" />
+                    <p className="text-[#8B7A8C]" style={{ fontFamily: FONT_FAMILY }}>No products found in this category</p>
+                  </div>
+                ) : (
+                  <>
+                    {/* Grid: 2 columns on mobile, 4 columns on desktop */}
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-2 lg:grid-cols-4">
+                      <AnimatePresence mode="wait">
+                        {currentProducts.map((product) => (
+                          <FeaturedProductCard
+                            key={product._id || product.id}
+                            product={product}
+                            isInCart={productsInCart[product._id || product.id] || false}
+                            onCartStatusChange={onCartStatusChange}
+                            onViewInCart={openCartSidebar}
+                          />
+                        ))}
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Pagination - Same as Beauty Featured Products */}
+                    {totalPages > 1 && (
+                      <div className="flex justify-center items-center gap-1 sm:gap-2 mt-6 sm:mt-8">
+                        <button
+                          onClick={() => goToPage(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="p-1.5 sm:p-2 rounded-lg bg-white border border-[#F7C7D3]/40 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FFF5F6] transition-colors"
+                        >
+                          <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 text-[#EE4275]" />
+                        </button>
+                        <div className="flex gap-0.5 sm:gap-1">
+                          {[...Array(totalPages)].map((_, i) => {
+                            const pageNum = i + 1;
+                            if (pageNum === 1 || pageNum === totalPages || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)) {
+                              return (
+                                <button
+                                  key={i}
+                                  onClick={() => goToPage(pageNum)}
+                                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
+                                    currentPage === pageNum
+                                      ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/25'
+                                      : 'bg-white border border-[#F7C7D3]/40 text-[#8B7A8C] hover:text-[#EE4275] hover:border-[#EE4275]/50'
+                                  }`}
+                                  style={{ fontFamily: FONT_FAMILY }}
+                                >
+                                  {pageNum}
+                                </button>
+                              );
+                            } else if (pageNum === currentPage - 2 || pageNum === currentPage + 2) {
+                              return <span key={i} className="text-[#C4B5C5] text-xs sm:text-sm">...</span>;
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <button
+                          onClick={() => goToPage(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          className="p-1.5 sm:p-2 rounded-lg bg-white border border-[#F7C7D3]/40 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FFF5F6] transition-colors"
+                        >
+                          <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#EE4275]" />
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
-          )}
-
-          {/* Products Grid */}
-          <div className="mb-2">
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-2xl border border-[#F7C7D3]/30">
-                <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500" style={{ fontFamily: FONT_FAMILY }}>No products found with this tag</p>
-              </div>
-            ) : (
-              <>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-                  <AnimatePresence mode="wait">
-                    {visibleProducts.map((product) => (
-                      <FeaturedProductCard
-                        key={product._id || product.id}
-                        product={product}
-                        isInCart={productsInCart[product._id || product.id] || false}
-                        onCartStatusChange={onCartStatusChange}
-                        onViewInCart={openCartSidebar}
-                      />
-                    ))}
-                  </AnimatePresence>
-                </div>
-
-                {/* Show More / Show Less */}
-                <div className="flex justify-center gap-3 mt-8">
-                  {hasLess && (
-                    <button
-                      onClick={showLess}
-                      className="flex items-center gap-2 px-5 py-2 border border-[#F7C7D3]/30 text-[#EE4275] rounded-full hover:bg-[#F7C7D3]/20 transition-colors text-xs md:text-sm font-medium"
-                      style={{ fontFamily: FONT_FAMILY }}
-                    >
-                      <ChevronUp className="w-3 h-3 md:w-4 md:h-4" />
-                      Show Less
-                    </button>
-                  )}
-                  
-                  {hasMore && (
-                    <button
-                      onClick={showMore}
-                      className="flex items-center gap-2 px-5 py-2 bg-[#EE4275] text-white rounded-full hover:bg-[#EE4275]/80 transition-colors text-xs md:text-sm font-medium"
-                      style={{ fontFamily: FONT_FAMILY }}
-                    >
-                      Show More
-                      <ChevronDown className="w-3 h-3 md:w-4 md:h-4" />
-                    </button>
-                  )}
-                </div>
-              </>
-            )}
           </div>
         </div>
+
+        {/* Bottom Decorative Border */}
+        <div className="w-full h-3 bg-gradient-to-r from-[#EE4275]/20 via-[#F7C7D3]/40 to-[#EE4275]/20"></div>
       </div>
 
       {/* Cart Sidebar */}
@@ -2659,3 +3845,5 @@ export default function FeaturedProducts() {
     </>
   );
 }
+
+

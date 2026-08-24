@@ -1293,6 +1293,9 @@ export default function AuthorizeLayout({ children }) {
     if (href === '/authorize/terms-management') {
       return currentPath === '/authorize/terms-management';
     }
+      if (href === '/authorize/why-choose-us-management') {
+      return currentPath === '/authorize/why-choose-us-management';
+    }
     
     if (href === '/authorize/privacy-management') {
       return currentPath === '/authorize/privacy-management';
@@ -1348,7 +1351,8 @@ export default function AuthorizeLayout({ children }) {
       'homepage': 'manage_homepage',
       'reviews': 'manage_reviews',
       'settings': 'settings',
-      'create_order': 'create_order'
+      'create_order': 'create_order',
+      'why_choose_us': 'manage_why_choose_us'
     };
     
     if (typeof menuItem === 'string') {
@@ -1529,6 +1533,12 @@ export default function AuthorizeLayout({ children }) {
           icon: LayoutTemplate,
           accessKey: 'manage_banner'
         },
+        {
+  name: 'Manage Choose Us',
+  href: '/authorize/why-choose-us-management',
+  icon: Sparkles,
+  accessKey: 'manage_why_choose_us'
+},
         { 
           name: 'Manage Homepage', 
           href: '/authorize/homepage-management', 

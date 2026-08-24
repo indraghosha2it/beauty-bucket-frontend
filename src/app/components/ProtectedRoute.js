@@ -46,7 +46,8 @@ export default function ProtectedRoute({ children, pageKey }) {
           'media': 'media_library',
           'homepage': 'manage_homepage',
           'reviews': 'manage_reviews',
-          'settings': 'settings'
+          'settings': 'settings',
+           'why_choose_us': 'manage_why_choose_us' 
         };
 
         const mappedKey = oldToNewKeyMap[pageKey] || pageKey;

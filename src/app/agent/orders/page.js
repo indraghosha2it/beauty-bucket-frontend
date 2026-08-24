@@ -56,17 +56,17 @@ import { MdOutlinePendingActions } from 'react-icons/md';
 
 // ========== ORDER STATUSES ==========
 const ORDER_STATUSES = [
-  { value: 'follow_up', label: 'Follow Up', color: 'bg-blue-600/10 text-blue-600 border-blue-600/30', icon: FaHeadset },
+  { value: 'follow_up', label: 'Follow Up', color: 'bg-pink-600/10 text-pink-600 border-pink-600/30', icon: FaHeadset },
   { value: 'reminder', label: 'Reminder', color: 'bg-[#FFC107]/10 text-[#FFC107] border-[#FFC107]/30', icon: FaClock },
   { value: 'accepted', label: 'Accepted', color: 'bg-[#4CAF50]/10 text-[#4CAF50] border-[#4CAF50]/30', icon: FaCheckCircle },
   { value: 'cancelled', label: 'Rejected', color: 'bg-red-50 text-red-600 border-red-200', icon: FaBan },
 ];
 
 const PAYMENT_STATUSES = [
-  { value: 'pending', label: 'Pending', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30' },
-  { value: 'paid', label: 'Paid', color: 'bg-blue-600/10 text-blue-600 border-blue-600/30' },
+  { value: 'pending', label: 'Pending', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30' },
+  { value: 'paid', label: 'Paid', color: 'bg-pink-600/10 text-pink-600 border-pink-600/30' },
   { value: 'failed', label: 'Failed', color: 'bg-red-50 text-red-600 border-red-200' },
-  { value: 'refunded', label: 'Refunded', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30' }
+  { value: 'refunded', label: 'Refunded', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30' }
 ];
 
 // ========== STATUS UPDATE MODAL ==========
@@ -154,9 +154,9 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-md overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-md overflow-hidden"
       >
-        <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div className="p-4 bg-gradient-to-r from-pink-600 to-pink-800 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaEdit className="w-5 h-5" />
@@ -171,8 +171,8 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
 
         <div className="p-4 space-y-3 max-h-[60vh] overflow-y-auto">
           <div>
-            <label className="block text-xs font-medium text-blue-800 mb-1">Current Status</label>
-            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentStatusInfo?.color || 'bg-[#E2E7EA] text-blue-800 border-blue-600/30'}`}>
+            <label className="block text-xs font-medium text-pink-800 mb-1">Current Status</label>
+            <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border ${currentStatusInfo?.color || 'bg-[#E2E7EA] text-pink-800 border-pink-600/30'}`}>
               {currentStatusInfo?.icon && <currentStatusInfo.icon className="w-3 h-3" />}
               <span>{currentStatusInfo?.label || order?.orderStatus}</span>
             </div>
@@ -181,7 +181,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
           {canChange ? (
             <>
               <div>
-                <label className="block text-xs font-medium text-blue-800 mb-1">Change Status To</label>
+                <label className="block text-xs font-medium text-pink-800 mb-1">Change Status To</label>
                 <select
                   value={selectedStatus}
                   onChange={(e) => {
@@ -190,7 +190,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
                       setCancellationReason('');
                     }
                   }}
-                  className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-blue-800"
+                  className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-pink-800"
                 >
                   <option value={order.orderStatus}>Current: {currentStatusInfo?.label}</option>
                   {availableNextStatuses.map(statusValue => {
@@ -205,15 +205,15 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
               </div>
 
               {selectedStatus !== order.orderStatus && (
-                <div className="bg-[#E2E7EA]/50 rounded-xl p-2 border border-blue-600/30">
-                  <p className="text-xs text-blue-600">
+                <div className="bg-[#E2E7EA]/50 rounded-xl p-2 border border-pink-600/30">
+                  <p className="text-xs text-pink-600">
                     <span className="font-medium">Will change to:</span> {ORDER_STATUSES.find(s => s.value === selectedStatus)?.label}
                   </p>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-medium text-blue-800 mb-1">
+                <label className="block text-xs font-medium text-pink-800 mb-1">
                   Status Note <span className="text-[#64748B] text-[10px] font-normal">(Optional)</span>
                 </label>
                 <textarea
@@ -221,7 +221,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
                   onChange={(e) => setStatusNote(e.target.value)}
                   rows="2"
                   placeholder="Add a note about this status change..."
-                  className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-blue-800 placeholder:text-[#64748B]"
+                  className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-pink-800 placeholder:text-[#64748B]"
                 />
                 <p className="text-xs text-[#64748B] mt-1">This note will be visible in the order history</p>
               </div>
@@ -230,7 +230,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
                 <div className="bg-red-50 border border-red-200 rounded-xl p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <FaExclamationTriangle className="w-4 h-4 text-red-600" />
-                    <label className="text-xs font-medium text-blue-800">
+                    <label className="text-xs font-medium text-pink-800">
                       Rejection Reason <span className="text-red-500">*</span>
                     </label>
                   </div>
@@ -239,7 +239,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
                     onChange={(e) => setCancellationReason(e.target.value)}
                     rows="3"
                     placeholder="Please provide a reason for rejection..."
-                    className="w-full px-3 py-1.5 text-sm border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-blue-800 placeholder:text-[#64748B]"
+                    className="w-full px-3 py-1.5 text-sm border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-white text-pink-800 placeholder:text-[#64748B]"
                     required
                   />
                   <p className="text-xs text-red-600 mt-1">This reason will be saved with the order</p>
@@ -247,7 +247,7 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
               )}
             </>
           ) : (
-            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
+            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
               <p className="text-xs text-[#64748B] flex items-center gap-2">
                 <FaInfoCircle className="w-4 h-4" />
                 {order?.orderStatus === 'accepted' && 'This order has been accepted. No further changes allowed.'}
@@ -257,14 +257,14 @@ const StatusUpdateModal = ({ isOpen, onClose, order, onUpdate }) => {
           )}
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex gap-3">
-          <button onClick={onClose} className="flex-1 px-3 py-2 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex gap-3">
+          <button onClick={onClose} className="flex-1 px-3 py-2 border border-pink-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors text-sm">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading || !canChange || selectedStatus === order?.orderStatus}
-            className="flex-1 px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+            className="flex-1 px-3 py-2 bg-gradient-to-r from-pink-600 to-pink-800 text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
           >
             {loading ? <FaSpinner className="w-3 h-3 animate-spin" /> : <FaSave className="w-3 h-3" />}
             Update Status
@@ -362,9 +362,9 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
-        className="relative bg-white rounded-2xl border border-blue-600/30 shadow-2xl w-full max-w-3xl my-8 overflow-hidden"
+        className="relative bg-white rounded-2xl border border-pink-600/30 shadow-2xl w-full max-w-3xl my-8 overflow-hidden"
       >
-        <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 z-10">
+        <div className="p-4 bg-gradient-to-r from-pink-600 to-pink-800 text-white sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FaFileInvoice className="w-5 h-5" />
@@ -380,15 +380,15 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
         <div className="p-5 max-h-[60vh] overflow-y-auto">
           {/* Status Badges */}
           <div className="flex flex-wrap gap-2 mb-5">
-            <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border ${statusInfo?.color || 'bg-[#E2E7EA] text-blue-800 border-blue-600/30'}`}>
+            <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border ${statusInfo?.color || 'bg-[#E2E7EA] text-pink-800 border-pink-600/30'}`}>
               {statusInfo?.icon && <statusInfo.icon className="w-3 h-3" />}
               Order: {statusInfo?.label || order.orderStatus}
             </span>
-            <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-blue-800 border-blue-600/30'}`}>
+            <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-pink-800 border-pink-600/30'}`}>
               <FaMoneyBillWave className="w-3 h-3" />
               Payment: {paymentInfo?.label || order.paymentStatus}
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border bg-[#E2E7EA] text-blue-800 border-blue-600/30">
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs border bg-[#E2E7EA] text-pink-800 border-pink-600/30">
               <FaCreditCard className="w-3 h-3" />
               {order.paymentMethod === 'cod' ? 'COD' : 'Online'}
             </span>
@@ -409,47 +409,47 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
 
           {/* Customer & Delivery Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-              <h3 className="font-semibold text-blue-800 text-sm mb-2 flex items-center gap-1.5">
-                <FaUser className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+              <h3 className="font-semibold text-pink-800 text-sm mb-2 flex items-center gap-1.5">
+                <FaUser className="w-3.5 h-3.5 text-pink-600" />
                 Customer Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-[#64748B]">Name:</span> <span className="text-blue-800 font-medium">{order.customerInfo?.fullName}</span></p>
-                <p><span className="text-[#64748B]">Email:</span> <span className="text-blue-800">{order.customerInfo?.email}</span></p>
-                <p><span className="text-[#64748B]">Phone:</span> <span className="text-blue-800">{order.customerInfo?.phone}</span></p>
+                <p><span className="text-[#64748B]">Name:</span> <span className="text-pink-800 font-medium">{order.customerInfo?.fullName}</span></p>
+                <p><span className="text-[#64748B]">Email:</span> <span className="text-pink-800">{order.customerInfo?.email}</span></p>
+                <p><span className="text-[#64748B]">Phone:</span> <span className="text-pink-800">{order.customerInfo?.phone}</span></p>
               </div>
             </div>
 
-            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-blue-600/30">
-              <h3 className="font-semibold text-blue-800 text-sm mb-2 flex items-center gap-1.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-[#E2E7EA]/50 rounded-xl p-3 border border-pink-600/30">
+              <h3 className="font-semibold text-pink-800 text-sm mb-2 flex items-center gap-1.5">
+                <FaMapMarkerAlt className="w-3.5 h-3.5 text-pink-600" />
                 Delivery Information
               </h3>
               <div className="space-y-1 text-xs">
-                <p><span className="text-[#64748B]">Division:</span> <span className="font-medium text-blue-800">{order.customerInfo?.division || 'N/A'}</span></p>
-                <p><span className="text-[#64748B]">District/City:</span> <span className="font-medium text-blue-800">{order.customerInfo?.city || 'N/A'}</span></p>
-                <p><span className="text-[#64748B]">Upazila/Thana:</span> <span className="font-medium text-blue-800">{order.customerInfo?.zone || 'N/A'}</span></p>
-                <p><span className="text-[#64748B]">Address:</span> <span className="text-blue-800">{order.customerInfo?.address}</span></p>
+                <p><span className="text-[#64748B]">Division:</span> <span className="font-medium text-pink-800">{order.customerInfo?.division || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">District/City:</span> <span className="font-medium text-pink-800">{order.customerInfo?.city || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">Upazila/Thana:</span> <span className="font-medium text-pink-800">{order.customerInfo?.zone || 'N/A'}</span></p>
+                <p><span className="text-[#64748B]">Address:</span> <span className="text-pink-800">{order.customerInfo?.address}</span></p>
               </div>
             </div>
           </div>
 
           {/* Order Items with Colors */}
           <div className="mb-5">
-            <h3 className="font-semibold text-blue-800 text-sm mb-2 flex items-center gap-1.5">
-              <FaBox className="w-3.5 h-3.5 text-blue-600" />
+            <h3 className="font-semibold text-pink-800 text-sm mb-2 flex items-center gap-1.5">
+              <FaBox className="w-3.5 h-3.5 text-pink-600" />
               Order Items
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead className="bg-[#E2E7EA]">
                   <tr>
-                    <th className="px-2 py-1.5 text-left text-blue-800">Product</th>
-                    <th className="px-2 py-1.5 text-center text-blue-800">Color</th>
-                    <th className="px-2 py-1.5 text-center text-blue-800">Qty</th>
-                    <th className="px-2 py-1.5 text-right text-blue-800">Price</th>
-                    <th className="px-2 py-1.5 text-right text-blue-800">Total</th>
+                    <th className="px-2 py-1.5 text-left text-pink-800">Product</th>
+                    <th className="px-2 py-1.5 text-center text-pink-800">Color</th>
+                    <th className="px-2 py-1.5 text-center text-pink-800">Qty</th>
+                    <th className="px-2 py-1.5 text-right text-pink-800">Price</th>
+                    <th className="px-2 py-1.5 text-right text-pink-800">Total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -464,17 +464,17 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
                       const totalPrice = price * colorObj.quantity;
                       
                       return (
-                        <tr key={`${idx}-${colorIdx}`} className="border-t border-blue-600/20">
+                        <tr key={`${idx}-${colorIdx}`} className="border-t border-pink-600/20">
                           {isFirst && (
                             <td className="px-2 py-2" rowSpan={hasMultipleColors ? group.colors.length : 1}>
                               <div className="flex items-center gap-2">
                                 <img 
                                   src={group.image || 'https://via.placeholder.com/30'} 
                                   alt={group.productName}
-                                  className="w-7 h-7 rounded object-cover border border-blue-600/30"
+                                  className="w-7 h-7 rounded object-cover border border-pink-600/30"
                                   onError={(e) => { e.target.src = 'https://via.placeholder.com/30?text=Product'; }}
                                 />
-                                <p className="font-medium text-xs text-blue-800">{group.productName}</p>
+                                <p className="font-medium text-xs text-pink-800">{group.productName}</p>
                               </div>
                             </td>
                           )}
@@ -482,7 +482,7 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
   {colorObj.color ? (
     <div className="flex items-center justify-center">
       <div 
-        className="w-5 h-5 rounded-full border border-blue-600/30 shadow-sm"
+        className="w-5 h-5 rounded-full border border-pink-600/30 shadow-sm"
         style={{ backgroundColor: colorObj.color }}
         title={colorObj.color}
       />
@@ -491,20 +491,20 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
     <span className="text-xs text-[#64748B]">-</span>
   )}
 </td>
-                          <td className="px-2 py-2 text-center text-blue-800">{colorObj.quantity}</td>
-                          <td className="px-2 py-2 text-right text-blue-800">৳{price.toFixed(2)}</td>
-                          <td className="px-2 py-2 text-right font-medium text-blue-600">৳{totalPrice.toFixed(2)}</td>
+                          <td className="px-2 py-2 text-center text-pink-800">{colorObj.quantity}</td>
+                          <td className="px-2 py-2 text-right text-pink-800">৳{price.toFixed(2)}</td>
+                          <td className="px-2 py-2 text-right font-medium text-pink-600">৳{totalPrice.toFixed(2)}</td>
                         </tr>
                       );
                     });
                   })}
                 </tbody>
-                <tfoot className="border-t border-blue-600/30">
-                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-blue-800">Subtotal:</td><td className="px-2 py-1 text-right text-blue-800">৳{order.subtotal?.toFixed(2)}</td></tr>
-                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-blue-800">Shipping:</td><td className="px-2 py-1 text-right text-blue-800">৳{order.shippingCost?.toFixed(2)}</td></tr>
+                <tfoot className="border-t border-pink-600/30">
+                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-pink-800">Subtotal:</td><td className="px-2 py-1 text-right text-pink-800">৳{order.subtotal?.toFixed(2)}</td></tr>
+                  <tr><td colSpan="4" className="px-2 py-1 text-right font-medium text-pink-800">Shipping:</td><td className="px-2 py-1 text-right text-pink-800">৳{order.shippingCost?.toFixed(2)}</td></tr>
                   <tr className="text-sm font-bold">
-                    <td colSpan="4" className="px-2 py-1 text-right text-blue-800">Total:</td>
-                    <td className="px-2 py-1 text-right text-blue-600">৳{order.total?.toFixed(2)}</td>
+                    <td colSpan="4" className="px-2 py-1 text-right text-pink-800">Total:</td>
+                    <td className="px-2 py-1 text-right text-pink-600">৳{order.total?.toFixed(2)}</td>
                   </tr>
                 </tfoot>
               </table>
@@ -512,11 +512,9 @@ const OrderDetailsModal = ({ isOpen, onClose, order }) => {
           </div>
         </div>
 
-        <div className="p-4 border-t border-blue-600/30 bg-[#E2E7EA]/20 flex justify-end gap-2">
-          <button onClick={() => window.print()} className="px-3 py-1.5 border border-blue-600/30 text-[#64748B] rounded-xl hover:bg-white transition-colors flex items-center gap-1.5 text-sm">
-            <FaPrint className="w-3 h-3" /> Print
-          </button>
-          <button onClick={onClose} className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:shadow-lg hover:shadow-blue-600/25 transition-all text-sm">
+        <div className="p-4 border-t border-pink-600/30 bg-[#E2E7EA]/20 flex justify-end gap-2">
+        
+          <button onClick={onClose} className="px-3 py-1.5 bg-gradient-to-r from-pink-600 to-pink-800 text-white rounded-xl hover:shadow-lg hover:shadow-pink-600/25 transition-all text-sm">
             Close
           </button>
         </div>
@@ -549,8 +547,8 @@ export default function AgentOrdersPage() {
 
   // Agent-specific status tabs with counts
   const statusTabs = [
-    { value: 'all', label: 'All', count: totalOrders, color: 'bg-blue-600' },
-    { value: 'follow_up', label: 'Follow Up', count: tabCounts.follow_up, color: 'bg-blue-600' },
+    { value: 'all', label: 'All', count: totalOrders, color: 'bg-pink-600' },
+    { value: 'follow_up', label: 'Follow Up', count: tabCounts.follow_up, color: 'bg-pink-600' },
     { value: 'reminder', label: 'Reminder', count: tabCounts.reminder, color: 'bg-[#FFC107]' },
     { value: 'accepted', label: 'Accepted', count: tabCounts.accepted, color: 'bg-[#4CAF50]' },
     { value: 'cancelled', label: 'Rejected', count: tabCounts.cancelled, color: 'bg-red-500' }
@@ -628,7 +626,7 @@ export default function AgentOrdersPage() {
 
   const getStatusBadge = (status) => {
     const statusInfo = ORDER_STATUSES.find(s => s.value === status);
-    if (!statusInfo) return <span className="px-1.5 py-0.5 rounded-full text-xs bg-[#E2E7EA] text-blue-800 border border-blue-600/30">{status}</span>;
+    if (!statusInfo) return <span className="px-1.5 py-0.5 rounded-full text-xs bg-[#E2E7EA] text-pink-800 border border-pink-600/30">{status}</span>;
     return (
       <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${statusInfo.color}`}>
         <statusInfo.icon className="w-2.5 h-2.5" />
@@ -640,7 +638,7 @@ export default function AgentOrdersPage() {
   const getPaymentBadge = (status) => {
     const paymentInfo = PAYMENT_STATUSES.find(p => p.value === status);
     return (
-      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-blue-800 border-blue-600/30'}`}>
+      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-xs border ${paymentInfo?.color || 'bg-[#E2E7EA] text-pink-800 border-pink-600/30'}`}>
         <FaMoneyBillWave className="w-2.5 h-2.5" />
         {paymentInfo?.label || status}
       </span>
@@ -649,13 +647,13 @@ export default function AgentOrdersPage() {
 
   const getPaymentMethodBadge = (method) => {
     const methods = {
-      'cod': { label: 'COD', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30', icon: FaMoneyBillWave },
-      'online': { label: 'Online', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30', icon: FaCreditCard },
-      'bkash': { label: 'bKash', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30', icon: FaMobileAlt },
-      'nagad': { label: 'Nagad', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30', icon: FaMobileAlt }
+      'cod': { label: 'COD', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30', icon: FaMoneyBillWave },
+      'online': { label: 'Online', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30', icon: FaCreditCard },
+      'bkash': { label: 'bKash', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30', icon: FaMobileAlt },
+      'nagad': { label: 'Nagad', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30', icon: FaMobileAlt }
     };
     
-    const info = methods[method] || { label: method || 'Unknown', color: 'bg-[#E2E7EA] text-blue-800 border-blue-600/30', icon: FaMoneyBillWave };
+    const info = methods[method] || { label: method || 'Unknown', color: 'bg-[#E2E7EA] text-pink-800 border-pink-600/30', icon: FaMoneyBillWave };
     const Icon = info.icon;
     
     return (
@@ -667,11 +665,11 @@ export default function AgentOrdersPage() {
   };
 
   const StatCard = ({ title, value, icon, color }) => (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-blue-600/20">
+    <div className="bg-white rounded-2xl p-4 shadow-sm border border-pink-600/20">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs text-[#64748B] font-medium">{title}</p>
-          <p className="text-xl font-bold text-blue-800">{value?.toLocaleString() || 0}</p>
+          <p className="text-xl font-bold text-pink-800">{value?.toLocaleString() || 0}</p>
         </div>
         <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center`}>
           {icon}
@@ -695,7 +693,7 @@ export default function AgentOrdersPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/25">
+            <div className="w-10 h-10 bg-gradient-to-br from-pink-600 to-pink-800 rounded-xl flex items-center justify-center shadow-lg shadow-pink-600/25">
               <FaHeadset className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -709,15 +707,15 @@ export default function AgentOrdersPage() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-          <StatCard title="Total Orders" value={stats.total} icon={<FaBox className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
-          <StatCard title="Follow Up" value={stats.followUp} icon={<FaHeadset className="w-5 h-5 text-blue-600" />} color="bg-blue-600/10" />
+          <StatCard title="Total Orders" value={stats.total} icon={<FaBox className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
+          <StatCard title="Follow Up" value={stats.followUp} icon={<FaHeadset className="w-5 h-5 text-pink-600" />} color="bg-pink-600/10" />
           <StatCard title="Reminder" value={stats.reminder} icon={<FaClock className="w-5 h-5 text-[#FFC107]" />} color="bg-[#FFC107]/10" />
           <StatCard title="Accepted" value={stats.accepted} icon={<FaCheckCircle className="w-5 h-5 text-[#4CAF50]" />} color="bg-[#4CAF50]/10" />
           <StatCard title="Rejected" value={stats.rejected} icon={<FaBan className="w-5 h-5 text-red-500" />} color="bg-red-50" />
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-2xl border border-blue-600/30 p-4 mb-6 shadow-sm">
+        <div className="bg-white rounded-2xl border border-pink-600/30 p-4 mb-6 shadow-sm">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#64748B] w-4 h-4" />
@@ -729,7 +727,7 @@ export default function AgentOrdersPage() {
                   setSearchTerm(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-10 pr-10 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-blue-800 placeholder:text-[#64748B]"
+                className="w-full pl-10 pr-10 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-pink-800 placeholder:text-[#64748B]"
               />
               {searchTerm && (
                 <button
@@ -737,7 +735,7 @@ export default function AgentOrdersPage() {
                     setSearchTerm('');
                     setCurrentPage(1);
                   }}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#64748B] hover:text-blue-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#64748B] hover:text-pink-600"
                 >
                   <FaTimes className="w-4 h-4" />
                 </button>
@@ -749,7 +747,7 @@ export default function AgentOrdersPage() {
                 setStatusFilter(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-4 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-blue-800 text-sm"
+              className="px-4 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-pink-800 text-sm"
             >
               <option value="">All Status</option>
               {ORDER_STATUSES.map(status => (
@@ -763,7 +761,7 @@ export default function AgentOrdersPage() {
                 setSortBy(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-4 py-2 border border-blue-600/30 rounded-xl focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-blue-800 text-sm"
+              className="px-4 py-2 border border-pink-600/30 rounded-xl focus:ring-2 focus:ring-pink-600 focus:border-transparent bg-[#E2E7EA]/20 hover:bg-white transition text-pink-800 text-sm"
             >
               <option value="-createdAt">Newest First</option>
               <option value="createdAt_asc">Oldest First</option>
@@ -775,7 +773,7 @@ export default function AgentOrdersPage() {
 
         {/* Status Tabs */}
         <div className="mb-6">
-          <div className="flex flex-wrap gap-2 border-b border-blue-600/30 pb-2">
+          <div className="flex flex-wrap gap-2 border-b border-pink-600/30 pb-2">
             {statusTabs.map((tab) => (
               <button
                 key={tab.value}
@@ -785,8 +783,8 @@ export default function AgentOrdersPage() {
                 }}
                 className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 flex items-center gap-2 ${
                   activeStatusTab === tab.value
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg shadow-blue-600/25'
-                    : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-blue-600/30'
+                    ? 'bg-gradient-to-r from-pink-600 to-pink-800 text-white shadow-lg shadow-pink-600/25'
+                    : 'bg-white text-[#64748B] hover:bg-[#E2E7EA] border border-pink-600/30'
                 }`}
               >
                 <span className={`w-2 h-2 rounded-full ${tab.color}`}></span>
@@ -804,10 +802,10 @@ export default function AgentOrdersPage() {
         </div>
 
         {/* Orders Table */}
-        <div className="bg-white rounded-2xl border border-blue-600/30 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-2xl border border-pink-600/30 shadow-sm overflow-hidden">
           <div className="w-full overflow-x-visible">
             <table className="w-full min-w-[800px] lg:min-w-full">
-              <thead className="bg-[#E2E7EA]/50 border-b border-blue-600/30">
+              <thead className="bg-[#E2E7EA]/50 border-b border-pink-600/30">
                 <tr>
                   <th className="px-2 py-2 text-left text-xs font-semibold text-[#64748B]">Order ID</th>
                   <th className="px-2 py-2 text-left text-xs font-semibold text-[#64748B]">Customer</th>
@@ -822,21 +820,21 @@ export default function AgentOrdersPage() {
               </thead>
               <tbody>
                 {loading ? (
-                  <tr><td colSpan="9" className="px-4 py-8 text-center"><div className="flex justify-center"><div className="w-6 h-6 border-3 border-blue-600 border-t-transparent rounded-full animate-spin"></div></div></td></tr>
+                  <tr><td colSpan="9" className="px-4 py-8 text-center"><div className="flex justify-center"><div className="w-6 h-6 border-3 border-pink-600 border-t-transparent rounded-full animate-spin"></div></div></td></tr>
                 ) : orders.length === 0 ? (
                   <tr><td colSpan="9" className="px-4 py-8 text-center text-[#64748B] text-sm">No orders found</td></tr>
                 ) : (
                   orders.map((order) => {
                     const canUpdate = ['follow_up', 'reminder'].includes(order.orderStatus);
                     return (
-                      <tr key={order._id} className="border-b border-blue-600/20 hover:bg-[#E2E7EA]/30 transition-colors">
-                        <td className="px-2 py-2 text-xs font-mono text-blue-800">{order.orderNumber || order._id.slice(-8).toUpperCase()}</td>
+                      <tr key={order._id} className="border-b border-pink-600/20 hover:bg-[#E2E7EA]/30 transition-colors">
+                        <td className="px-2 py-2 text-xs font-mono text-black">{order.orderNumber || order._id.slice(-8).toUpperCase()}</td>
                         <td className="px-2 py-2 text-xs">
-                          <div className="font-medium truncate max-w-[150px] text-blue-800">{order.customerInfo?.fullName}</div>
+                          <div className="font-medium truncate max-w-[150px] text-pink-800">{order.customerInfo?.fullName}</div>
                           <div className="text-[#64748B] text-xs truncate max-w-[150px]">{order.customerInfo?.email}</div>
                         </td>
-                        <td className="px-2 py-2 text-xs text-blue-800">{order.customerInfo?.phone}</td>
-                        <td className="px-2 py-2 text-xs text-right font-bold text-blue-600">৳{order.total?.toFixed(2)}</td>
+                        <td className="px-2 py-2 text-xs text-black">{order.customerInfo?.phone}</td>
+                        <td className="px-2 py-2 text-xs text-right font-bold text-green-600">৳{order.total?.toFixed(2)}</td>
                         <td className="px-2 py-2 text-center">
                           {canUpdate ? (
                             <button 
@@ -861,7 +859,7 @@ export default function AgentOrdersPage() {
                           <div className="flex items-center justify-center gap-1">
                             <button 
                               onClick={() => { setSelectedOrder(order); setShowDetailsModal(true); }} 
-                              className="p-1 text-blue-600 hover:bg-[#E2E7EA] rounded transition-colors" 
+                              className="p-1 text-pink-600 hover:bg-[#E2E7EA] rounded transition-colors" 
                               title="View Details"
                             >
                               <FaEye className="w-3.5 h-3.5" />
@@ -869,7 +867,7 @@ export default function AgentOrdersPage() {
                             {canUpdate && (
                               <button 
                                 onClick={() => { setSelectedOrder(order); setShowStatusModal(true); }} 
-                                className="p-1 text-blue-800 hover:bg-[#E2E7EA] rounded transition-colors" 
+                                className="p-1 text-pink-800 hover:bg-[#E2E7EA] rounded transition-colors" 
                                 title="Update Status"
                               >
                                 <FaEdit className="w-3.5 h-3.5" />
@@ -887,14 +885,14 @@ export default function AgentOrdersPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="px-3 py-2 border-t border-blue-600/30 flex flex-wrap items-center justify-between gap-3 bg-[#E2E7EA]/20">
+            <div className="px-3 py-2 border-t border-pink-600/30 flex flex-wrap items-center justify-between gap-3 bg-[#E2E7EA]/20">
               <p className="text-xs text-[#64748B]">Showing {orders.length} of {totalOrders} orders</p>
               <div className="flex gap-1">
-                <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 border border-blue-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-blue-800">
+                <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 border border-pink-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-pink-800">
                   <FaChevronLeft className="w-3 h-3" />
                 </button>
-                <span className="px-2 py-1 text-xs text-blue-800">Page {currentPage} of {totalPages}</span>
-                <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-blue-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-blue-800">
+                <span className="px-2 py-1 text-xs text-pink-800">Page {currentPage} of {totalPages}</span>
+                <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-pink-600/30 rounded-xl hover:bg-white disabled:opacity-50 transition text-pink-800">
                   <FaChevronRight className="w-3 h-3" />
                 </button>
               </div>

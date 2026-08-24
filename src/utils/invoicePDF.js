@@ -1,4 +1,6 @@
 
+
+
 // // utils/invoicePDF.js
 // import jsPDF from 'jspdf';
 // import 'jspdf-autotable';
@@ -25,16 +27,33 @@
 //   });
 // };
 
+// // ========== SMART GADGET COLORS ==========
+// const COLORS = {
+//   primary: '#1E3A5F',        // Dark Navy Blue
+//   primaryLight: '#2D5A8E',   // Lighter Navy Blue  
+//   primaryDark: '#0F2440',    // Almost Black Navy
+//   secondary: '#2563EB',      // Blue-600
+//   accent: '#06B6D4',         // Cyan-600
+//   black: '#000000',
+//   white: '#FFFFFF',
+//   lightGray: '#F8FAFC',
+//   border: '#2563EB30',
+//   text: '#0F172A',
+//   textLight: '#64748B',
+//   textMuted: '#94A3B8',
+//   paid: '#22C55E',
+//   unpaid: '#EF4444',
+//   partial: '#F59E0B'
+// };
+
 // // ========== GET COLOR HEX - SUPPORTS BOTH HEX AND COLOR NAMES ==========
 // const getColorHex = (color) => {
 //   if (!color) return '#CCCCCC';
   
-//   // If it already starts with #, it's a hex code - use it directly
 //   if (color.startsWith('#')) {
 //     return color;
 //   }
   
-//   // If it's a color name, convert to hex
 //   const colorMap = {
 //     'red': '#FF0000',
 //     'blue': '#0000FF',
@@ -113,7 +132,6 @@
 //     return colorMap[lowerColor];
 //   }
   
-//   // Try partial match
 //   for (const [key, value] of Object.entries(colorMap)) {
 //     if (lowerColor.includes(key) || key.includes(lowerColor)) {
 //       return value;
@@ -141,11 +159,8 @@
 //     }
 //   }
   
-//   // Draw filled circle for color
 //   doc.setFillColor(r, g, b);
 //   doc.circle(x + size/2, y + size/2, size/2, 'F');
-  
-//   // Draw border
 //   doc.setDrawColor(200, 200, 200);
 //   doc.circle(x + size/2, y + size/2, size/2, 'S');
 // };
@@ -159,7 +174,6 @@
 //       headers['Authorization'] = `Bearer ${token}`;
 //     }
     
-//     // Add cache-busting to API call
 //     const cacheBuster = `?t=${Date.now()}`;
 //     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/navbar${cacheBuster}`, { 
 //       headers,
@@ -185,13 +199,11 @@
 //     }
 //     if (!imageUrl) return null;
     
-//     // Handle relative URLs
 //     let fullUrl = imageUrl;
 //     if (imageUrl.startsWith('/')) {
 //       fullUrl = `${window.location.origin}${imageUrl}`;
 //     }
     
-//     // Add cache-busting
 //     const cacheBuster = `?t=${Date.now()}`;
 //     const urlWithCacheBust = fullUrl.includes('?') 
 //       ? `${fullUrl}&t=${Date.now()}` 
@@ -222,11 +234,6 @@
 //   }
 // };
 
-// // Helper to check if item has colors
-// const hasColorsArray = (item) => {
-//   return item.colors && item.colors.length > 0;
-// };
-
 // // Helper to get item price
 // const getItemPrice = (item) => {
 //   return item.discountPrice || item.regularPrice || 0;
@@ -234,7 +241,7 @@
 
 // // Get company initials for logo fallback
 // const getCompanyInitials = (companyName) => {
-//   if (!companyName) return 'HV';
+//   if (!companyName) return 'SG';
 //   return companyName
 //     .split(' ')
 //     .map(word => word[0])
@@ -243,22 +250,111 @@
 //     .substring(0, 2);
 // };
 
-// // ========== HYPERVOLT THEME COLORS ==========
-// const COLORS = {
-//   primary: '#0D506F',      // Main HyperVolt blue
-//   primaryLight: '#1A6B8F',
-//   primaryDark: '#0A3D55',
-//   secondary: '#06B6D4',    // Cyan accent
-//   black: '#000000',
-//   white: '#FFFFFF',
-//   lightGray: '#F0F7FA',
-//   border: '#0D506F',
-//   text: '#0D506F',
-//   textLight: '#64748B',
-//   textMuted: '#94A3B8',
-//   paid: '#22C55E',
-//   unpaid: '#EF4444',
-//   partial: '#F59E0B'
+// // ========== GROUP ITEMS BY PRODUCT - FIXED FOR EDITED ORDERS ==========
+// const groupItemsByProduct = (items) => {
+//   if (!items || items.length === 0) return [];
+  
+//   const grouped = {};
+  
+//   items.forEach((item) => {
+//     let productId = item.productId;
+//     if (productId && typeof productId === 'object' && productId._id) {
+//       productId = productId._id.toString();
+//     } else if (productId) {
+//       productId = productId.toString();
+//     } else {
+//       productId = `item-${Math.random()}`;
+//     }
+    
+//     if (!grouped[productId]) {
+//       grouped[productId] = {
+//         productId: productId,
+//         productName: item.productName || item.name || 'Unknown Product',
+//         image: item.image || '',
+//         regularPrice: item.regularPrice || 0,
+//         discountPrice: item.discountPrice || 0,
+//         unit: item.unit || 'pcs',
+//         colors: [],
+//         hasSale: item.discountPrice > 0 && item.discountPrice < item.regularPrice,
+//         totalQuantity: 0
+//       };
+//     }
+    
+//     let hasColor = false;
+//     let colorQty = item.quantity || 0;
+//     let colorPrice = item.discountPrice || item.regularPrice || 0;
+    
+//     // Check for colors array
+//     if (item.colors && Array.isArray(item.colors) && item.colors.length > 0) {
+//       const validColors = item.colors.filter(c => 
+//         c && 
+//         c.color && 
+//         c.color !== 'null' && 
+//         c.color !== '' && 
+//         c.color !== 'undefined' &&
+//         c.color !== 'null'
+//       );
+      
+//       if (validColors.length > 0) {
+//         validColors.forEach(c => {
+//           const qty = c.quantity || 0;
+//           const p = c.price || colorPrice;
+//           const color = c.color;
+          
+//           const existingColor = grouped[productId].colors.find(g => g.color === color);
+//           if (existingColor) {
+//             existingColor.quantity += qty;
+//           } else {
+//             grouped[productId].colors.push({
+//               color: color,
+//               quantity: qty,
+//               price: p
+//             });
+//           }
+//           grouped[productId].totalQuantity += qty;
+//         });
+//         hasColor = true;
+//       }
+//     }
+    
+//     // Check for selectedColor
+//     if (!hasColor && item.selectedColor && 
+//         item.selectedColor !== 'null' && 
+//         item.selectedColor !== '' && 
+//         item.selectedColor !== 'undefined' &&
+//         item.selectedColor !== 'null') {
+      
+//       const existingColor = grouped[productId].colors.find(g => g.color === item.selectedColor);
+//       if (existingColor) {
+//         existingColor.quantity += colorQty;
+//       } else {
+//         grouped[productId].colors.push({
+//           color: item.selectedColor,
+//           quantity: colorQty,
+//           price: colorPrice
+//         });
+//       }
+//       grouped[productId].totalQuantity += colorQty;
+//       hasColor = true;
+//     }
+    
+//     // No color - add as default
+//     if (!hasColor) {
+//       const existingDefault = grouped[productId].colors.find(g => g.color === null);
+//       if (existingDefault) {
+//         existingDefault.quantity += colorQty;
+//       } else {
+//         grouped[productId].colors.push({
+//           color: null,
+//           quantity: colorQty,
+//           price: colorPrice
+//         });
+//       }
+//       grouped[productId].totalQuantity += colorQty;
+//     }
+//   });
+  
+//   return Object.values(grouped);
 // };
 
 // export const generateInvoicePDF = async (order) => {
@@ -290,54 +386,22 @@
 //     } catch (error) {
 //       console.warn('Failed to load logo from navbar:', error);
 //     }
-    
-//     // If no logo from navbar, try local paths
-//     if (!companyLogoBase64) {
-//       console.log('🔄 Trying local logo paths...');
-//       try {
-//         const logoPaths = [
-//           '/logo.png',
-//           '/images/logo.png',
-//           '/images/logo2.png',
-//           '/images/logo/logo.png'
-//         ];
-        
-//         for (const path of logoPaths) {
-//           try {
-//             const result = await imageToBase64(path);
-//             if (result) {
-//               companyLogoBase64 = result;
-//               console.log('✅ Logo loaded from local path:', path);
-//               break;
-//             }
-//           } catch (e) {
-//             // Continue to next path
-//           }
-//         }
-//       } catch (error) {
-//         console.warn('No local logo found');
-//       }
-//     }
 
 //     // ==================== HEADER ====================
-//     // HyperVolt header bar - Using #0D506F
-//     doc.setFillColor(13, 80, 111);
+//     // Smart Gadget header bar - Dark Navy Blue (#1E3A5F)
+//     doc.setFillColor(30, 58, 95);
 //     doc.rect(0, 0, pageWidth, 32, 'F');
     
-//     // White rounded rectangle for content
 //     doc.setFillColor(COLORS.white);
 //     doc.roundedRect(margin, yPos, contentWidth, 26, 2, 2, 'F');
 
 //     const logoSize = 18;
-//     const logoMaxWidth = 22;
-//     const logoMaxHeight = 18;
 //     const logoX = margin + 5;
 //     const logoY = yPos + 4;
 
 //     // Logo or initials
 //     if (companyLogoBase64) {
 //       try {
-//         // Create image element to get dimensions
 //         const img = new Image();
 //         img.src = companyLogoBase64;
         
@@ -360,15 +424,6 @@
 //           finalWidth = logoSize * aspectRatio;
 //         }
         
-//         if (finalWidth > logoMaxWidth) {
-//           finalWidth = logoMaxWidth;
-//           finalHeight = finalWidth / aspectRatio;
-//         }
-//         if (finalHeight > logoMaxHeight) {
-//           finalHeight = logoMaxHeight;
-//           finalWidth = finalHeight * aspectRatio;
-//         }
-        
 //         const offsetX = (logoSize - finalWidth) / 2;
 //         const offsetY = (logoSize - finalHeight) / 2;
         
@@ -376,9 +431,8 @@
 //         console.log('✅ Logo added to PDF');
 //       } catch (error) {
 //         console.error('Error adding logo to PDF:', error);
-//         // Fallback to initials
-//         const initials = getCompanyInitials('HyperVolt');
-//         doc.setFillColor(13, 80, 111);
+//         const initials = getCompanyInitials('Smart Gadget');
+//         doc.setFillColor(30, 58, 95);
 //         doc.roundedRect(logoX, logoY, logoSize, logoSize, 2, 2, 'F');
 //         doc.setFontSize(9);
 //         doc.setFont('helvetica', 'bold');
@@ -386,8 +440,8 @@
 //         doc.text(initials, logoX + logoSize/2, logoY + logoSize/2 + 1, { align: 'center' });
 //       }
 //     } else {
-//       const initials = getCompanyInitials('HyperVolt');
-//       doc.setFillColor(13, 80, 111);
+//       const initials = getCompanyInitials('Smart Gadget');
+//       doc.setFillColor(30, 58, 95);
 //       doc.roundedRect(logoX, logoY, logoSize, logoSize, 2, 2, 'F');
 //       doc.setFontSize(9);
 //       doc.setFont('helvetica', 'bold');
@@ -397,19 +451,17 @@
 
 //     const companyX = logoX + logoSize + 8;
 
-//     // ========== HYPERVOLT COMPANY NAME - STATIC ==========
-//     // "Hyper" in dark, "Volt" in cyan accent
+//     // ========== SMART GADGET COMPANY NAME ==========
+//     // "Smart" in Dark Navy, "Gadget" in Blue-600
 //     doc.setFontSize(12);
 //     doc.setFont('helvetica', 'bold');
     
-//     // Draw "Hyper" in dark color
-//     doc.setTextColor(13, 80, 111);
-//     doc.text('Hyper', companyX, logoY + 4);
+//     doc.setTextColor(30, 58, 95);
+//     doc.text('Smart', companyX, logoY + 4);
     
-//     // Draw "Volt" in cyan accent
-//     const hyperWidth = doc.getTextWidth('Hyper');
-//     doc.setTextColor(6, 182, 212);
-//     doc.text('Volt', companyX + hyperWidth, logoY + 4);
+//     const smartWidth = doc.getTextWidth('Smart');
+//     doc.setTextColor(37, 99, 235);
+//     doc.text('Gadget', companyX + smartWidth, logoY + 4);
 
 //     doc.setFontSize(7);
 //     doc.setFont('helvetica', 'normal');
@@ -422,7 +474,7 @@
 //     doc.text('+8801XXXXXXXXX', companyX + contactLabelWidth, logoY + 9);
 
 //     doc.setFontSize(6.5);
-//     doc.text('info@hypervolt.com', companyX, logoY + 13);
+//     doc.text('info@smartgadget.com', companyX, logoY + 13);
 
 //     doc.setFontSize(6);
 //     const companyAddressLines = doc.splitTextToSize('House #470, Avenue 6, Road 6, Mirpur DOHS, Dhaka', 70);
@@ -462,14 +514,12 @@
 //     // ==================== CUSTOMER & DELIVERY INFO SECTION ====================
 //     yPos += 34;
     
-//     // Customer Info (Left Column)
 //     const customerColWidth = (contentWidth / 2) - 3;
 //     const addressColWidth = (contentWidth / 2) - 3;
     
 //     let leftColHeight = 25;
 //     let rightColHeight = 25;
     
-//     // Calculate heights for customer info
 //     const customerInfoLines = [
 //       `Name: ${order.customerInfo.fullName || 'N/A'}`,
 //       order.customerInfo.email ? `Email: ${order.customerInfo.email}` : null,
@@ -478,7 +528,6 @@
 //     ].filter(Boolean);
 //     leftColHeight = Math.max(leftColHeight, 10 + (customerInfoLines.length * 4.5));
     
-//     // Calculate heights for delivery address
 //     const deliveryAddressLines = [
 //       order.customerInfo.area ? `Area/Union: ${order.customerInfo.area}` : null,
 //       order.customerInfo.zone ? `Upazila/Thana: ${order.customerInfo.zone}` : null,
@@ -490,7 +539,7 @@
 //     const colHeight = Math.max(leftColHeight, rightColHeight, 35);
     
 //     // Left Column - Customer Info
-//     doc.setFillColor(240, 247, 250);
+//     doc.setFillColor(248, 250, 252);
 //     doc.roundedRect(margin, yPos, customerColWidth, colHeight, 2, 2, 'F');
     
 //     doc.setFontSize(8);
@@ -503,14 +552,12 @@
 //     doc.setFont('helvetica', 'normal');
 //     doc.setTextColor(COLORS.text);
     
-//     // Name
 //     doc.setFont('helvetica', 'bold');
 //     doc.text('Name:', margin + 5, leftY);
 //     doc.setFont('helvetica', 'normal');
 //     doc.text(order.customerInfo.fullName || 'N/A', margin + 30, leftY);
 //     leftY += 4.5;
     
-//     // Email (if exists)
 //     if (order.customerInfo.email) {
 //       doc.setFont('helvetica', 'bold');
 //       doc.text('Email:', margin + 5, leftY);
@@ -519,14 +566,12 @@
 //       leftY += 4.5;
 //     }
     
-//     // Phone
 //     doc.setFont('helvetica', 'bold');
 //     doc.text('Phone:', margin + 5, leftY);
 //     doc.setFont('helvetica', 'normal');
 //     doc.text(order.customerInfo.phone || 'N/A', margin + 30, leftY);
 //     leftY += 4.5;
     
-//     // Address
 //     doc.setFont('helvetica', 'bold');
 //     doc.text('Address:', margin + 5, leftY);
 //     doc.setFont('helvetica', 'normal');
@@ -539,7 +584,7 @@
     
 //     // Right Column - Delivery Address
 //     const addressColX = margin + customerColWidth + 6;
-//     doc.setFillColor(240, 247, 250);
+//     doc.setFillColor(248, 250, 252);
 //     doc.roundedRect(addressColX, yPos, addressColWidth, colHeight, 2, 2, 'F');
     
 //     doc.setFontSize(8);
@@ -552,7 +597,6 @@
 //     doc.setFont('helvetica', 'normal');
 //     doc.setTextColor(COLORS.text);
     
-//     // Area/Union
 //     if (order.customerInfo.area) {
 //       doc.setFont('helvetica', 'bold');
 //       doc.text('Area/Union:', addressColX + 5, rightY);
@@ -561,7 +605,6 @@
 //       rightY += 4.5;
 //     }
     
-//     // Upazila/Thana
 //     if (order.customerInfo.zone) {
 //       doc.setFont('helvetica', 'bold');
 //       doc.text('Upazila/Thana:', addressColX + 5, rightY);
@@ -570,7 +613,6 @@
 //       rightY += 4.5;
 //     }
     
-//     // District/City
 //     if (order.customerInfo.city) {
 //       doc.setFont('helvetica', 'bold');
 //       doc.text('District/City:', addressColX + 5, rightY);
@@ -579,7 +621,6 @@
 //       rightY += 4.5;
 //     }
     
-//     // Division
 //     if (order.customerInfo.division) {
 //       doc.setFont('helvetica', 'bold');
 //       doc.text('Division:', addressColX + 5, rightY);
@@ -602,13 +643,14 @@
 //       item: margin + 3,
 //       product: margin + 10,
 //       color: margin + contentWidth - 95,
-//       qty: margin + contentWidth - 75,
-//       price: margin + contentWidth - 50,
+//       unit: margin + contentWidth - 75,
+//       qty: margin + contentWidth - 60,
+//       price: margin + contentWidth - 40,
 //       total: margin + contentWidth - 10
 //     };
 
-//     // Table Header - HyperVolt blue
-//     doc.setFillColor(13, 80, 111);
+//     // Table Header - Smart Gadget Navy Blue
+//     doc.setFillColor(30, 58, 95);
 //     doc.rect(margin, yPos, contentWidth, 7, 'F');
 
 //     doc.setFontSize(7);
@@ -618,6 +660,7 @@
 //     doc.text('#', colPositions.item, yPos + 4.5);
 //     doc.text('Product', colPositions.product, yPos + 4.5);
 //     doc.text('Color', colPositions.color, yPos + 4.5);
+//     doc.text('Unit', colPositions.unit, yPos + 4.5);
 //     doc.text('Qty', colPositions.qty, yPos + 4.5, { align: 'right' });
 //     doc.text('Price', colPositions.price, yPos + 4.5, { align: 'right' });
 //     doc.text('Total', colPositions.total, yPos + 4.5, { align: 'right' });
@@ -625,29 +668,24 @@
 //     yPos += 10;
 
 //     let rowCount = 0;
-//     const orderItems = order.items || [];
     
-//     orderItems.forEach((item, index) => {
-//       const price = getItemPrice(item);
-//       const hasColors = hasColorsArray(item);
-//       const isEven = rowCount % 2 === 0;
+//     // ========== GROUP ITEMS BY PRODUCT FOR PROPER DISPLAY ==========
+//     const groupedItems = groupItemsByProduct(order.items || []);
+    
+//     groupedItems.forEach((group, index) => {
+//       const price = group.discountPrice || group.regularPrice || 0;
+//       const unit = group.unit || 'pcs';
       
-//       // Calculate total rows needed for this item
-//       let totalRows = 1;
-//       if (hasColors && item.colors.length > 0) {
-//         totalRows = item.colors.length;
-//       }
-      
+//       const colors = group.colors || [];
+//       const totalRows = colors.length > 0 ? colors.length : 1;
 //       const rowHeight = 7;
       
-//       // Check if we need a new page
 //       if (yPos + (rowHeight * totalRows) > pageHeight - 55) {
 //         doc.addPage();
 //         yPos = margin + 10;
 //         rowCount = 0;
         
-//         // Re-draw header on new page
-//         doc.setFillColor(13, 80, 111);
+//         doc.setFillColor(30, 58, 95);
 //         doc.rect(margin, yPos, contentWidth, 7, 'F');
 //         doc.setFontSize(7);
 //         doc.setFont('helvetica', 'bold');
@@ -655,75 +693,21 @@
 //         doc.text('#', colPositions.item, yPos + 4.5);
 //         doc.text('Product', colPositions.product, yPos + 4.5);
 //         doc.text('Color', colPositions.color, yPos + 4.5);
+//         doc.text('Unit', colPositions.unit, yPos + 4.5);
 //         doc.text('Qty', colPositions.qty, yPos + 4.5, { align: 'right' });
 //         doc.text('Price', colPositions.price, yPos + 4.5, { align: 'right' });
 //         doc.text('Total', colPositions.total, yPos + 4.5, { align: 'right' });
 //         yPos += 10;
 //       }
 
-//       if (hasColors && item.colors.length > 0) {
-//         // Multi-color product - show each color in separate row
-//         item.colors.forEach((colorObj, colorIdx) => {
-//           const isFirstRow = colorIdx === 0;
-//           const colorTotal = price * colorObj.quantity;
-          
-//           // Row background - alternating gray
-//           if (rowCount % 2 === 0) {
-//             doc.setFillColor(240, 247, 250);
-//             doc.rect(margin, yPos - 2, contentWidth, rowHeight, 'F');
-//           }
-          
-//           doc.setFontSize(6.5);
-//           doc.setFont('helvetica', 'normal');
-//           doc.setTextColor(COLORS.text);
-          
-//           const textY = yPos + 4;
-          
-//           if (isFirstRow) {
-//             // Item number
-//             doc.text((index + 1).toString(), colPositions.item, textY);
-            
-//             // Product name
-//             let productName = item.productName || '';
-//             const maxWidth = 55;
-//             while (doc.getTextWidth(productName) > maxWidth && productName.length > 3) {
-//               productName = productName.substring(0, productName.length - 1);
-//             }
-//             if (productName !== (item.productName || '')) {
-//               productName = productName.substring(0, productName.length - 3) + '...';
-//             }
-//             doc.text(productName, colPositions.product, textY);
-//           }
-          
-//           // ========== DRAW COLOR SWATCH ==========
-//           const colorX = colPositions.color;
-//           const swatchSize = 4.5;
-//           const swatchY = yPos + 1;
-          
-//           drawColorSwatch(doc, colorX, swatchY, colorObj.color, swatchSize);
-          
-//           // Quantity for this color
-//           doc.text(colorObj.quantity.toString(), colPositions.qty, textY, { align: 'right' });
-          
-//           // Price per unit
-//           doc.text(formatPrice(price), colPositions.price, textY, { align: 'right' });
-          
-//           // Total for this color
-//           doc.setFont('helvetica', 'bold');
-//           doc.setTextColor(COLORS.primary);
-//           doc.text(formatPrice(colorTotal), colPositions.total, textY, { align: 'right' });
-          
-//           yPos += rowHeight;
-//           rowCount++;
-//         });
-//       } else {
-//         // Single item (with or without color)
-//         const singleTotal = price * (item.quantity || 0);
-//         const hasSingleColor = item.selectedColor && item.selectedColor !== null && item.selectedColor !== '';
+//       // Show each color as a row
+//       colors.forEach((colorObj, colorIdx) => {
+//         const isFirstRow = colorIdx === 0;
+//         const colorTotal = colorObj.price * colorObj.quantity;
+//         const hasColor = colorObj.color !== null && colorObj.color !== 'null' && colorObj.color !== '';
         
-//         // Row background - alternating gray
 //         if (rowCount % 2 === 0) {
-//           doc.setFillColor(240, 247, 250);
+//           doc.setFillColor(248, 250, 252);
 //           doc.rect(margin, yPos - 2, contentWidth, rowHeight, 'F');
 //         }
         
@@ -733,46 +717,62 @@
         
 //         const textY = yPos + 4;
         
-//         // Item number
-//         doc.text((index + 1).toString(), colPositions.item, textY);
-        
-//         // Product name
-//         let productName = item.productName || '';
-//         const maxWidth = 55;
-//         while (doc.getTextWidth(productName) > maxWidth && productName.length > 3) {
-//           productName = productName.substring(0, productName.length - 1);
+//         // # column - show only on first row
+//         if (isFirstRow) {
+//           doc.text((index + 1).toString(), colPositions.item, textY);
 //         }
-//         if (productName !== (item.productName || '')) {
-//           productName = productName.substring(0, productName.length - 3) + '...';
-//         }
-//         doc.text(productName, colPositions.product, textY);
         
-//         // ========== DRAW COLOR SWATCH OR DASH ==========
+//         // Product column
+//         if (isFirstRow) {
+//           let productName = group.productName || '';
+//           const maxWidth = 55;
+//           while (doc.getTextWidth(productName) > maxWidth && productName.length > 3) {
+//             productName = productName.substring(0, productName.length - 1);
+//           }
+//           if (productName !== (group.productName || '')) {
+//             productName = productName.substring(0, productName.length - 3) + '...';
+//           }
+//           doc.text(productName, colPositions.product, textY);
+//         } else {
+//           // Sub-row - show indentation with └─
+//           doc.setTextColor(COLORS.textMuted);
+//           doc.text('', colPositions.product + 5, textY);
+//           doc.setTextColor(COLORS.text);
+//         }
+        
+//         // Color column - draw swatch
 //         const colorX = colPositions.color;
-//         if (hasSingleColor) {
+//         if (hasColor) {
 //           const swatchSize = 4.5;
 //           const swatchY = yPos + 1;
-//           drawColorSwatch(doc, colorX, swatchY, item.selectedColor, swatchSize);
+//           drawColorSwatch(doc, colorX, swatchY, colorObj.color, swatchSize);
 //         } else {
 //           doc.setTextColor(COLORS.textMuted);
 //           doc.text('—', colorX, textY);
 //           doc.setTextColor(COLORS.text);
 //         }
         
-//         // Quantity
-//         doc.text((item.quantity || 0).toString(), colPositions.qty, textY, { align: 'right' });
+//         // Unit - show only on first row
+//         if (isFirstRow) {
+//           doc.text(unit, colPositions.unit, textY);
+//         }
         
-//         // Price per unit
-//         doc.text(formatPrice(price), colPositions.price, textY, { align: 'right' });
+//         // Qty
+//         doc.text(colorObj.quantity.toString(), colPositions.qty, textY, { align: 'right' });
+        
+//         // Price - show only on first row
+//         if (isFirstRow) {
+//           doc.text(formatPrice(colorObj.price), colPositions.price, textY, { align: 'right' });
+//         }
         
 //         // Total
 //         doc.setFont('helvetica', 'bold');
 //         doc.setTextColor(COLORS.primary);
-//         doc.text(formatPrice(singleTotal), colPositions.total, textY, { align: 'right' });
+//         doc.text(formatPrice(colorTotal), colPositions.total, textY, { align: 'right' });
         
 //         yPos += rowHeight;
 //         rowCount++;
-//       }
+//       });
 //     });
 
 //     yPos += 5;
@@ -781,7 +781,7 @@
 //     const summaryWidth = 85;
 //     const summaryX = pageWidth - margin - summaryWidth;
     
-//     doc.setFillColor(240, 247, 250);
+//     doc.setFillColor(248, 250, 252);
 //     doc.setDrawColor(COLORS.primary);
 //     doc.setLineWidth(0.3);
 //     doc.roundedRect(summaryX, yPos, summaryWidth, 45, 2, 2, 'FD');
@@ -868,8 +868,8 @@
 //     doc.setFont('helvetica', 'normal');
 //     doc.setTextColor(COLORS.textMuted);
     
-//     doc.text('Thank you for shopping with HyperVolt! ⚡', pageWidth / 2, footerY, { align: 'center' });
-//     doc.text('For any queries, contact us at support@hypervolt.com', pageWidth / 2, footerY + 4, { align: 'center' });
+//     doc.text('Thank you for shopping with Smart Gadget! ✦', pageWidth / 2, footerY, { align: 'center' });
+//     doc.text('For any queries, contact us at support@smartgadget.com', pageWidth / 2, footerY + 4, { align: 'center' });
 
 //     // ==================== SAVE PDF ====================
 //     const pdfBlob = doc.output('blob');
@@ -917,23 +917,23 @@ const formatDate = (dateString) => {
   });
 };
 
-// ========== SMART GADGET COLORS ==========
+// ========== BEAUTY BUCKET COLORS - ALL PINK THEME ==========
 const COLORS = {
-  primary: '#1E3A5F',        // Dark Navy Blue
-  primaryLight: '#2D5A8E',   // Lighter Navy Blue  
-  primaryDark: '#0F2440',    // Almost Black Navy
-  secondary: '#2563EB',      // Blue-600
-  accent: '#06B6D4',         // Cyan-600
-  black: '#000000',
+  primary: '#EE4275',        // Bold Pink - Main brand color
+  primaryLight: '#FF6B9D',   // Light Pink
+  primaryDark: '#D63A6A',    // Darker Pink (used sparingly)
+  secondary: '#FF6B9D',      // Light Pink
+  accent: '#FF8FAB',         // Soft Pink
+  blush: '#FFD2DB',          // Blush Pink - Lightest
   white: '#FFFFFF',
-  lightGray: '#F8FAFC',
-  border: '#2563EB30',
-  text: '#0F172A',
-  textLight: '#64748B',
-  textMuted: '#94A3B8',
-  paid: '#22C55E',
-  unpaid: '#EF4444',
-  partial: '#F59E0B'
+  lightGray: '#FFF5F6',      // Very Light Pink background
+  border: '#FFD2DB',         // Blush Pink border
+  text: '#2D1B2E',           // Dark Purple-Black (for readability)
+  textLight: '#8B7A8C',      // Muted Purple
+  textMuted: '#C4B5C5',      // Light Purple
+  paid: '#4CAF50',           // Green
+  unpaid: '#EF4444',         // Red
+  partial: '#FF8C00'         // Orange
 };
 
 // ========== GET COLOR HEX - SUPPORTS BOTH HEX AND COLOR NAMES ==========
@@ -1131,7 +1131,7 @@ const getItemPrice = (item) => {
 
 // Get company initials for logo fallback
 const getCompanyInitials = (companyName) => {
-  if (!companyName) return 'SG';
+  if (!companyName) return 'BB';
   return companyName
     .split(' ')
     .map(word => word[0])
@@ -1278,8 +1278,8 @@ export const generateInvoicePDF = async (order) => {
     }
 
     // ==================== HEADER ====================
-    // Smart Gadget header bar - Dark Navy Blue (#1E3A5F)
-    doc.setFillColor(30, 58, 95);
+    // Beauty Bucket header bar - Bold Pink (#EE4275)
+    doc.setFillColor(238, 66, 117);
     doc.rect(0, 0, pageWidth, 32, 'F');
     
     doc.setFillColor(COLORS.white);
@@ -1321,8 +1321,8 @@ export const generateInvoicePDF = async (order) => {
         console.log('✅ Logo added to PDF');
       } catch (error) {
         console.error('Error adding logo to PDF:', error);
-        const initials = getCompanyInitials('Smart Gadget');
-        doc.setFillColor(30, 58, 95);
+        const initials = getCompanyInitials('Beauty Bucket');
+        doc.setFillColor(238, 66, 117);
         doc.roundedRect(logoX, logoY, logoSize, logoSize, 2, 2, 'F');
         doc.setFontSize(9);
         doc.setFont('helvetica', 'bold');
@@ -1330,8 +1330,8 @@ export const generateInvoicePDF = async (order) => {
         doc.text(initials, logoX + logoSize/2, logoY + logoSize/2 + 1, { align: 'center' });
       }
     } else {
-      const initials = getCompanyInitials('Smart Gadget');
-      doc.setFillColor(30, 58, 95);
+      const initials = getCompanyInitials('Beauty Bucket');
+      doc.setFillColor(238, 66, 117);
       doc.roundedRect(logoX, logoY, logoSize, logoSize, 2, 2, 'F');
       doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
@@ -1341,17 +1341,17 @@ export const generateInvoicePDF = async (order) => {
 
     const companyX = logoX + logoSize + 8;
 
-    // ========== SMART GADGET COMPANY NAME ==========
-    // "Smart" in Dark Navy, "Gadget" in Blue-600
+    // ========== BEAUTY BUCKET COMPANY NAME ==========
+    // "Beauty" in Dark Purple, "Bucket" in Bold Pink
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
     
-    doc.setTextColor(30, 58, 95);
-    doc.text('Smart', companyX, logoY + 4);
+    doc.setTextColor(45, 27, 46);
+    doc.text('Beauty', companyX, logoY + 4);
     
-    const smartWidth = doc.getTextWidth('Smart');
-    doc.setTextColor(37, 99, 235);
-    doc.text('Gadget', companyX + smartWidth, logoY + 4);
+    const beautyWidth = doc.getTextWidth('Beauty');
+    doc.setTextColor(238, 66, 117);
+    doc.text('Bucket', companyX + beautyWidth, logoY + 4);
 
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -1364,10 +1364,10 @@ export const generateInvoicePDF = async (order) => {
     doc.text('+8801XXXXXXXXX', companyX + contactLabelWidth, logoY + 9);
 
     doc.setFontSize(6.5);
-    doc.text('info@smartgadget.com', companyX, logoY + 13);
+    doc.text('info@beautybucket.com', companyX, logoY + 13);
 
     doc.setFontSize(6);
-    const companyAddressLines = doc.splitTextToSize('House #470, Avenue 6, Road 6, Mirpur DOHS, Dhaka', 70);
+    const companyAddressLines = doc.splitTextToSize('Mirpur DOHS, Dhaka, Bangladesh', 70);
     doc.text(companyAddressLines, companyX, logoY + 17);
 
     const rightAlignX = pageWidth - margin - 5;
@@ -1429,7 +1429,7 @@ export const generateInvoicePDF = async (order) => {
     const colHeight = Math.max(leftColHeight, rightColHeight, 35);
     
     // Left Column - Customer Info
-    doc.setFillColor(248, 250, 252);
+    doc.setFillColor(255, 245, 246);
     doc.roundedRect(margin, yPos, customerColWidth, colHeight, 2, 2, 'F');
     
     doc.setFontSize(8);
@@ -1474,7 +1474,7 @@ export const generateInvoicePDF = async (order) => {
     
     // Right Column - Delivery Address
     const addressColX = margin + customerColWidth + 6;
-    doc.setFillColor(248, 250, 252);
+    doc.setFillColor(255, 245, 246);
     doc.roundedRect(addressColX, yPos, addressColWidth, colHeight, 2, 2, 'F');
     
     doc.setFontSize(8);
@@ -1539,8 +1539,8 @@ export const generateInvoicePDF = async (order) => {
       total: margin + contentWidth - 10
     };
 
-    // Table Header - Smart Gadget Navy Blue
-    doc.setFillColor(30, 58, 95);
+    // Table Header - Bold Pink (#EE4275)
+    doc.setFillColor(238, 66, 117);
     doc.rect(margin, yPos, contentWidth, 7, 'F');
 
     doc.setFontSize(7);
@@ -1575,7 +1575,7 @@ export const generateInvoicePDF = async (order) => {
         yPos = margin + 10;
         rowCount = 0;
         
-        doc.setFillColor(30, 58, 95);
+        doc.setFillColor(238, 66, 117);
         doc.rect(margin, yPos, contentWidth, 7, 'F');
         doc.setFontSize(7);
         doc.setFont('helvetica', 'bold');
@@ -1597,7 +1597,7 @@ export const generateInvoicePDF = async (order) => {
         const hasColor = colorObj.color !== null && colorObj.color !== 'null' && colorObj.color !== '';
         
         if (rowCount % 2 === 0) {
-          doc.setFillColor(248, 250, 252);
+          doc.setFillColor(255, 245, 246);
           doc.rect(margin, yPos - 2, contentWidth, rowHeight, 'F');
         }
         
@@ -1671,7 +1671,7 @@ export const generateInvoicePDF = async (order) => {
     const summaryWidth = 85;
     const summaryX = pageWidth - margin - summaryWidth;
     
-    doc.setFillColor(248, 250, 252);
+    doc.setFillColor(255, 245, 246);
     doc.setDrawColor(COLORS.primary);
     doc.setLineWidth(0.3);
     doc.roundedRect(summaryX, yPos, summaryWidth, 45, 2, 2, 'FD');
@@ -1758,8 +1758,8 @@ export const generateInvoicePDF = async (order) => {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(COLORS.textMuted);
     
-    doc.text('Thank you for shopping with Smart Gadget! ✦', pageWidth / 2, footerY, { align: 'center' });
-    doc.text('For any queries, contact us at support@smartgadget.com', pageWidth / 2, footerY + 4, { align: 'center' });
+    doc.text('Thank you for shopping with Beauty Bucket! 💖', pageWidth / 2, footerY, { align: 'center' });
+    doc.text('For any queries, contact us at support@beautybucket.com', pageWidth / 2, footerY + 4, { align: 'center' });
 
     // ==================== SAVE PDF ====================
     const pdfBlob = doc.output('blob');

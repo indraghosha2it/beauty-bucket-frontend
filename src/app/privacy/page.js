@@ -11,10 +11,10 @@ function PrivacyLoading() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#F1F5F9] via-[#EFF6FF] to-[#DBEAFE] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF5F6] via-[#FFD2DB] to-[#FFE4E8] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 mx-auto bg-[#2563EB]/20 rounded-full animate-pulse mb-4"></div>
-          <div className="h-6 w-48 bg-[#2563EB]/20 rounded mx-auto animate-pulse"></div>
+          <div className="w-16 h-16 mx-auto bg-[#EE4275]/20 rounded-full animate-pulse mb-4"></div>
+          <div className="h-6 w-48 bg-[#EE4275]/20 rounded mx-auto animate-pulse"></div>
         </div>
       </div>
       <Footer />
@@ -22,103 +22,118 @@ function PrivacyLoading() {
   );
 }
 
-// Smart Gadget Privacy Policy Page SEO Metadata
+// Beauty Bucket Privacy Policy Page SEO Metadata
 export const metadata = {
-  title: "Privacy Policy | Protecting Your Personal & Gadget Information",
-  description: "Read Smart Gadget's privacy policy to understand how we collect, use, and protect your personal information. Learn about data security, cookies, and your privacy rights in Bangladesh.",
+  title: "Privacy Policy | Protecting Your Personal & Beauty Information",
+  description: "Read Beauty Bucket's privacy policy to understand how we collect, use, and protect your personal information. Learn about data security, cookies, and your privacy rights in Bangladesh.",
   keywords: [
     // Privacy policy specific
-    "privacy policy smart gadget",
-    "electronics store privacy policy bd",
-    "gadget data protection",
-    "smart gadget privacy practices",
-    "online tech store privacy bangladesh",
+    "privacy policy beauty bucket",
+    "cosmetics store privacy policy bd",
+    "beauty data protection",
+    "beauty bucket privacy practices",
+    "online beauty store privacy bangladesh",
     
     // Data collection
-    "personal information collection electronics",
-    "customer data protection tech",
-    "smartphone purchase privacy",
-    "shopping data security electronics",
-    "gadget store data collection",
+    "personal information collection cosmetics",
+    "customer data protection beauty",
+    "skincare purchase privacy",
+    "shopping data security beauty",
+    "beauty store data collection",
     
     // Security measures
-    "ssl encryption tech",
-    "secure payment electronics bd",
-    "data security gadget store",
-    "smart gadget security policy",
-    "encryption standards bd",
+    "ssl encryption beauty",
+    "secure payment cosmetics bd",
+    "data security beauty store",
+    "beauty bucket security policy",
+    "encryption standards bd beauty",
     
     // User rights
-    "data access rights tech",
-    "delete my data electronics",
-    "opt out marketing smart gadget",
-    "gdpr compliance tech bd",
-    "ccpa rights bangladesh",
+    "data access rights beauty",
+    "delete my data cosmetics",
+    "opt out marketing beauty bucket",
+    "gdpr compliance beauty bd",
+    "ccpa rights bangladesh beauty",
     
     // Cookies & tracking
-    "cookie policy tech",
-    "website tracking electronics",
-    "analytics privacy gadget",
-    "user tracking consent bd",
+    "cookie policy beauty",
+    "website tracking cosmetics",
+    "analytics privacy beauty",
+    "user tracking consent bd beauty",
     
-    // Tech specific privacy
-    "device data privacy",
-    "product preferences data",
-    "gadget purchase history",
-    "tech product recommendations privacy",
-    "personalized gadget suggestions",
+    // Beauty specific privacy
+    "skin type data privacy",
+    "product preferences data beauty",
+    "beauty purchase history",
+    "cosmetics recommendations privacy",
+    "personalized beauty suggestions",
     
-    // Device & product data
-    "device compatibility data protection",
-    "product usage information privacy",
-    "tech consultation data",
-    "electronic device data privacy",
-    "gadget warranty data",
+    // Product & skin data
+    "skin concern data protection",
+    "beauty product usage information privacy",
+    "beauty consultation data",
+    "skincare routine data privacy",
+    "beauty product warranty data",
     
     // Legal compliance
-    "data protection bangladesh tech",
-    "privacy compliance electronics",
-    "ccpa rights tech bd",
-    "gdpr rights tech customers",
-    "bangladesh data protection act",
+    "data protection bangladesh beauty",
+    "privacy compliance cosmetics",
+    "ccpa rights beauty bd",
+    "gdpr rights beauty customers",
+    "bangladesh data protection act cosmetics",
     
     // Marketing & communications
-    "tech newsletter privacy",
-    "promotional emails privacy",
-    "gadget offers data usage",
-    "marketing consent tech",
-    "email marketing opt out",
+    "beauty newsletter privacy",
+    "promotional emails privacy beauty",
+    "cosmetics offers data usage",
+    "marketing consent beauty",
+    "email marketing opt out beauty",
     
-    // Smartphone specific
-    "smartphone data protection",
-    "mobile device privacy bd",
-    "phone purchase data security",
-    "device model privacy",
+    // Skincare specific
+    "skincare data protection",
+    "skin analysis privacy bd",
+    "skincare purchase data security",
+    "skin type preferences privacy",
     
-    // Laptop & computer
-    "laptop data privacy",
-    "computer purchase information",
-    "tech device data protection",
-    "product compatibility privacy",
+    // Makeup specific
+    "makeup data privacy",
+    "cosmetics purchase information",
+    "shade preferences privacy",
+    "makeup product compatibility privacy",
+    
+    // Fragrance specific
+    "fragrance data privacy",
+    "perfume preferences information",
+    "scent preferences privacy",
+    "fragrance purchase data",
+    
+    // Hair care specific
+    "hair care data privacy",
+    "hair type preferences information",
+    "hair care purchase privacy",
+    "hair product compatibility data",
     
     // Additional
-    "smart gadget data security",
-    "electronics customer privacy",
-    "gadget data protection bd",
-    "tech purchase privacy",
-    "online gadget store privacy"
+    "beauty bucket data security",
+    "cosmetics customer privacy",
+    "beauty data protection bd",
+    "beauty purchase privacy",
+    "online beauty store privacy",
+    "clean beauty data privacy",
+    "vegan beauty data protection",
+    "cruelty free beauty privacy"
   ],
   openGraph: {
-    title: "Privacy Policy - Smart Gadget | Your Tech Data Protection & Privacy Rights",
-    description: "Learn how Smart Gadget protects your personal information. We're committed to transparent data practices, secure payments, and respecting your privacy rights in Bangladesh.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://smartgadget.com.bd/privacy',
-    siteName: "Smart Gadget",
+    title: "Privacy Policy - Beauty Bucket | Your Beauty Data Protection & Privacy Rights",
+    description: "Learn how Beauty Bucket protects your personal information. We're committed to transparent data practices, secure payments, and respecting your privacy rights in Bangladesh.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://beautybucket.com.bd/privacy',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/privacy-og-smartgadget.jpg',
+        url: '/privacy-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Gadget Privacy Policy - Your Tech Data Protection',
+        alt: 'Beauty Bucket Privacy Policy - Your Beauty Data Protection',
       },
     ],
     type: 'website',
@@ -127,11 +142,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Privacy Policy | Smart Gadget",
-    description: "How we collect, use, and protect your personal information. Your privacy rights and tech data security explained.",
-    images: ['/privacy-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Privacy Policy | Beauty Bucket",
+    description: "How we collect, use, and protect your personal information. Your privacy rights and beauty data security explained.",
+    images: ['/privacy-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/privacy',
@@ -153,23 +168,23 @@ export const metadata = {
   },
   // Privacy page specific metadata
   other: {
-    'application-name': 'Smart Gadget Privacy',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
+    'application-name': 'Beauty Bucket Privacy',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
     'page-type': 'privacy-policy',
     'privacy-policy-version': '2.0',
     'last-updated': '2024-01-01',
-    'data-controller': 'Smart Gadget Bangladesh',
-    'privacy-contact': 'privacy@smartgadget.com.bd',
+    'data-controller': 'Beauty Bucket Bangladesh',
+    'privacy-contact': 'privacy@beautybucket.com',
     'gdpr-compliant': 'true',
     'ccpa-compliant': 'true',
     'data-retention-period': '2 years',
     'cookie-policy': 'opt-in',
     
-    // Tech specific data collection
-    'data-collection-types': 'Name, Email, Phone, Address, Purchase History, Device Preferences, Product Interests',
-    'sensitive-data': 'Device Type, Product Compatibility Preferences (Optional)',
-    'data-usage': 'Order Processing, Product Recommendations, Marketing (with consent)',
+    // Beauty specific data collection
+    'data-collection-types': 'Name, Email, Phone, Address, Purchase History, Skin Type Preferences, Product Interests, Beauty Concerns',
+    'sensitive-data': 'Skin Type, Skin Concerns, Allergies (Optional), Product Compatibility Preferences (Optional)',
+    'data-usage': 'Order Processing, Product Recommendations, Beauty Consultation, Marketing (with consent)',
     'third-party-sharing': 'Only with Delivery Partners and Payment Processors',
     
     // Security measures
@@ -195,26 +210,36 @@ export const metadata = {
     'cookie-retention': 'Session and Persistent',
     'third-party-cookies': 'Google Analytics, Social Media',
     
-    // Tech marketing
+    // Beauty marketing
     'marketing-consent': 'Explicit Opt-in Required',
     'email-marketing': 'Opt-out Available',
-    'personalized-recommendations': 'Based on Purchase History',
-    'tech-newsletters': 'Optional Subscription',
+    'personalized-recommendations': 'Based on Purchase History and Skin Type',
+    'beauty-newsletters': 'Optional Subscription',
     
-    // Gadget specific privacy
-    'product-data': 'Product Preferences and Interests (Anonymous)',
-    'device-compatibility': 'Device Model Information (Optional)',
-    'product-preferences': 'Gadget Preferences (Optional)',
-    'warranty-data': 'Warranty Registration Information',
+    // Beauty specific privacy
+    'skin-data': 'Skin Type and Skin Concerns (Optional)', 
+    'product-preferences': 'Beauty Product Preferences (Optional)',
+    'shade-preferences': 'Makeup Shade Preferences (Optional)',
+    'fragrance-preferences': 'Fragrance Preferences (Optional)',
+    'hair-type-data': 'Hair Type and Concerns (Optional)',
     'product-feedback': 'Product Review and Feedback Data',
+    'beauty-consultation': 'Consultation History (Optional)',
     
-    // Smartphone specific
-    'smartphone-data': 'Device Model, OS Version (Optional)',
-    'mobile-preferences': 'Phone Preferences (Optional)',
+    // Skincare specific
+    'skincare-data': 'Skin Type, Skin Concerns, Current Routine (Optional)',
+    'skin-concerns': 'Acne, Aging, Hyperpigmentation, Dryness, Sensitivity (Optional)',
     
-    // Laptop & computer
-    'laptop-data': 'Laptop Model, Specifications (Optional)',
-    'computer-preferences': 'Computer Preferences (Optional)',
+    // Makeup specific
+    'makeup-data': 'Shade Preferences, Makeup Style Preferences (Optional)',
+    'shade-range': 'Fair to Deep Skin Tones',
+    
+    // Fragrance specific
+    'fragrance-data': 'Scent Preferences, Fragrance Categories (Optional)',
+    'scent-types': 'Floral, Woody, Oriental, Fresh, Fruity (Optional)',
+    
+    // Hair care specific
+    'hair-data': 'Hair Type, Hair Concerns (Optional)',
+    'hair-types': 'Straight, Wavy, Curly, Coily (Optional)',
     
     // Legal compliance
     'compliance-standard': 'Bangladesh Data Protection Act',
@@ -225,11 +250,17 @@ export const metadata = {
     // Product safety
     'product-safety-data': 'Safety Certification Records',
     'quality-control': 'Quality Assurance Data',
-    'gadget-safety': 'Product Safety Test Data',
+    'beauty-safety': 'Product Safety Test Data',
+    'dermatological-testing': 'Dermatologically Tested Products',
     
     // Brands & products
-    'brands-covered': 'Apple, Samsung, Xiaomi, OnePlus, Realme, Lenovo, HP, ASUS, Dell, Acer, Sony, JBL, boAt',
-    'product-categories': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories, Smart Home, Accessories',
+    'brands-covered': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    'product-categories': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
+    
+    // Ethical privacy
+    'ethical-data': 'Cruelty Free Preferences, Vegan Preferences (Optional)',
+    'ingredient-preferences': 'Ingredient Preferences, Allergies (Optional)',
+    'eco-friendly-preferences': 'Eco-Friendly Packaging Preferences (Optional)',
   },
 };
 
@@ -238,10 +269,10 @@ export const generateJsonLd = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://smartgadget.com.bd/privacy',
-    name: 'Privacy Policy - Smart Gadget',
-    description: 'Read Smart Gadget\'s privacy policy to understand how we collect, use, and protect your personal information.',
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://smartgadget.com.bd/privacy',
+    '@id': process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://beautybucket.com.bd/privacy',
+    name: 'Privacy Policy - Beauty Bucket',
+    description: 'Read Beauty Bucket\'s privacy policy to understand how we collect, use, and protect your personal information.',
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://beautybucket.com.bd/privacy',
     inLanguage: 'en',
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -250,37 +281,37 @@ export const generateJsonLd = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://smartgadget.com.bd'
+          item: process.env.NEXT_PUBLIC_BASE_URL || 'https://beautybucket.com.bd'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Privacy Policy',
-          item: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://smartgadget.com.bd/privacy'
+          item: process.env.NEXT_PUBLIC_BASE_URL + '/privacy' || 'https://beautybucket.com.bd/privacy'
         }
       ]
     },
     mainEntity: {
       '@type': 'PrivacyPolicy',
-      name: 'Smart Gadget Privacy Policy',
-      description: 'This privacy policy explains how Smart Gadget collects, uses, and protects your personal information.',
+      name: 'Beauty Bucket Privacy Policy',
+      description: 'This privacy policy explains how Beauty Bucket collects, uses, and protects your personal information.',
       datePublished: '2024-01-01',
       dateModified: '2024-01-01',
       jurisdiction: 'Bangladesh',
       appliesTo: {
         '@type': 'Organization',
-        name: 'Smart Gadget Bangladesh',
+        name: 'Beauty Bucket Bangladesh',
       },
       privacyPolicy: {
         '@type': 'CreativeWork',
-        name: 'Smart Gadget Privacy Policy',
-        text: 'Smart Gadget is committed to protecting your privacy. We collect personal information to process orders, provide customer service, and improve your shopping experience.',
+        name: 'Beauty Bucket Privacy Policy',
+        text: 'Beauty Bucket is committed to protecting your privacy. We collect personal information to process orders, provide beauty consultation, and improve your shopping experience.',
       },
       dataCollection: {
         '@type': 'DataCollection',
-        dataType: ['Personal Information', 'Purchase History', 'Product Preferences', 'Device Preferences'],
+        dataType: ['Personal Information', 'Purchase History', 'Skin Type Preferences', 'Beauty Concerns', 'Product Interests', 'Shade Preferences', 'Fragrance Preferences'],
         method: 'User Provided, Automatic Collection',
-        usage: 'Order Processing, Customer Service, Product Recommendations, Marketing (with consent)'
+        usage: 'Order Processing, Beauty Consultation, Customer Service, Product Recommendations, Marketing (with consent)'
       },
       dataSecurity: {
         '@type': 'DataSecurity',
@@ -295,19 +326,21 @@ export const generateJsonLd = () => {
         '@type': 'ItemList',
         name: 'Product Categories Covered',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Smartphones' },
-          { '@type': 'ListItem', position: 2, name: 'Laptops' },
-          { '@type': 'ListItem', position: 3, name: 'Smartwatches' },
-          { '@type': 'ListItem', position: 4, name: 'Headphones' },
-          { '@type': 'ListItem', position: 5, name: 'Gaming Accessories' },
-          { '@type': 'ListItem', position: 6, name: 'Smart Home Devices' },
+          { '@type': 'ListItem', position: 1, name: 'Skincare' },
+          { '@type': 'ListItem', position: 2, name: 'Makeup' },
+          { '@type': 'ListItem', position: 3, name: 'Fragrances' },
+          { '@type': 'ListItem', position: 4, name: 'Hair Care' },
+          { '@type': 'ListItem', position: 5, name: 'Body Care' },
+          { '@type': 'ListItem', position: 6, name: 'Beauty Accessories' },
+          { '@type': 'ListItem', position: 7, name: 'Natural Beauty' },
+          { '@type': 'ListItem', position: 8, name: 'K-Beauty' },
         ]
       }
     },
     copyrightYear: new Date().getFullYear(),
     copyrightHolder: {
       '@type': 'Organization',
-      name: 'Smart Gadget Bangladesh',
+      name: 'Beauty Bucket Bangladesh',
     }
   };
 };

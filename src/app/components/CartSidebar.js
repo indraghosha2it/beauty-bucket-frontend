@@ -1,4 +1,5 @@
 
+
 // 'use client';
 
 // import { useState, useEffect, useRef } from 'react';
@@ -127,24 +128,45 @@
 //   }, [isOpen]);
 
 //   // Fetch product colors for items in cart
-//   const fetchProductColors = async (items) => {
-//     const colorMap = {};
-//     const uniqueProductIds = [...new Set(items.map(item => item.productId))];
+//   // const fetchProductColors = async (items) => {
+//   //   const colorMap = {};
+//   //   const uniqueProductIds = [...new Set(items.map(item => item.productId))];
     
-//     for (const productId of uniqueProductIds) {
-//       try {
-//         const response = await fetch(`http://localhost:5000/api/products/${productId}`);
-//         const data = await response.json();
-//         if (data.success && data.data.product.colors) {
-//           colorMap[productId] = data.data.product.colors;
-//         }
-//       } catch (error) {
-//         console.error('Error fetching product colors:', error);
-//       }
-//     }
-//     return colorMap;
-//   };
-
+//   //   for (const productId of uniqueProductIds) {
+//   //     try {
+//   //       const response = await fetch(`http://localhost:5000/api/products/${productId}`);
+//   //       const data = await response.json();
+//   //       if (data.success && data.data.product.colors) {
+//   //         colorMap[productId] = data.data.product.colors;
+//   //       }
+//   //     } catch (error) {
+//   //       console.error('Error fetching product colors:', error);
+//   //     }
+//   //   }
+//   //   return colorMap;
+//   // };
+// // ✅ OPTIMIZED: Batch fetch product colors in one API call
+// const fetchProductColors = async (items) => {
+//   if (!items || items.length === 0) return {};
+  
+//   const uniqueProductIds = [...new Set(items.map(item => item.productId))];
+//   if (uniqueProductIds.length === 0) return {};
+  
+//   try {
+//     // ✅ One API call for all products
+//     const response = await fetch('http://localhost:5000/api/products/colors-by-ids', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ productIds: uniqueProductIds })
+//     });
+    
+//     const data = await response.json();
+//     return data.success ? data.data : {};
+//   } catch (error) {
+//     console.error('Error fetching product colors:', error);
+//     return {};
+//   }
+// };
 //   // Group cart items by productId
 //   const groupItemsByProduct = (items) => {
 //     const grouped = {};
@@ -190,20 +212,87 @@
 //     return Object.values(grouped);
 //   };
 
-//   // In CartSidebar.js - Update the fetchCart function
+//   // ========== FETCH CART ==========
+//   // const fetchCart = async () => {
+//   //   if (!isMounted.current) return;
+    
+//   //   try {
+//   //     const token = localStorage.getItem('token');
+//   //     const sessionId = localStorage.getItem('cartSessionId');
+//   //     const headers = {};
+      
+//   //     console.log('🔍 Fetching cart - Token:', token ? 'Yes' : 'No', 'SessionId:', sessionId || 'None');
+      
+//   //     if (token) {
+//   //       headers['Authorization'] = `Bearer ${token}`;
+//   //       console.log('🔐 Fetching user cart with token');
+        
+//   //       const response = await fetch('http://localhost:5000/api/cart/user', { headers });
+//   //       const data = await response.json();
+        
+//   //       if (!isMounted.current) return;
+        
+//   //       if (data.success) {
+//   //         console.log('📦 User cart fetched:', data.data.items.length, 'items');
+//   //         setCart(data.data);
+//   //         const colors = await fetchProductColors(data.data.items || []);
+//   //         setProductColors(colors);
+//   //       } else {
+//   //         console.error('Failed to fetch user cart:', data.error);
+//   //         setCart({ items: [], totalItems: 0, subtotal: 0 });
+//   //       }
+//   //     } else if (sessionId) {
+//   //       headers['x-session-id'] = sessionId;
+//   //       console.log('👤 Fetching guest cart with sessionId');
+        
+//   //       const response = await fetch('http://localhost:5000/api/cart', { headers });
+//   //       const data = await response.json();
+        
+//   //       if (!isMounted.current) return;
+        
+//   //       if (data.success) {
+//   //         console.log('📦 Guest cart fetched:', data.data.items.length, 'items');
+//   //         setCart(data.data);
+//   //         const colors = await fetchProductColors(data.data.items || []);
+//   //         setProductColors(colors);
+//   //       } else {
+//   //         setCart({ items: [], totalItems: 0, subtotal: 0 });
+//   //       }
+//   //     } else {
+//   //       console.log('📭 No auth found, empty cart');
+//   //       setCart({ items: [], totalItems: 0, subtotal: 0 });
+//   //     }
+//   //   } catch (error) {
+//   //     console.error('Fetch cart error:', error);
+//   //     if (isMounted.current) {
+//   //       setCart({ items: [], totalItems: 0, subtotal: 0 });
+//   //     }
+//   //   } finally {
+//   //     if (isMounted.current) {
+//   //       setLoading(false);
+//   //     }
+//   //   }
+//   // };
 
-// // ========== FETCH CART ==========
+//   // In CartSidebar.jsx - update the fetchCart function
+
 // const fetchCart = async () => {
 //   if (!isMounted.current) return;
   
 //   try {
 //     const token = localStorage.getItem('token');
-//     const sessionId = localStorage.getItem('cartSessionId');
+//     let sessionId = localStorage.getItem('cartSessionId');
 //     const headers = {};
+    
+//     // ✅ If no token and no sessionId, generate one
+//     if (!token && !sessionId) {
+//       sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+//       localStorage.setItem('cartSessionId', sessionId);
+//       console.log('🆕 Generated new session ID:', sessionId);
+//     }
     
 //     console.log('🔍 Fetching cart - Token:', token ? 'Yes' : 'No', 'SessionId:', sessionId || 'None');
     
-//     // IMPORTANT: If user is logged in, use the /user endpoint
 //     if (token) {
 //       headers['Authorization'] = `Bearer ${token}`;
 //       console.log('🔐 Fetching user cart with token');
@@ -223,7 +312,6 @@
 //         setCart({ items: [], totalItems: 0, subtotal: 0 });
 //       }
 //     } else if (sessionId) {
-//       // Guest user - use sessionId
 //       headers['x-session-id'] = sessionId;
 //       console.log('👤 Fetching guest cart with sessionId');
       
@@ -238,6 +326,13 @@
 //         const colors = await fetchProductColors(data.data.items || []);
 //         setProductColors(colors);
 //       } else {
+//         // ✅ If guest cart fetch fails, clear the sessionId and retry
+//         if (data.error === 'Session not found' || data.error === 'Invalid session') {
+//           localStorage.removeItem('cartSessionId');
+//           console.log('🔄 Invalid session, clearing and retrying');
+//           await fetchCart();
+//           return;
+//         }
 //         setCart({ items: [], totalItems: 0, subtotal: 0 });
 //       }
 //     } else {
@@ -317,85 +412,82 @@
 //     }
 //   }, [isOpen]);
 
-// // Add color to cart
-// const addColorToCart = async (productId, color) => {
-//   const existingColorItem = cart.items.find(
-//     item => item.productId === productId && 
-//             item.selectedColor === color
-//   );
-  
-//   if (existingColorItem) {
-//     toast.info(`${getColorName(color)} is already in your cart`);
-//     return;
-//   }
-  
-//   setAddingColor(prev => ({ ...prev, [productId]: true }));
-  
-//   try {
-//     const token = localStorage.getItem('token');
-//     const sessionId = localStorage.getItem('cartSessionId');
-//     const headers = { 'Content-Type': 'application/json' };
-    
-//     if (token) {
-//       headers['Authorization'] = `Bearer ${token}`;
-//     } else if (sessionId) {
-//       headers['x-session-id'] = sessionId;
-//     }
-    
-//     const nullColorItem = cart.items.find(
+//   // Add color to cart
+//   const addColorToCart = async (productId, color) => {
+//     const existingColorItem = cart.items.find(
 //       item => item.productId === productId && 
-//       (!item.selectedColor || item.selectedColor === '' || item.selectedColor === null || item.selectedColor === 'null' || item.selectedColor === 'undefined')
+//               item.selectedColor === color
 //     );
     
-//     if (nullColorItem) {
-//       await fetch(`http://localhost:5000/api/cart/${nullColorItem._id}`, {
-//         method: 'DELETE',
-//         headers
-//       });
+//     if (existingColorItem) {
+//       toast.info(`${getColorName(color)} is already in your cart`);
+//       return;
 //     }
     
-//     const response = await fetch('http://localhost:5000/api/cart', {
-//       method: 'POST',
-//       headers,
-//       body: JSON.stringify({ 
-//         productId: productId, 
-//         quantity: 1,
-//         selectedColor: color 
-//       })
-//     });
+//     setAddingColor(prev => ({ ...prev, [productId]: true }));
     
-//     const data = await response.json();
-    
-//     if (data.success) {
-//       if (data.sessionId && !token) {
-//         localStorage.setItem('cartSessionId', data.sessionId);
+//     try {
+//       const token = localStorage.getItem('token');
+//       const sessionId = localStorage.getItem('cartSessionId');
+//       const headers = { 'Content-Type': 'application/json' };
+      
+//       if (token) {
+//         headers['Authorization'] = `Bearer ${token}`;
+//       } else if (sessionId) {
+//         headers['x-session-id'] = sessionId;
 //       }
-//       setCart(data.data);
-//       window.dispatchEvent(new Event('cart-update'));
-//       toast.success(`Added ${getColorName(color)} to cart!`);
-//     } else {
-//       toast.error(data.error || 'Failed to add color');
+      
+//       const nullColorItem = cart.items.find(
+//         item => item.productId === productId && 
+//         (!item.selectedColor || item.selectedColor === '' || item.selectedColor === null || item.selectedColor === 'null' || item.selectedColor === 'undefined')
+//       );
+      
+//       if (nullColorItem) {
+//         await fetch(`http://localhost:5000/api/cart/${nullColorItem._id}`, {
+//           method: 'DELETE',
+//           headers
+//         });
+//       }
+      
+//       const response = await fetch('http://localhost:5000/api/cart', {
+//         method: 'POST',
+//         headers,
+//         body: JSON.stringify({ 
+//           productId: productId, 
+//           quantity: 1,
+//           selectedColor: color 
+//         })
+//       });
+      
+//       const data = await response.json();
+      
+//       if (data.success) {
+//         if (data.sessionId && !token) {
+//           localStorage.setItem('cartSessionId', data.sessionId);
+//         }
+//         setCart(data.data);
+//         window.dispatchEvent(new Event('cart-update'));
+//         toast.success(`Added ${getColorName(color)} to cart!`);
+//       } else {
+//         toast.error(data.error || 'Failed to add color');
+//       }
+//     } catch (error) {
+//       console.error('Add color error:', error);
+//       toast.error('Network error');
+//     } finally {
+//       setAddingColor(prev => ({ ...prev, [productId]: false }));
 //     }
-//   } catch (error) {
-//     console.error('Add color error:', error);
-//     toast.error('Network error');
-//   } finally {
-//     setAddingColor(prev => ({ ...prev, [productId]: false }));
-//   }
-// };
+//   };
 
 //   // ========== FIXED: Quantity handlers with real-time total updates and debounce ==========
 
-//   // Handle quantity input change - updates totals in real-time with debounce
 //   const handleQuantityInputChange = (e, itemId, currentItem) => {
 //     const value = e.target.value;
     
-//     // Clear existing timer for this item
 //     if (debounceTimerRef.current[itemId]) {
 //       clearTimeout(debounceTimerRef.current[itemId]);
 //     }
     
-//     // Allow empty string so user can clear the field
 //     if (value === '') {
 //       setCart(prevCart => {
 //         const updatedItems = prevCart.items.map(item => {
@@ -410,11 +502,9 @@
 //       return;
 //     }
     
-//     // Only allow numeric values
 //     if (/^\d+$/.test(value)) {
 //       const numValue = parseInt(value);
 //       if (numValue >= 1 && numValue <= currentItem?.stockQuantity) {
-//         // Update local state immediately
 //         setCart(prevCart => {
 //           const updatedItems = prevCart.items.map(item => {
 //             if (item._id === itemId) {
@@ -426,7 +516,6 @@
 //           return { ...prevCart, items: updatedItems, totalItems, subtotal };
 //         });
         
-//         // Debounce the API call - save after 500ms of no typing
 //         debounceTimerRef.current[itemId] = setTimeout(() => {
 //           updateQuantity(itemId, numValue);
 //         }, 500);
@@ -434,9 +523,7 @@
 //     }
 //   };
 
-//   // Handle quantity blur - validates and updates
 //   const handleQuantityBlur = (itemId, currentItem) => {
-//     // Clear any pending debounce timer
 //     if (debounceTimerRef.current[itemId]) {
 //       clearTimeout(debounceTimerRef.current[itemId]);
 //       delete debounceTimerRef.current[itemId];
@@ -454,13 +541,11 @@
 //       toast.error(`Only ${item.stockQuantity} items available`);
 //     }
     
-//     // Update the quantity if changed
 //     if (finalQuantity !== parseInt(item.quantity)) {
 //       updateQuantity(itemId, finalQuantity);
 //     } else if (item.quantity === '') {
 //       updateQuantity(itemId, 1);
 //     } else {
-//       // Even if quantity is the same, ensure totals are correct
 //       setCart(prevCart => {
 //         const updatedItems = prevCart.items.map(i => {
 //           if (i._id === itemId) {
@@ -474,11 +559,9 @@
 //     }
 //   };
 
-//   // Handle quantity key down - Enter to confirm
 //   const handleQuantityKeyDown = (e, itemId) => {
 //     if (e.key === 'Enter') {
 //       e.preventDefault();
-//       // Clear debounce timer
 //       if (debounceTimerRef.current[itemId]) {
 //         clearTimeout(debounceTimerRef.current[itemId]);
 //         delete debounceTimerRef.current[itemId];
@@ -519,7 +602,6 @@
     
 //     const previousCart = { ...cart };
     
-//     // Optimistically update the UI
 //     setCart(prevCart => {
 //       const updatedItems = prevCart.items.map(item => {
 //         if (item._id === itemId) {
@@ -566,149 +648,143 @@
 //     }
 //   };
 
-// const removeItem = async (itemId) => {
-//   // Clear debounce timer for this item
-//   if (debounceTimerRef.current[itemId]) {
-//     clearTimeout(debounceTimerRef.current[itemId]);
-//     delete debounceTimerRef.current[itemId];
-//   }
-  
-//   setUpdatingItems(prev => ({ ...prev, [itemId]: true }));
-  
-//   const previousCart = { ...cart };
-  
-//   // Optimistically remove from UI
-//   setCart(prevCart => {
-//     const updatedItems = prevCart.items.filter(item => item._id !== itemId);
-//     const { totalItems, subtotal } = recalculateTotals(updatedItems);
-//     return { ...prevCart, items: updatedItems, totalItems, subtotal };
-//   });
-  
-//   try {
-//     const token = localStorage.getItem('token');
-//     const sessionId = localStorage.getItem('cartSessionId');
-//     const headers = {};
-    
-//     if (token) {
-//       headers['Authorization'] = `Bearer ${token}`;
-//     } else if (sessionId) {
-//       headers['x-session-id'] = sessionId;
+//   const removeItem = async (itemId) => {
+//     if (debounceTimerRef.current[itemId]) {
+//       clearTimeout(debounceTimerRef.current[itemId]);
+//       delete debounceTimerRef.current[itemId];
 //     }
     
-//     const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
-//       method: 'DELETE',
-//       headers
+//     setUpdatingItems(prev => ({ ...prev, [itemId]: true }));
+    
+//     const previousCart = { ...cart };
+    
+//     setCart(prevCart => {
+//       const updatedItems = prevCart.items.filter(item => item._id !== itemId);
+//       const { totalItems, subtotal } = recalculateTotals(updatedItems);
+//       return { ...prevCart, items: updatedItems, totalItems, subtotal };
 //     });
     
-//     const data = await response.json();
-    
-//     if (data.success) {
-//       setCart(data.data);
-//       window.dispatchEvent(new Event('cart-update'));
-//       toast.success('Item removed');
-//     } else {
+//     try {
+//       const token = localStorage.getItem('token');
+//       const sessionId = localStorage.getItem('cartSessionId');
+//       const headers = {};
+      
+//       if (token) {
+//         headers['Authorization'] = `Bearer ${token}`;
+//       } else if (sessionId) {
+//         headers['x-session-id'] = sessionId;
+//       }
+      
+//       const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+//         method: 'DELETE',
+//         headers
+//       });
+      
+//       const data = await response.json();
+      
+//       if (data.success) {
+//         setCart(data.data);
+//         window.dispatchEvent(new Event('cart-update'));
+//         toast.success('Item removed');
+//       } else {
+//         setCart(previousCart);
+//         toast.error(data.error || 'Failed to remove');
+//       }
+//     } catch (error) {
+//       console.error('Remove error:', error);
 //       setCart(previousCart);
-//       toast.error(data.error || 'Failed to remove');
+//       toast.error('Failed to remove');
+//     } finally {
+//       setUpdatingItems(prev => ({ ...prev, [itemId]: false }));
 //     }
-//   } catch (error) {
-//     console.error('Remove error:', error);
-//     setCart(previousCart);
-//     toast.error('Failed to remove');
-//   } finally {
-//     setUpdatingItems(prev => ({ ...prev, [itemId]: false }));
-//   }
-// };
+//   };
 
-//  // Remove entire product
-// const removeProduct = async (productId) => {
-//   // Clear all debounce timers for this product's items
-//   const itemsToRemove = cart.items.filter(item => item.productId === productId);
-//   itemsToRemove.forEach(item => {
-//     if (debounceTimerRef.current[item._id]) {
-//       clearTimeout(debounceTimerRef.current[item._id]);
-//       delete debounceTimerRef.current[item._id];
-//     }
-//   });
-  
-//   try {
-//     const token = localStorage.getItem('token');
-//     const sessionId = localStorage.getItem('cartSessionId');
-//     const headers = {};
-    
-//     if (token) {
-//       headers['Authorization'] = `Bearer ${token}`;
-//     } else if (sessionId) {
-//       headers['x-session-id'] = sessionId;
-//     }
-    
-//     const response = await fetch(`http://localhost:5000/api/cart/product/${productId}`, {
-//       method: 'DELETE',
-//       headers
+//   // Remove entire product
+//   const removeProduct = async (productId) => {
+//     const itemsToRemove = cart.items.filter(item => item.productId === productId);
+//     itemsToRemove.forEach(item => {
+//       if (debounceTimerRef.current[item._id]) {
+//         clearTimeout(debounceTimerRef.current[item._id]);
+//         delete debounceTimerRef.current[item._id];
+//       }
 //     });
     
-//     const data = await response.json();
-    
-//     if (data.success) {
-//       setCart(data.data);
-//       window.dispatchEvent(new Event('cart-update'));
-//       toast.success('Product removed from cart');
-//     } else {
-//       toast.error(data.error || 'Failed to remove product');
+//     try {
+//       const token = localStorage.getItem('token');
+//       const sessionId = localStorage.getItem('cartSessionId');
+//       const headers = {};
+      
+//       if (token) {
+//         headers['Authorization'] = `Bearer ${token}`;
+//       } else if (sessionId) {
+//         headers['x-session-id'] = sessionId;
+//       }
+      
+//       const response = await fetch(`http://localhost:5000/api/cart/product/${productId}`, {
+//         method: 'DELETE',
+//         headers
+//       });
+      
+//       const data = await response.json();
+      
+//       if (data.success) {
+//         setCart(data.data);
+//         window.dispatchEvent(new Event('cart-update'));
+//         toast.success('Product removed from cart');
+//       } else {
+//         toast.error(data.error || 'Failed to remove product');
+//       }
+//     } catch (error) {
+//       console.error('Remove product error:', error);
+//       toast.error('Failed to remove product');
 //     }
-//   } catch (error) {
-//     console.error('Remove product error:', error);
-//     toast.error('Failed to remove product');
-//   }
-// };
+//   };
 
-// const clearCart = async () => {
-//   // Clear all debounce timers
-//   Object.values(debounceTimerRef.current).forEach(timer => {
-//     if (timer) clearTimeout(timer);
-//   });
-//   debounceTimerRef.current = {};
-  
-//   setIsClearing(true);
-//   try {
-//     const token = localStorage.getItem('token');
-//     const sessionId = localStorage.getItem('cartSessionId');
-//     const headers = {};
-//     let url = 'http://localhost:5000/api/cart';
+//   const clearCart = async () => {
+//     Object.values(debounceTimerRef.current).forEach(timer => {
+//       if (timer) clearTimeout(timer);
+//     });
+//     debounceTimerRef.current = {};
     
-//     if (token) {
-//       headers['Authorization'] = `Bearer ${token}`;
-//       // When logged in, clear user's cart
-//     } else if (sessionId) {
-//       headers['x-session-id'] = sessionId;
-//       // When guest, clear session cart
-//     } else {
-//       toast.error('No session found');
+//     setIsClearing(true);
+//     try {
+//       const token = localStorage.getItem('token');
+//       const sessionId = localStorage.getItem('cartSessionId');
+//       const headers = {};
+//       let url = 'http://localhost:5000/api/cart';
+      
+//       if (token) {
+//         headers['Authorization'] = `Bearer ${token}`;
+//       } else if (sessionId) {
+//         headers['x-session-id'] = sessionId;
+//       } else {
+//         toast.error('No session found');
+//         setIsClearing(false);
+//         return;
+//       }
+      
+//       const response = await fetch(url, {
+//         method: 'DELETE',
+//         headers
+//       });
+      
+//       const data = await response.json();
+      
+//       if (data.success) {
+//         setCart({ items: [], totalItems: 0, subtotal: 0 });
+//         window.dispatchEvent(new Event('cart-update'));
+//         toast.success('Cart cleared successfully');
+//         setShowClearModal(false);
+//       } else {
+//         toast.error(data.error || 'Failed to clear cart');
+//       }
+//     } catch (error) {
+//       console.error('Clear cart error:', error);
+//       toast.error('Failed to clear cart');
+//     } finally {
 //       setIsClearing(false);
-//       return;
 //     }
-    
-//     const response = await fetch(url, {
-//       method: 'DELETE',
-//       headers
-//     });
-    
-//     const data = await response.json();
-    
-//     if (data.success) {
-//       setCart({ items: [], totalItems: 0, subtotal: 0 });
-//       window.dispatchEvent(new Event('cart-update'));
-//       toast.success('Cart cleared successfully');
-//       setShowClearModal(false);
-//     } else {
-//       toast.error(data.error || 'Failed to clear cart');
-//     }
-//   } catch (error) {
-//     console.error('Clear cart error:', error);
-//     toast.error('Failed to clear cart');
-//   } finally {
-//     setIsClearing(false);
-//   }
-// };
+//   };
 
 //   const proceedToCheckout = () => {
 //     if (!cart?.items?.length) {
@@ -716,7 +792,6 @@
 //       return;
 //     }
     
-//     // Check if any item with available colors is missing a color selection
 //     const itemsNeedingColor = cart.items.filter(item => {
 //       const availableColors = productColors[item.productId] || [];
       
@@ -764,7 +839,6 @@
 //   const groupedItems = cart.items.length > 0 ? groupItemsByProduct(cart.items) : [];
 //   const total = cart.subtotal || 0;
 
-//   // Check if any color product is missing color selection
 //   const hasMissingColors = cart.items.some(item => {
 //     const availableColors = productColors[item.productId] || [];
 //     if (availableColors.length === 0) return false;
@@ -793,7 +867,7 @@
 //         )}
 //       </AnimatePresence>
 
-//       {/* Cart Sidebar */}
+//       {/* Cart Sidebar - Black & Blue Theme */}
 //       <AnimatePresence>
 //         {isOpen && (
 //           <motion.div
@@ -803,50 +877,50 @@
 //             transition={{ type: 'tween', duration: 0.3 }}
 //             className="fixed right-0 top-0 h-full bg-white shadow-2xl z-[9999] flex flex-col w-[85%] sm:w-[400px] md:w-[450px] lg:w-[33.333%]"
 //           >
-//             {/* Header */}
-//             <div className="flex items-center justify-between p-3 sm:p-4 border-b border-[#06B6D4]/20 bg-white">
+//             {/* Header - Black background with Blue accent */}
+//             <div className="flex items-center justify-between p-3 sm:p-4 border-b border-blue-500/20 bg-white">
 //               <div className="flex items-center gap-2">
-//                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#06B6D4] flex items-center justify-center shadow-lg shadow-[#06B6D4]/25">
-//                   <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+//                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/25">
+//                   <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
 //                 </div>
 //                 <div>
-//                   <h2 className="text-base sm:text-lg font-bold text-[#004767]">
-//                     Power Cart
+//                   <h2 className="text-base sm:text-lg font-bold text-black">
+//                     Your Cart
 //                   </h2>
-//                   <p className="text-[8px] sm:text-[9px] text-[#06B6D4] -mt-0.5">HyperVolt Power</p>
+//                   <p className="text-[8px] sm:text-[9px] text-blue-400 -mt-0.5">Smart Gadget</p>
 //                 </div>
 //                 {cart.totalItems > 0 && (
-//                   <span className="bg-[#06B6D4] text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full shadow-sm">
+//                   <span className="bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full shadow-sm">
 //                     {cart.totalItems}
 //                   </span>
 //                 )}
 //               </div>
 //               <button
 //                 onClick={onClose}
-//                 className="p-1.5 sm:p-2 rounded-full hover:bg-[#E2E7EA] transition-colors"
+//                 className="p-1.5 sm:p-2 rounded-full hover:bg-white/10 transition-colors"
 //               >
-//                 <X className="w-4 h-4 sm:w-5 sm:h-5 text-[#64748B] hover:text-[#004767] transition-colors" />
+//                 <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 hover:text-white transition-colors" />
 //               </button>
 //             </div>
 
-//             {/* Cart Items */}
-//             <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-[#E2E7EA]">
+//             {/* Cart Items - Light gray background */}
+//             <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-50">
 //               {loading ? (
 //                 <div className="flex items-center justify-center py-20">
-//                   <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-[#06B6D4] animate-spin" />
+//                   <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 animate-spin" />
 //                 </div>
 //               ) : cart.items.length === 0 ? (
 //                 <div className="text-center py-12">
-//                   <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-full flex items-center justify-center border border-[#06B6D4]/20 shadow-sm">
-//                     <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-[#06B6D4]/40" />
+//                   <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-full flex items-center justify-center border border-blue-500/20 shadow-sm">
+//                     <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500/40" />
 //                   </div>
-//                   <p className="text-sm sm:text-base text-[#64748B] mb-2">Your power cart is empty</p>
-//                   <p className="text-xs text-[#64748B]/60 mb-4 sm:mb-6">Time to power up your life!</p>
+//                   <p className="text-sm sm:text-base text-gray-600 mb-2">Your cart is empty</p>
+//                   <p className="text-xs text-gray-400 mb-4 sm:mb-6">Start shopping for amazing gadgets!</p>
 //                   <button
 //                     onClick={handleShopNow}
-//                     className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-[#06B6D4] text-white font-semibold text-sm sm:text-base rounded-full hover:shadow-lg hover:shadow-[#06B6D4]/30 transition-all transform hover:scale-105"
+//                     className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-black text-white font-semibold text-sm sm:text-base rounded-full hover:shadow-lg hover:shadow-black/30 transition-all transform hover:scale-105"
 //                   >
-//                     <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
+//                     <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
 //                     Start Shopping
 //                   </button>
 //                 </div>
@@ -860,42 +934,42 @@
 //                     const hasNoColorItem = group.noColorItem;
                     
 //                     return (
-//                       <div key={group._id} className="bg-white rounded-xl border border-[#06B6D4]/15 overflow-hidden hover:border-[#06B6D4]/40 transition-all shadow-sm hover:shadow-md hover:shadow-[#06B6D4]/10">
-//                         {/* Product Header */}
-//                         <div className="flex items-start gap-2 p-2 sm:p-3 bg-[#E2E7EA]/50 border-b border-[#06B6D4]/10">
+//                       <div key={group._id} className="bg-white rounded-xl border border-blue-500/15 overflow-hidden hover:border-blue-500/40 transition-all shadow-sm hover:shadow-md hover:shadow-blue-500/10">
+//                         {/* Product Header - Black accent */}
+//                         <div className="flex items-start gap-2 p-2 sm:p-3 bg-gray-50/80 border-b border-blue-500/10">
 //                           <Link href={`/product/${group.productSlug || group.productId}`} onClick={onClose}>
-//                             <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#E2E7EA] rounded-lg overflow-hidden border border-[#06B6D4]/20 flex-shrink-0">
+//                             <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 rounded-lg overflow-hidden border border-blue-500/20 flex-shrink-0">
 //                               <img
 //                                 src={group.image || 'https://via.placeholder.com/64'}
 //                                 alt={group.productName}
 //                                 className="w-full h-full object-contain p-0.5 sm:p-1"
 //                                 onError={(e) => {
-//                                   e.target.src = 'https://via.placeholder.com/64?text=Power';
+//                                   e.target.src = 'https://via.placeholder.com/64?text=Gadget';
 //                                 }}
 //                               />
 //                             </div>
 //                           </Link>
 //                           <div className="flex-1 min-w-0">
 //                             <Link href={`/product/${group.productSlug || group.productId}`} onClick={onClose}>
-//                               <h3 className="font-semibold text-xs sm:text-sm text-[#004767] hover:text-[#06B6D4] transition-colors line-clamp-2" title={group.productName}>
+//                               <h3 className="font-semibold text-xs sm:text-sm text-black hover:text-blue-600 transition-colors line-clamp-2" title={group.productName}>
 //                                 {group.productName}
 //                               </h3>
 //                             </Link>
 //                             <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-//                               <span className="text-sm sm:text-base font-bold text-[#06B6D4]">
+//                               <span className="text-sm sm:text-base font-bold text-black">
 //                                 ৳{price.toFixed(2)}
 //                               </span>
 //                               {group.discountPrice > 0 && (
-//                                 <span className="text-[10px] sm:text-xs text-[#64748B]/50 line-through">
+//                                 <span className="text-[10px] sm:text-xs text-gray-400 line-through">
 //                                   ৳{group.regularPrice.toFixed(2)}
 //                                 </span>
 //                               )}
-//                               <span className="inline-flex items-center gap-0.5 text-[9px] sm:text-[10px] text-[#64748B]/60 bg-[#E2E7EA] px-1.5 py-0.5 rounded-full">
+//                               <span className="inline-flex items-center gap-0.5 text-[9px] sm:text-[10px] text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
 //                                 <Scale className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
 //                                 /{getUnitLabel(group.unit)}
 //                               </span>
 //                               {selectedColorItems.length > 0 && (
-//                                 <span className="text-[9px] sm:text-[10px] text-[#64748B]/60">
+//                                 <span className="text-[9px] sm:text-[10px] text-gray-500">
 //                                   {selectedColorItems.length} color{selectedColorItems.length > 1 ? 's' : ''}
 //                                 </span>
 //                               )}
@@ -907,10 +981,10 @@
 //                             )}
 //                           </div>
                           
-//                           {/* Remove Product */}
+//                           {/* Remove Product - Red on hover */}
 //                           <button
 //                             onClick={() => removeProduct(group.productId)}
-//                             className="p-1.5 text-red-400/60 hover:text-red-400 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+//                             className="p-1.5 text-gray-400/60 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
 //                             title="Remove product"
 //                           >
 //                             <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -921,9 +995,9 @@
 //                         {hasColors && (
 //                           <>
 //                             {/* Available Colors */}
-//                             <div className="p-2 sm:p-3 border-b border-[#06B6D4]/10 bg-[#E2E7EA]/30">
-//                               <p className="text-[10px] text-[#64748B] mb-1.5 flex items-center gap-1">
-//                                 <Palette className="w-3 h-3 text-[#06B6D4]" />
+//                             <div className="p-2 sm:p-3 border-b border-blue-500/10 bg-gray-50/50">
+//                               <p className="text-[10px] text-gray-500 mb-1.5 flex items-center gap-1">
+//                                 <Palette className="w-3 h-3 text-black" />
 //                                 Colors:
 //                               </p>
 //                               <div className="flex flex-wrap gap-1.5">
@@ -942,8 +1016,8 @@
 //                                       disabled={isSelected || isAdding}
 //                                       className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
 //                                         isSelected 
-//                                           ? 'border-[#06B6D4] shadow-md ring-2 ring-[#06B6D4]/30 scale-110 cursor-default' 
-//                                           : 'border-[#06B6D4]/30 hover:border-[#06B6D4]/60 cursor-pointer'
+//                                           ? 'border-black shadow-md ring-2 ring-black/30 scale-110 cursor-default' 
+//                                           : 'border-blue-300 hover:border-black cursor-pointer'
 //                                       } ${isAdding ? 'opacity-50 cursor-not-allowed' : ''}`}
 //                                       style={{ backgroundColor: color }}
 //                                       title={isSelected ? `${getColorName(color)} (Selected)` : `Click to add ${getColorName(color)}`}
@@ -968,20 +1042,20 @@
 //                             {selectedColorItems.length > 0 && (
 //                               <div className="p-2 sm:p-3 space-y-2">
 //                                 {selectedColorItems.map((colorInfo) => (
-//                                   <div key={colorInfo.itemId} className="flex items-center gap-2 p-2 bg-[#E2E7EA] rounded-lg border border-[#06B6D4]/15">
+//                                   <div key={colorInfo.itemId} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg border border-blue-500/15">
 //                                     {/* Color Swatch */}
 //                                     <div 
-//                                       className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-[#06B6D4]/30 flex-shrink-0"
+//                                       className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-blue-500/30 flex-shrink-0"
 //                                       style={{ backgroundColor: colorInfo.color }}
 //                                       title={getColorName(colorInfo.color)}
 //                                     />
                                     
-//                                     {/* Quantity Controls */}
-//                                     <div className="flex items-center border border-[#06B6D4]/20 rounded-lg overflow-hidden bg-white ml-auto">
+//                                     {/* Quantity Controls - Black/Blue */}
+//                                     <div className="flex items-center border border-blue-500/20 rounded-lg overflow-hidden bg-white ml-auto">
 //                                       <button
 //                                         onClick={() => updateQuantity(colorInfo.itemId, colorInfo.quantity - 1)}
 //                                         disabled={updatingItems[colorInfo.itemId] || colorInfo.quantity <= 1}
-//                                         className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#E2E7EA] disabled:opacity-50 transition-colors text-[#64748B] hover:text-[#06B6D4]"
+//                                         className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
 //                                       >
 //                                         <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
 //                                       </button>
@@ -992,14 +1066,14 @@
 //                                         onChange={(e) => handleQuantityInputChange(e, colorInfo.itemId, colorInfo)}
 //                                         onBlur={() => handleQuantityBlur(colorInfo.itemId, colorInfo)}
 //                                         onKeyDown={(e) => handleQuantityKeyDown(e, colorInfo.itemId)}
-//                                         className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-[#004767] bg-white focus:outline-none focus:ring-1 focus:ring-[#06B6D4] py-0.5 rounded"
+//                                         className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-black bg-white focus:outline-none focus:ring-1 focus:ring-black py-0.5 rounded"
 //                                         disabled={updatingItems[colorInfo.itemId]}
 //                                       />
                                       
 //                                       <button
 //                                         onClick={() => updateQuantity(colorInfo.itemId, colorInfo.quantity + 1)}
 //                                         disabled={updatingItems[colorInfo.itemId] || colorInfo.quantity >= colorInfo.stockQuantity}
-//                                         className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#E2E7EA] disabled:opacity-50 transition-colors text-[#64748B] hover:text-[#06B6D4]"
+//                                         className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
 //                                       >
 //                                         <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
 //                                       </button>
@@ -1009,7 +1083,7 @@
 //                                     <button
 //                                       onClick={() => removeItem(colorInfo.itemId)}
 //                                       disabled={updatingItems[colorInfo.itemId]}
-//                                       className="p-1 text-red-400/40 hover:text-red-400 hover:bg-red-50 rounded transition-colors"
+//                                       className="p-1 text-gray-400/40 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
 //                                       title="Remove this color"
 //                                     >
 //                                       <X className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -1024,13 +1098,13 @@
 //                         {/* No Color Product */}
 //                         {!hasColors && hasNoColorItem && (
 //                           <div className="p-2 sm:p-3">
-//                             <div className="flex items-center justify-between gap-2 p-2 bg-[#E2E7EA] rounded-lg border border-[#06B6D4]/15">
-//                               <span className="text-xs text-[#64748B]">Quantity</span>
-//                               <div className="flex items-center border border-[#06B6D4]/20 rounded-lg overflow-hidden bg-white">
+//                             <div className="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded-lg border border-blue-500/15">
+//                               <span className="text-xs text-gray-500">Quantity</span>
+//                               <div className="flex items-center border border-blue-500/20 rounded-lg overflow-hidden bg-white">
 //                                 <button
 //                                   onClick={() => updateQuantity(hasNoColorItem.itemId, hasNoColorItem.quantity - 1)}
 //                                   disabled={updatingItems[hasNoColorItem.itemId] || hasNoColorItem.quantity <= 1}
-//                                   className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#E2E7EA] disabled:opacity-50 transition-colors text-[#64748B] hover:text-[#06B6D4]"
+//                                   className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
 //                                 >
 //                                   <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
 //                                 </button>
@@ -1041,14 +1115,14 @@
 //                                   onChange={(e) => handleQuantityInputChange(e, hasNoColorItem.itemId, hasNoColorItem)}
 //                                   onBlur={() => handleQuantityBlur(hasNoColorItem.itemId, hasNoColorItem)}
 //                                   onKeyDown={(e) => handleQuantityKeyDown(e, hasNoColorItem.itemId)}
-//                                   className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-[#004767] bg-white focus:outline-none focus:ring-1 focus:ring-[#06B6D4] py-0.5 rounded"
+//                                   className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-black bg-white focus:outline-none focus:ring-1 focus:ring-black py-0.5 rounded"
 //                                   disabled={updatingItems[hasNoColorItem.itemId]}
 //                                 />
                                 
 //                                 <button
 //                                   onClick={() => updateQuantity(hasNoColorItem.itemId, hasNoColorItem.quantity + 1)}
 //                                   disabled={updatingItems[hasNoColorItem.itemId] || hasNoColorItem.quantity >= hasNoColorItem.stockQuantity}
-//                                   className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#E2E7EA] disabled:opacity-50 transition-colors text-[#64748B] hover:text-[#06B6D4]"
+//                                   className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
 //                                 >
 //                                   <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
 //                                 </button>
@@ -1064,11 +1138,11 @@
 //                   <button
 //                     onClick={() => setShowClearModal(true)}
 //                     disabled={isClearing}
-//                     className="text-[#64748B]/40 hover:text-red-500 text-xs sm:text-sm transition-colors mt-2 block text-center w-full py-1.5 sm:py-2 hover:bg-red-50 rounded-lg"
+//                     className="text-gray-400/60 hover:text-red-500 text-xs sm:text-sm transition-colors mt-2 block text-center w-full py-1.5 sm:py-2 hover:bg-red-50 rounded-lg"
 //                   >
 //                     {isClearing ? (
 //                       <span className="flex items-center justify-center gap-1.5 sm:gap-2">
-//                         <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin text-[#06B6D4]" />
+//                         <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin text-black" />
 //                         Clearing...
 //                       </span>
 //                     ) : (
@@ -1079,14 +1153,14 @@
 //               )}
 //             </div>
 
-//             {/* Order Summary */}
+//             {/* Order Summary - Black & Blue */}
 //             {cart.items.length > 0 && (
-//               <div className="border-t border-[#06B6D4]/20 p-3 sm:p-4 bg-white">
+//               <div className="border-t border-blue-500/20 p-3 sm:p-4 bg-white">
 //                 <div className="flex justify-between items-center mb-4">
-//                   <span className="font-bold text-[#004767] text-base sm:text-lg">
+//                   <span className="font-bold text-black text-base sm:text-lg">
 //                     Total Amount
 //                   </span>
-//                   <span className="font-bold text-xl sm:text-2xl text-[#06B6D4]">
+//                   <span className="font-bold text-xl sm:text-2xl text-black">
 //                     ৳{total.toFixed(2)}
 //                   </span>
 //                 </div>
@@ -1110,7 +1184,7 @@
 //                     <ShieldCheck className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
 //                     <span>Secure checkout &amp; 7-day returns</span>
 //                   </div>
-//                   <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-[#06B6D4]">
+//                   <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-black">
 //                     <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
 //                     <span>Free shipping on orders over ৳3000</span>
 //                   </div>
@@ -1121,8 +1195,8 @@
 //                   disabled={hasMissingColors}
 //                   className={`w-full mt-3 sm:mt-4 py-2.5 sm:py-3 font-semibold rounded-full transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base ${
 //                     hasMissingColors 
-//                       ? 'bg-[#E2E7EA] text-[#64748B]/50 cursor-not-allowed' 
-//                       : 'bg-[#06B6D4] text-white hover:shadow-lg hover:shadow-[#06B6D4]/30 transition-all hover:scale-[1.02]'
+//                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+//                       : 'bg-black text-white hover:shadow-lg hover:shadow-black/30 transition-all hover:scale-[1.02]'
 //                   }`}
 //                 >
 //                   <CreditCard className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -1135,7 +1209,7 @@
 //         )}
 //       </AnimatePresence>
 
-//       {/* Clear Cart Confirmation Modal */}
+//       {/* Clear Cart Confirmation Modal - Black & Blue */}
 //       <AnimatePresence>
 //         {showClearModal && (
 //           <motion.div
@@ -1150,7 +1224,7 @@
 //               animate={{ scale: 1, opacity: 1 }}
 //               exit={{ scale: 0.9, opacity: 0 }}
 //               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-//               className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden border border-[#06B6D4]/20"
+//               className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden border border-black/20"
 //               onClick={(e) => e.stopPropagation()}
 //             >
 //               <div className="p-6">
@@ -1160,18 +1234,18 @@
 //                   </div>
 //                 </div>
                 
-//                 <h3 className="text-xl font-bold text-center text-[#004767] mb-2">
+//                 <h3 className="text-xl font-bold text-center text-black mb-2">
 //                   Clear Cart?
 //                 </h3>
                 
-//                 <p className="text-[#64748B] text-center mb-6 text-sm">
+//                 <p className="text-gray-600 text-center mb-6 text-sm">
 //                   Are you sure you want to remove all items from your cart? This action cannot be undone.
 //                 </p>
                 
 //                 <div className="flex gap-3">
 //                   <button
 //                     onClick={() => setShowClearModal(false)}
-//                     className="flex-1 px-4 py-2.5 border border-[#06B6D4]/30 text-[#64748B] font-medium rounded-full hover:bg-[#E2E7EA] transition-colors"
+//                     className="flex-1 px-4 py-2.5 border border-black/30 text-gray-600 font-medium rounded-full hover:bg-gray-50 transition-colors"
 //                   >
 //                     Cancel
 //                   </button>
@@ -1198,6 +1272,7 @@
 //     </>
 //   );
 // }
+
 
 'use client';
 
@@ -1326,46 +1401,28 @@ export default function CartSidebar({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  // Fetch product colors for items in cart
-  // const fetchProductColors = async (items) => {
-  //   const colorMap = {};
-  //   const uniqueProductIds = [...new Set(items.map(item => item.productId))];
+  // ✅ OPTIMIZED: Batch fetch product colors in one API call
+  const fetchProductColors = async (items) => {
+    if (!items || items.length === 0) return {};
     
-  //   for (const productId of uniqueProductIds) {
-  //     try {
-  //       const response = await fetch(`http://localhost:5000/api/products/${productId}`);
-  //       const data = await response.json();
-  //       if (data.success && data.data.product.colors) {
-  //         colorMap[productId] = data.data.product.colors;
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching product colors:', error);
-  //     }
-  //   }
-  //   return colorMap;
-  // };
-// ✅ OPTIMIZED: Batch fetch product colors in one API call
-const fetchProductColors = async (items) => {
-  if (!items || items.length === 0) return {};
-  
-  const uniqueProductIds = [...new Set(items.map(item => item.productId))];
-  if (uniqueProductIds.length === 0) return {};
-  
-  try {
-    // ✅ One API call for all products
-    const response = await fetch('http://localhost:5000/api/products/colors-by-ids', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productIds: uniqueProductIds })
-    });
+    const uniqueProductIds = [...new Set(items.map(item => item.productId))];
+    if (uniqueProductIds.length === 0) return {};
     
-    const data = await response.json();
-    return data.success ? data.data : {};
-  } catch (error) {
-    console.error('Error fetching product colors:', error);
-    return {};
-  }
-};
+    try {
+      const response = await fetch('http://localhost:5000/api/products/colors-by-ids', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productIds: uniqueProductIds })
+      });
+      
+      const data = await response.json();
+      return data.success ? data.data : {};
+    } catch (error) {
+      console.error('Error fetching product colors:', error);
+      return {};
+    }
+  };
+
   // Group cart items by productId
   const groupItemsByProduct = (items) => {
     const grouped = {};
@@ -1412,143 +1469,80 @@ const fetchProductColors = async (items) => {
   };
 
   // ========== FETCH CART ==========
-  // const fetchCart = async () => {
-  //   if (!isMounted.current) return;
+  const fetchCart = async () => {
+    if (!isMounted.current) return;
     
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const sessionId = localStorage.getItem('cartSessionId');
-  //     const headers = {};
+    try {
+      const token = localStorage.getItem('token');
+      let sessionId = localStorage.getItem('cartSessionId');
+      const headers = {};
       
-  //     console.log('🔍 Fetching cart - Token:', token ? 'Yes' : 'No', 'SessionId:', sessionId || 'None');
-      
-  //     if (token) {
-  //       headers['Authorization'] = `Bearer ${token}`;
-  //       console.log('🔐 Fetching user cart with token');
-        
-  //       const response = await fetch('http://localhost:5000/api/cart/user', { headers });
-  //       const data = await response.json();
-        
-  //       if (!isMounted.current) return;
-        
-  //       if (data.success) {
-  //         console.log('📦 User cart fetched:', data.data.items.length, 'items');
-  //         setCart(data.data);
-  //         const colors = await fetchProductColors(data.data.items || []);
-  //         setProductColors(colors);
-  //       } else {
-  //         console.error('Failed to fetch user cart:', data.error);
-  //         setCart({ items: [], totalItems: 0, subtotal: 0 });
-  //       }
-  //     } else if (sessionId) {
-  //       headers['x-session-id'] = sessionId;
-  //       console.log('👤 Fetching guest cart with sessionId');
-        
-  //       const response = await fetch('http://localhost:5000/api/cart', { headers });
-  //       const data = await response.json();
-        
-  //       if (!isMounted.current) return;
-        
-  //       if (data.success) {
-  //         console.log('📦 Guest cart fetched:', data.data.items.length, 'items');
-  //         setCart(data.data);
-  //         const colors = await fetchProductColors(data.data.items || []);
-  //         setProductColors(colors);
-  //       } else {
-  //         setCart({ items: [], totalItems: 0, subtotal: 0 });
-  //       }
-  //     } else {
-  //       console.log('📭 No auth found, empty cart');
-  //       setCart({ items: [], totalItems: 0, subtotal: 0 });
-  //     }
-  //   } catch (error) {
-  //     console.error('Fetch cart error:', error);
-  //     if (isMounted.current) {
-  //       setCart({ items: [], totalItems: 0, subtotal: 0 });
-  //     }
-  //   } finally {
-  //     if (isMounted.current) {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
-
-  // In CartSidebar.jsx - update the fetchCart function
-
-const fetchCart = async () => {
-  if (!isMounted.current) return;
-  
-  try {
-    const token = localStorage.getItem('token');
-    let sessionId = localStorage.getItem('cartSessionId');
-    const headers = {};
-    
-    // ✅ If no token and no sessionId, generate one
-    if (!token && !sessionId) {
-      sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-      localStorage.setItem('cartSessionId', sessionId);
-      console.log('🆕 Generated new session ID:', sessionId);
-    }
-    
-    console.log('🔍 Fetching cart - Token:', token ? 'Yes' : 'No', 'SessionId:', sessionId || 'None');
-    
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-      console.log('🔐 Fetching user cart with token');
-      
-      const response = await fetch('http://localhost:5000/api/cart/user', { headers });
-      const data = await response.json();
-      
-      if (!isMounted.current) return;
-      
-      if (data.success) {
-        console.log('📦 User cart fetched:', data.data.items.length, 'items');
-        setCart(data.data);
-        const colors = await fetchProductColors(data.data.items || []);
-        setProductColors(colors);
-      } else {
-        console.error('Failed to fetch user cart:', data.error);
-        setCart({ items: [], totalItems: 0, subtotal: 0 });
+      // If no token and no sessionId, generate one
+      if (!token && !sessionId) {
+        sessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+        localStorage.setItem('cartSessionId', sessionId);
+        console.log('🆕 Generated new session ID:', sessionId);
       }
-    } else if (sessionId) {
-      headers['x-session-id'] = sessionId;
-      console.log('👤 Fetching guest cart with sessionId');
       
-      const response = await fetch('http://localhost:5000/api/cart', { headers });
-      const data = await response.json();
+      console.log('🔍 Fetching cart - Token:', token ? 'Yes' : 'No', 'SessionId:', sessionId || 'None');
       
-      if (!isMounted.current) return;
-      
-      if (data.success) {
-        console.log('📦 Guest cart fetched:', data.data.items.length, 'items');
-        setCart(data.data);
-        const colors = await fetchProductColors(data.data.items || []);
-        setProductColors(colors);
-      } else {
-        // ✅ If guest cart fetch fails, clear the sessionId and retry
-        if (data.error === 'Session not found' || data.error === 'Invalid session') {
-          localStorage.removeItem('cartSessionId');
-          console.log('🔄 Invalid session, clearing and retrying');
-          await fetchCart();
-          return;
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+        console.log('🔐 Fetching user cart with token');
+        
+        const response = await fetch('http://localhost:5000/api/cart/user', { headers });
+        const data = await response.json();
+        
+        if (!isMounted.current) return;
+        
+        if (data.success) {
+          console.log('📦 User cart fetched:', data.data.items.length, 'items');
+          setCart(data.data);
+          const colors = await fetchProductColors(data.data.items || []);
+          setProductColors(colors);
+        } else {
+          console.error('Failed to fetch user cart:', data.error);
+          setCart({ items: [], totalItems: 0, subtotal: 0 });
         }
+      } else if (sessionId) {
+        headers['x-session-id'] = sessionId;
+        console.log('👤 Fetching guest cart with sessionId');
+        
+        const response = await fetch('http://localhost:5000/api/cart', { headers });
+        const data = await response.json();
+        
+        if (!isMounted.current) return;
+        
+        if (data.success) {
+          console.log('📦 Guest cart fetched:', data.data.items.length, 'items');
+          setCart(data.data);
+          const colors = await fetchProductColors(data.data.items || []);
+          setProductColors(colors);
+        } else {
+          // If guest cart fetch fails, clear the sessionId and retry
+          if (data.error === 'Session not found' || data.error === 'Invalid session') {
+            localStorage.removeItem('cartSessionId');
+            console.log('🔄 Invalid session, clearing and retrying');
+            await fetchCart();
+            return;
+          }
+          setCart({ items: [], totalItems: 0, subtotal: 0 });
+        }
+      } else {
+        console.log('📭 No auth found, empty cart');
         setCart({ items: [], totalItems: 0, subtotal: 0 });
       }
-    } else {
-      console.log('📭 No auth found, empty cart');
-      setCart({ items: [], totalItems: 0, subtotal: 0 });
+    } catch (error) {
+      console.error('Fetch cart error:', error);
+      if (isMounted.current) {
+        setCart({ items: [], totalItems: 0, subtotal: 0 });
+      }
+    } finally {
+      if (isMounted.current) {
+        setLoading(false);
+      }
     }
-  } catch (error) {
-    console.error('Fetch cart error:', error);
-    if (isMounted.current) {
-      setCart({ items: [], totalItems: 0, subtotal: 0 });
-    }
-  } finally {
-    if (isMounted.current) {
-      setLoading(false);
-    }
-  }
-};
+  };
 
   useEffect(() => {
     isMounted.current = true;
@@ -2066,7 +2060,7 @@ const fetchCart = async () => {
         )}
       </AnimatePresence>
 
-      {/* Cart Sidebar - Black & Blue Theme */}
+      {/* Cart Sidebar - Pink Theme */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -2076,48 +2070,48 @@ const fetchCart = async () => {
             transition={{ type: 'tween', duration: 0.3 }}
             className="fixed right-0 top-0 h-full bg-white shadow-2xl z-[9999] flex flex-col w-[85%] sm:w-[400px] md:w-[450px] lg:w-[33.333%]"
           >
-            {/* Header - Black background with Blue accent */}
-            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-blue-500/20 bg-white">
+            {/* Header - Pink background */}
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-[#EE4275]/20 bg-white">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/25">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] flex items-center justify-center shadow-lg shadow-[#EE4275]/25">
                   <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-base sm:text-lg font-bold text-black">
+                  <h2 className="text-base sm:text-lg font-bold text-[#2D1B2E]">
                     Your Cart
                   </h2>
-                  <p className="text-[8px] sm:text-[9px] text-blue-400 -mt-0.5">Smart Gadget</p>
+                  <p className="text-[8px] sm:text-[9px] text-[#EE4275] -mt-0.5">Beauty Bucket</p>
                 </div>
                 {cart.totalItems > 0 && (
-                  <span className="bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full shadow-sm">
+                  <span className="bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full shadow-sm">
                     {cart.totalItems}
                   </span>
                 )}
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 sm:p-2 rounded-full hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-full hover:bg-[#F7C7D3]/20 transition-colors"
               >
-                <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 hover:text-white transition-colors" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 hover:text-[#2D1B2E] transition-colors" />
               </button>
             </div>
 
-            {/* Cart Items - Light gray background */}
-            <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-50">
+            {/* Cart Items - Light pink background */}
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-[#FFF5F6]">
               {loading ? (
                 <div className="flex items-center justify-center py-20">
-                  <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600 animate-spin" />
+                  <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-[#EE4275] animate-spin" />
                 </div>
               ) : cart.items.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-full flex items-center justify-center border border-blue-500/20 shadow-sm">
-                    <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500/40" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-full flex items-center justify-center border border-[#EE4275]/20 shadow-sm">
+                    <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-[#EE4275]/40" />
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 mb-2">Your cart is empty</p>
-                  <p className="text-xs text-gray-400 mb-4 sm:mb-6">Start shopping for amazing gadgets!</p>
+                  <p className="text-sm sm:text-base text-[#2D1B2E] mb-2">Your cart is empty</p>
+                  <p className="text-xs text-[#EE4275]/60 mb-4 sm:mb-6">Start shopping for amazing beauty products!</p>
                   <button
                     onClick={handleShopNow}
-                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-black text-white font-semibold text-sm sm:text-base rounded-full hover:shadow-lg hover:shadow-black/30 transition-all transform hover:scale-105"
+                    className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold text-sm sm:text-base rounded-full hover:shadow-lg hover:shadow-[#EE4275]/30 transition-all transform hover:scale-105"
                   >
                     <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                     Start Shopping
@@ -2133,29 +2127,29 @@ const fetchCart = async () => {
                     const hasNoColorItem = group.noColorItem;
                     
                     return (
-                      <div key={group._id} className="bg-white rounded-xl border border-blue-500/15 overflow-hidden hover:border-blue-500/40 transition-all shadow-sm hover:shadow-md hover:shadow-blue-500/10">
-                        {/* Product Header - Black accent */}
-                        <div className="flex items-start gap-2 p-2 sm:p-3 bg-gray-50/80 border-b border-blue-500/10">
+                      <div key={group._id} className="bg-white rounded-xl border border-[#EE4275]/15 overflow-hidden hover:border-[#EE4275]/40 transition-all shadow-sm hover:shadow-md hover:shadow-[#EE4275]/10">
+                        {/* Product Header - Pink accent */}
+                        <div className="flex items-start gap-2 p-2 sm:p-3 bg-[#FFF5F6]/80 border-b border-[#EE4275]/10">
                           <Link href={`/product/${group.productSlug || group.productId}`} onClick={onClose}>
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 rounded-lg overflow-hidden border border-blue-500/20 flex-shrink-0">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#F7C7D3]/20 rounded-lg overflow-hidden border border-[#EE4275]/20 flex-shrink-0">
                               <img
                                 src={group.image || 'https://via.placeholder.com/64'}
                                 alt={group.productName}
                                 className="w-full h-full object-contain p-0.5 sm:p-1"
                                 onError={(e) => {
-                                  e.target.src = 'https://via.placeholder.com/64?text=Gadget';
+                                  e.target.src = 'https://via.placeholder.com/64?text=Beauty';
                                 }}
                               />
                             </div>
                           </Link>
                           <div className="flex-1 min-w-0">
                             <Link href={`/product/${group.productSlug || group.productId}`} onClick={onClose}>
-                              <h3 className="font-semibold text-xs sm:text-sm text-black hover:text-blue-600 transition-colors line-clamp-2" title={group.productName}>
+                              <h3 className="font-semibold text-xs sm:text-sm text-[#2D1B2E] hover:text-[#EE4275] transition-colors line-clamp-2" title={group.productName}>
                                 {group.productName}
                               </h3>
                             </Link>
                             <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                              <span className="text-sm sm:text-base font-bold text-black">
+                              <span className="text-sm sm:text-base font-bold text-[#EE4275]">
                                 ৳{price.toFixed(2)}
                               </span>
                               {group.discountPrice > 0 && (
@@ -2163,12 +2157,12 @@ const fetchCart = async () => {
                                   ৳{group.regularPrice.toFixed(2)}
                                 </span>
                               )}
-                              <span className="inline-flex items-center gap-0.5 text-[9px] sm:text-[10px] text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-0.5 text-[9px] sm:text-[10px] text-gray-500 bg-[#F7C7D3]/20 px-1.5 py-0.5 rounded-full">
                                 <Scale className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
                                 /{getUnitLabel(group.unit)}
                               </span>
                               {selectedColorItems.length > 0 && (
-                                <span className="text-[9px] sm:text-[10px] text-gray-500">
+                                <span className="text-[9px] sm:text-[10px] text-[#EE4275]/60">
                                   {selectedColorItems.length} color{selectedColorItems.length > 1 ? 's' : ''}
                                 </span>
                               )}
@@ -2194,9 +2188,9 @@ const fetchCart = async () => {
                         {hasColors && (
                           <>
                             {/* Available Colors */}
-                            <div className="p-2 sm:p-3 border-b border-blue-500/10 bg-gray-50/50">
-                              <p className="text-[10px] text-gray-500 mb-1.5 flex items-center gap-1">
-                                <Palette className="w-3 h-3 text-black" />
+                            <div className="p-2 sm:p-3 border-b border-[#EE4275]/10 bg-[#FFF5F6]/50">
+                              <p className="text-[10px] text-[#EE4275]/60 mb-1.5 flex items-center gap-1">
+                                <Palette className="w-3 h-3 text-[#EE4275]" />
                                 Colors:
                               </p>
                               <div className="flex flex-wrap gap-1.5">
@@ -2215,8 +2209,8 @@ const fetchCart = async () => {
                                       disabled={isSelected || isAdding}
                                       className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
                                         isSelected 
-                                          ? 'border-black shadow-md ring-2 ring-black/30 scale-110 cursor-default' 
-                                          : 'border-blue-300 hover:border-black cursor-pointer'
+                                          ? 'border-[#EE4275] shadow-md ring-2 ring-[#EE4275]/30 scale-110 cursor-default' 
+                                          : 'border-[#F7C7D3] hover:border-[#EE4275] cursor-pointer'
                                       } ${isAdding ? 'opacity-50 cursor-not-allowed' : ''}`}
                                       style={{ backgroundColor: color }}
                                       title={isSelected ? `${getColorName(color)} (Selected)` : `Click to add ${getColorName(color)}`}
@@ -2241,20 +2235,20 @@ const fetchCart = async () => {
                             {selectedColorItems.length > 0 && (
                               <div className="p-2 sm:p-3 space-y-2">
                                 {selectedColorItems.map((colorInfo) => (
-                                  <div key={colorInfo.itemId} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg border border-blue-500/15">
+                                  <div key={colorInfo.itemId} className="flex items-center gap-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#EE4275]/15">
                                     {/* Color Swatch */}
                                     <div 
-                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-blue-500/30 flex-shrink-0"
+                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-[#EE4275]/30 flex-shrink-0"
                                       style={{ backgroundColor: colorInfo.color }}
                                       title={getColorName(colorInfo.color)}
                                     />
                                     
-                                    {/* Quantity Controls - Black/Blue */}
-                                    <div className="flex items-center border border-blue-500/20 rounded-lg overflow-hidden bg-white ml-auto">
+                                    {/* Quantity Controls - Pink/Beauty */}
+                                    <div className="flex items-center border border-[#EE4275]/20 rounded-lg overflow-hidden bg-white ml-auto">
                                       <button
                                         onClick={() => updateQuantity(colorInfo.itemId, colorInfo.quantity - 1)}
                                         disabled={updatingItems[colorInfo.itemId] || colorInfo.quantity <= 1}
-                                        className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
+                                        className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#F7C7D3]/20 disabled:opacity-50 transition-colors text-gray-500 hover:text-[#EE4275]"
                                       >
                                         <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                       </button>
@@ -2265,14 +2259,14 @@ const fetchCart = async () => {
                                         onChange={(e) => handleQuantityInputChange(e, colorInfo.itemId, colorInfo)}
                                         onBlur={() => handleQuantityBlur(colorInfo.itemId, colorInfo)}
                                         onKeyDown={(e) => handleQuantityKeyDown(e, colorInfo.itemId)}
-                                        className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-black bg-white focus:outline-none focus:ring-1 focus:ring-black py-0.5 rounded"
+                                        className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-[#2D1B2E] bg-white focus:outline-none focus:ring-1 focus:ring-[#EE4275] py-0.5 rounded"
                                         disabled={updatingItems[colorInfo.itemId]}
                                       />
                                       
                                       <button
                                         onClick={() => updateQuantity(colorInfo.itemId, colorInfo.quantity + 1)}
                                         disabled={updatingItems[colorInfo.itemId] || colorInfo.quantity >= colorInfo.stockQuantity}
-                                        className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
+                                        className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#F7C7D3]/20 disabled:opacity-50 transition-colors text-gray-500 hover:text-[#EE4275]"
                                       >
                                         <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                       </button>
@@ -2297,13 +2291,13 @@ const fetchCart = async () => {
                         {/* No Color Product */}
                         {!hasColors && hasNoColorItem && (
                           <div className="p-2 sm:p-3">
-                            <div className="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded-lg border border-blue-500/15">
-                              <span className="text-xs text-gray-500">Quantity</span>
-                              <div className="flex items-center border border-blue-500/20 rounded-lg overflow-hidden bg-white">
+                            <div className="flex items-center justify-between gap-2 p-2 bg-[#FFF5F6] rounded-lg border border-[#EE4275]/15">
+                              <span className="text-xs text-[#EE4275]/60">Quantity</span>
+                              <div className="flex items-center border border-[#EE4275]/20 rounded-lg overflow-hidden bg-white">
                                 <button
                                   onClick={() => updateQuantity(hasNoColorItem.itemId, hasNoColorItem.quantity - 1)}
                                   disabled={updatingItems[hasNoColorItem.itemId] || hasNoColorItem.quantity <= 1}
-                                  className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
+                                  className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#F7C7D3]/20 disabled:opacity-50 transition-colors text-gray-500 hover:text-[#EE4275]"
                                 >
                                   <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                 </button>
@@ -2314,14 +2308,14 @@ const fetchCart = async () => {
                                   onChange={(e) => handleQuantityInputChange(e, hasNoColorItem.itemId, hasNoColorItem)}
                                   onBlur={() => handleQuantityBlur(hasNoColorItem.itemId, hasNoColorItem)}
                                   onKeyDown={(e) => handleQuantityKeyDown(e, hasNoColorItem.itemId)}
-                                  className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-black bg-white focus:outline-none focus:ring-1 focus:ring-black py-0.5 rounded"
+                                  className="w-8 sm:w-10 text-center text-xs sm:text-sm font-medium text-[#2D1B2E] bg-white focus:outline-none focus:ring-1 focus:ring-[#EE4275] py-0.5 rounded"
                                   disabled={updatingItems[hasNoColorItem.itemId]}
                                 />
                                 
                                 <button
                                   onClick={() => updateQuantity(hasNoColorItem.itemId, hasNoColorItem.quantity + 1)}
                                   disabled={updatingItems[hasNoColorItem.itemId] || hasNoColorItem.quantity >= hasNoColorItem.stockQuantity}
-                                  className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 transition-colors text-gray-500 hover:text-black"
+                                  className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center hover:bg-[#F7C7D3]/20 disabled:opacity-50 transition-colors text-gray-500 hover:text-[#EE4275]"
                                 >
                                   <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                 </button>
@@ -2341,7 +2335,7 @@ const fetchCart = async () => {
                   >
                     {isClearing ? (
                       <span className="flex items-center justify-center gap-1.5 sm:gap-2">
-                        <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin text-black" />
+                        <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin text-[#EE4275]" />
                         Clearing...
                       </span>
                     ) : (
@@ -2352,14 +2346,14 @@ const fetchCart = async () => {
               )}
             </div>
 
-            {/* Order Summary - Black & Blue */}
+            {/* Order Summary - Pink Theme */}
             {cart.items.length > 0 && (
-              <div className="border-t border-blue-500/20 p-3 sm:p-4 bg-white">
+              <div className="border-t border-[#EE4275]/20 p-3 sm:p-4 bg-white">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="font-bold text-black text-base sm:text-lg">
+                  <span className="font-bold text-[#2D1B2E] text-base sm:text-lg">
                     Total Amount
                   </span>
-                  <span className="font-bold text-xl sm:text-2xl text-black">
+                  <span className="font-bold text-xl sm:text-2xl text-[#EE4275]">
                     ৳{total.toFixed(2)}
                   </span>
                 </div>
@@ -2383,7 +2377,7 @@ const fetchCart = async () => {
                     <ShieldCheck className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
                     <span>Secure checkout &amp; 7-day returns</span>
                   </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-black">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-[#EE4275]">
                     <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
                     <span>Free shipping on orders over ৳3000</span>
                   </div>
@@ -2395,7 +2389,7 @@ const fetchCart = async () => {
                   className={`w-full mt-3 sm:mt-4 py-2.5 sm:py-3 font-semibold rounded-full transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base ${
                     hasMissingColors 
                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                      : 'bg-black text-white hover:shadow-lg hover:shadow-black/30 transition-all hover:scale-[1.02]'
+                      : 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white hover:shadow-lg hover:shadow-[#EE4275]/30 transition-all hover:scale-[1.02]'
                   }`}
                 >
                   <CreditCard className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -2408,7 +2402,7 @@ const fetchCart = async () => {
         )}
       </AnimatePresence>
 
-      {/* Clear Cart Confirmation Modal - Black & Blue */}
+      {/* Clear Cart Confirmation Modal - Pink Theme */}
       <AnimatePresence>
         {showClearModal && (
           <motion.div
@@ -2423,7 +2417,7 @@ const fetchCart = async () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden border border-black/20"
+              className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden border border-[#EE4275]/20"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6">
@@ -2433,18 +2427,18 @@ const fetchCart = async () => {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-center text-black mb-2">
+                <h3 className="text-xl font-bold text-center text-[#2D1B2E] mb-2">
                   Clear Cart?
                 </h3>
                 
-                <p className="text-gray-600 text-center mb-6 text-sm">
+                <p className="text-[#EE4275]/60 text-center mb-6 text-sm">
                   Are you sure you want to remove all items from your cart? This action cannot be undone.
                 </p>
                 
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowClearModal(false)}
-                    className="flex-1 px-4 py-2.5 border border-black/30 text-gray-600 font-medium rounded-full hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2.5 border border-[#EE4275]/30 text-[#2D1B2E] font-medium rounded-full hover:bg-[#FFF5F6] transition-colors"
                   >
                     Cancel
                   </button>

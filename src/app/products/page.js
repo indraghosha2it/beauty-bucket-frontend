@@ -1,22 +1,25 @@
+
+
+
 // // app/products/page.js
 // import { Suspense } from 'react';
 // import ProductsClient from './ProductsClient';
 
-// // Loading fallback for HyperVolt products page
+// // Loading fallback for Smart Gadget products page
 // function ProductsLoading() {
 //   return (
-//     <div className="min-h-screen bg-[#f0f7fa]">
+//     <div className="min-h-screen bg-[#F1F5F9]">
 //       <div className="container mx-auto px-4 max-w-7xl py-6 md:py-8">
-//         {/* Loading Skeleton - HyperVolt themed */}
+//         {/* Loading Skeleton - Smart Gadget themed */}
 //         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
 //           {[...Array(12)].map((_, index) => (
-//             <div key={index} className="bg-white rounded-xl border border-[#06B6D4]/20 overflow-hidden animate-pulse shadow-sm hover:shadow-md transition-shadow">
-//               <div className="h-32 sm:h-40 bg-gradient-to-br from-[#E0F7FA] to-[#06B6D4]/20"></div>
+//             <div key={index} className="bg-white rounded-xl border border-[#2563EB]/20 overflow-hidden animate-pulse shadow-sm hover:shadow-md transition-shadow">
+//               <div className="h-32 sm:h-40 bg-gradient-to-br from-[#EFF6FF] to-[#2563EB]/20"></div>
 //               <div className="p-2 sm:p-3">
-//                 <div className="h-3 sm:h-4 bg-[#06B6D4]/30 rounded mb-2 w-3/4"></div>
-//                 <div className="h-5 sm:h-6 bg-[#06B6D4]/30 rounded mb-2 w-1/2"></div>
-//                 <div className="h-2 sm:h-3 bg-[#06B6D4]/20 rounded mb-2"></div>
-//                 <div className="h-6 sm:h-8 bg-[#004767]/20 rounded"></div>
+//                 <div className="h-3 sm:h-4 bg-[#2563EB]/30 rounded mb-2 w-3/4"></div>
+//                 <div className="h-5 sm:h-6 bg-[#2563EB]/30 rounded mb-2 w-1/2"></div>
+//                 <div className="h-2 sm:h-3 bg-[#2563EB]/20 rounded mb-2"></div>
+//                 <div className="h-6 sm:h-8 bg-[#0F172A]/20 rounded"></div>
 //               </div>
 //             </div>
 //           ))}
@@ -26,160 +29,175 @@
 //   );
 // }
 
-// // HyperVolt - Premium Power Banks & Charging Solutions SEO Metadata
+// // Smart Gadget - Premium Gadgets & Electronics SEO Metadata
 // export const metadata = {
-//   title: "Shop All Premium Power Banks & Chargers | Fast Charging, High Capacity Solutions",
-//   description: "Browse 100+ premium power banks at HyperVolt Bangladesh. ✓ High Capacity ✓ Fast Charging ✓ Wireless Charging ✓ Portable Power Solutions. 100% authentic with COD & bKash/Nagad payment.",
+//   title: "Shop All Premium Gadgets & Electronics | Smartphones, Laptops, All Electronic Accessories",
+//   description: "Browse 100+ premium gadgets at Smart Gadget Bangladesh. ✓ Smartphones ✓ Laptops ✓ Smartwatches ✓ Headphones ✓ Gaming Accessories. 100% authentic with COD & bKash/Nagad payment.",
 //   keywords: [
 //     // Primary keywords
-//     "buy power bank online bangladesh",
-//     "premium power bank shop dhaka",
-//     "hypervolt power bank products",
-//     "best power bank for phone bd",
-//     "portable charger bangladesh",
-//     "power bank price in bd",
+//     "buy gadgets online bangladesh",
+//     "premium gadget shop dhaka",
+//     "smart gadget products",
+//     "best electronics store bd",
+//     "online gadget store bangladesh",
+//     "gadget price in bd",
     
-//     // Capacity Keywords
-//     "10000mah power bank bangladesh",
-//     "20000mah power bank price bd",
-//     "30000mah power bank bangladesh",
-//     "50000mah power bank price bd",
-//     "high capacity power bank bangladesh",
-//     "large battery power bank bd",
-//     "mini power bank bangladesh",
-//     "slim power bank bd",
-//     "pocket power bank bangladesh",
-//     "compact power bank bd",
+//     // Smartphones
+//     "smartphone price in bangladesh",
+//     "best android phone bd",
+//     "iphone price bangladesh",
+//     "xiaomi mobile price bd",
+//     "samsung galaxy price bangladesh",
+//     "oneplus bangladesh",
+//     "realme price bd",
+//     "vivo mobile bangladesh",
+//     "oppo phone price bd",
+//     "nothing phone price bangladesh",
+//     "google pixel price bd",
+//     "tecno phone bangladesh",
+//     "infinix mobile price bd",
+//     "itel phone bangladesh",
     
-//     // Fast Charging
-//     "fast charging power bank bd",
-//     "quick charge power bank bangladesh",
-//     "pd power bank price bd",
-//     "power delivery power bank bangladesh",
-//     "type c fast charger bd",
-//     "qc 3.0 power bank bangladesh",
-//     "qc 4.0 power bank bd",
-//     "super fast charging power bank bangladesh",
-//     "vooc power bank bd",
-//     "dash charge power bank bangladesh",
-//     "warp charge power bank bd",
+//     // Laptops & Computers
+//     "laptop price in bangladesh",
+//     "gaming laptop bd",
+//     "macbook price bangladesh",
+//     "lenovo laptop price bd",
+//     "hp laptop price bangladesh",
+//     "asus laptop price bd",
+//     "dell laptop price bangladesh",
+//     "acer laptop price bd",
+//     "msi gaming laptop bangladesh",
+//     "razer laptop price bd",
+//     "chromebook price bangladesh",
+//     "desktop pc price bd",
+//     "monitor price bangladesh",
+//     "all in one pc bd",
     
-//     // Wireless Charging
-//     "wireless power bank bangladesh",
-//     "qi wireless charger bd",
-//     "magsafe power bank price bangladesh",
-//     "wireless charging power bank bd",
-//     "10w wireless charger bangladesh",
-//     "15w wireless charger bd",
-//     "magsafe compatible power bank bangladesh",
-//     "wireless power bank for iphone bd",
+//     // Smartwatches & Wearables
+//     "smartwatch price in bangladesh",
+//     "apple watch bd",
+//     "samsung galaxy watch price bangladesh",
+//     "fitness tracker bd",
+//     "huawei watch price bangladesh",
+//     "amazfit smartwatch bd",
+//     "noise smartwatch price bangladesh",
+//     "boAt smartwatch bd",
+//     "fire boltt smartwatch bangladesh",
+//     "fitbit price bd",
+//     "garmin watch bangladesh",
+//     "tizen smartwatch bd",
     
-//     // Brand Specific
-//     "hypervolt power bank price bd",
-//     "hypervolt charger bangladesh",
-//     "hypervolt official store bd",
-//     "hypervolt original power bank",
-//     "hypervolt 20000mah price bd",
-//     "hypervolt 10000mah bangladesh",
-//     "hypervolt wireless charger bd",
+//     // Audio & Headphones
+//     "wireless headphones bangladesh",
+//     "best earbuds price bd",
+//     "sony headphones price bangladesh",
+//     "boAt earbuds bd",
+//     "jbl speaker price bangladesh",
+//     "airpods price bd",
+//     "gaming headset bangladesh",
+//     "noise cancelling headphones bd",
+//     "true wireless earbuds bangladesh",
+//     "neckband price bd",
+//     "bluetooth speaker price bangladesh",
+//     "soundbar price bd",
     
-//     // Compatibility
-//     "iphone power bank bangladesh",
-//     "samsung power bank price bd",
-//     "xiaomi power bank bangladesh",
-//     "oppo power bank bd",
-//     "vivo power bank price bangladesh",
-//     "huawei power bank bd",
-//     "realme power bank bangladesh",
-//     "oneplus power bank price bd",
-//     "google pixel power bank bd",
-//     "laptop power bank bangladesh",
-//     "macbook power bank bd",
-//     "tablet power bank bangladesh",
-//     "ipad power bank bd",
+//     // Gaming Accessories
+//     "gaming accessories bangladesh",
+//     "gaming mouse price bd",
+//     "mechanical keyboard price bangladesh",
+//     "gaming controller bd",
+//     "gaming chair price bangladesh",
+//     "rgb gaming accessories bd",
+//     "gaming monitor bangladesh",
+//     "gaming headset price bd",
+//     "gaming mouse pad bd",
+//     "streaming accessories bangladesh",
     
-//     // Features
-//     "dual output power bank bd",
-//     "triple output power bank bangladesh",
-//     "led display power bank price bd",
-//     "digital power bank bangladesh",
-//     "waterproof power bank bd",
-//     "shockproof power bank bangladesh",
-//     "durable power bank bd",
-//     "lightweight power bank bangladesh",
-//     "travel power bank bd",
-//     "camping power bank bangladesh",
-//     "emergency power bank bd",
-    
-//     // Charging Solutions
-//     "wall charger bangladesh",
-//     "car charger price bd",
-//     "multi port charger bangladesh",
-//     "gan charger bd",
-//     "usb c charger bangladesh",
-//     "lightning cable bd",
-//     "fast charging cable bangladesh",
-//     "wireless charging pad bd",
-//     "charging station bangladesh",
-//     "power strip with usb bd",
-    
-//     // Solar
-//     "solar power bank bangladesh",
-//     "solar charger price bd",
-//     "solar portable charger bangladesh",
-//     "outdoor power bank bd",
-    
-//     // Shopping intent
-//     "online power bank store bd",
-//     "best power bank deals dhaka",
-//     "premium power bank bangladesh",
-//     "authentic power bank bd",
-//     "gift power bank for him",
-//     "gift power bank for her",
-//     "tech gadgets bangladesh",
-//     "power bank shop near me",
-//     "electronics store bd",
-    
-//     // Payment & Delivery
-//     "cod power bank bangladesh",
-//     "bkash payment power bank",
-//     "nagad power bank store",
-//     "free delivery power bank dhaka",
-//     "authentic products bd",
-//     "trusted electronics store",
-//     "100% original power bank bd",
-//     "warranty power bank bangladesh",
-//     "1 year warranty power bank bd",
-//     "official warranty bd",
-    
-//     // Trending
-//     "best power bank 2024 bangladesh",
-//     "latest power bank bd",
-//     "new power bank bangladesh",
-//     "top power bank 2025 bd",
-//     "premium charger bangladesh",
-//     "fastest charging power bank bd",
-//     "best value power bank bangladesh",
+//     // Smart Home
+//     "smart home devices bangladesh",
+//     "smart tv price bd",
+//     "security camera price bangladesh",
+//     "smart bulb price bd",
+//     "robot vacuum cleaner bangladesh",
+//     "smart speaker price bd",
+//     "smart doorbell bangladesh",
+//     "smart plug price bd",
+//     "home automation bangladesh",
+//     "smart lock price bd",
     
 //     // Accessories
-//     "power bank case bangladesh",
-//     "charger cable bd",
-//     "usb hub bangladesh",
-//     "adapter price bd",
-//     "travel charger bangladesh",
-//     "universal charger bd"
+//     "phone accessories bangladesh",
+//     "phone cases bd",
+//     "screen protector price bangladesh",
+//     "power bank price bd",
+//     "fast charger bangladesh",
+//     "data cable price bd",
+//     "bluetooth speaker price bangladesh",
+//     "selfie stick bd",
+//     "tripod price bangladesh",
+//     "gimbal stabilizer bd",
+//     "vr headset price bangladesh",
+//     "drone price bd",
+    
+//     // Shopping intent
+//     "buy gadgets online bd",
+//     "best gadget deals dhaka",
+//     "premium gadget bangladesh",
+//     "authentic gadgets bd",
+//     "gift gadgets for him",
+//     "gift gadgets for her",
+//     "tech gifts bangladesh",
+//     "gadget shop near me",
+//     "electronics store bd",
+//     "trusted tech store bangladesh",
+    
+//     // Payment & Delivery
+//     "cod electronics bangladesh",
+//     "bkash payment gadget",
+//     "nagad tech store",
+//     "free delivery gadgets dhaka",
+//     "authentic products bd",
+//     "trusted electronics store",
+//     "100% original gadgets bd",
+//     "warranty electronics bangladesh",
+//     "official warranty bd",
+//     "brand warranty bangladesh",
+    
+//     // Trending
+//     "best gadgets 2024 bangladesh",
+//     "latest gadgets bd",
+//     "new electronics bangladesh",
+//     "top gadgets 2025 bd",
+//     "premium tech bangladesh",
+//     "best value gadgets bangladesh",
+//     "tech accessories bd",
+    
+//     // Brands
+//     "apple products bangladesh",
+//     "samsung products bd",
+//     "xiaomi gadgets bangladesh",
+//     "realme tech bd",
+//     "oneplus bangladesh",
+//     "lenovo products bd",
+//     "hp products bangladesh",
+//     "asus gadgets bd",
+//     "dell products bangladesh",
+//     "sony electronics bangladesh",
+//     "jbl audio bd",
+//     "boAt lifestyle bangladesh"
 //   ],
 //   openGraph: {
-//     title: "HyperVolt Products - Bangladesh's Premium Collection of Power Banks & Chargers",
-//     description: "Shop high-capacity power banks, fast chargers, wireless charging solutions & portable power devices. 100% authentic products with free delivery across Bangladesh. COD and bKash/Nagad accepted.",
-//     url: process.env.NEXT_PUBLIC_BASE_URL + '/products' || 'https://hypervolt.com.bd/products',
-//     siteName: "HyperVolt",
+//     title: "Smart Gadget Products - Bangladesh's Premium Collection of Gadgets & Electronics",
+//     description: "Shop smartphones, laptops, smartwatches, headphones, gaming accessories & more. 100% authentic products with free delivery across Bangladesh. COD and bKash/Nagad accepted.",
+//     url: process.env.NEXT_PUBLIC_BASE_URL + '/products' || 'https://smartgadget.com.bd/products',
+//     siteName: "Smart Gadget",
 //     images: [
 //       {
-//         url: '/products-og-hypervolt.jpg',
+//         url: '/products-og-smartgadget.jpg',
 //         width: 1200,
 //         height: 630,
-//         alt: 'HyperVolt Premium Collection - Power Banks, Fast Chargers, Wireless Charging, Portable Power',
+//         alt: 'Smart Gadget Premium Collection - Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories',
 //       },
 //     ],
 //     type: 'website',
@@ -188,11 +206,11 @@
 //   },
 //   twitter: {
 //     card: 'summary_large_image',
-//     site: '@HyperVoltBD',
-//     creator: '@HyperVoltBD',
-//     title: "HyperVolt Products - Premium Power Banks & Chargers in Bangladesh",
-//     description: "Shop 100+ premium power banks, fast chargers, wireless charging solutions. 100% authentic. COD & bKash/Nagad available.",
-//     images: ['/products-twitter-hypervolt.jpg'],
+//     site: '@SmartGadgetBD',
+//     creator: '@SmartGadgetBD',
+//     title: "Smart Gadget Products - Premium Gadgets & Electronics in Bangladesh",
+//     description: "Shop 100+ premium gadgets, smartphones, laptops, smartwatches, headphones. 100% authentic. COD & bKash/Nagad available.",
+//     images: ['/products-twitter-smartgadget.jpg'],
 //   },
 //   alternates: {
 //     canonical: '/products',
@@ -214,26 +232,27 @@
 //   },
 //   // Additional metadata for better SEO
 //   other: {
-//     'application-name': 'HyperVolt Products',
-//     'msapplication-TileColor': '#06B6D4',
-//     'theme-color': '#06B6D4',
-//     'price-range': '500-5000 BDT',
-//     'target-audience': 'Tech Enthusiasts, Mobile Users, Professionals, Travelers, Students, Gamers',
-//     'product-category': 'Power Banks, Chargers, Wireless Chargers, Cables, Accessories',
+//     'application-name': 'Smart Gadget Products',
+//     'msapplication-TileColor': '#2563EB',
+//     'theme-color': '#2563EB',
+//     'price-range': '500-200000 BDT',
+//     'target-audience': 'Tech Enthusiasts, Professionals, Students, Gamers, Home Users, Travelers',
+//     'product-category': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories, Smart Home, Accessories',
 //     'authenticity': '100% Authentic Products',
 //     'return-policy': '7 Days Return Policy',
-//     'product-types': 'Power Banks, Fast Chargers, Wireless Chargers, Cables, Adapters',
-//     'condition': 'New, Original',
-//     'capacity-range': '10000mAh - 50000mAh',
-//     'charging-technology': 'PD 3.0, QC 4.0, SuperVOOC, Dash Charge, Wireless Charging',
-//     'battery-type': 'Li-Polymer, Li-Ion',
+//     'product-types': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Gear, Smart Home Devices, Accessories',
+//     'condition': 'New, Original, Brand New',
+//     'brands-available': 'Apple, Samsung, Xiaomi, OnePlus, Realme, Lenovo, HP, ASUS, Dell, Acer, Sony, JBL, boAt',
+//     'technology': '5G, WiFi 6, Bluetooth 5.3, USB-C, Fast Charging, Wireless Charging',
 //     'safety-features': 'Overcharge Protection, Short Circuit Protection, Overheat Protection, Surge Protection',
-//     'durability': 'Shockproof, Water-Resistant, Durable Design',
-//     'warranty': '1 Year Official Warranty',
+//     'durability': 'Durable Design, Premium Build Quality',
+//     'warranty': 'Official Brand Warranty Available',
+//     'operating-systems': 'Android, iOS, Windows, macOS, ChromeOS',
+//     'connectivity': 'Bluetooth, WiFi, NFC, USB-C, Lightning, 3.5mm Audio',
 //   },
 // };
 
-// // Server component with Suspense for HyperVolt products page
+// // Server component with Suspense for Smart Gadget products page
 // export default function ProductsPage() {
 //   return (
 //     <Suspense fallback={<ProductsLoading />}>
@@ -242,26 +261,25 @@
 //   );
 // }
 
-
 // app/products/page.js
 import { Suspense } from 'react';
 import ProductsClient from './ProductsClient';
 
-// Loading fallback for Smart Gadget products page
+// Loading fallback for Beauty Bucket products page
 function ProductsLoading() {
   return (
-    <div className="min-h-screen bg-[#F1F5F9]">
+    <div className="min-h-screen bg-[#FFF5F6]">
       <div className="container mx-auto px-4 max-w-7xl py-6 md:py-8">
-        {/* Loading Skeleton - Smart Gadget themed */}
+        {/* Loading Skeleton - Beauty Bucket themed */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {[...Array(12)].map((_, index) => (
-            <div key={index} className="bg-white rounded-xl border border-[#2563EB]/20 overflow-hidden animate-pulse shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-32 sm:h-40 bg-gradient-to-br from-[#EFF6FF] to-[#2563EB]/20"></div>
+            <div key={index} className="bg-white rounded-xl border border-[#FFD2DB]/40 overflow-hidden animate-pulse shadow-sm hover:shadow-md transition-shadow">
+              <div className="h-32 sm:h-40 bg-gradient-to-br from-[#FFF5F6] to-[#EE4275]/20"></div>
               <div className="p-2 sm:p-3">
-                <div className="h-3 sm:h-4 bg-[#2563EB]/30 rounded mb-2 w-3/4"></div>
-                <div className="h-5 sm:h-6 bg-[#2563EB]/30 rounded mb-2 w-1/2"></div>
-                <div className="h-2 sm:h-3 bg-[#2563EB]/20 rounded mb-2"></div>
-                <div className="h-6 sm:h-8 bg-[#0F172A]/20 rounded"></div>
+                <div className="h-3 sm:h-4 bg-[#EE4275]/30 rounded mb-2 w-3/4"></div>
+                <div className="h-5 sm:h-6 bg-[#EE4275]/30 rounded mb-2 w-1/2"></div>
+                <div className="h-2 sm:h-3 bg-[#EE4275]/20 rounded mb-2"></div>
+                <div className="h-6 sm:h-8 bg-[#2D1B2E]/20 rounded"></div>
               </div>
             </div>
           ))}
@@ -271,175 +289,243 @@ function ProductsLoading() {
   );
 }
 
-// Smart Gadget - Premium Gadgets & Electronics SEO Metadata
+// Beauty Bucket - Premium Beauty & Cosmetics SEO Metadata
 export const metadata = {
-  title: "Shop All Premium Gadgets & Electronics | Smartphones, Laptops, All Electronic Accessories",
-  description: "Browse 100+ premium gadgets at Smart Gadget Bangladesh. ✓ Smartphones ✓ Laptops ✓ Smartwatches ✓ Headphones ✓ Gaming Accessories. 100% authentic with COD & bKash/Nagad payment.",
+  title: "Shop All Premium Beauty Products & Cosmetics | Skincare, Makeup, Fragrances & More",
+  description: "Browse 100+ premium beauty products at Beauty Bucket Bangladesh. ✓ Skincare ✓ Makeup ✓ Fragrances ✓ Hair Care ✓ Body Care. 100% authentic with COD & bKash/Nagad payment.",
   keywords: [
     // Primary keywords
-    "buy gadgets online bangladesh",
-    "premium gadget shop dhaka",
-    "smart gadget products",
-    "best electronics store bd",
-    "online gadget store bangladesh",
-    "gadget price in bd",
+    "buy beauty products online bangladesh",
+    "premium cosmetics shop dhaka",
+    "beauty bucket products",
+    "best beauty store bd",
+    "online cosmetics store bangladesh",
+    "beauty product price in bd",
     
-    // Smartphones
-    "smartphone price in bangladesh",
-    "best android phone bd",
-    "iphone price bangladesh",
-    "xiaomi mobile price bd",
-    "samsung galaxy price bangladesh",
-    "oneplus bangladesh",
-    "realme price bd",
-    "vivo mobile bangladesh",
-    "oppo phone price bd",
-    "nothing phone price bangladesh",
-    "google pixel price bd",
-    "tecno phone bangladesh",
-    "infinix mobile price bd",
-    "itel phone bangladesh",
+    // Skincare
+    "skincare products bangladesh",
+    "best skincare routine bd",
+    "face cream price bangladesh",
+    "serum price bd",
+    "vitamin c serum bangladesh",
+    "hyaluronic acid serum bd",
+    "sunscreen price bangladesh",
+    "moisturizer price bd",
+    "face wash price bangladesh",
+    "toner price bd",
+    "eye cream bangladesh",
+    "retinol serum bd",
+    "niacinamide serum price bangladesh",
+    "face mask price bd",
+    "sheet mask bangladesh",
+    "glycolic acid toner bd",
+    "salicylic acid serum bangladesh",
+    "alpha arbutin serum bd",
+    "peptide serum bangladesh",
+    "ceramide moisturizer bd",
+    "squalane oil bangladesh",
+    "rosehip oil price bd",
+    "jade roller bangladesh",
+    "gua sha tool bd",
+    "under eye patches bangladesh",
     
-    // Laptops & Computers
-    "laptop price in bangladesh",
-    "gaming laptop bd",
-    "macbook price bangladesh",
-    "lenovo laptop price bd",
-    "hp laptop price bangladesh",
-    "asus laptop price bd",
-    "dell laptop price bangladesh",
-    "acer laptop price bd",
-    "msi gaming laptop bangladesh",
-    "razer laptop price bd",
-    "chromebook price bangladesh",
-    "desktop pc price bd",
-    "monitor price bangladesh",
-    "all in one pc bd",
+    // Makeup
+    "makeup products bangladesh",
+    "foundation price bd",
+    "concealer price bangladesh",
+    "lipstick price bd",
+    "liquid lipstick bangladesh",
+    "mascara price bd",
+    "eyeshadow palette bangladesh",
+    "kajal price bd",
+    "eyeliner price bangladesh",
+    "blush price bd",
+    "highlighter bangladesh",
+    "bronzer price bd",
+    "setting spray bangladesh",
+    "makeup brushes bd",
+    "primer price bangladesh",
+    "bb cream bangladesh",
+    "cc cream price bd",
+    "compact powder bangladesh",
+    "loose powder price bd",
+    "makeup remover bangladesh",
+    "micellar water bd",
+    "eyebrow pencil price bangladesh",
+    "lip liner bd",
+    "lip gloss price bangladesh",
+    "matte lipstick bd",
+    "creamy lipstick bangladesh",
+    "tinted moisturizer bd",
+    "face palette bangladesh",
     
-    // Smartwatches & Wearables
-    "smartwatch price in bangladesh",
-    "apple watch bd",
-    "samsung galaxy watch price bangladesh",
-    "fitness tracker bd",
-    "huawei watch price bangladesh",
-    "amazfit smartwatch bd",
-    "noise smartwatch price bangladesh",
-    "boAt smartwatch bd",
-    "fire boltt smartwatch bangladesh",
-    "fitbit price bd",
-    "garmin watch bangladesh",
-    "tizen smartwatch bd",
+    // Fragrances
+    "perfume price in bangladesh",
+    "women perfume bd",
+    "men perfume price bangladesh",
+    "attar price bd",
+    "fragrance oil bangladesh",
+    "body mist price bd",
+    "deodorant price bangladesh",
+    "luxury perfume bd",
+    "designer perfume bangladesh",
+    "niche fragrance bd",
+    "perfume gift set bangladesh",
+    "travel size perfume bd",
+    "oud perfume price bangladesh",
+    "fruity fragrance bd",
+    "floral perfume bangladesh",
+    "woody fragrance bd",
+    "fresh perfume bangladesh",
+    "oriental fragrance bd",
+    "unisex perfume bd",
+    "perfume oil bangladesh",
     
-    // Audio & Headphones
-    "wireless headphones bangladesh",
-    "best earbuds price bd",
-    "sony headphones price bangladesh",
-    "boAt earbuds bd",
-    "jbl speaker price bangladesh",
-    "airpods price bd",
-    "gaming headset bangladesh",
-    "noise cancelling headphones bd",
-    "true wireless earbuds bangladesh",
-    "neckband price bd",
-    "bluetooth speaker price bangladesh",
-    "soundbar price bd",
+    // Hair Care
+    "hair care products bangladesh",
+    "shampoo price bd",
+    "conditioner price bangladesh",
+    "hair serum bd",
+    "hair oil price bangladesh",
+    "hair mask bd",
+    "hair spray price bangladesh",
+    "dry shampoo bangladesh",
+    "hair growth serum bd",
+    "scalp scrub bangladesh",
+    "leave in conditioner bd",
+    "heat protectant spray bangladesh",
+    "hair tonic price bd",
+    "anti dandruff shampoo bangladesh",
+    "color protect shampoo bd",
+    "volume shampoo bangladesh",
+    "silk serum bd",
+    "hair butter bangladesh",
+    "curl cream price bd",
+    "edge control gel bangladesh",
     
-    // Gaming Accessories
-    "gaming accessories bangladesh",
-    "gaming mouse price bd",
-    "mechanical keyboard price bangladesh",
-    "gaming controller bd",
-    "gaming chair price bangladesh",
-    "rgb gaming accessories bd",
-    "gaming monitor bangladesh",
-    "gaming headset price bd",
-    "gaming mouse pad bd",
-    "streaming accessories bangladesh",
+    // Body Care
+    "body lotion price bangladesh",
+    "body scrub bd",
+    "body wash price bangladesh",
+    "body butter bangladesh",
+    "hand cream price bd",
+    "foot cream bangladesh",
+    "body oil bangladesh",
+    "body mist price bd",
+    "body serum bangladesh",
+    "body exfoliator bd",
+    "body moisturizer bangladesh",
+    "after sun lotion bd",
+    "tinted body lotion bangladesh",
+    "firming cream bd",
+    "stretch mark cream bangladesh",
     
-    // Smart Home
-    "smart home devices bangladesh",
-    "smart tv price bd",
-    "security camera price bangladesh",
-    "smart bulb price bd",
-    "robot vacuum cleaner bangladesh",
-    "smart speaker price bd",
-    "smart doorbell bangladesh",
-    "smart plug price bd",
-    "home automation bangladesh",
-    "smart lock price bd",
+    // Natural & Organic
+    "natural skincare bangladesh",
+    "organic beauty products bd",
+    "herbal cosmetics price bangladesh",
+    "vegan beauty bd",
+    "cruelty free makeup bangladesh",
+    "clean beauty products bd",
+    "organic face cream bangladesh",
+    "natural makeup bd",
+    "chemical free skincare bangladesh",
+    "eco friendly beauty bd",
+    "sustainable beauty bangladesh",
+    "plant based cosmetics bd",
+    "botanical skincare bangladesh",
+    "natural hair care bd",
+    "organic lip balm bangladesh",
     
-    // Accessories
-    "phone accessories bangladesh",
-    "phone cases bd",
-    "screen protector price bangladesh",
-    "power bank price bd",
-    "fast charger bangladesh",
-    "data cable price bd",
-    "bluetooth speaker price bangladesh",
-    "selfie stick bd",
-    "tripod price bangladesh",
-    "gimbal stabilizer bd",
-    "vr headset price bangladesh",
-    "drone price bd",
+    // Beauty Accessories
+    "beauty accessories bangladesh",
+    "makeup sponge bd",
+    "beauty blender price bangladesh",
+    "makeup bag bd",
+    "mirror price bangladesh",
+    "beauty tools bd",
+    "makeup brush set bangladesh",
+    "beauty organizer bd",
+    "vanity mirror bangladesh",
+    "travel makeup bag bd",
+    "beauty blender cleanser bangladesh",
+    
+    // K-Beauty & Trends
+    "korean skincare bangladesh",
+    "k beauty products bd",
+    "korean makeup bangladesh",
+    "glass skin routine bd",
+    "korean face mask bangladesh",
+    "korean toner bd",
+    "korean serum bangladesh",
+    "korean moisturizer bd",
+    "korean sunscreen bangladesh",
+    "japanese skincare bd",
+    "j beauty products bangladesh",
+    "japanese toner bd",
     
     // Shopping intent
-    "buy gadgets online bd",
-    "best gadget deals dhaka",
-    "premium gadget bangladesh",
-    "authentic gadgets bd",
-    "gift gadgets for him",
-    "gift gadgets for her",
-    "tech gifts bangladesh",
-    "gadget shop near me",
-    "electronics store bd",
-    "trusted tech store bangladesh",
+    "buy cosmetics online bd",
+    "best beauty deals dhaka",
+    "premium beauty bangladesh",
+    "authentic makeup bd",
+    "gift beauty sets bangladesh",
+    "beauty gifts for her",
+    "luxury cosmetics bd",
+    "beauty shop near me",
+    "cosmetics store bd",
+    "trusted beauty store bangladesh",
     
     // Payment & Delivery
-    "cod electronics bangladesh",
-    "bkash payment gadget",
-    "nagad tech store",
-    "free delivery gadgets dhaka",
+    "cod beauty products bangladesh",
+    "bkash payment cosmetics",
+    "nagad beauty store",
+    "free delivery beauty dhaka",
     "authentic products bd",
-    "trusted electronics store",
-    "100% original gadgets bd",
-    "warranty electronics bangladesh",
-    "official warranty bd",
-    "brand warranty bangladesh",
+    "trusted cosmetics store",
+    "100% original beauty bd",
+    "brand warranty cosmetics",
+    "genuine makeup bangladesh",
     
     // Trending
-    "best gadgets 2024 bangladesh",
-    "latest gadgets bd",
-    "new electronics bangladesh",
-    "top gadgets 2025 bd",
-    "premium tech bangladesh",
-    "best value gadgets bangladesh",
-    "tech accessories bd",
+    "best beauty products 2024 bangladesh",
+    "latest makeup bd",
+    "new skincare bangladesh",
+    "top beauty products 2025 bd",
+    "premium beauty bangladesh",
+    "best value beauty products",
+    "beauty haul bangladesh",
+    "skincare routine bd",
+    "makeup tutorial products bd",
     
     // Brands
-    "apple products bangladesh",
-    "samsung products bd",
-    "xiaomi gadgets bangladesh",
-    "realme tech bd",
-    "oneplus bangladesh",
-    "lenovo products bd",
-    "hp products bangladesh",
-    "asus gadgets bd",
-    "dell products bangladesh",
-    "sony electronics bangladesh",
-    "jbl audio bd",
-    "boAt lifestyle bangladesh"
+    "loreal products bangladesh",
+    "maybelline cosmetics bd",
+    "nyx makeup bangladesh",
+    "mac cosmetics bd",
+    "estee lauder bangladesh",
+    "clinique products bd",
+    "kiels bangladesh",
+    "the ordinary serums bd",
+    "cosrx skincare bangladesh",
+    "innisfree products bd",
+    "laneige bangladesh",
+    "nivea beauty bd",
+    "ponds products bangladesh",
+    "garnier skincare bd",
+    "vaseline beauty products bangladesh"
   ],
   openGraph: {
-    title: "Smart Gadget Products - Bangladesh's Premium Collection of Gadgets & Electronics",
-    description: "Shop smartphones, laptops, smartwatches, headphones, gaming accessories & more. 100% authentic products with free delivery across Bangladesh. COD and bKash/Nagad accepted.",
-    url: process.env.NEXT_PUBLIC_BASE_URL + '/products' || 'https://smartgadget.com.bd/products',
-    siteName: "Smart Gadget",
+    title: "Beauty Bucket Products - Bangladesh's Premium Collection of Beauty & Cosmetics",
+    description: "Shop premium skincare, makeup, fragrances, hair care, body care & beauty accessories. 100% authentic products with free delivery across Bangladesh. COD and bKash/Nagad accepted.",
+    url: process.env.NEXT_PUBLIC_BASE_URL + '/products' || 'https://beautybucket.com.bd/products',
+    siteName: "Beauty Bucket",
     images: [
       {
-        url: '/products-og-smartgadget.jpg',
+        url: '/products-og-beautybucket.jpg',
         width: 1200,
         height: 630,
-        alt: 'Smart Gadget Premium Collection - Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories',
+        alt: 'Beauty Bucket Premium Collection - Skincare, Makeup, Fragrances, Hair Care, Body Care',
       },
     ],
     type: 'website',
@@ -448,11 +534,11 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@SmartGadgetBD',
-    creator: '@SmartGadgetBD',
-    title: "Smart Gadget Products - Premium Gadgets & Electronics in Bangladesh",
-    description: "Shop 100+ premium gadgets, smartphones, laptops, smartwatches, headphones. 100% authentic. COD & bKash/Nagad available.",
-    images: ['/products-twitter-smartgadget.jpg'],
+    site: '@BeautyBucketBD',
+    creator: '@BeautyBucketBD',
+    title: "Beauty Bucket Products - Premium Beauty & Cosmetics in Bangladesh",
+    description: "Shop 100+ premium beauty products, skincare, makeup, fragrances. 100% authentic. COD & bKash/Nagad available.",
+    images: ['/products-twitter-beautybucket.jpg'],
   },
   alternates: {
     canonical: '/products',
@@ -474,27 +560,29 @@ export const metadata = {
   },
   // Additional metadata for better SEO
   other: {
-    'application-name': 'Smart Gadget Products',
-    'msapplication-TileColor': '#2563EB',
-    'theme-color': '#2563EB',
-    'price-range': '500-200000 BDT',
-    'target-audience': 'Tech Enthusiasts, Professionals, Students, Gamers, Home Users, Travelers',
-    'product-category': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Accessories, Smart Home, Accessories',
+    'application-name': 'Beauty Bucket Products',
+    'msapplication-TileColor': '#EE4275',
+    'theme-color': '#EE4275',
+    'price-range': '200-20000 BDT',
+    'target-audience': 'Beauty Enthusiasts, Skincare Lovers, Makeup Artists, Women, Men, Teenagers, Professionals',
+    'product-category': 'Skincare, Makeup, Fragrances, Hair Care, Body Care, Beauty Accessories, Natural Beauty, K-Beauty',
     'authenticity': '100% Authentic Products',
     'return-policy': '7 Days Return Policy',
-    'product-types': 'Smartphones, Laptops, Smartwatches, Headphones, Gaming Gear, Smart Home Devices, Accessories',
-    'condition': 'New, Original, Brand New',
-    'brands-available': 'Apple, Samsung, Xiaomi, OnePlus, Realme, Lenovo, HP, ASUS, Dell, Acer, Sony, JBL, boAt',
-    'technology': '5G, WiFi 6, Bluetooth 5.3, USB-C, Fast Charging, Wireless Charging',
-    'safety-features': 'Overcharge Protection, Short Circuit Protection, Overheat Protection, Surge Protection',
-    'durability': 'Durable Design, Premium Build Quality',
-    'warranty': 'Official Brand Warranty Available',
-    'operating-systems': 'Android, iOS, Windows, macOS, ChromeOS',
-    'connectivity': 'Bluetooth, WiFi, NFC, USB-C, Lightning, 3.5mm Audio',
+    'product-types': 'Skincare Products, Makeup Products, Fragrances, Hair Care Products, Body Care Products, Beauty Accessories',
+    'condition': 'New, Original, Brand New, Sealed',
+    'brands-available': 'L\'Oréal, Maybelline, NYX, MAC, Estée Lauder, Clinique, Kiehl\'s, The Ordinary, Cosrx, Innisfree, Laneige, Nivea, Pond\'s, Garnier, Vaseline',
+    'skin-types': 'All Skin Types, Dry Skin, Oily Skin, Combination Skin, Sensitive Skin, Acne-Prone Skin, Mature Skin',
+    'ingredients': 'Vitamin C, Hyaluronic Acid, Retinol, Niacinamide, Salicylic Acid, Glycolic Acid, Ceramides, Peptides, Squalane, Rosehip Oil, Shea Butter, Aloe Vera',
+    'beauty-concerns': 'Acne, Aging, Hyperpigmentation, Dryness, Dullness, Fine Lines, Wrinkles, Dark Spots, Uneven Skin Tone',
+    'safety-features': 'Dermatologically Tested, Hypoallergenic, Non-Comedogenic, Fragrance Free (Options Available), Paraben Free (Options Available)',
+    'ethical-features': 'Cruelty Free Options, Vegan Options, Eco-Friendly Packaging Options',
+    'warranty': '100% Genuine Products Guaranteed',
+    'shades-available': 'Fair to Deep Skin Tones',
+    'texture-types': 'Cream, Gel, Serum, Oil, Balm, Powder, Liquid, Stick',
   },
 };
 
-// Server component with Suspense for Smart Gadget products page
+// Server component with Suspense for Beauty Bucket products page
 export default function ProductsPage() {
   return (
     <Suspense fallback={<ProductsLoading />}>
