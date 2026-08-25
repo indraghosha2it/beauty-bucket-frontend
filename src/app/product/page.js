@@ -1,4 +1,4 @@
-// app/product/[id]/page.js
+// app/product/page.js
 import { Suspense } from 'react';
 import ProductClient from './ProductClient';
 
