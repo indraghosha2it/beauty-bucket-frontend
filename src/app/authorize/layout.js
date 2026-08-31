@@ -1133,7 +1133,9 @@ import {
   Database,
   UserCog2,
   Images,
-  Mail
+  MessageCircle,
+  Mail,
+  GiftIcon
 } from 'lucide-react';
 import DynamicLogo from '../components/DynamicLogo';
 import { FaChartLine } from 'react-icons/fa';
@@ -1539,6 +1541,20 @@ export default function AuthorizeLayout({ children }) {
   icon: Sparkles,
   accessKey: 'manage_why_choose_us'
 },
+// In navigationItems array
+{
+  name: 'Deal Management',
+  href: '/authorize/deal-management',
+  icon: GiftIcon,
+  accessKey: 'deal_management'
+},
+// In navigationItems array, add:
+{
+  name: 'Trust Results',
+  href: '/authorize/trust-results-management',
+  icon: ShieldCheck,
+  accessKey: 'trust_results_management'
+},
         { 
           name: 'Manage Homepage', 
           href: '/authorize/homepage-management', 
@@ -1647,6 +1663,13 @@ export default function AuthorizeLayout({ children }) {
       icon: Images,
       accessKey: 'media_library'
     },
+    // In your admin sidebar/navigation
+{
+  name: 'Chat FAQ',
+  href: '/authorize/faq',
+  icon: MessageCircle,
+   accessKey: 'manage_faq'
+},
     { 
       name: 'Email Settings', 
       href: '/authorize/email-settings', 

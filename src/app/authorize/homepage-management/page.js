@@ -40,10 +40,13 @@ const generateId = () => `section_${Date.now()}_${Math.random().toString(36).sub
 // Section type options - REMOVED 'brands'
 const SYSTEM_SECTION_TYPES = [
   { value: 'hero', label: 'Hero Banner', icon: LayoutTemplate, deletable: false, hasProducts: false },
-  { value: 'big_sale', label: 'Big Sale', icon: Car, deletable: false, hasProducts: false },
+
   { value: 'categories', label: 'Categories', icon: Grid3x3, deletable: false, hasProducts: false },
+   { value: 'deals', label: 'Deals You Can\'t Miss', icon: Zap, deletable: false, hasProducts: false },
+     { value: 'big_sale', label: 'Big Sale', icon: Car, deletable: false, hasProducts: false },
   { value: 'featured', label: 'Featured Products', icon: Zap, deletable: false, hasProducts: false },
    { value: 'why_choose_us', label: 'Why Choose Us', icon: Shield, deletable: false, hasProducts: false }, // ✅ ADDED
+   
 ];
 
 // Custom section type (deletable, has products)
@@ -63,6 +66,7 @@ const ITEMS_PER_ROW = [
   { value: 3, label: '3 per row' },
   { value: 4, label: '4 per row' },
   { value: 5, label: '5 per row' },
+  { value: 6, label: '6 per row' },
 ];
 
 // Product Search Modal Component - Multiple Select
@@ -683,7 +687,7 @@ const SectionItem = ({ section, index, onUpdate, onRemove, onMove }) => {
                   Items Per Row
                 </label>
                 <select
-                  value={section.itemsPerRow || 5}
+                  value={section.itemsPerRow || 6}
                   onChange={(e) => onUpdate(index, { ...section, itemsPerRow: parseInt(e.target.value) })}
                   className={`w-full px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition bg-white ${
                     section.isActive ? 'border-blue-500/20' : 'border-gray-200'
@@ -998,20 +1002,29 @@ const getDefaultSections = () => [
     displayOrder: 0,
     items: []
   },
-  {
-    id: generateId(),
-    name: 'Big Sale',
-    type: 'big_sale',
-    isActive: true,
-    displayOrder: 1,
-    items: []
-  },
+
   {
     id: generateId(),
     name: 'Categories',
     type: 'categories',
     isActive: true,
+    displayOrder: 1,
+    items: []
+  },
+   {
+    id: generateId(),
+    name: 'Deals You Can\'t Miss',
+    type: 'deals',
+    isActive: true,
     displayOrder: 2,
+    items: []
+  },
+    {
+    id: generateId(),
+    name: 'Big Sale',
+    type: 'big_sale',
+    isActive: true,
+    displayOrder: 3,
     items: []
   },
   {
@@ -1019,7 +1032,7 @@ const getDefaultSections = () => [
     name: 'Featured Products',
     type: 'featured',
     isActive: true,
-    displayOrder: 3,
+    displayOrder: 4,
     items: []
   },
   // ✅ ADD WHY CHOOSE US
@@ -1028,7 +1041,7 @@ const getDefaultSections = () => [
     name: 'Why Choose Us',
     type: 'why_choose_us',
     isActive: true,
-    displayOrder: 4,
+    displayOrder: 5,
     items: []
   }
 ];
@@ -1045,7 +1058,7 @@ const getDefaultSections = () => [
       customTitle: '',
       customDescription: '',
       layout: 'grid',
-      itemsPerRow: 5,
+      itemsPerRow: 6,
       viewAllLink: '/products'
     };
     setSections([...sections, newSection]);
@@ -1114,7 +1127,7 @@ const getDefaultSections = () => [
         customTitle: section.customTitle || '',
         customDescription: section.customDescription || '',
         layout: section.layout || 'grid',
-        itemsPerRow: section.itemsPerRow || 5,
+        itemsPerRow: section.itemsPerRow || 6,
         viewAllLink: section.viewAllLink || '/products'
       }));
 

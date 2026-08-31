@@ -109,6 +109,7 @@ import BrandScroll from './BrandScroll.js';
 import WhyChooseUs from './WhyChooseUs.js';
 import { Loader2 } from 'lucide-react';
 import ProductGridSection from './ProductGridSection.js';
+import DealsSection from './DealsSection.js';
 
 export default function HomePage() {
   const [sections, setSections] = useState([]);
@@ -154,6 +155,9 @@ export default function HomePage() {
 
       case 'why_choose_us':
         return section.isActive !== false && <WhyChooseUs key={section.id} />;
+      
+       case 'deals': // ✅ ADD THIS CASE
+        return section.isActive !== false && <DealsSection key={section.id} />;
 
       case 'custom':
         return section.isActive !== false && (

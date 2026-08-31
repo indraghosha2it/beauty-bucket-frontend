@@ -1,14 +1,17 @@
 
+
+
 // 'use client';
 
 // import Link from 'next/link';
 // import { useState, useEffect, useRef } from 'react';
 // import { usePathname, useRouter } from 'next/navigation';
-// import { 
-//   LogOut, 
-//   User, 
-//   LayoutDashboard, 
-//   ShoppingCart,
+
+// import {
+//   LogOut,
+//   User,
+//   LayoutDashboard,
+//   ShoppingBag,
 //   Search,
 //   X,
 //   Home,
@@ -23,12 +26,16 @@
 //   Heart,
 //   Sparkles,
 //   Settings,
-//   Flower2
+//   Flower2,
 // } from 'lucide-react';
+
 // import { toast } from 'sonner';
 // import CartSidebar from '../CartSidebar';
 
-// // Icon mapping for navbar items
+// // ============================================================
+// // ICON MAPPING
+// // ============================================================
+
 // const ICON_MAP = {
 //   Home: Home,
 //   Zap: Zap,
@@ -42,93 +49,244 @@
 //   Flower2: Flower2,
 // };
 
+// // ============================================================
+// // COLOR PALETTE - BEAUTY THEME
+// // ============================================================
+// // Foundation/Skin tones: Warm beige, nude, tan
+// // Green accents: Sage, olive, eucalyptus
+// // ============================================================
+
+// const COLORS = {
+//   primary: '#8B9D83', // Sage green - main accent
+//   primaryLight: '#A8B8A0', // Lighter sage
+//   primaryDark: '#6B7D63', // Darker sage
+//   primaryBg: '#F2F5F0', // Very light sage background
+//   skin: '#F5EDE3', // Light foundation/skin tone
+//   skinMedium: '#E8DCD0', // Medium skin tone
+//   skinDark: '#D4C4B4', // Darker skin tone
+//   text: '#3D3D3D',
+//   textLight: '#6B6B6B',
+//   white: '#FFFFFF',
+//   border: '#E8E0D8',
+// };
+
 // export default function Navbar() {
+//   // ============================================================
+//   // STATES
+//   // ============================================================
+
 //   const [navbarData, setNavbarData] = useState(null);
 //   const [navbarLoading, setNavbarLoading] = useState(true);
+
 //   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 //   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
 //   const [searchOpen, setSearchOpen] = useState(false);
 //   const [searchQuery, setSearchQuery] = useState('');
 //   const [searchResults, setSearchResults] = useState([]);
 //   const [searchLoading, setSearchLoading] = useState(false);
 //   const [showResults, setShowResults] = useState(false);
+
 //   const [user, setUser] = useState(null);
+
 //   const [cartCount, setCartCount] = useState(0);
+
 //   const [authLoading, setAuthLoading] = useState(true);
+
 //   const [scrolled, setScrolled] = useState(false);
+
 //   const [profileImageError, setProfileImageError] = useState(false);
+
 //   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+
 //   const [isCartOpen, setIsCartOpen] = useState(false);
+
+//   // ============================================================
+//   // REFS
+//   // ============================================================
 
 //   const searchRef = useRef(null);
 //   const mobileSearchRef = useRef(null);
+
+//   // ============================================================
+//   // ROUTER
+//   // ============================================================
+
 //   const pathname = usePathname();
 //   const router = useRouter();
 
-//   // Fetch navbar data from PUBLIC endpoint (no auth required)
+//   // ============================================================
+//   // HOME PAGE
+//   // ============================================================
+
+//   const isHomePage = pathname === '/';
+
+//   // ============================================================
+//   // API BASE URL
+//   // ============================================================
+
+//   const API_URL =
+//     process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+//   // ============================================================
+//   // FETCH NAVBAR DATA
+//   // ============================================================
+
 //   useEffect(() => {
 //     const fetchNavbar = async () => {
 //       try {
-//         // ✅ PUBLIC endpoint - no token needed
-//         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/navbar`);
-        
+//         const response = await fetch(`${API_URL}/api/navbar`);
+
 //         if (response.ok) {
 //           const data = await response.json();
+
 //           if (data.success) {
 //             setNavbarData(data.data);
 //           } else {
-//             // Set default values if API fails
 //             setNavbarData({
 //               items: [
-//                 { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-//                 { id: '2', name: 'Products', href: '/products', icon: 'Package', isActive: true },
-//                 { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-//                 { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-//                 { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+//                 {
+//                   id: '1',
+//                   name: 'Home',
+//                   href: '/',
+//                   icon: 'Home',
+//                   isActive: true,
+//                 },
+//                 {
+//                   id: '2',
+//                   name: 'Products',
+//                   href: '/products',
+//                   icon: 'Package',
+//                   isActive: true,
+//                 },
+//                 {
+//                   id: '3',
+//                   name: 'Track Order',
+//                   href: '/track',
+//                   icon: 'MapPin',
+//                   isActive: true,
+//                 },
+//                 {
+//                   id: '4',
+//                   name: 'About',
+//                   href: '/about',
+//                   icon: 'Flower2',
+//                   isActive: true,
+//                 },
+//                 {
+//                   id: '5',
+//                   name: 'Contact',
+//                   href: '/contact',
+//                   icon: 'Phone',
+//                   isActive: true,
+//                 },
 //               ],
+
 //               logo: {
 //                 text: 'Glow&Co',
 //                 highlightText: '',
 //                 icon: 'Package',
-//                 logoUrl: '/logo.png'
-//               }
+//                 logoUrl: '/logo.png',
+//               },
 //             });
 //           }
 //         } else {
-//           // Fallback to defaults
 //           setNavbarData({
 //             items: [
-//               { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-//               { id: '2', name: 'Products', href: '/products', icon: 'Sparkles', isActive: true },
-//               { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-//               { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-//               { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+//               {
+//                 id: '1',
+//                 name: 'Home',
+//                 href: '/',
+//                 icon: 'Home',
+//                 isActive: true,
+//               },
+//               {
+//                 id: '2',
+//                 name: 'Products',
+//                 href: '/products',
+//                 icon: 'Sparkles',
+//                 isActive: true,
+//               },
+//               {
+//                 id: '3',
+//                 name: 'Track Order',
+//                 href: '/track',
+//                 icon: 'MapPin',
+//                 isActive: true,
+//               },
+//               {
+//                 id: '4',
+//                 name: 'About',
+//                 href: '/about',
+//                 icon: 'Flower2',
+//                 isActive: true,
+//               },
+//               {
+//                 id: '5',
+//                 name: 'Contact',
+//                 href: '/contact',
+//                 icon: 'Phone',
+//                 isActive: true,
+//               },
 //             ],
+
 //             logo: {
 //               text: 'Glow&Co',
 //               highlightText: 'BEAUTY',
 //               icon: 'Package',
-//               logoUrl: '/logo.png'
-//             }
+//               logoUrl: '/logo.png',
+//             },
 //           });
 //         }
 //       } catch (error) {
 //         console.error('Error fetching navbar:', error);
-//         // Set default values if API fails
+
 //         setNavbarData({
 //           items: [
-//             { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-//             { id: '2', name: 'Products', href: '/products', icon: 'Sparkles', isActive: true },
-//             { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-//             { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-//             { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+//             {
+//               id: '1',
+//               name: 'Home',
+//               href: '/',
+//               icon: 'Home',
+//               isActive: true,
+//             },
+//             {
+//               id: '2',
+//               name: 'Products',
+//               href: '/products',
+//               icon: 'Sparkles',
+//               isActive: true,
+//             },
+//             {
+//               id: '3',
+//               name: 'Track Order',
+//               href: '/track',
+//               icon: 'MapPin',
+//               isActive: true,
+//             },
+//             {
+//               id: '4',
+//               name: 'About',
+//               href: '/about',
+//               icon: 'Flower2',
+//               isActive: true,
+//             },
+//             {
+//               id: '5',
+//               name: 'Contact',
+//               href: '/contact',
+//               icon: 'Phone',
+//               isActive: true,
+//             },
 //           ],
+
 //           logo: {
 //             text: 'Glow&Co',
 //             highlightText: 'BEAUTY',
 //             icon: 'Package',
-//             logoUrl: '/logo.png'
-//           }
+//             logoUrl: '/logo.png',
+//           },
 //         });
 //       } finally {
 //         setNavbarLoading(false);
@@ -136,110 +294,175 @@
 //     };
 
 //     fetchNavbar();
-//   }, []);
+//   }, [API_URL]);
 
-//   // Handle scroll effect
+//   // ============================================================
+//   // SCROLL EFFECT
+//   // ============================================================
+
 //   useEffect(() => {
 //     const handleScroll = () => {
 //       setScrolled(window.scrollY > 10);
 //     };
+
 //     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
+
+//     return () => {
+//       window.removeEventListener('scroll', handleScroll);
+//     };
 //   }, []);
 
-//   // Close search on click outside (desktop)
+//   // ============================================================
+//   // CLOSE DESKTOP SEARCH ON OUTSIDE CLICK
+//   // ============================================================
+
 //   useEffect(() => {
 //     const handleClickOutside = (event) => {
-//       if (searchRef.current && !searchRef.current.contains(event.target)) {
+//       if (
+//         searchRef.current &&
+//         !searchRef.current.contains(event.target)
+//       ) {
 //         setShowResults(false);
+
 //         if (!event.target.closest('.search-trigger')) {
 //           setSearchOpen(false);
 //         }
 //       }
 //     };
+
 //     document.addEventListener('mousedown', handleClickOutside);
-//     return () => document.removeEventListener('mousedown', handleClickOutside);
+
+//     return () => {
+//       document.removeEventListener(
+//         'mousedown',
+//         handleClickOutside
+//       );
+//     };
 //   }, []);
 
-//   // Close mobile search on click outside
+//   // ============================================================
+//   // CLOSE MOBILE SEARCH ON OUTSIDE CLICK
+//   // ============================================================
+
 //   useEffect(() => {
 //     const handleClickOutside = (event) => {
-//       if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target) && !event.target.closest('.mobile-search-trigger')) {
+//       if (
+//         mobileSearchRef.current &&
+//         !mobileSearchRef.current.contains(event.target) &&
+//         !event.target.closest('.mobile-search-trigger')
+//       ) {
 //         setMobileSearchOpen(false);
 //         setShowResults(false);
 //         setSearchQuery('');
 //       }
 //     };
+
 //     document.addEventListener('mousedown', handleClickOutside);
-//     return () => document.removeEventListener('mousedown', handleClickOutside);
+
+//     return () => {
+//       document.removeEventListener(
+//         'mousedown',
+//         handleClickOutside
+//       );
+//     };
 //   }, []);
 
-//   // Prevent body scroll when mobile menu is open
+//   // ============================================================
+//   // PREVENT BODY SCROLL WHEN MOBILE MENU OPEN
+//   // ============================================================
+
 //   useEffect(() => {
 //     if (isMenuOpen) {
 //       document.body.style.overflow = 'hidden';
 //     } else {
 //       document.body.style.overflow = 'unset';
 //     }
+
 //     return () => {
 //       document.body.style.overflow = 'unset';
 //     };
 //   }, [isMenuOpen]);
 
-//   useEffect(() => {
-//     if (!authLoading) {
-//       fetchCartCount();
-//     }
-//   }, [user, authLoading]);
-  
-//   // Check user state
+//   // ============================================================
+//   // CHECK USER STATE
+//   // ============================================================
+
 //   const checkUserState = () => {
 //     if (typeof window !== 'undefined') {
 //       const userData = localStorage.getItem('user');
+
 //       if (userData) {
 //         try {
 //           const parsedUser = JSON.parse(userData);
+
 //           setUser(parsedUser);
 //           setProfileImageError(false);
 //         } catch (error) {
-//           console.error('Error parsing user data:', error);
+//           console.error(
+//             'Error parsing user data:',
+//             error
+//           );
+
 //           setUser(null);
 //         }
 //       } else {
 //         setUser(null);
 //       }
+
 //       setAuthLoading(false);
 //     }
 //   };
 
-//   // Fetch cart count
+//   // ============================================================
+//   // FETCH CART COUNT
+//   // ============================================================
+
 //   const fetchCartCount = async () => {
 //     try {
 //       const token = localStorage.getItem('token');
+
 //       const headers = {};
-      
+
 //       if (token) {
 //         headers['Authorization'] = `Bearer ${token}`;
 //       } else {
-//         const sessionId = localStorage.getItem('cartSessionId');
+//         const sessionId =
+//           localStorage.getItem('cartSessionId');
+
 //         if (sessionId) {
 //           headers['x-session-id'] = sessionId;
 //         }
 //       }
-      
-//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/cart`, { headers });
-      
+
+//       const response = await fetch(
+//         `${API_URL}/api/cart`,
+//         {
+//           headers,
+//         }
+//       );
+
 //       if (response.ok) {
 //         const data = await response.json();
-//         setCartCount(data.data?.totalItems || 0);
+
+//         setCartCount(
+//           data.data?.totalItems || 0
+//         );
 //       } else {
 //         setCartCount(0);
 //       }
 //     } catch (error) {
-//       console.error('Fetch cart count error:', error);
+//       console.error(
+//         'Fetch cart count error:',
+//         error
+//       );
+
 //       setCartCount(0);
 //     }
 //   };
+
+//   // ============================================================
+//   // AUTH + CART EVENTS
+//   // ============================================================
 
 //   useEffect(() => {
 //     checkUserState();
@@ -250,73 +473,169 @@
 //       fetchCartCount();
 //     };
 
-//     window.addEventListener('auth-change', handleAuthChange);
-//     window.addEventListener('focus', handleAuthChange);
-//     window.addEventListener('cart-update', fetchCartCount);
+//     window.addEventListener(
+//       'auth-change',
+//       handleAuthChange
+//     );
+
+//     window.addEventListener(
+//       'focus',
+//       handleAuthChange
+//     );
+
+//     window.addEventListener(
+//       'cart-update',
+//       fetchCartCount
+//     );
 
 //     return () => {
-//       window.removeEventListener('auth-change', handleAuthChange);
-//       window.removeEventListener('focus', handleAuthChange);
-//       window.removeEventListener('cart-update', fetchCartCount);
+//       window.removeEventListener(
+//         'auth-change',
+//         handleAuthChange
+//       );
+
+//       window.removeEventListener(
+//         'focus',
+//         handleAuthChange
+//       );
+
+//       window.removeEventListener(
+//         'cart-update',
+//         fetchCartCount
+//       );
 //     };
 //   }, []);
+
+//   // ============================================================
+//   // FETCH CART WHEN PATHNAME CHANGES
+//   // ============================================================
 
 //   useEffect(() => {
 //     fetchCartCount();
 //   }, [pathname]);
 
+//   // ============================================================
+//   // CART UPDATE LISTENER
+//   // ============================================================
+
 //   useEffect(() => {
 //     const handleCartUpdate = () => {
 //       fetchCartCount();
 //     };
-    
-//     window.addEventListener('cart-update', handleCartUpdate);
-    
+
+//     window.addEventListener(
+//       'cart-update',
+//       handleCartUpdate
+//     );
+
 //     return () => {
-//       window.removeEventListener('cart-update', handleCartUpdate);
+//       window.removeEventListener(
+//         'cart-update',
+//         handleCartUpdate
+//       );
 //     };
 //   }, []);
 
-//   // Get icon component from name
+//   // ============================================================
+//   // GET ICON
+//   // ============================================================
+
 //   const getIcon = (iconName) => {
 //     const Icon = ICON_MAP[iconName];
+
 //     return Icon || Package;
 //   };
 
-//   // Get navbar items from backend or use defaults
+//   // ============================================================
+//   // NAVIGATION ITEMS
+//   // ============================================================
+
 //   const getNavItems = () => {
-//     if (navbarData?.items && navbarData.items.length > 0) {
-//       return navbarData.items.filter(item => item.isActive !== false);
+//     if (
+//       navbarData?.items &&
+//       navbarData.items.length > 0
+//     ) {
+//       return navbarData.items.filter(
+//         (item) => item.isActive !== false
+//       );
 //     }
+
 //     return [
-//       { id: '1', name: 'Home', href: '/', icon: 'Home' },
-//       { id: '2', name: 'Products', href: '/products', icon: 'Sparkles' },
-//       { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin' },
-//       { id: '4', name: 'About', href: '/about', icon: 'Flower2' },
-//       { id: '5', name: 'Contact', href: '/contact', icon: 'Phone' },
+//       {
+//         id: '1',
+//         name: 'Home',
+//         href: '/',
+//         icon: 'Home',
+//       },
+//       {
+//         id: '2',
+//         name: 'Products',
+//         href: '/products',
+//         icon: 'Sparkles',
+//       },
+//       {
+//         id: '3',
+//         name: 'Track Order',
+//         href: '/track',
+//         icon: 'MapPin',
+//       },
+//       {
+//         id: '4',
+//         name: 'About',
+//         href: '/about',
+//         icon: 'Flower2',
+//       },
+//       {
+//         id: '5',
+//         name: 'Contact',
+//         href: '/contact',
+//         icon: 'Phone',
+//       },
 //     ];
 //   };
 
 //   const navItems = getNavItems();
 
+//   // ============================================================
+//   // ACTIVE LINK
+//   // ============================================================
+
 //   const isActive = (path) => {
-//     if (path === '/') return pathname === '/';
+//     if (path === '/') {
+//       return pathname === '/';
+//     }
+
 //     return pathname.startsWith(path);
 //   };
+
+//   // ============================================================
+//   // SEARCH
+//   // ============================================================
 
 //   const performSearch = async (query) => {
 //     if (!query.trim()) {
 //       setSearchResults([]);
 //       setShowResults(false);
+
 //       return;
 //     }
-    
+
 //     setSearchLoading(true);
+
 //     try {
-//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
+//       const response = await fetch(
+//         `${API_URL}/api/products?search=${encodeURIComponent(
+//           query
+//         )}&limit=5`
+//       );
+
 //       const data = await response.json();
-      
-//       if (data.success && data.data && data.data.length > 0) {
+
+//       if (
+//         data.success &&
+//         data.data &&
+//         data.data.length > 0
+//       ) {
 //         setSearchResults(data.data);
 //         setShowResults(true);
 //       } else {
@@ -324,13 +643,21 @@
 //         setShowResults(false);
 //       }
 //     } catch (error) {
-//       console.error('Search error:', error);
+//       console.error(
+//         'Search error:',
+//         error
+//       );
+
 //       setSearchResults([]);
 //       setShowResults(false);
 //     } finally {
 //       setSearchLoading(false);
 //     }
 //   };
+
+//   // ============================================================
+//   // SEARCH DEBOUNCE
+//   // ============================================================
 
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
@@ -341,13 +668,24 @@
 //         setShowResults(false);
 //       }
 //     }, 300);
+
 //     return () => clearTimeout(timer);
 //   }, [searchQuery]);
 
+//   // ============================================================
+//   // SEARCH SUBMIT
+//   // ============================================================
+
 //   const handleSearchSubmit = (e) => {
 //     e.preventDefault();
+
 //     if (searchQuery.trim()) {
-//       router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+//       router.push(
+//         `/search?q=${encodeURIComponent(
+//           searchQuery
+//         )}`
+//       );
+
 //       setSearchOpen(false);
 //       setMobileSearchOpen(false);
 //       setSearchQuery('');
@@ -355,693 +693,1546 @@
 //     }
 //   };
 
-//   // ✅ FIXED: Updated handleResultClick with timeout and proper state management
+//   // ============================================================
+//   // SEARCH RESULT CLICK
+//   // ============================================================
+
 //   const handleResultClick = (result) => {
 //     const productId = result._id;
-//     const productSlug = result.slug || productId;
-    
+
+//     const productSlug =
+//       result.slug || productId;
+
 //     if (productSlug) {
-//       // Close all search UI first
 //       setSearchOpen(false);
 //       setMobileSearchOpen(false);
 //       setSearchQuery('');
 //       setShowResults(false);
-      
-//       // Use setTimeout to ensure state updates complete before navigation
+
 //       setTimeout(() => {
-//         router.push(`/product/${productSlug}`);
+//         router.push(
+//           `/product/${productSlug}`
+//         );
 //       }, 50);
 //     } else {
-//       router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+//       router.push(
+//         `/search?q=${encodeURIComponent(
+//           searchQuery
+//         )}`
+//       );
 //     }
 //   };
-  
+
+//   // ============================================================
+//   // LOGOUT
+//   // ============================================================
+
 //   const logout = () => {
 //     localStorage.removeItem('token');
 //     localStorage.removeItem('user');
+
 //     setUser(null);
 //     setCartCount(0);
 //     setUserMenuOpen(false);
-//     window.dispatchEvent(new Event('cart-update'));
-//     window.dispatchEvent(new Event('auth-change'));
-//     toast.success('Logged out successfully!');
+
+//     window.dispatchEvent(
+//       new Event('cart-update')
+//     );
+
+//     window.dispatchEvent(
+//       new Event('auth-change')
+//     );
+
+//     toast.success(
+//       'Logged out successfully!'
+//     );
+
 //     router.push('/');
 //   };
 
-//   // ========== GET DASHBOARD LINK BASED ON ROLE ==========
+//   // ============================================================
+//   // DASHBOARD LINK
+//   // ============================================================
+
 //   const getDashboardLink = () => {
-//     if (!user) return '/';
-    
-//     if (['admin', 'super_admin', 'moderator'].includes(user.role)) {
+//     if (!user) {
+//       return '/';
+//     }
+
+//     if (
+//       [
+//         'admin',
+//         'super_admin',
+//         'moderator',
+//       ].includes(user.role)
+//     ) {
 //       return '/authorize/dashboard';
 //     }
-    
-//     if (user.role === 'call_center_agent') {
+
+//     if (
+//       user.role === 'call_center_agent'
+//     ) {
 //       return '/agent/dashboard';
 //     }
-    
+
 //     return '/customer/dashboard';
 //   };
 
-//   // ========== GET SETTINGS LINK BASED ON ROLE ==========
+//   // ============================================================
+//   // SETTINGS LINK
+//   // ============================================================
+
 //   const getSettingsLink = () => {
-//     if (!user) return '/';
-    
-//     if (['admin', 'super_admin', 'moderator'].includes(user.role)) {
+//     if (!user) {
+//       return '/';
+//     }
+
+//     if (
+//       [
+//         'admin',
+//         'super_admin',
+//         'moderator',
+//       ].includes(user.role)
+//     ) {
 //       return '/authorize/settings';
 //     }
-    
-//     if (user.role === 'call_center_agent') {
+
+//     if (
+//       user.role === 'call_center_agent'
+//     ) {
 //       return '/agent/settings';
 //     }
-    
+
 //     return '/customer/settings';
 //   };
 
+//   // ============================================================
+//   // DISPLAY NAME
+//   // ============================================================
+
 //   const getDisplayName = () => {
-//     if (!user) return '';
-//     return user.companyName || user.contactPerson || user.email?.split('@')[0] || 'User';
+//     if (!user) {
+//       return '';
+//     }
+
+//     return (
+//       user.companyName ||
+//       user.contactPerson ||
+//       user.email?.split('@')[0] ||
+//       'User'
+//     );
 //   };
+
+//   // ============================================================
+//   // INITIALS
+//   // ============================================================
 
 //   const getInitials = () => {
-//     if (!user) return 'U';
+//     if (!user) {
+//       return 'U';
+//     }
+
 //     const name = getDisplayName();
-//     return name.charAt(0).toUpperCase();
+
+//     return name
+//       .charAt(0)
+//       .toUpperCase();
 //   };
+
+//   // ============================================================
+//   // PROFILE PICTURE
+//   // ============================================================
 
 //   const getProfilePicture = () => {
-//     return user?.profilePicture || user?.photoURL || null;
+//     return (
+//       user?.profilePicture ||
+//       user?.photoURL ||
+//       null
+//     );
 //   };
 
-//   // Get logo URL with proper quality settings
+//   // ============================================================
+//   // LOGO URL
+//   // ============================================================
+
 //   const getLogoUrl = (url) => {
-//     if (!url) return '/logo.png';
-    
-//     // If it's a Cloudinary URL, add optimization params for quality
-//     if (url.includes('cloudinary.com')) {
-//       const parts = url.split('/upload/');
+//     if (!url) {
+//       return '/logo.png';
+//     }
+
+//     if (
+//       url.includes(
+//         'cloudinary.com'
+//       )
+//     ) {
+//       const parts =
+//         url.split('/upload/');
+
 //       if (parts.length === 2) {
-//         // Better quality settings - no forced height
 //         return `${parts[0]}/upload/f_auto,q_auto:good,fl_preserve_transparency/${parts[1]}`;
 //       }
 //     }
+
 //     return url;
 //   };
 
-//   // Check if user has authorize role
-//   const isAuthorizeRole = user && ['admin', 'super_admin', 'moderator'].includes(user.role);
+//   // ============================================================
+//   // AUTHORIZE ROLE
+//   // ============================================================
 
-//   if (authLoading || navbarLoading) {
+//   const isAuthorizeRole =
+//     user &&
+//     [
+//       'admin',
+//       'super_admin',
+//       'moderator',
+//     ].includes(user.role);
+
+//   // ============================================================
+//   // LOADING
+//   // ============================================================
+
+//   if (
+//     authLoading ||
+//     navbarLoading
+//   ) {
 //     return (
-//       <div className="fixed top-0 z-50 w-full bg-white border-b border-[#F7C7D3]">
+//       <div
+//         className="fixed top-0 z-50 w-full bg-white border-b border-[#E8E0D8]"
+//       >
 //         <div className="container mx-auto px-4">
 //           <div className="flex items-center justify-between h-16">
-//             <div className="w-10 h-10 bg-[#F7C7D3] rounded animate-pulse"></div>
+
+//             <div className="w-10 h-10 bg-[#E8DCD0] rounded animate-pulse" />
+
 //             <div className="flex gap-4">
-//               <div className="w-8 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
-//               <div className="w-8 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
-//               <div className="w-16 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
+
+//               <div className="w-8 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
+//               <div className="w-8 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
+//               <div className="w-16 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
 //             </div>
+
 //           </div>
 //         </div>
 //       </div>
 //     );
 //   }
 
+//   // ============================================================
+//   // RETURN
+//   // ============================================================
+
 //   return (
 //     <>
-//       {/* Main Navbar */}
-//       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-//         scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'
-//       }`}>
-//       <div className="container mx-auto px-4">
-//   <div className="flex items-center justify-between h-16">
+//       {/* ======================================================
+//           MAIN NAVBAR - WHITE BACKGROUND
+//       ====================================================== */}
 
-//     {/* Left Group: Menu Button + Logo (tight together on mobile) */}
-//     <div className="flex items-center gap-1 md:gap-0">
-//       <button
-//         onClick={() => setIsMenuOpen(!isMenuOpen)}
-//         className="md:hidden p-2 -ml-1 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
+//       <nav
+//         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
+//           scrolled ? 'shadow-md' : 'shadow-sm'
+//         }`}
 //       >
-//         <Menu className="w-5 h-5 text-[#EE4275]" />
-//       </button>
+//         <div className="container mx-auto px-4">
 
-//       <Link href="/" className="flex items-center flex-shrink-0 group">
-//         <div className="relative w-24 h-11 -ml-5 lg:-ml-0 md:w-32 md:h-14 transition-transform group-hover:scale-105 duration-300">
-//           {navbarData?.logo?.logoUrl ? (
-//             <img 
-//               src={getLogoUrl(navbarData.logo.logoUrl)}
-//               alt={navbarData.logo.text || 'Glow&Co'}
-//               className="w-full h-full object-contain"
-//               style={{ background: 'transparent' }}
-//             />
-//           ) : (
-//             <img 
-//               src="/logo.png"
-//               alt="Glow&Co Logo"
-//               className="w-full h-full object-contain"
-//             />
-//           )}
-//         </div>
-//       </Link>
-//     </div>
+//           <div className="flex items-center justify-between h-16">
 
-//     {/* Desktop Navigation - Center */}
-//     <div className="hidden md:flex items-center space-x-1 flex-1 justify-center">
-//       {navItems.map((item) => {
-//         const Icon = getIcon(item.icon);
-//         return (
-//           <Link
-//             key={item.id || item.name}
-//             href={item.href}
-//             className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-//               isActive(item.href)
-//                 ? 'text-[#EE4275]'
-//                 : 'text-gray-600 hover:text-[#EE4275]'
-//             }`}
-//             style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//           >
-//             {item.name}
-//             {isActive(item.href) && (
-//               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-[#EE4275] rounded-full"></span>
-//             )}
-//           </Link>
-//         );
-//       })}
-//     </div>
+//             {/* ==================================================
+//                 LEFT SECTION
+//             ================================================== */}
 
-//     {/* Right Section - Search Icon, Cart, Sign In */}
-//     <div className="flex items-center gap-1 sm:gap-2">
-      
-//       {/* Desktop Search - Full width input that doesn't overlap */}
-//       <div className="hidden md:block relative" ref={searchRef}>
-//         <div className="flex items-center">
-//           {!searchOpen ? (
-//             <button
-//               onClick={() => setSearchOpen(true)}
-//               className="search-trigger p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
-//             >
-//               <Search className="w-4.5 h-4.5 text-[#EE4275]" />
-//             </button>
-//           ) : (
-//             <div className="relative">
-//               <form onSubmit={handleSearchSubmit} className="relative">
-//                 <input
-//                   type="text"
-//                   value={searchQuery}
-//                   onChange={(e) => setSearchQuery(e.target.value)}
-//                   placeholder="Search beauty products..."
-//                   className="w-80 px-4 py-2 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all shadow-sm"
-//                   style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                   autoFocus
+//             <div className="flex items-center gap-1 md:gap-0 flex-1">
+
+//               {/* Mobile Menu */}
+//               <button
+//                 onClick={() =>
+//                   setIsMenuOpen(
+//                     !isMenuOpen
+//                   )
+//                 }
+//                 className="md:hidden p-2 -ml-1 rounded-lg transition-all duration-200 hover:bg-[#F2F5F0]"
+//               >
+//                 <Menu
+//                   className="w-5 h-5 text-[#3D3D3D]"
 //                 />
-//                 <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-//                   <button type="submit" className="p-1">
-//                     {searchLoading ? (
-//                       <div className="w-3.5 h-3.5 border-2 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
-//                     ) : (
-//                       <Search className="w-3.5 h-3.5 text-[#EE4275]" />
-//                     )}
-//                   </button>
+//               </button>
+
+//               {/* Desktop Navigation */}
+//               <div className="hidden md:flex items-center space-x-1">
+
+//                 {navItems.map((item) => {
+//                   const Icon =
+//                     getIcon(item.icon);
+
+//                   return (
+//                     <Link
+//                       key={
+//                         item.id ||
+//                         item.name
+//                       }
+//                       href={item.href}
+//                       className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+//                         isActive(
+//                           item.href
+//                         )
+//                           ? 'text-[#8B9D83]'
+//                           : 'text-[#3D3D3D] hover:text-[#8B9D83]'
+//                       }`}
+//                       style={{
+//                         fontFamily:
+//                           '"Raleway", "Inter", sans-serif',
+//                       }}
+//                     >
+//                       {item.name}
+
+//                       {isActive(
+//                         item.href
+//                       ) && (
+//                         <span
+//                           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full bg-[#8B9D83]"
+//                         />
+//                       )}
+//                     </Link>
+//                   );
+//                 })}
+
+//               </div>
+//             </div>
+
+//             {/* ==================================================
+//                 CENTER LOGO
+//             ================================================== */}
+
+//             <div className="flex items-center justify-center flex-shrink-0">
+
+//               <Link
+//                 href="/"
+//                 className="flex items-center group"
+//               >
+//                 <div className="relative w-24 h-11 md:w-28 md:h-12 lg:w-32 lg:h-14 transition-transform group-hover:scale-105 duration-300">
+
+//                   {navbarData?.logo?.logoUrl ? (
+//                     <img
+//                       src={getLogoUrl(
+//                         navbarData.logo.logoUrl
+//                       )}
+//                       alt={
+//                         navbarData.logo.text ||
+//                         'Glow&Co'
+//                       }
+//                       className="w-full h-full object-contain"
+//                       style={{
+//                         background:
+//                           'transparent',
+//                       }}
+//                     />
+//                   ) : (
+//                     <img
+//                       src="/logo.png"
+//                       alt="Glow&Co Logo"
+//                       className="w-full h-full object-contain"
+//                     />
+//                   )}
+
+//                 </div>
+//               </Link>
+
+//             </div>
+
+//             {/* ==================================================
+//                 RIGHT SECTION - BEAUTY THEME
+//             ================================================== */}
+
+//             <div className="flex items-center justify-end flex-1">
+
+//               {/* ==================================================
+//                   DESKTOP SEARCH
+//               ================================================== */}
+
+//               <div
+//                 className="hidden md:block relative"
+//                 ref={searchRef}
+//               >
+
+//                 {!searchOpen ? (
+
+//                   /* Search Trigger - Skin tone style */
 //                   <button
 //                     type="button"
-//                     onClick={() => {
-//                       setSearchOpen(false);
-//                       setSearchQuery('');
-//                       setShowResults(false);
-//                     }}
-//                     className="p-1 text-gray-400 hover:text-[#EE4275] transition-colors"
+//                     onClick={() =>
+//                       setSearchOpen(true)
+//                     }
+//                     className="search-trigger group flex items-center w-[200px] lg:w-[260px] border-b border-[#E8E0D8] hover:border-[#8B9D83] transition-colors duration-200 py-2"
 //                   >
-//                     <X className="w-3.5 h-3.5" />
-//                   </button>
-//                 </div>
-//               </form>
 
-//               {/* Search Results Dropdown */}
-//               {showResults && searchResults.length > 0 && (
-//                 <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-[#EE4275]/10 max-h-96 overflow-y-auto z-50">
-//                   <div className="py-2">
-//                     {searchResults.map((product) => (
-//                       <button
-//                         key={product._id}
-//                         onMouseDown={(e) => {
-//                           e.preventDefault();
-//                           handleResultClick(product);
-//                         }}
-//                         className="w-full px-4 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
-//                       >
-//                         {product.images && product.images.length > 0 ? (
-//                           <img 
-//                             src={product.images[0]?.url || product.images[0]} 
-//                             alt={product.productName || product.name} 
-//                             className="w-10 h-10 rounded-lg object-cover bg-[#F7C7D3]/20"
-//                           />
-//                         ) : (
-//                           <div className="w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center">
-//                             <Package className="w-5 h-5 text-[#EE4275]" />
-//                           </div>
-//                         )}
-//                         <div className="flex-1">
-//                           <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-//                             {product.productName || product.name || product.title}
-//                           </p>
-//                           <div className="flex items-center gap-2 mt-0.5">
-//                             <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-//                               ৳{product.discountPrice || product.regularPrice || product.price}
-//                             </p>
-//                             {product.discountPrice && product.regularPrice && (
-//                               <p className="text-xs text-gray-400 line-through">
-//                                 ৳{product.regularPrice}
-//                               </p>
-//                             )}
-//                           </div>
-//                         </div>
-//                       </button>
-//                     ))}
-//                     <button
-//                       onClick={handleSearchSubmit}
-//                       className="w-full px-4 py-2.5 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30 transition-colors"
-//                       style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+//                     <Search
+//                       className="w-[18px] h-[18px] text-[#6B6B6B] flex-shrink-0"
+//                       strokeWidth={1.7}
+//                     />
+
+//                     <span
+//                       className="ml-4 text-[14px] text-[#6B6B6B] group-hover:text-[#3D3D3D] transition-colors"
+//                       style={{
+//                         fontFamily:
+//                           '"Raleway", "Inter", sans-serif',
+//                       }}
 //                     >
-//                       View all results for "{searchQuery}" →
-//                     </button>
-//                   </div>
-//                 </div>
-//               )}
-//             </div>
-//           )}
-//         </div>
-//       </div>
-
-//       {/* Mobile Search Trigger */}
-//       <button
-//         onClick={() => setMobileSearchOpen(true)}
-//         className="mobile-search-trigger md:hidden p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200"
-//       >
-//         <Search className="w-4.5 h-4.5 text-[#EE4275]" />
-//       </button>
-
-//       {/* Cart Icon - Opens Sidebar */}
-//       <button 
-//         onClick={() => setIsCartOpen(true)} 
-//         className="relative p-2 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200 group"
-//       >
-//         <ShoppingCart className="w-4.5 h-4.5 text-[#EE4275] group-hover:scale-105 transition-transform" />
-//         {cartCount > 0 && (
-//           <span className="absolute -top-1 -right-1 bg-[#EE4275] text-white text-[10px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1 shadow-sm" style={{ fontFamily: '"Playfair Display"' }}>
-//             {cartCount > 9 ? '9+' : cartCount}
-//           </span>
-//         )}
-//       </button>
-
-//       {/* Sign In / User Menu */}
-//       {user ? (
-//         <div className="relative">
-//           <button
-//             onClick={() => setUserMenuOpen(!userMenuOpen)}
-//             className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F7C7D3]/30 transition-all duration-200 text-sm"
-//           >
-//             {getProfilePicture() && !profileImageError ? (
-//               <img 
-//                 src={getProfilePicture()} 
-//                 alt={getDisplayName()}
-//                 className="w-7 h-7 rounded-full object-cover border-2 border-[#EE4275]/30"
-//               />
-//             ) : (
-//               <div className="w-7 h-7 rounded-full bg-[#EE4275] flex items-center justify-center text-white font-semibold text-xs shadow-sm">
-//                 {getInitials()}
-//               </div>
-//             )}
-//             <span className="hidden sm:inline text-gray-600 font-medium text-sm max-w-[100px] truncate" style={{ fontFamily: '"Playfair Display"' }}>
-//               {getDisplayName()}
-//             </span>
-//             <ChevronDown className={`w-3.5 h-3.5 text-[#EE4275] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
-//           </button>
-
-//           {userMenuOpen && (
-//             <>
-//               <div className="fixed inset-0 z-40" onClick={() => setUserMenuOpen(false)} />
-//               <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-[#EE4275]/10 overflow-hidden z-50 animate-fadeIn">
-//                 <div className="px-4 py-3 border-b border-[#F7C7D3]/30 bg-[#F7C7D3]/10">
-//                   <p className="text-gray-700 font-semibold text-sm truncate" style={{ fontFamily: '"Playfair Display"' }}>{getDisplayName()}</p>
-//                   <p className="text-[#EE4275] text-xs truncate mt-0.5" style={{ fontFamily: '"Playfair Display"' }}>{user.email}</p>
-//                   <div className="mt-1.5">
-//                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
-//                       user.role === 'super_admin' ? 'bg-yellow-500/20 text-yellow-600' :
-//                       user.role === 'admin' ? 'bg-[#EE4275]/20 text-[#EE4275]' :
-//                       user.role === 'moderator' ? 'bg-green-500/20 text-green-600' :
-//                       user.role === 'call_center_agent' ? 'bg-purple-500/20 text-purple-600' :
-//                       'bg-[#F7C7D3]/30 text-gray-600'
-//                     }`} style={{ fontFamily: '"Playfair Display"' }}>
-//                       {user.role === 'call_center_agent' ? 'Call Center Agent' :
-//                        user.role === 'super_admin' ? 'Super Admin' :
-//                        user.role === 'admin' ? 'Admin' :
-//                        user.role === 'moderator' ? 'Moderator' :
-//                        'Customer'}
+//                       Search beauty...
 //                     </span>
-//                   </div>
-//                 </div>
-//                 <div className="py-2">
-//                   {/* Dashboard Link - Force full page reload */}
-//                   <div
-//                     onClick={() => {
-//                       setUserMenuOpen(false);
-//                       window.location.href = getDashboardLink();
-//                     }}
-//                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                   >
-//                     <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
-//                     <span>Dashboard</span>
-//                   </div>
 
-//                   {/* Settings Link - Force full page reload */}
-//                   <div
-//                     onClick={() => {
-//                       setUserMenuOpen(false);
-//                       window.location.href = getSettingsLink();
-//                     }}
-//                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                   >
-//                     <Settings className="w-4 h-4 text-[#EE4275]" />
-//                     <span>Settings</span>
-//                   </div>
-                  
-//                   <div className="border-t border-[#F7C7D3]/30 my-1"></div>
-                  
-//                   <button 
-//                     onClick={() => { setUserMenuOpen(false); logout(); }} 
-//                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                   >
-//                     <LogOut className="w-4 h-4" />
-//                     <span>Logout</span>
 //                   </button>
-//                 </div>
-//               </div>
-//             </>
-//           )}
-//         </div>
-//       ) : (
-//         <Link 
-//           href="/login" 
-//           className="hidden sm:block px-5 py-1.5 rounded-lg text-sm font-medium text-white bg-[#EE4275] hover:bg-[#EE4275]/80 transition-all duration-200 shadow-sm hover:shadow-md"
-//           style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//         >
-//           Sign In
-//         </Link>
-//       )}
-//     </div>
 
-//   </div>
-// </div>
+//                 ) : (
+
+//                   /* Active Search */
+//                   <div className="relative">
+
+//                     <form
+//                       onSubmit={
+//                         handleSearchSubmit
+//                       }
+//                       className="relative"
+//                     >
+
+//                       <div className="flex items-center w-[200px] lg:w-[260px] border-b border-[#8B9D83] py-1.5">
+
+//                         <Search
+//                           className="w-[18px] h-[18px] text-[#3D3D3D] flex-shrink-0"
+//                           strokeWidth={1.7}
+//                         />
+
+//                         <input
+//                           type="text"
+//                           value={
+//                             searchQuery
+//                           }
+//                           onChange={(e) =>
+//                             setSearchQuery(
+//                               e.target.value
+//                             )
+//                           }
+//                           placeholder="Search beauty..."
+//                           className="w-full ml-4 pr-16 text-[14px] text-[#3D3D3D] placeholder:text-[#6B6B6B] bg-transparent focus:outline-none"
+//                           style={{
+//                             fontFamily:
+//                               '"Raleway", "Inter", sans-serif',
+//                           }}
+//                           autoFocus
+//                         />
+
+//                         <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+
+//                           {searchLoading ? (
+//                             <div className="w-4 h-4 border-2 border-[#8B9D83] border-t-transparent rounded-full animate-spin" />
+//                           ) : (
+//                             <button
+//                               type="submit"
+//                               className="p-1 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
+//                             >
+//                               <Search
+//                                 className="w-[15px] h-[15px]"
+//                                 strokeWidth={1.7}
+//                               />
+//                             </button>
+//                           )}
+
+//                           <button
+//                             type="button"
+//                             onClick={() => {
+//                               setSearchOpen(
+//                                 false
+//                               );
+
+//                               setSearchQuery(
+//                                 ''
+//                               );
+
+//                               setShowResults(
+//                                 false
+//                               );
+//                             }}
+//                             className="p-1 ml-1 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
+//                           >
+//                             <X
+//                               className="w-[15px] h-[15px]"
+//                               strokeWidth={1.7}
+//                             />
+//                           </button>
+
+//                         </div>
+
+//                       </div>
+
+//                     </form>
+
+//                     {/* ==================================================
+//                         DESKTOP SEARCH RESULTS
+//                     ================================================== */}
+
+//                     {showResults &&
+//                       searchResults.length >
+//                         0 && (
+
+//                         <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-[#E8E0D8] max-h-96 overflow-y-auto z-50">
+
+//                           <div className="py-2">
+
+//                             {searchResults.map(
+//                               (product) => (
+
+//                                 <button
+//                                   key={
+//                                     product._id
+//                                   }
+//                                   onMouseDown={(
+//                                     e
+//                                   ) => {
+//                                     e.preventDefault();
+
+//                                     handleResultClick(
+//                                       product
+//                                     );
+//                                   }}
+//                                   className="w-full px-4 py-3 text-left hover:bg-[#F2F5F0] transition-colors flex items-center gap-3 border-b border-[#E8E0D8] last:border-0"
+//                                 >
+
+//                                   {product.images &&
+//                                   product
+//                                     .images
+//                                     .length >
+//                                     0 ? (
+
+//                                     <img
+//                                       src={
+//                                         product
+//                                           .images[0]
+//                                           ?.url ||
+//                                         product
+//                                           .images[0]
+//                                       }
+//                                       alt={
+//                                         product.productName ||
+//                                         product.name
+//                                       }
+//                                       className="w-10 h-10 rounded-lg object-cover bg-[#F5EDE3]"
+//                                     />
+
+//                                   ) : (
+
+//                                     <div className="w-10 h-10 rounded-lg bg-[#F5EDE3] flex items-center justify-center">
+
+//                                       <Package
+//                                         className="w-5 h-5 text-[#6B6B6B]"
+//                                         strokeWidth={
+//                                           1.5
+//                                         }
+//                                       />
+
+//                                     </div>
+//                                   )}
+
+//                                   <div className="flex-1 min-w-0">
+
+//                                     <p
+//                                       className="font-medium text-[#3D3D3D] text-sm line-clamp-1"
+//                                       style={{
+//                                         fontFamily:
+//                                           '"Raleway", "Inter", sans-serif',
+//                                       }}
+//                                     >
+//                                       {product.productName ||
+//                                         product.name ||
+//                                         product.title}
+//                                     </p>
+
+//                                     <div className="flex items-center gap-2 mt-0.5">
+
+//                                       <p
+//                                         className="text-sm font-semibold text-[#8B9D83]"
+//                                         style={{
+//                                           fontFamily:
+//                                             '"Raleway", "Inter", sans-serif',
+//                                         }}
+//                                       >
+//                                         ৳
+//                                         {product.discountPrice ||
+//                                           product.regularPrice ||
+//                                           product.price}
+//                                       </p>
+
+//                                       {product.discountPrice &&
+//                                         product.regularPrice && (
+//                                           <p className="text-xs text-[#6B6B6B] line-through">
+//                                             ৳
+//                                             {
+//                                               product.regularPrice
+//                                             }
+//                                           </p>
+//                                         )}
+
+//                                     </div>
+
+//                                   </div>
+
+//                                 </button>
+//                               )
+//                             )}
+
+//                             <button
+//                               onClick={
+//                                 handleSearchSubmit
+//                               }
+//                               className="w-full px-4 py-2.5 text-center text-sm text-[#8B9D83] hover:bg-[#F2F5F0] font-medium border-t border-[#E8E0D8] transition-colors"
+//                               style={{
+//                                 fontFamily:
+//                                   '"Raleway", "Inter", sans-serif',
+//                               }}
+//                             >
+//                               View all results
+//                               for "
+//                               {
+//                                 searchQuery
+//                               }
+//                               " →
+//                             </button>
+
+//                           </div>
+
+//                         </div>
+//                       )}
+
+//                   </div>
+//                 )}
+
+//               </div>
+
+//               {/* ==================================================
+//                   MOBILE SEARCH TRIGGER
+//               ================================================== */}
+
+//               <button
+//                 onClick={() =>
+//                   setMobileSearchOpen(
+//                     true
+//                   )
+//                 }
+//                 className="mobile-search-trigger md:hidden p-2 hover:bg-[#F2F5F0] rounded-full transition-colors"
+//               >
+//                 <Search
+//                   className="w-[20px] h-[20px] text-[#3D3D3D]"
+//                   strokeWidth={1.7}
+//                 />
+//               </button>
+
+//               {/* ==================================================
+//                   USER ICON
+//               ================================================== */}
+
+//               {user ? (
+
+//                 <div className="relative ml-5">
+
+//                   <button
+//                     onClick={() =>
+//                       setUserMenuOpen(
+//                         !userMenuOpen
+//                       )
+//                     }
+//                     className="flex items-center justify-center hover:opacity-70 transition-opacity"
+//                     aria-label="Account"
+//                   >
+
+//                     {getProfilePicture() &&
+//                     !profileImageError ? (
+
+//                       <img
+//                         src={getProfilePicture()}
+//                         alt={getDisplayName()}
+//                         onError={() =>
+//                           setProfileImageError(
+//                             true
+//                           )
+//                         }
+//                         className="w-[24px] h-[24px] rounded-full object-cover"
+//                       />
+
+//                     ) : (
+
+//                       <UserCircle
+//                         className="w-[25px] h-[25px] text-[#3D3D3D]"
+//                         strokeWidth={1.5}
+//                       />
+
+//                     )}
+
+//                   </button>
+
+//                   {/* USER DROPDOWN */}
+
+//                   {userMenuOpen && (
+//                     <>
+//                       <div
+//                         className="fixed inset-0 z-40"
+//                         onClick={() =>
+//                           setUserMenuOpen(
+//                             false
+//                           )
+//                         }
+//                       />
+
+//                       <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-[#E8E0D8] overflow-hidden z-50 animate-fadeIn">
+
+//                         {/* User Info */}
+
+//                         <div className="px-4 py-3 border-b border-[#E8E0D8] bg-[#F5EDE3]">
+
+//                           <p
+//                             className="text-[#3D3D3D] font-semibold text-sm truncate"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+//                             {getDisplayName()}
+//                           </p>
+
+//                           <p
+//                             className="text-[#6B6B6B] text-xs truncate mt-0.5"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+//                             {user.email}
+//                           </p>
+
+//                           <div className="mt-1.5">
+
+//                             <span
+//                               className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#8B9D83] text-white"
+//                               style={{
+//                                 fontFamily:
+//                                   '"Raleway", "Inter", sans-serif',
+//                               }}
+//                             >
+//                               {user.role ===
+//                               'call_center_agent'
+//                                 ? 'Call Center Agent'
+//                                 : user.role ===
+//                                   'super_admin'
+//                                 ? 'Super Admin'
+//                                 : user.role ===
+//                                   'admin'
+//                                 ? 'Admin'
+//                                 : user.role ===
+//                                   'moderator'
+//                                 ? 'Moderator'
+//                                 : 'Customer'}
+//                             </span>
+
+//                           </div>
+
+//                         </div>
+
+//                         {/* Dropdown Actions */}
+
+//                         <div className="py-2">
+
+//                           {/* Dashboard */}
+
+//                           <div
+//                             onClick={() => {
+//                               setUserMenuOpen(
+//                                 false
+//                               );
+
+//                               window.location.href =
+//                                 getDashboardLink();
+//                             }}
+//                             className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors cursor-pointer"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+
+//                             <LayoutDashboard
+//                               className="w-4 h-4 text-[#8B9D83]"
+//                               strokeWidth={
+//                                 1.7
+//                               }
+//                             />
+
+//                             <span>
+//                               Dashboard
+//                             </span>
+
+//                           </div>
+
+//                           {/* Settings */}
+
+//                           <div
+//                             onClick={() => {
+//                               setUserMenuOpen(
+//                                 false
+//                               );
+
+//                               window.location.href =
+//                                 getSettingsLink();
+//                             }}
+//                             className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors cursor-pointer"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+
+//                             <Settings
+//                               className="w-4 h-4 text-[#8B9D83]"
+//                               strokeWidth={
+//                                 1.7
+//                               }
+//                             />
+
+//                             <span>
+//                               Settings
+//                             </span>
+
+//                           </div>
+
+//                           <div className="border-t border-[#E8E0D8] my-1" />
+
+//                           {/* Logout */}
+
+//                           <button
+//                             onClick={() => {
+//                               setUserMenuOpen(
+//                                 false
+//                               );
+
+//                               logout();
+//                             }}
+//                             className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+
+//                             <LogOut
+//                               className="w-4 h-4"
+//                               strokeWidth={
+//                                 1.7
+//                               }
+//                             />
+
+//                             <span>
+//                               Logout
+//                             </span>
+
+//                           </button>
+
+//                         </div>
+
+//                       </div>
+//                     </>
+//                   )}
+
+//                 </div>
+
+//               ) : (
+
+//                 /* Logged Out User Icon */
+
+//                 <Link
+//                   href="/login"
+//                   className="ml-5 flex items-center justify-center hover:opacity-70 transition-opacity"
+//                   aria-label="Sign In"
+//                 >
+//                   <UserCircle
+//                     className="w-[25px] h-[25px] text-[#3D3D3D]"
+//                     strokeWidth={1.5}
+//                   />
+//                 </Link>
+
+//               )}
+
+//               {/* ==================================================
+//                   SHOPPING BAG
+//               ================================================== */}
+
+//               <button
+//                 onClick={() =>
+//                   setIsCartOpen(true)
+//                 }
+//                 className="relative ml-5 flex items-center justify-center hover:opacity-70 transition-opacity"
+//                 aria-label="Shopping bag"
+//               >
+
+//                 <ShoppingBag
+//                   className="w-[25px] h-[25px] text-[#3D3D3D]"
+//                   strokeWidth={1.5}
+//                 />
+
+//                 {/* Cart Count */}
+
+//                 {cartCount > 0 && (
+//                   <span
+//                     className="absolute -top-2 -right-2 bg-[#8B9D83] text-white text-[9px] font-semibold rounded-full min-w-[15px] h-[15px] flex items-center justify-center px-1"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
+//                   >
+//                     {cartCount > 9
+//                       ? '9+'
+//                       : cartCount}
+//                   </span>
+//                 )}
+
+//               </button>
+
+//             </div>
+
+//           </div>
+
+//         </div>
 //       </nav>
 
-//       {/* Mobile Search Overlay - Opens below navbar */}
+//       {/* ========================================================
+//           MOBILE SEARCH OVERLAY
+//       ======================================================== */}
+
 //       {mobileSearchOpen && (
-//         <div className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg border-b border-[#EE4275]/10 animate-slideDown md:hidden">
-//           <div className="container mx-auto px-4 py-3" ref={mobileSearchRef}>
-//             <form onSubmit={handleSearchSubmit} className="relative">
+//         <div className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg border-b border-[#E8E0D8] animate-slideDown md:hidden">
+
+//           <div
+//             className="container mx-auto px-4 py-3"
+//             ref={mobileSearchRef}
+//           >
+
+//             <form
+//               onSubmit={
+//                 handleSearchSubmit
+//               }
+//               className="relative"
+//             >
+
 //               <input
 //                 type="text"
 //                 value={searchQuery}
-//                 onChange={(e) => setSearchQuery(e.target.value)}
-//                 placeholder="Search beauty products..."
-//                 className="w-full px-4 py-3 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all"
-//                 style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+//                 onChange={(e) =>
+//                   setSearchQuery(
+//                     e.target.value
+//                   )
+//                 }
+//                 placeholder="Search beauty..."
+//                 className="w-full px-4 py-3 pr-20 text-sm text-[#3D3D3D] bg-[#F5EDE3] border-2 border-transparent rounded-lg focus:outline-none focus:border-[#8B9D83] focus:ring-2 focus:ring-[#8B9D83]/20 transition-all"
+//                 style={{
+//                   fontFamily:
+//                     '"Raleway", "Inter", sans-serif',
+//                 }}
 //                 autoFocus
 //               />
+
 //               <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
-//                 <button type="submit" className="p-1.5">
+
+//                 <button
+//                   type="submit"
+//                   className="p-1.5"
+//                 >
+
 //                   {searchLoading ? (
-//                     <div className="w-4 h-4 border-2 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
+//                     <div className="w-4 h-4 border-2 border-[#8B9D83] border-t-transparent rounded-full animate-spin" />
 //                   ) : (
-//                     <Search className="w-4 h-4 text-[#EE4275]" />
+//                     <Search className="w-4 h-4 text-[#8B9D83]" />
 //                   )}
+
 //                 </button>
+
 //                 <button
 //                   type="button"
 //                   onClick={() => {
-//                     setMobileSearchOpen(false);
+//                     setMobileSearchOpen(
+//                       false
+//                     );
+
 //                     setSearchQuery('');
 //                     setShowResults(false);
 //                   }}
-//                   className="p-1.5 text-gray-400 hover:text-[#EE4275] transition-colors"
+//                   className="p-1.5 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
 //                 >
 //                   <X className="w-4 h-4" />
 //                 </button>
+
 //               </div>
+
 //             </form>
 
 //             {/* Mobile Search Results */}
-//             {showResults && searchResults.length > 0 && (
-//               <div className="mt-3 bg-white rounded-lg border border-[#EE4275]/10 max-h-96 overflow-y-auto">
-//                 {searchResults.map((product) => (
+
+//             {showResults &&
+//               searchResults.length >
+//                 0 && (
+
+//                 <div className="mt-3 bg-white rounded-lg border border-[#E8E0D8] max-h-96 overflow-y-auto">
+
+//                   {searchResults.map(
+//                     (product) => (
+
+//                       <button
+//                         key={
+//                           product._id
+//                         }
+//                         onMouseDown={(
+//                           e
+//                         ) => {
+//                           e.preventDefault();
+
+//                           handleResultClick(
+//                             product
+//                           );
+//                         }}
+//                         className="w-full px-3 py-3 text-left hover:bg-[#F2F5F0] transition-colors flex items-center gap-3 border-b border-[#E8E0D8] last:border-0"
+//                       >
+
+//                         {product.images &&
+//                         product.images.length >
+//                           0 ? (
+
+//                           <img
+//                             src={
+//                               product
+//                                 .images[0]
+//                                 ?.url ||
+//                               product
+//                                 .images[0]
+//                             }
+//                             alt={
+//                               product.productName ||
+//                               product.name
+//                             }
+//                             className="w-12 h-12 rounded-lg object-cover bg-[#F5EDE3]"
+//                           />
+
+//                         ) : (
+
+//                           <div className="w-12 h-12 rounded-lg bg-[#F5EDE3] flex items-center justify-center">
+
+//                             <Package className="w-6 h-6 text-[#6B6B6B]" />
+
+//                           </div>
+
+//                         )}
+
+//                         <div className="flex-1">
+
+//                           <p
+//                             className="font-medium text-[#3D3D3D] text-sm line-clamp-1"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+//                             {product.productName ||
+//                               product.name ||
+//                               product.title}
+//                           </p>
+
+//                           <p
+//                             className="text-sm font-semibold text-[#8B9D83] mt-0.5"
+//                             style={{
+//                               fontFamily:
+//                                 '"Raleway", "Inter", sans-serif',
+//                             }}
+//                           >
+//                             ৳
+//                             {product.discountPrice ||
+//                               product.regularPrice ||
+//                               product.price}
+//                           </p>
+
+//                         </div>
+
+//                       </button>
+//                     )
+//                   )}
+
 //                   <button
-//                     key={product._id}
-//                     onMouseDown={(e) => {
-//                       e.preventDefault();
-//                       handleResultClick(product);
+//                     onClick={
+//                       handleSearchSubmit
+//                     }
+//                     className="w-full px-4 py-3 text-center text-sm text-[#8B9D83] hover:bg-[#F2F5F0] font-medium border-t border-[#E8E0D8]"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
 //                     }}
-//                     className="w-full px-3 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
 //                   >
-//                     {product.images && product.images.length > 0 ? (
-//                       <img 
-//                         src={product.images[0]?.url || product.images[0]} 
-//                         alt={product.productName || product.name} 
-//                         className="w-12 h-12 rounded-lg object-cover bg-[#F7C7D3]/20"
-//                       />
-//                     ) : (
-//                       <div className="w-12 h-12 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center">
-//                         <Package className="w-6 h-6 text-[#EE4275]" />
-//                       </div>
-//                     )}
-//                     <div className="flex-1">
-//                       <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-//                         {product.productName || product.name || product.title}
-//                       </p>
-//                       <p className="text-sm font-semibold text-[#EE4275] mt-0.5" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-//                         ৳{product.discountPrice || product.regularPrice || product.price}
-//                       </p>
-//                     </div>
+//                     View all results
+//                     for "
+//                     {searchQuery}"
+//                     →
 //                   </button>
-//                 ))}
-//                 <button
-//                   onClick={handleSearchSubmit}
-//                   className="w-full px-4 py-3 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30"
-//                   style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                 >
-//                   View all results for "{searchQuery}" →
-//                 </button>
-//               </div>
-//             )}
+
+//                 </div>
+//               )}
+
 //           </div>
+
 //         </div>
 //       )}
 
-//       {/* Mobile Menu Sidebar */}
-//       <div className={`fixed inset-0 z-50 md:hidden ${isMenuOpen ? 'visible' : 'invisible'}`}>
-//         <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setIsMenuOpen(false)} />
-        
-//         <div className={`absolute left-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+//       {/* ========================================================
+//           MOBILE MENU SIDEBAR
+//       ======================================================== */}
+
+//       <div
+//         className={`fixed inset-0 z-50 md:hidden ${
+//           isMenuOpen
+//             ? 'visible'
+//             : 'invisible'
+//         }`}
+//       >
+
+//         {/* Overlay */}
+
+//         <div
+//           className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${
+//             isMenuOpen
+//               ? 'opacity-100'
+//               : 'opacity-0'
+//           }`}
+//           onClick={() =>
+//             setIsMenuOpen(false)
+//           }
+//         />
+
+//         {/* Sidebar */}
+
+//         <div
+//           className={`absolute left-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out ${
+//             isMenuOpen
+//               ? 'translate-x-0'
+//               : '-translate-x-full'
+//           }`}
+//         >
+
 //           <div className="flex flex-col h-full">
+
 //             {/* Header */}
-//             <div className="flex items-center justify-between p-5 border-b border-[#F7C7D3]/30">
+
+//             <div className="flex items-center justify-between p-5 border-b border-[#E8E0D8]">
+
 //               <div className="flex items-center space-x-2.5">
+
 //                 <div className="w-8 h-8">
+
 //                   {navbarData?.logo?.logoUrl ? (
-//                     <img 
-//                       src={getLogoUrl(navbarData.logo.logoUrl)} 
-//                       alt={navbarData.logo.text || 'Glow&Co'} 
+
+//                     <img
+//                       src={getLogoUrl(
+//                         navbarData.logo.logoUrl
+//                       )}
+//                       alt={
+//                         navbarData.logo.text ||
+//                         'Glow&Co'
+//                       }
 //                       className="w-full h-full object-contain"
 //                     />
+
 //                   ) : (
-//                     <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+
+//                     <img
+//                       src="/logo.png"
+//                       alt="Logo"
+//                       className="w-full h-full object-contain"
+//                     />
+
 //                   )}
+
 //                 </div>
+
 //                 <div>
-//                   <span className="font-bold text-gray-700 text-base" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-//                     {navbarData?.logo?.text || 'Glow&Co'}
-//                     {navbarData?.logo?.highlightText && (
-//                       <span className="text-[#EE4275]">{navbarData.logo.highlightText}</span>
+
+//                   <span
+//                     className="font-bold text-[#3D3D3D] text-base"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
+//                   >
+//                     {navbarData?.logo
+//                       ?.text ||
+//                       'Glow&Co'}
+
+//                     {navbarData?.logo
+//                       ?.highlightText && (
+//                       <span className="text-[#8B9D83]">
+//                         {
+//                           navbarData
+//                             .logo
+//                             .highlightText
+//                         }
+//                       </span>
 //                     )}
 //                   </span>
-//                   <span className="text-[10px] text-[#EE4275] block -mt-1 tracking-wider" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>BEAUTY</span>
+
+//                   <span
+//                     className="text-[10px] text-[#8B9D83] block -mt-1 tracking-wider"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
+//                   >
+//                     BEAUTY
+//                   </span>
+
 //                 </div>
+
 //               </div>
-//               <button onClick={() => setIsMenuOpen(false)} className="p-2 rounded-lg hover:bg-[#F7C7D3]/20 transition-colors">
-//                 <X className="w-5 h-5 text-[#EE4275]" />
+
+//               <button
+//                 onClick={() =>
+//                   setIsMenuOpen(
+//                     false
+//                   )
+//                 }
+//                 className="p-2 rounded-lg hover:bg-[#F2F5F0] transition-colors"
+//               >
+//                 <X className="w-5 h-5 text-[#3D3D3D]" />
 //               </button>
+
 //             </div>
 
 //             {/* Navigation Items */}
+
 //             <div className="flex-1 overflow-y-auto py-3">
+
 //               {navItems.map((item) => {
-//                 const Icon = getIcon(item.icon);
+
+//                 const Icon =
+//                   getIcon(item.icon);
+
 //                 return (
 //                   <Link
-//                     key={item.id || item.name}
+//                     key={
+//                       item.id ||
+//                       item.name
+//                     }
 //                     href={item.href}
-//                     onClick={() => setIsMenuOpen(false)}
+//                     onClick={() =>
+//                       setIsMenuOpen(
+//                         false
+//                       )
+//                     }
 //                     className={`flex items-center gap-3 px-5 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-//                       isActive(item.href) 
-//                         ? 'text-[#EE4275] font-semibold' 
-//                         : 'text-gray-600 hover:text-[#EE4275] hover:bg-[#F7C7D3]/20'
+//                       isActive(
+//                         item.href
+//                       )
+//                         ? 'text-[#8B9D83] font-semibold'
+//                         : 'text-[#3D3D3D] hover:text-[#8B9D83] hover:bg-[#F2F5F0]'
 //                     }`}
 //                     style={{
-//                       fontFamily: '"Playfair Display", "Georgia", serif',
-//                       borderLeft: isActive(item.href) ? '3px solid #EE4275' : 'none',
-//                       paddingLeft: isActive(item.href) ? '17px' : '20px',
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+
+//                       borderLeft:
+//                         isActive(
+//                           item.href
+//                         )
+//                           ? '3px solid #8B9D83'
+//                           : 'none',
+
+//                       paddingLeft:
+//                         isActive(
+//                           item.href
+//                         )
+//                           ? '17px'
+//                           : '20px',
 //                     }}
 //                   >
-//                     <Icon className={`w-4.5 h-4.5 ${isActive(item.href) ? 'text-[#EE4275]' : 'text-gray-400'}`} />
-//                     <span>{item.name}</span>
+
+//                     <Icon
+//                       className={`w-4.5 h-4.5 ${
+//                         isActive(
+//                           item.href
+//                         )
+//                           ? 'text-[#8B9D83]'
+//                           : 'text-[#6B6B6B]'
+//                       }`}
+//                     />
+
+//                     <span>
+//                       {item.name}
+//                     </span>
+
 //                   </Link>
 //                 );
 //               })}
 
-//               <div className="my-3 mx-5 h-px bg-gradient-to-r from-[#EE4275]/20 via-[#EE4275]/40 to-[#EE4275]/20"></div>
+//               <div className="my-3 mx-5 h-px bg-gradient-to-r from-[#8B9D83]/20 via-[#8B9D83]/40 to-[#8B9D83]/20" />
 
-//               {/* Auth Section for Mobile */}
+//               {/* ==================================================
+//                   MOBILE AUTH
+//               ================================================== */}
+
 //               {!user ? (
+
 //                 <div className="px-5 mt-3">
+
 //                   <Link
 //                     href="/login"
-//                     onClick={() => setIsMenuOpen(false)}
-//                     className="flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-[#EE4275] text-white hover:bg-[#EE4275]/80 transition-all shadow-sm"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+//                     onClick={() =>
+//                       setIsMenuOpen(
+//                         false
+//                       )
+//                     }
+//                     className="flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-[#8B9D83] text-white hover:bg-[#6B7D63] transition-all shadow-sm"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
 //                   >
 //                     Sign In
 //                   </Link>
+
 //                 </div>
+
 //               ) : (
+
 //                 <div className="px-5 mt-3">
-//                   <div className="flex items-center gap-3 p-3 bg-[#F7C7D3]/10 rounded-lg mb-3">
-//                     {getProfilePicture() && !profileImageError ? (
-//                       <img src={getProfilePicture()} alt={getDisplayName()} className="w-10 h-10 rounded-full object-cover border-2 border-[#EE4275]/30" />
+
+//                   {/* Mobile User Info */}
+
+//                   <div className="flex items-center gap-3 p-3 bg-[#F5EDE3] rounded-lg mb-3">
+
+//                     {getProfilePicture() &&
+//                     !profileImageError ? (
+
+//                       <img
+//                         src={getProfilePicture()}
+//                         alt={getDisplayName()}
+//                         onError={() =>
+//                           setProfileImageError(
+//                             true
+//                           )
+//                         }
+//                         className="w-10 h-10 rounded-full object-cover border-2 border-[#8B9D83]/30"
+//                       />
+
 //                     ) : (
-//                       <div className="w-10 h-10 rounded-full bg-[#EE4275] flex items-center justify-center text-white font-semibold text-sm">
+
+//                       <div className="w-10 h-10 rounded-full bg-[#8B9D83] flex items-center justify-center text-white font-semibold text-sm">
+
 //                         {getInitials()}
+
 //                       </div>
+
 //                     )}
+
 //                     <div className="flex-1">
-//                       <p className="font-semibold text-gray-700 text-sm" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{getDisplayName()}</p>
-//                       <p className="text-[#EE4275] text-xs truncate" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{user.email}</p>
+
+//                       <p
+//                         className="font-semibold text-[#3D3D3D] text-sm"
+//                         style={{
+//                           fontFamily:
+//                             '"Raleway", "Inter", sans-serif',
+//                         }}
+//                       >
+//                         {getDisplayName()}
+//                       </p>
+
+//                       <p
+//                         className="text-[#8B9D83] text-xs truncate"
+//                         style={{
+//                           fontFamily:
+//                             '"Raleway", "Inter", sans-serif',
+//                         }}
+//                       >
+//                         {user.email}
+//                       </p>
+
 //                     </div>
-//                   </div>
-                  
-//                   {/* Dashboard in Mobile Menu - Force full page reload */}
-//                   <div
-//                     onClick={() => {
-//                       setIsMenuOpen(false);
-//                       window.location.href = getDashboardLink();
-//                     }}
-//                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-1 cursor-pointer"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-//                   >
-//                     <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
-//                     Dashboard
+
 //                   </div>
 
-//                   {/* Settings in Mobile Menu - Force full page reload */}
+//                   {/* Dashboard */}
+
 //                   <div
 //                     onClick={() => {
-//                       setIsMenuOpen(false);
-//                       window.location.href = getSettingsLink();
+//                       setIsMenuOpen(
+//                         false
+//                       );
+
+//                       window.location.href =
+//                         getDashboardLink();
 //                     }}
-//                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-2 cursor-pointer"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+//                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors mb-1 cursor-pointer"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
 //                   >
-//                     <Settings className="w-4 h-4 text-[#EE4275]" />
-//                     Settings
+
+//                     <LayoutDashboard className="w-4 h-4 text-[#8B9D83]" />
+
+//                     Dashboard
+
 //                   </div>
-                  
-//                   <button
-//                     onClick={() => { setIsMenuOpen(false); logout(); }}
-//                     className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-all"
-//                     style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+
+//                   {/* Settings */}
+
+//                   <div
+//                     onClick={() => {
+//                       setIsMenuOpen(
+//                         false
+//                       );
+
+//                       window.location.href =
+//                         getSettingsLink();
+//                     }}
+//                     className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors mb-2 cursor-pointer"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
 //                   >
+
+//                     <Settings className="w-4 h-4 text-[#8B9D83]" />
+
+//                     Settings
+
+//                   </div>
+
+//                   {/* Logout */}
+
+//                   <button
+//                     onClick={() => {
+//                       setIsMenuOpen(
+//                         false
+//                       );
+
+//                       logout();
+//                     }}
+//                     className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-all"
+//                     style={{
+//                       fontFamily:
+//                         '"Raleway", "Inter", sans-serif',
+//                     }}
+//                   >
+
 //                     <LogOut className="w-4 h-4" />
+
 //                     Logout
+
 //                   </button>
+
 //                 </div>
+
 //               )}
+
 //             </div>
+
 //           </div>
+
 //         </div>
+
 //       </div>
 
-//       {/* Cart Sidebar */}
-//       <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+//       {/* ========================================================
+//           CART SIDEBAR
+//       ======================================================== */}
 
-//       {/* Spacer */}
-//       {/* <div className="h-16"></div> */}
+//       <CartSidebar
+//         isOpen={isCartOpen}
+//         onClose={() =>
+//           setIsCartOpen(false)
+//         }
+//       />
+
+//       {/* ========================================================
+//           ANIMATIONS
+//       ======================================================== */}
 
 //       <style jsx>{`
+
 //         @keyframes slideLeft {
 //           from {
 //             opacity: 0;
 //             transform: translateX(20px);
 //           }
+
 //           to {
 //             opacity: 1;
 //             transform: translateX(0);
 //           }
 //         }
+
 //         .animate-slideLeft {
 //           animation: slideLeft 0.25s ease-out;
 //         }
-        
+
 //         @keyframes slideDown {
 //           from {
 //             opacity: 0;
 //             transform: translateY(-10px);
 //           }
+
 //           to {
 //             opacity: 1;
 //             transform: translateY(0);
 //           }
 //         }
+
 //         .animate-slideDown {
 //           animation: slideDown 0.25s ease-out;
 //         }
-        
+
 //         @keyframes fadeIn {
 //           from {
 //             opacity: 0;
 //             transform: translateY(-10px);
 //           }
+
 //           to {
 //             opacity: 1;
 //             transform: translateY(0);
 //           }
 //         }
+
 //         .animate-fadeIn {
 //           animation: fadeIn 0.2s ease-out;
 //         }
-        
+
 //         .w-4.5 {
 //           width: 1.125rem;
 //         }
+
 //         .h-4.5 {
 //           height: 1.125rem;
 //         }
+
 //       `}</style>
 //     </>
 //   );
 // }
+
+
 
 'use client';
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { 
-  LogOut, 
-  User, 
-  LayoutDashboard, 
-  ShoppingCart,
+
+import {
+  LogOut,
+  User,
+  LayoutDashboard,
+  ShoppingBag,
   Search,
   X,
   Home,
@@ -1056,12 +2247,61 @@ import {
   Heart,
   Sparkles,
   Settings,
-  Flower2
+  Flower2,
 } from 'lucide-react';
+
 import { toast } from 'sonner';
 import CartSidebar from '../CartSidebar';
 
-// Icon mapping for navbar items
+// ============================================================
+// TYPEWRITER CUSTOM HOOK
+// ============================================================
+
+function useTypewriter(words, speed = 100, deleteSpeed = 50, pause = 2000) {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timer;
+
+    if (isPaused) {
+      timer = setTimeout(() => {
+        setIsPaused(false);
+        setIsDeleting(true);
+      }, pause);
+      return () => clearTimeout(timer);
+    }
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setText(currentWord.substring(0, text.length - 1));
+        if (text.length === 0) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }, deleteSpeed);
+    } else {
+      timer = setTimeout(() => {
+        setText(currentWord.substring(0, text.length + 1));
+        if (text.length === currentWord.length) {
+          setIsPaused(true);
+        }
+      }, speed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, wordIndex, isDeleting, isPaused, words, speed, deleteSpeed, pause]);
+
+  return text;
+}
+
+// ============================================================
+// ICON MAPPING
+// ============================================================
+
 const ICON_MAP = {
   Home: Home,
   Zap: Zap,
@@ -1075,96 +2315,264 @@ const ICON_MAP = {
   Flower2: Flower2,
 };
 
+// ============================================================
+// COLOR PALETTE - BEAUTY THEME
+// ============================================================
+// Foundation/Skin tones: Warm beige, nude, tan
+// Green accents: Sage, olive, eucalyptus
+// ============================================================
+
+const COLORS = {
+  primary: '#8B9D83', // Sage green - main accent
+  primaryLight: '#A8B8A0', // Lighter sage
+  primaryDark: '#6B7D63', // Darker sage
+  primaryBg: '#F2F5F0', // Very light sage background
+  skin: '#F5EDE3', // Light foundation/skin tone
+  skinMedium: '#E8DCD0', // Medium skin tone
+  skinDark: '#D4C4B4', // Darker skin tone
+  text: '#3D3D3D',
+  textLight: '#6B6B6B',
+  white: '#FFFFFF',
+  border: '#E8E0D8',
+};
+
 export default function Navbar() {
+  // ============================================================
+  // STATES
+  // ============================================================
+
   const [navbarData, setNavbarData] = useState(null);
   const [navbarLoading, setNavbarLoading] = useState(true);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+
   const [user, setUser] = useState(null);
+
   const [cartCount, setCartCount] = useState(0);
+
   const [authLoading, setAuthLoading] = useState(true);
+
   const [scrolled, setScrolled] = useState(false);
+
   const [profileImageError, setProfileImageError] = useState(false);
+
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // ============================================================
+  // TYPEWRITER PLACEHOLDER WORDS
+  // ============================================================
+
+  const searchPlaceholders = [
+    'Search Products...',
+    'Makeup...',
+    'Skincare...',
+    'Hair Care...',
+    'Face cream...',
+    'Lipstick...',
+    'Serum...',
+    'Moisturizer...',
+    'Sunscreen...',
+    'Face wash...',
+    'Perfume...'
+  ];
+
+  const typewriterText = useTypewriter(searchPlaceholders, 80, 40, 2000);
+
+  // ============================================================
+  // REFS
+  // ============================================================
 
   const searchRef = useRef(null);
   const mobileSearchRef = useRef(null);
+
+  // ============================================================
+  // ROUTER
+  // ============================================================
+
   const pathname = usePathname();
   const router = useRouter();
 
-  // Check if we're on the home page
+  // ============================================================
+  // HOME PAGE
+  // ============================================================
+
   const isHomePage = pathname === '/';
 
-  // Fetch navbar data from PUBLIC endpoint (no auth required)
+  // ============================================================
+  // API BASE URL
+  // ============================================================
+
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+  // ============================================================
+  // FETCH NAVBAR DATA
+  // ============================================================
+
   useEffect(() => {
     const fetchNavbar = async () => {
       try {
-        // ✅ PUBLIC endpoint - no token needed
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/navbar`);
-        
+        const response = await fetch(`${API_URL}/api/navbar`);
+
         if (response.ok) {
           const data = await response.json();
+
           if (data.success) {
             setNavbarData(data.data);
           } else {
-            // Set default values if API fails
             setNavbarData({
               items: [
-                { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-                { id: '2', name: 'Products', href: '/products', icon: 'Package', isActive: true },
-                { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-                { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-                { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+                {
+                  id: '1',
+                  name: 'Home',
+                  href: '/',
+                  icon: 'Home',
+                  isActive: true,
+                },
+                {
+                  id: '2',
+                  name: 'Products',
+                  href: '/products',
+                  icon: 'Package',
+                  isActive: true,
+                },
+                {
+                  id: '3',
+                  name: 'Track Order',
+                  href: '/track',
+                  icon: 'MapPin',
+                  isActive: true,
+                },
+                {
+                  id: '4',
+                  name: 'About',
+                  href: '/about',
+                  icon: 'Flower2',
+                  isActive: true,
+                },
+                {
+                  id: '5',
+                  name: 'Contact',
+                  href: '/contact',
+                  icon: 'Phone',
+                  isActive: true,
+                },
               ],
+
               logo: {
                 text: 'Glow&Co',
                 highlightText: '',
                 icon: 'Package',
-                logoUrl: '/logo.png'
-              }
+                logoUrl: '/logo.png',
+              },
             });
           }
         } else {
-          // Fallback to defaults
           setNavbarData({
             items: [
-              { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-              { id: '2', name: 'Products', href: '/products', icon: 'Sparkles', isActive: true },
-              { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-              { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-              { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+              {
+                id: '1',
+                name: 'Home',
+                href: '/',
+                icon: 'Home',
+                isActive: true,
+              },
+              {
+                id: '2',
+                name: 'Products',
+                href: '/products',
+                icon: 'Sparkles',
+                isActive: true,
+              },
+              {
+                id: '3',
+                name: 'Track Order',
+                href: '/track',
+                icon: 'MapPin',
+                isActive: true,
+              },
+              {
+                id: '4',
+                name: 'About',
+                href: '/about',
+                icon: 'Flower2',
+                isActive: true,
+              },
+              {
+                id: '5',
+                name: 'Contact',
+                href: '/contact',
+                icon: 'Phone',
+                isActive: true,
+              },
             ],
+
             logo: {
               text: 'Glow&Co',
               highlightText: 'BEAUTY',
               icon: 'Package',
-              logoUrl: '/logo.png'
-            }
+              logoUrl: '/logo.png',
+            },
           });
         }
       } catch (error) {
         console.error('Error fetching navbar:', error);
-        // Set default values if API fails
+
         setNavbarData({
           items: [
-            { id: '1', name: 'Home', href: '/', icon: 'Home', isActive: true },
-            { id: '2', name: 'Products', href: '/products', icon: 'Sparkles', isActive: true },
-            { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin', isActive: true },
-            { id: '4', name: 'About', href: '/about', icon: 'Flower2', isActive: true },
-            { id: '5', name: 'Contact', href: '/contact', icon: 'Phone', isActive: true }
+            {
+              id: '1',
+              name: 'Home',
+              href: '/',
+              icon: 'Home',
+              isActive: true,
+            },
+            {
+              id: '2',
+              name: 'Products',
+              href: '/products',
+              icon: 'Sparkles',
+              isActive: true,
+            },
+            {
+              id: '3',
+              name: 'Track Order',
+              href: '/track',
+              icon: 'MapPin',
+              isActive: true,
+            },
+            {
+              id: '4',
+              name: 'About',
+              href: '/about',
+              icon: 'Flower2',
+              isActive: true,
+            },
+            {
+              id: '5',
+              name: 'Contact',
+              href: '/contact',
+              icon: 'Phone',
+              isActive: true,
+            },
           ],
+
           logo: {
             text: 'Glow&Co',
             highlightText: 'BEAUTY',
             icon: 'Package',
-            logoUrl: '/logo.png'
-          }
+            logoUrl: '/logo.png',
+          },
         });
       } finally {
         setNavbarLoading(false);
@@ -1172,110 +2580,175 @@ export default function Navbar() {
     };
 
     fetchNavbar();
-  }, []);
+  }, [API_URL]);
 
-  // Handle scroll effect
+  // ============================================================
+  // SCROLL EFFECT
+  // ============================================================
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  // Close search on click outside (desktop)
+  // ============================================================
+  // CLOSE DESKTOP SEARCH ON OUTSIDE CLICK
+  // ============================================================
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
         setShowResults(false);
+
         if (!event.target.closest('.search-trigger')) {
           setSearchOpen(false);
         }
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener(
+        'mousedown',
+        handleClickOutside
+      );
+    };
   }, []);
 
-  // Close mobile search on click outside
+  // ============================================================
+  // CLOSE MOBILE SEARCH ON OUTSIDE CLICK
+  // ============================================================
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target) && !event.target.closest('.mobile-search-trigger')) {
+      if (
+        mobileSearchRef.current &&
+        !mobileSearchRef.current.contains(event.target) &&
+        !event.target.closest('.mobile-search-trigger')
+      ) {
         setMobileSearchOpen(false);
         setShowResults(false);
         setSearchQuery('');
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener(
+        'mousedown',
+        handleClickOutside
+      );
+    };
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // ============================================================
+  // PREVENT BODY SCROLL WHEN MOBILE MENU OPEN
+  // ============================================================
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
+
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    if (!authLoading) {
-      fetchCartCount();
-    }
-  }, [user, authLoading]);
-  
-  // Check user state
+  // ============================================================
+  // CHECK USER STATE
+  // ============================================================
+
   const checkUserState = () => {
     if (typeof window !== 'undefined') {
       const userData = localStorage.getItem('user');
+
       if (userData) {
         try {
           const parsedUser = JSON.parse(userData);
+
           setUser(parsedUser);
           setProfileImageError(false);
         } catch (error) {
-          console.error('Error parsing user data:', error);
+          console.error(
+            'Error parsing user data:',
+            error
+          );
+
           setUser(null);
         }
       } else {
         setUser(null);
       }
+
       setAuthLoading(false);
     }
   };
 
-  // Fetch cart count
+  // ============================================================
+  // FETCH CART COUNT
+  // ============================================================
+
   const fetchCartCount = async () => {
     try {
       const token = localStorage.getItem('token');
+
       const headers = {};
-      
+
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
       } else {
-        const sessionId = localStorage.getItem('cartSessionId');
+        const sessionId =
+          localStorage.getItem('cartSessionId');
+
         if (sessionId) {
           headers['x-session-id'] = sessionId;
         }
       }
-      
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/cart`, { headers });
-      
+
+      const response = await fetch(
+        `${API_URL}/api/cart`,
+        {
+          headers,
+        }
+      );
+
       if (response.ok) {
         const data = await response.json();
-        setCartCount(data.data?.totalItems || 0);
+
+        setCartCount(
+          data.data?.totalItems || 0
+        );
       } else {
         setCartCount(0);
       }
     } catch (error) {
-      console.error('Fetch cart count error:', error);
+      console.error(
+        'Fetch cart count error:',
+        error
+      );
+
       setCartCount(0);
     }
   };
+
+  // ============================================================
+  // AUTH + CART EVENTS
+  // ============================================================
 
   useEffect(() => {
     checkUserState();
@@ -1286,73 +2759,169 @@ export default function Navbar() {
       fetchCartCount();
     };
 
-    window.addEventListener('auth-change', handleAuthChange);
-    window.addEventListener('focus', handleAuthChange);
-    window.addEventListener('cart-update', fetchCartCount);
+    window.addEventListener(
+      'auth-change',
+      handleAuthChange
+    );
+
+    window.addEventListener(
+      'focus',
+      handleAuthChange
+    );
+
+    window.addEventListener(
+      'cart-update',
+      fetchCartCount
+    );
 
     return () => {
-      window.removeEventListener('auth-change', handleAuthChange);
-      window.removeEventListener('focus', handleAuthChange);
-      window.removeEventListener('cart-update', fetchCartCount);
+      window.removeEventListener(
+        'auth-change',
+        handleAuthChange
+      );
+
+      window.removeEventListener(
+        'focus',
+        handleAuthChange
+      );
+
+      window.removeEventListener(
+        'cart-update',
+        fetchCartCount
+      );
     };
   }, []);
+
+  // ============================================================
+  // FETCH CART WHEN PATHNAME CHANGES
+  // ============================================================
 
   useEffect(() => {
     fetchCartCount();
   }, [pathname]);
 
+  // ============================================================
+  // CART UPDATE LISTENER
+  // ============================================================
+
   useEffect(() => {
     const handleCartUpdate = () => {
       fetchCartCount();
     };
-    
-    window.addEventListener('cart-update', handleCartUpdate);
-    
+
+    window.addEventListener(
+      'cart-update',
+      handleCartUpdate
+    );
+
     return () => {
-      window.removeEventListener('cart-update', handleCartUpdate);
+      window.removeEventListener(
+        'cart-update',
+        handleCartUpdate
+      );
     };
   }, []);
 
-  // Get icon component from name
+  // ============================================================
+  // GET ICON
+  // ============================================================
+
   const getIcon = (iconName) => {
     const Icon = ICON_MAP[iconName];
+
     return Icon || Package;
   };
 
-  // Get navbar items from backend or use defaults
+  // ============================================================
+  // NAVIGATION ITEMS
+  // ============================================================
+
   const getNavItems = () => {
-    if (navbarData?.items && navbarData.items.length > 0) {
-      return navbarData.items.filter(item => item.isActive !== false);
+    if (
+      navbarData?.items &&
+      navbarData.items.length > 0
+    ) {
+      return navbarData.items.filter(
+        (item) => item.isActive !== false
+      );
     }
+
     return [
-      { id: '1', name: 'Home', href: '/', icon: 'Home' },
-      { id: '2', name: 'Products', href: '/products', icon: 'Sparkles' },
-      { id: '3', name: 'Track Order', href: '/track', icon: 'MapPin' },
-      { id: '4', name: 'About', href: '/about', icon: 'Flower2' },
-      { id: '5', name: 'Contact', href: '/contact', icon: 'Phone' },
+      {
+        id: '1',
+        name: 'Home',
+        href: '/',
+        icon: 'Home',
+      },
+      {
+        id: '2',
+        name: 'Products',
+        href: '/products',
+        icon: 'Sparkles',
+      },
+      {
+        id: '3',
+        name: 'Track Order',
+        href: '/track',
+        icon: 'MapPin',
+      },
+      {
+        id: '4',
+        name: 'About',
+        href: '/about',
+        icon: 'Flower2',
+      },
+      {
+        id: '5',
+        name: 'Contact',
+        href: '/contact',
+        icon: 'Phone',
+      },
     ];
   };
 
   const navItems = getNavItems();
 
+  // ============================================================
+  // ACTIVE LINK
+  // ============================================================
+
   const isActive = (path) => {
-    if (path === '/') return pathname === '/';
+    if (path === '/') {
+      return pathname === '/';
+    }
+
     return pathname.startsWith(path);
   };
+
+  // ============================================================
+  // SEARCH
+  // ============================================================
 
   const performSearch = async (query) => {
     if (!query.trim()) {
       setSearchResults([]);
       setShowResults(false);
+
       return;
     }
-    
+
     setSearchLoading(true);
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://http://localhost:3000'}/api/products?search=${encodeURIComponent(query)}&limit=5`);
+      const response = await fetch(
+        `${API_URL}/api/products?search=${encodeURIComponent(
+          query
+        )}&limit=5`
+      );
+
       const data = await response.json();
-      
-      if (data.success && data.data && data.data.length > 0) {
+
+      if (
+        data.success &&
+        data.data &&
+        data.data.length > 0
+      ) {
         setSearchResults(data.data);
         setShowResults(true);
       } else {
@@ -1360,13 +2929,21 @@ export default function Navbar() {
         setShowResults(false);
       }
     } catch (error) {
-      console.error('Search error:', error);
+      console.error(
+        'Search error:',
+        error
+      );
+
       setSearchResults([]);
       setShowResults(false);
     } finally {
       setSearchLoading(false);
     }
   };
+
+  // ============================================================
+  // SEARCH DEBOUNCE
+  // ============================================================
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -1377,13 +2954,24 @@ export default function Navbar() {
         setShowResults(false);
       }
     }, 300);
+
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
+  // ============================================================
+  // SEARCH SUBMIT
+  // ============================================================
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+
     if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+      router.push(
+        `/search?q=${encodeURIComponent(
+          searchQuery
+        )}`
+      );
+
       setSearchOpen(false);
       setMobileSearchOpen(false);
       setSearchQuery('');
@@ -1391,705 +2979,1528 @@ export default function Navbar() {
     }
   };
 
-  // ✅ FIXED: Updated handleResultClick with timeout and proper state management
+  // ============================================================
+  // SEARCH RESULT CLICK
+  // ============================================================
+
   const handleResultClick = (result) => {
     const productId = result._id;
-    const productSlug = result.slug || productId;
-    
+
+    const productSlug =
+      result.slug || productId;
+
     if (productSlug) {
-      // Close all search UI first
       setSearchOpen(false);
       setMobileSearchOpen(false);
       setSearchQuery('');
       setShowResults(false);
-      
-      // Use setTimeout to ensure state updates complete before navigation
+
       setTimeout(() => {
-        router.push(`/product/${productSlug}`);
+        router.push(
+          `/product/${productSlug}`
+        );
       }, 50);
     } else {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+      router.push(
+        `/search?q=${encodeURIComponent(
+          searchQuery
+        )}`
+      );
     }
   };
-  
+
+  // ============================================================
+  // LOGOUT
+  // ============================================================
+
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+
     setUser(null);
     setCartCount(0);
     setUserMenuOpen(false);
-    window.dispatchEvent(new Event('cart-update'));
-    window.dispatchEvent(new Event('auth-change'));
-    toast.success('Logged out successfully!');
+
+    window.dispatchEvent(
+      new Event('cart-update')
+    );
+
+    window.dispatchEvent(
+      new Event('auth-change')
+    );
+
+    toast.success(
+      'Logged out successfully!'
+    );
+
     router.push('/');
   };
 
-  // ========== GET DASHBOARD LINK BASED ON ROLE ==========
+  // ============================================================
+  // DASHBOARD LINK
+  // ============================================================
+
   const getDashboardLink = () => {
-    if (!user) return '/';
-    
-    if (['admin', 'super_admin', 'moderator'].includes(user.role)) {
+    if (!user) {
+      return '/';
+    }
+
+    if (
+      [
+        'admin',
+        'super_admin',
+        'moderator',
+      ].includes(user.role)
+    ) {
       return '/authorize/dashboard';
     }
-    
-    if (user.role === 'call_center_agent') {
+
+    if (
+      user.role === 'call_center_agent'
+    ) {
       return '/agent/dashboard';
     }
-    
+
     return '/customer/dashboard';
   };
 
-  // ========== GET SETTINGS LINK BASED ON ROLE ==========
+  // ============================================================
+  // SETTINGS LINK
+  // ============================================================
+
   const getSettingsLink = () => {
-    if (!user) return '/';
-    
-    if (['admin', 'super_admin', 'moderator'].includes(user.role)) {
+    if (!user) {
+      return '/';
+    }
+
+    if (
+      [
+        'admin',
+        'super_admin',
+        'moderator',
+      ].includes(user.role)
+    ) {
       return '/authorize/settings';
     }
-    
-    if (user.role === 'call_center_agent') {
+
+    if (
+      user.role === 'call_center_agent'
+    ) {
       return '/agent/settings';
     }
-    
+
     return '/customer/settings';
   };
 
+  // ============================================================
+  // DISPLAY NAME
+  // ============================================================
+
   const getDisplayName = () => {
-    if (!user) return '';
-    return user.companyName || user.contactPerson || user.email?.split('@')[0] || 'User';
+    if (!user) {
+      return '';
+    }
+
+    return (
+      user.companyName ||
+      user.contactPerson ||
+      user.email?.split('@')[0] ||
+      'User'
+    );
   };
+
+  // ============================================================
+  // INITIALS
+  // ============================================================
 
   const getInitials = () => {
-    if (!user) return 'U';
+    if (!user) {
+      return 'U';
+    }
+
     const name = getDisplayName();
-    return name.charAt(0).toUpperCase();
+
+    return name
+      .charAt(0)
+      .toUpperCase();
   };
+
+  // ============================================================
+  // PROFILE PICTURE
+  // ============================================================
 
   const getProfilePicture = () => {
-    return user?.profilePicture || user?.photoURL || null;
+    return (
+      user?.profilePicture ||
+      user?.photoURL ||
+      null
+    );
   };
 
-  // Get logo URL with proper quality settings
+  // ============================================================
+  // LOGO URL
+  // ============================================================
+
   const getLogoUrl = (url) => {
-    if (!url) return '/logo.png';
-    
-    // If it's a Cloudinary URL, add optimization params for quality
-    if (url.includes('cloudinary.com')) {
-      const parts = url.split('/upload/');
+    if (!url) {
+      return '/logo.png';
+    }
+
+    if (
+      url.includes(
+        'cloudinary.com'
+      )
+    ) {
+      const parts =
+        url.split('/upload/');
+
       if (parts.length === 2) {
-        // Better quality settings - no forced height
         return `${parts[0]}/upload/f_auto,q_auto:good,fl_preserve_transparency/${parts[1]}`;
       }
     }
+
     return url;
   };
 
-  // Check if user has authorize role
-  const isAuthorizeRole = user && ['admin', 'super_admin', 'moderator'].includes(user.role);
+  // ============================================================
+  // AUTHORIZE ROLE
+  // ============================================================
 
-  // Determine if navbar should be transparent (only on home page when not scrolled)
-  const isTransparent = isHomePage && !scrolled;
+  const isAuthorizeRole =
+    user &&
+    [
+      'admin',
+      'super_admin',
+      'moderator',
+    ].includes(user.role);
 
-  if (authLoading || navbarLoading) {
+  // ============================================================
+  // LOADING
+  // ============================================================
+
+  if (
+    authLoading ||
+    navbarLoading
+  ) {
     return (
-      <div className={`fixed top-0 z-50 w-full ${isHomePage ? 'bg-white/80 backdrop-blur-sm' : 'bg-white'} border-b border-[#F7C7D3]`}>
+      <div
+        className="fixed top-0 z-50 w-full bg-white border-b border-[#E8E0D8]"
+      >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="w-10 h-10 bg-[#F7C7D3] rounded animate-pulse"></div>
+
+            <div className="w-10 h-10 bg-[#E8DCD0] rounded animate-pulse" />
+
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
-              <div className="w-8 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
-              <div className="w-16 h-8 bg-[#F7C7D3] rounded animate-pulse"></div>
+
+              <div className="w-8 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
+              <div className="w-8 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
+              <div className="w-16 h-8 bg-[#E8DCD0] rounded animate-pulse" />
+
             </div>
+
           </div>
         </div>
       </div>
     );
   }
 
+  // ============================================================
+  // RETURN
+  // ============================================================
+
   return (
     <>
-      {/* Main Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isTransparent 
-          ? 'bg-transparent' 
-          : isHomePage && scrolled
-            ? 'bg-white/80 backdrop-blur-md shadow-lg'
-            : 'bg-white shadow-sm'
-      }`}>
-      <div className="container mx-auto px-4">
-  <div className="flex items-center justify-between h-16">
+      {/* ======================================================
+          MAIN NAVBAR - WHITE BACKGROUND
+      ====================================================== */}
 
-    {/* Left Group: Menu Button + Logo (tight together on mobile) */}
-    <div className="flex items-center gap-1 md:gap-0">
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden p-2 -ml-1 rounded-lg transition-all duration-200"
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
+          scrolled ? 'shadow-md' : 'shadow-sm'
+        }`}
       >
-        <Menu className={`w-5 h-5 ${
-          isTransparent ? 'text-white' : 'text-[#EE4275]'
-        }`} />
-      </button>
+        <div className="container mx-auto px-4">
 
-      <Link href="/" className="flex items-center flex-shrink-0 group">
-        <div className="relative w-24 h-11 -ml-5 lg:-ml-0 md:w-32 md:h-14 transition-transform group-hover:scale-105 duration-300">
-          {navbarData?.logo?.logoUrl ? (
-            <img 
-              src={getLogoUrl(navbarData.logo.logoUrl)}
-              alt={navbarData.logo.text || 'Glow&Co'}
-              className="w-full h-full object-contain"
-              style={{ background: 'transparent' }}
-            />
-          ) : (
-            <img 
-              src="/logo.png"
-              alt="Glow&Co Logo"
-              className="w-full h-full object-contain"
-            />
-          )}
-        </div>
-      </Link>
-    </div>
+          <div className="flex items-center justify-between h-16">
 
-    {/* Desktop Navigation - Center */}
-    <div className="hidden md:flex items-center space-x-1 flex-1 justify-center">
-      {navItems.map((item) => {
-        const Icon = getIcon(item.icon);
-        return (
-          <Link
-            key={item.id || item.name}
-            href={item.href}
-            className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive(item.href)
-                ? isTransparent ? 'text-white' : 'text-[#EE4275]'
-                : isTransparent ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-[#EE4275]'
-            }`}
-            style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-          >
-            {item.name}
-            {isActive(item.href) && (
-              <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full ${
-                isTransparent ? 'bg-white' : 'bg-[#EE4275]'
-              }`}></span>
-            )}
-          </Link>
-        );
-      })}
-    </div>
+            {/* ==================================================
+                LEFT SECTION
+            ================================================== */}
 
-    {/* Right Section - Search Icon, Cart, Sign In */}
-    <div className="flex items-center gap-1 sm:gap-2">
-      
-      {/* Desktop Search - Full width input that doesn't overlap */}
-      <div className="hidden md:block relative" ref={searchRef}>
-        <div className="flex items-center">
-          {!searchOpen ? (
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="search-trigger p-2 rounded-lg transition-all duration-200"
-            >
-              <Search className={`w-4.5 h-4.5 ${
-                isTransparent ? 'text-white' : 'text-[#EE4275]'
-              }`} />
-            </button>
-          ) : (
-            <div className="relative">
-              <form onSubmit={handleSearchSubmit} className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search beauty products..."
-                  className="w-80 px-4 py-2 pr-20 text-sm text-gray-700 bg-white border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all shadow-lg"
-                  style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                  autoFocus
+            <div className="flex items-center gap-1 md:gap-0 flex-1">
+
+              {/* Mobile Menu */}
+              <button
+                onClick={() =>
+                  setIsMenuOpen(
+                    !isMenuOpen
+                  )
+                }
+                className="md:hidden p-2 -ml-1 rounded-lg transition-all duration-200 hover:bg-[#F2F5F0]"
+              >
+                <Menu
+                  className="w-5 h-5 text-[#3D3D3D]"
                 />
-                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                  <button type="submit" className="p-1">
-                    {searchLoading ? (
-                      <div className="w-3.5 h-3.5 border-2 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
-                    ) : (
-                      <Search className="w-3.5 h-3.5 text-[#EE4275]" />
-                    )}
-                  </button>
+              </button>
+
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center space-x-1">
+
+                {navItems.map((item) => {
+                  const Icon =
+                    getIcon(item.icon);
+
+                  return (
+                    <Link
+                      key={
+                        item.id ||
+                        item.name
+                      }
+                      href={item.href}
+                      className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        isActive(
+                          item.href
+                        )
+                          ? 'text-[#8B9D83]'
+                          : 'text-[#3D3D3D] hover:text-[#8B9D83]'
+                      }`}
+                      style={{
+                        fontFamily:
+                          '"Raleway", "Inter", sans-serif',
+                      }}
+                    >
+                      {item.name}
+
+                      {isActive(
+                        item.href
+                      ) && (
+                        <span
+                          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full bg-[#8B9D83]"
+                        />
+                      )}
+                    </Link>
+                  );
+                })}
+
+              </div>
+            </div>
+
+            {/* ==================================================
+                CENTER LOGO
+            ================================================== */}
+
+            <div className="flex items-center justify-center flex-shrink-0">
+
+              <Link
+                href="/"
+                className="flex items-center group"
+              >
+                <div className="relative w-24 h-11 md:w-28 md:h-12 lg:w-32 lg:h-14 transition-transform group-hover:scale-105 duration-300">
+
+                  {navbarData?.logo?.logoUrl ? (
+                    <img
+                      src={getLogoUrl(
+                        navbarData.logo.logoUrl
+                      )}
+                      alt={
+                        navbarData.logo.text ||
+                        'Glow&Co'
+                      }
+                      className="w-full h-full object-contain"
+                      style={{
+                        background:
+                          'transparent',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src="/logo.png"
+                      alt="Glow&Co Logo"
+                      className="w-full h-full object-contain"
+                    />
+                  )}
+
+                </div>
+              </Link>
+
+            </div>
+
+            {/* ==================================================
+                RIGHT SECTION - BEAUTY THEME
+            ================================================== */}
+
+            <div className="flex items-center justify-end flex-1">
+
+              {/* ==================================================
+                  DESKTOP SEARCH
+              ================================================== */}
+
+              <div
+                className="hidden md:block relative"
+                ref={searchRef}
+              >
+
+                {!searchOpen ? (
+
+                  /* Search Trigger - Skin tone style */
                   <button
                     type="button"
-                    onClick={() => {
-                      setSearchOpen(false);
-                      setSearchQuery('');
-                      setShowResults(false);
-                    }}
-                    className="p-1 text-gray-400 hover:text-[#EE4275] transition-colors"
+                    onClick={() =>
+                      setSearchOpen(true)
+                    }
+                    className="search-trigger group flex items-center w-[200px] lg:w-[260px] border-b border-[#E8E0D8] hover:border-[#8B9D83] transition-colors duration-200 py-2"
                   >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </form>
 
-              {/* Search Results Dropdown */}
-              {showResults && searchResults.length > 0 && (
-                <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-[#EE4275]/10 max-h-96 overflow-y-auto z-50">
-                  <div className="py-2">
-                    {searchResults.map((product) => (
-                      <button
-                        key={product._id}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          handleResultClick(product);
-                        }}
-                        className="w-full px-4 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
-                      >
-                        {product.images && product.images.length > 0 ? (
-                          <img 
-                            src={product.images[0]?.url || product.images[0]} 
-                            alt={product.productName || product.name} 
-                            className="w-10 h-10 rounded-lg object-cover bg-[#F7C7D3]/20"
-                          />
-                        ) : (
-                          <div className="w-10 h-10 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center">
-                            <Package className="w-5 h-5 text-[#EE4275]" />
-                          </div>
-                        )}
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-                            {product.productName || product.name || product.title}
-                          </p>
-                          <div className="flex items-center gap-2 mt-0.5">
-                            <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-                              ৳{product.discountPrice || product.regularPrice || product.price}
-                            </p>
-                            {product.discountPrice && product.regularPrice && (
-                              <p className="text-xs text-gray-400 line-through">
-                                ৳{product.regularPrice}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                    <button
-                      onClick={handleSearchSubmit}
-                      className="w-full px-4 py-2.5 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30 transition-colors"
-                      style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+                    <Search
+                      className="w-[18px] h-[18px] text-[#6B6B6B] flex-shrink-0"
+                      strokeWidth={1.7}
+                    />
+
+                    <span
+                      className="ml-4 text-[14px] text-[#6B6B6B] group-hover:text-[#3D3D3D] transition-colors"
+                      style={{
+                        fontFamily:
+                          '"Raleway", "Inter", sans-serif',
+                      }}
                     >
-                      View all results for "{searchQuery}" →
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Search Trigger */}
-      <button
-        onClick={() => setMobileSearchOpen(true)}
-        className="mobile-search-trigger md:hidden p-2 rounded-lg transition-all duration-200"
-      >
-        <Search className={`w-4.5 h-4.5 ${
-          isTransparent ? 'text-white' : 'text-[#EE4275]'
-        }`} />
-      </button>
-
-      {/* Cart Icon - Opens Sidebar */}
-      <button 
-        onClick={() => setIsCartOpen(true)} 
-        className="relative p-2 rounded-lg transition-all duration-200 group"
-      >
-        <ShoppingCart className={`w-4.5 h-4.5 ${
-          isTransparent ? 'text-white' : 'text-[#EE4275]'
-        } group-hover:scale-105 transition-transform`} />
-        {cartCount > 0 && (
-          <span className="absolute -top-1 -right-1 bg-[#EE4275] text-white text-[10px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1 shadow-sm" style={{ fontFamily: '"Playfair Display"' }}>
-            {cartCount > 9 ? '9+' : cartCount}
-          </span>
-        )}
-      </button>
-
-      {/* Sign In / User Menu */}
-      {user ? (
-        <div className="relative">
-          <button
-            onClick={() => setUserMenuOpen(!userMenuOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 text-sm"
-          >
-            {getProfilePicture() && !profileImageError ? (
-              <img 
-                src={getProfilePicture()} 
-                alt={getDisplayName()}
-                className={`w-7 h-7 rounded-full object-cover border-2 ${
-                  isTransparent ? 'border-white/30' : 'border-[#EE4275]/30'
-                }`}
-              />
-            ) : (
-              <div className="w-7 h-7 rounded-full bg-[#EE4275] flex items-center justify-center text-white font-semibold text-xs shadow-sm">
-                {getInitials()}
-              </div>
-            )}
-            <span className={`hidden sm:inline font-medium text-sm max-w-[100px] truncate ${
-              isTransparent ? 'text-white' : 'text-gray-600'
-            }`} style={{ fontFamily: '"Playfair Display"' }}>
-              {getDisplayName()}
-            </span>
-            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''} ${
-              isTransparent ? 'text-white' : 'text-[#EE4275]'
-            }`} />
-          </button>
-
-          {userMenuOpen && (
-            <>
-              <div className="fixed inset-0 z-40" onClick={() => setUserMenuOpen(false)} />
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-[#EE4275]/10 overflow-hidden z-50 animate-fadeIn">
-                <div className="px-4 py-3 border-b border-[#F7C7D3]/30 bg-[#F7C7D3]/10">
-                  <p className="text-gray-700 font-semibold text-sm truncate" style={{ fontFamily: '"Playfair Display"' }}>{getDisplayName()}</p>
-                  <p className="text-[#EE4275] text-xs truncate mt-0.5" style={{ fontFamily: '"Playfair Display"' }}>{user.email}</p>
-                  <div className="mt-1.5">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                      user.role === 'super_admin' ? 'bg-yellow-500/20 text-yellow-600' :
-                      user.role === 'admin' ? 'bg-[#EE4275]/20 text-[#EE4275]' :
-                      user.role === 'moderator' ? 'bg-green-500/20 text-green-600' :
-                      user.role === 'call_center_agent' ? 'bg-purple-500/20 text-purple-600' :
-                      'bg-[#F7C7D3]/30 text-gray-600'
-                    }`} style={{ fontFamily: '"Playfair Display"' }}>
-                      {user.role === 'call_center_agent' ? 'Call Center Agent' :
-                       user.role === 'super_admin' ? 'Super Admin' :
-                       user.role === 'admin' ? 'Admin' :
-                       user.role === 'moderator' ? 'Moderator' :
-                       'Customer'}
+                      {typewriterText}
                     </span>
-                  </div>
-                </div>
-                <div className="py-2">
-                  {/* Dashboard Link - Force full page reload */}
-                  <div
-                    onClick={() => {
-                      setUserMenuOpen(false);
-                      window.location.href = getDashboardLink();
-                    }}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                  >
-                    <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
-                    <span>Dashboard</span>
-                  </div>
 
-                  {/* Settings Link - Force full page reload */}
-                  <div
-                    onClick={() => {
-                      setUserMenuOpen(false);
-                      window.location.href = getSettingsLink();
-                    }}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors cursor-pointer"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                  >
-                    <Settings className="w-4 h-4 text-[#EE4275]" />
-                    <span>Settings</span>
-                  </div>
-                  
-                  <div className="border-t border-[#F7C7D3]/30 my-1"></div>
-                  
-                  <button 
-                    onClick={() => { setUserMenuOpen(false); logout(); }} 
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                  >
-                    <LogOut className="w-4 h-4" />
-                    <span>Logout</span>
                   </button>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      ) : (
-        <Link 
-          href="/login" 
-          className={`hidden sm:block px-5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md ${
-            isTransparent 
-              ? 'text-[#EE4275] bg-white/90 backdrop-blur-sm hover:bg-white' 
-              : 'text-white bg-[#EE4275] hover:bg-[#EE4275]/80'
-          }`}
-          style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-        >
-          Sign In
-        </Link>
-      )}
-    </div>
 
-  </div>
-</div>
+                ) : (
+
+                  /* Active Search */
+                  <div className="relative">
+
+                    <form
+                      onSubmit={
+                        handleSearchSubmit
+                      }
+                      className="relative"
+                    >
+
+                      <div className="flex items-center w-[200px] lg:w-[260px] border-b border-[#8B9D83] py-1.5">
+
+                        <Search
+                          className="w-[18px] h-[18px] text-[#3D3D3D] flex-shrink-0"
+                          strokeWidth={1.7}
+                        />
+
+                        <input
+                          type="text"
+                          value={
+                            searchQuery
+                          }
+                          onChange={(e) =>
+                            setSearchQuery(
+                              e.target.value
+                            )
+                          }
+                          placeholder={typewriterText}
+                          className="w-full ml-4 pr-16 text-[14px] text-[#3D3D3D] placeholder:text-[#6B6B6B] bg-transparent focus:outline-none"
+                          style={{
+                            fontFamily:
+                              '"Raleway", "Inter", sans-serif',
+                          }}
+                          autoFocus
+                        />
+
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+
+                          {searchLoading ? (
+                            <div className="w-4 h-4 border-2 border-[#8B9D83] border-t-transparent rounded-full animate-spin" />
+                          ) : (
+                            <button
+                              type="submit"
+                              className="p-1 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
+                            >
+                              <Search
+                                className="w-[15px] h-[15px]"
+                                strokeWidth={1.7}
+                              />
+                            </button>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSearchOpen(
+                                false
+                              );
+
+                              setSearchQuery(
+                                ''
+                              );
+
+                              setShowResults(
+                                false
+                              );
+                            }}
+                            className="p-1 ml-1 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
+                          >
+                            <X
+                              className="w-[15px] h-[15px]"
+                              strokeWidth={1.7}
+                            />
+                          </button>
+
+                        </div>
+
+                      </div>
+
+                    </form>
+
+                    {/* ==================================================
+                        DESKTOP SEARCH RESULTS
+                    ================================================== */}
+
+                    {showResults &&
+                      searchResults.length >
+                        0 && (
+
+                        <div className="absolute top-full right-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-[#E8E0D8] max-h-96 overflow-y-auto z-50">
+
+                          <div className="py-2">
+
+                            {searchResults.map(
+                              (product) => (
+
+                                <button
+                                  key={
+                                    product._id
+                                  }
+                                  onMouseDown={(
+                                    e
+                                  ) => {
+                                    e.preventDefault();
+
+                                    handleResultClick(
+                                      product
+                                    );
+                                  }}
+                                  className="w-full px-4 py-3 text-left hover:bg-[#F2F5F0] transition-colors flex items-center gap-3 border-b border-[#E8E0D8] last:border-0"
+                                >
+
+                                  {product.images &&
+                                  product
+                                    .images
+                                    .length >
+                                    0 ? (
+
+                                    <img
+                                      src={
+                                        product
+                                          .images[0]
+                                          ?.url ||
+                                        product
+                                          .images[0]
+                                      }
+                                      alt={
+                                        product.productName ||
+                                        product.name
+                                      }
+                                      className="w-10 h-10 rounded-lg object-cover bg-[#F5EDE3]"
+                                    />
+
+                                  ) : (
+
+                                    <div className="w-10 h-10 rounded-lg bg-[#F5EDE3] flex items-center justify-center">
+
+                                      <Package
+                                        className="w-5 h-5 text-[#6B6B6B]"
+                                        strokeWidth={
+                                          1.5
+                                        }
+                                      />
+
+                                    </div>
+                                  )}
+
+                                  <div className="flex-1 min-w-0">
+
+                                    <p
+                                      className="font-medium text-[#3D3D3D] text-sm line-clamp-1"
+                                      style={{
+                                        fontFamily:
+                                          '"Raleway", "Inter", sans-serif',
+                                      }}
+                                    >
+                                      {product.productName ||
+                                        product.name ||
+                                        product.title}
+                                    </p>
+
+                                    <div className="flex items-center gap-2 mt-0.5">
+
+                                      <p
+                                        className="text-sm font-semibold text-[#8B9D83]"
+                                        style={{
+                                          fontFamily:
+                                            '"Raleway", "Inter", sans-serif',
+                                        }}
+                                      >
+                                        ৳
+                                        {product.discountPrice ||
+                                          product.regularPrice ||
+                                          product.price}
+                                      </p>
+
+                                      {product.discountPrice &&
+                                        product.regularPrice && (
+                                          <p className="text-xs text-[#6B6B6B] line-through">
+                                            ৳
+                                            {
+                                              product.regularPrice
+                                            }
+                                          </p>
+                                        )}
+
+                                    </div>
+
+                                  </div>
+
+                                </button>
+                              )
+                            )}
+
+                            <button
+                              onClick={
+                                handleSearchSubmit
+                              }
+                              className="w-full px-4 py-2.5 text-center text-sm text-[#8B9D83] hover:bg-[#F2F5F0] font-medium border-t border-[#E8E0D8] transition-colors"
+                              style={{
+                                fontFamily:
+                                  '"Raleway", "Inter", sans-serif',
+                              }}
+                            >
+                              View all results
+                              for "
+                              {
+                                searchQuery
+                              }
+                              " →
+                            </button>
+
+                          </div>
+
+                        </div>
+                      )}
+
+                  </div>
+                )}
+
+              </div>
+
+              {/* ==================================================
+                  MOBILE SEARCH TRIGGER
+              ================================================== */}
+
+              <button
+                onClick={() =>
+                  setMobileSearchOpen(
+                    true
+                  )
+                }
+                className="mobile-search-trigger md:hidden p-2 hover:bg-[#F2F5F0] rounded-full transition-colors"
+              >
+                <Search
+                  className="w-[20px] h-[20px] text-[#3D3D3D]"
+                  strokeWidth={1.7}
+                />
+              </button>
+
+              {/* ==================================================
+                  USER ICON
+              ================================================== */}
+
+              {user ? (
+
+                <div className="relative ml-5">
+
+                  <button
+                    onClick={() =>
+                      setUserMenuOpen(
+                        !userMenuOpen
+                      )
+                    }
+                    className="flex items-center justify-center hover:opacity-70 transition-opacity"
+                    aria-label="Account"
+                  >
+
+                    {getProfilePicture() &&
+                    !profileImageError ? (
+
+                      <img
+                        src={getProfilePicture()}
+                        alt={getDisplayName()}
+                        onError={() =>
+                          setProfileImageError(
+                            true
+                          )
+                        }
+                        className="w-[24px] h-[24px] rounded-full object-cover"
+                      />
+
+                    ) : (
+
+                      <UserCircle
+                        className="w-[25px] h-[25px] text-[#3D3D3D]"
+                        strokeWidth={1.5}
+                      />
+
+                    )}
+
+                  </button>
+
+                  {/* USER DROPDOWN */}
+
+                  {userMenuOpen && (
+                    <>
+                      <div
+                        className="fixed inset-0 z-40"
+                        onClick={() =>
+                          setUserMenuOpen(
+                            false
+                          )
+                        }
+                      />
+
+                      <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-[#E8E0D8] overflow-hidden z-50 animate-fadeIn">
+
+                        {/* User Info */}
+
+                        <div className="px-4 py-3 border-b border-[#E8E0D8] bg-[#F5EDE3]">
+
+                          <p
+                            className="text-[#3D3D3D] font-semibold text-sm truncate"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+                            {getDisplayName()}
+                          </p>
+
+                          <p
+                            className="text-[#6B6B6B] text-xs truncate mt-0.5"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+                            {user.email}
+                          </p>
+
+                          <div className="mt-1.5">
+
+                            <span
+                              className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#8B9D83] text-white"
+                              style={{
+                                fontFamily:
+                                  '"Raleway", "Inter", sans-serif',
+                              }}
+                            >
+                              {user.role ===
+                              'call_center_agent'
+                                ? 'Call Center Agent'
+                                : user.role ===
+                                  'super_admin'
+                                ? 'Super Admin'
+                                : user.role ===
+                                  'admin'
+                                ? 'Admin'
+                                : user.role ===
+                                  'moderator'
+                                ? 'Moderator'
+                                : 'Customer'}
+                            </span>
+
+                          </div>
+
+                        </div>
+
+                        {/* Dropdown Actions */}
+
+                        <div className="py-2">
+
+                          {/* Dashboard */}
+
+                          <div
+                            onClick={() => {
+                              setUserMenuOpen(
+                                false
+                              );
+
+                              window.location.href =
+                                getDashboardLink();
+                            }}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors cursor-pointer"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+
+                            <LayoutDashboard
+                              className="w-4 h-4 text-[#8B9D83]"
+                              strokeWidth={
+                                1.7
+                              }
+                            />
+
+                            <span>
+                              Dashboard
+                            </span>
+
+                          </div>
+
+                          {/* Settings */}
+
+                          <div
+                            onClick={() => {
+                              setUserMenuOpen(
+                                false
+                              );
+
+                              window.location.href =
+                                getSettingsLink();
+                            }}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors cursor-pointer"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+
+                            <Settings
+                              className="w-4 h-4 text-[#8B9D83]"
+                              strokeWidth={
+                                1.7
+                              }
+                            />
+
+                            <span>
+                              Settings
+                            </span>
+
+                          </div>
+
+                          <div className="border-t border-[#E8E0D8] my-1" />
+
+                          {/* Logout */}
+
+                          <button
+                            onClick={() => {
+                              setUserMenuOpen(
+                                false
+                              );
+
+                              logout();
+                            }}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors w-full"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+
+                            <LogOut
+                              className="w-4 h-4"
+                              strokeWidth={
+                                1.7
+                              }
+                            />
+
+                            <span>
+                              Logout
+                            </span>
+
+                          </button>
+
+                        </div>
+
+                      </div>
+                    </>
+                  )}
+
+                </div>
+
+              ) : (
+
+                /* Logged Out User Icon */
+
+                <Link
+                  href="/login"
+                  className="ml-5 flex items-center justify-center hover:opacity-70 transition-opacity"
+                  aria-label="Sign In"
+                >
+                  <UserCircle
+                    className="w-[25px] h-[25px] text-[#3D3D3D]"
+                    strokeWidth={1.5}
+                  />
+                </Link>
+
+              )}
+
+              {/* ==================================================
+                  SHOPPING BAG
+              ================================================== */}
+
+              <button
+                onClick={() =>
+                  setIsCartOpen(true)
+                }
+                className="relative ml-5 flex items-center justify-center hover:opacity-70 transition-opacity"
+                aria-label="Shopping bag"
+              >
+
+                <ShoppingBag
+                  className="w-[25px] h-[25px] text-[#3D3D3D]"
+                  strokeWidth={1.5}
+                />
+
+                {/* Cart Count */}
+
+                {cartCount > 0 && (
+                  <span
+                    className="absolute -top-2 -right-2 bg-[#8B9D83] text-white text-[9px] font-semibold rounded-full min-w-[15px] h-[15px] flex items-center justify-center px-1"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
+                  >
+                    {cartCount > 9
+                      ? '9+'
+                      : cartCount}
+                  </span>
+                )}
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
       </nav>
 
-      {/* Mobile Search Overlay - Opens below navbar */}
+      {/* ========================================================
+          MOBILE SEARCH OVERLAY
+      ======================================================== */}
+
       {mobileSearchOpen && (
-        <div className="fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-lg border-b border-[#EE4275]/10 animate-slideDown md:hidden">
-          <div className="container mx-auto px-4 py-3" ref={mobileSearchRef}>
-            <form onSubmit={handleSearchSubmit} className="relative">
+        <div className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg border-b border-[#E8E0D8] animate-slideDown md:hidden">
+
+          <div
+            className="container mx-auto px-4 py-3"
+            ref={mobileSearchRef}
+          >
+
+            <form
+              onSubmit={
+                handleSearchSubmit
+              }
+              className="relative"
+            >
+
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search beauty products..."
-                className="w-full px-4 py-3 pr-20 text-sm text-gray-700 bg-[#F7C7D3]/10 border border-[#EE4275]/20 rounded-lg focus:outline-none focus:border-[#EE4275] focus:ring-2 focus:ring-[#EE4275]/20 transition-all"
-                style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+                onChange={(e) =>
+                  setSearchQuery(
+                    e.target.value
+                  )
+                }
+                placeholder={typewriterText}
+                className="w-full px-4 py-3 pr-20 text-sm text-[#3D3D3D] bg-[#F5EDE3] border-2 border-transparent rounded-lg focus:outline-none focus:border-[#8B9D83] focus:ring-2 focus:ring-[#8B9D83]/20 transition-all"
+                style={{
+                  fontFamily:
+                    '"Raleway", "Inter", sans-serif',
+                }}
                 autoFocus
               />
+
               <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                <button type="submit" className="p-1.5">
+
+                <button
+                  type="submit"
+                  className="p-1.5"
+                >
+
                   {searchLoading ? (
-                    <div className="w-4 h-4 border-2 border-[#EE4275] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-4 h-4 border-2 border-[#8B9D83] border-t-transparent rounded-full animate-spin" />
                   ) : (
-                    <Search className="w-4 h-4 text-[#EE4275]" />
+                    <Search className="w-4 h-4 text-[#8B9D83]" />
                   )}
+
                 </button>
+
                 <button
                   type="button"
                   onClick={() => {
-                    setMobileSearchOpen(false);
+                    setMobileSearchOpen(
+                      false
+                    );
+
                     setSearchQuery('');
                     setShowResults(false);
                   }}
-                  className="p-1.5 text-gray-400 hover:text-[#EE4275] transition-colors"
+                  className="p-1.5 text-[#6B6B6B] hover:text-[#3D3D3D] transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
+
               </div>
+
             </form>
 
             {/* Mobile Search Results */}
-            {showResults && searchResults.length > 0 && (
-              <div className="mt-3 bg-white rounded-lg border border-[#EE4275]/10 max-h-96 overflow-y-auto">
-                {searchResults.map((product) => (
+
+            {showResults &&
+              searchResults.length >
+                0 && (
+
+                <div className="mt-3 bg-white rounded-lg border border-[#E8E0D8] max-h-96 overflow-y-auto">
+
+                  {searchResults.map(
+                    (product) => (
+
+                      <button
+                        key={
+                          product._id
+                        }
+                        onMouseDown={(
+                          e
+                        ) => {
+                          e.preventDefault();
+
+                          handleResultClick(
+                            product
+                          );
+                        }}
+                        className="w-full px-3 py-3 text-left hover:bg-[#F2F5F0] transition-colors flex items-center gap-3 border-b border-[#E8E0D8] last:border-0"
+                      >
+
+                        {product.images &&
+                        product.images.length >
+                          0 ? (
+
+                          <img
+                            src={
+                              product
+                                .images[0]
+                                ?.url ||
+                              product
+                                .images[0]
+                            }
+                            alt={
+                              product.productName ||
+                              product.name
+                            }
+                            className="w-12 h-12 rounded-lg object-cover bg-[#F5EDE3]"
+                          />
+
+                        ) : (
+
+                          <div className="w-12 h-12 rounded-lg bg-[#F5EDE3] flex items-center justify-center">
+
+                            <Package className="w-6 h-6 text-[#6B6B6B]" />
+
+                          </div>
+
+                        )}
+
+                        <div className="flex-1">
+
+                          <p
+                            className="font-medium text-[#3D3D3D] text-sm line-clamp-1"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+                            {product.productName ||
+                              product.name ||
+                              product.title}
+                          </p>
+
+                          <p
+                            className="text-sm font-semibold text-[#8B9D83] mt-0.5"
+                            style={{
+                              fontFamily:
+                                '"Raleway", "Inter", sans-serif',
+                            }}
+                          >
+                            ৳
+                            {product.discountPrice ||
+                              product.regularPrice ||
+                              product.price}
+                          </p>
+
+                        </div>
+
+                      </button>
+                    )
+                  )}
+
                   <button
-                    key={product._id}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      handleResultClick(product);
+                    onClick={
+                      handleSearchSubmit
+                    }
+                    className="w-full px-4 py-3 text-center text-sm text-[#8B9D83] hover:bg-[#F2F5F0] font-medium border-t border-[#E8E0D8]"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
                     }}
-                    className="w-full px-3 py-3 text-left hover:bg-[#F7C7D3]/20 transition-colors flex items-center gap-3 border-b border-[#F7C7D3]/30 last:border-0"
                   >
-                    {product.images && product.images.length > 0 ? (
-                      <img 
-                        src={product.images[0]?.url || product.images[0]} 
-                        alt={product.productName || product.name} 
-                        className="w-12 h-12 rounded-lg object-cover bg-[#F7C7D3]/20"
-                      />
-                    ) : (
-                      <div className="w-12 h-12 rounded-lg bg-[#F7C7D3]/20 flex items-center justify-center">
-                        <Package className="w-6 h-6 text-[#EE4275]" />
-                      </div>
-                    )}
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-700 text-sm line-clamp-1" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-                        {product.productName || product.name || product.title}
-                      </p>
-                      <p className="text-sm font-semibold text-[#EE4275] mt-0.5" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-                        ৳{product.discountPrice || product.regularPrice || product.price}
-                      </p>
-                    </div>
+                    View all results
+                    for "
+                    {searchQuery}"
+                    →
                   </button>
-                ))}
-                <button
-                  onClick={handleSearchSubmit}
-                  className="w-full px-4 py-3 text-center text-sm text-[#EE4275] hover:bg-[#F7C7D3]/20 font-medium border-t border-[#F7C7D3]/30"
-                  style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                >
-                  View all results for "{searchQuery}" →
-                </button>
-              </div>
-            )}
+
+                </div>
+              )}
+
           </div>
+
         </div>
       )}
 
-      {/* Mobile Menu Sidebar */}
-      <div className={`fixed inset-0 z-50 md:hidden ${isMenuOpen ? 'visible' : 'invisible'}`}>
-        <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setIsMenuOpen(false)} />
-        
-        <div className={`absolute left-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      {/* ========================================================
+          MOBILE MENU SIDEBAR
+      ======================================================== */}
+
+      <div
+        className={`fixed inset-0 z-50 md:hidden ${
+          isMenuOpen
+            ? 'visible'
+            : 'invisible'
+        }`}
+      >
+
+        {/* Overlay */}
+
+        <div
+          className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${
+            isMenuOpen
+              ? 'opacity-100'
+              : 'opacity-0'
+          }`}
+          onClick={() =>
+            setIsMenuOpen(false)
+          }
+        />
+
+        {/* Sidebar */}
+
+        <div
+          className={`absolute left-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out ${
+            isMenuOpen
+              ? 'translate-x-0'
+              : '-translate-x-full'
+          }`}
+        >
+
           <div className="flex flex-col h-full">
+
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-[#F7C7D3]/30">
+
+            <div className="flex items-center justify-between p-5 border-b border-[#E8E0D8]">
+
               <div className="flex items-center space-x-2.5">
+
                 <div className="w-8 h-8">
+
                   {navbarData?.logo?.logoUrl ? (
-                    <img 
-                      src={getLogoUrl(navbarData.logo.logoUrl)} 
-                      alt={navbarData.logo.text || 'Glow&Co'} 
+
+                    <img
+                      src={getLogoUrl(
+                        navbarData.logo.logoUrl
+                      )}
+                      alt={
+                        navbarData.logo.text ||
+                        'Glow&Co'
+                      }
                       className="w-full h-full object-contain"
                     />
+
                   ) : (
-                    <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+
+                    <img
+                      src="/logo.png"
+                      alt="Logo"
+                      className="w-full h-full object-contain"
+                    />
+
                   )}
+
                 </div>
+
                 <div>
-                  <span className="font-bold text-gray-700 text-base" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>
-                    {navbarData?.logo?.text || 'Glow&Co'}
-                    {navbarData?.logo?.highlightText && (
-                      <span className="text-[#EE4275]">{navbarData.logo.highlightText}</span>
+
+                  <span
+                    className="font-bold text-[#3D3D3D] text-base"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
+                  >
+                    {navbarData?.logo
+                      ?.text ||
+                      'Glow&Co'}
+
+                    {navbarData?.logo
+                      ?.highlightText && (
+                      <span className="text-[#8B9D83]">
+                        {
+                          navbarData
+                            .logo
+                            .highlightText
+                        }
+                      </span>
                     )}
                   </span>
-                  <span className="text-[10px] text-[#EE4275] block -mt-1 tracking-wider" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>BEAUTY</span>
+
+                  <span
+                    className="text-[10px] text-[#8B9D83] block -mt-1 tracking-wider"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
+                  >
+                    BEAUTY
+                  </span>
+
                 </div>
+
               </div>
-              <button onClick={() => setIsMenuOpen(false)} className="p-2 rounded-lg hover:bg-[#F7C7D3]/20 transition-colors">
-                <X className="w-5 h-5 text-[#EE4275]" />
+
+              <button
+                onClick={() =>
+                  setIsMenuOpen(
+                    false
+                  )
+                }
+                className="p-2 rounded-lg hover:bg-[#F2F5F0] transition-colors"
+              >
+                <X className="w-5 h-5 text-[#3D3D3D]" />
               </button>
+
             </div>
 
             {/* Navigation Items */}
+
             <div className="flex-1 overflow-y-auto py-3">
+
               {navItems.map((item) => {
-                const Icon = getIcon(item.icon);
+
+                const Icon =
+                  getIcon(item.icon);
+
                 return (
                   <Link
-                    key={item.id || item.name}
+                    key={
+                      item.id ||
+                      item.name
+                    }
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() =>
+                      setIsMenuOpen(
+                        false
+                      )
+                    }
                     className={`flex items-center gap-3 px-5 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      isActive(item.href) 
-                        ? 'text-[#EE4275] font-semibold' 
-                        : 'text-gray-600 hover:text-[#EE4275] hover:bg-[#F7C7D3]/20'
+                      isActive(
+                        item.href
+                      )
+                        ? 'text-[#8B9D83] font-semibold'
+                        : 'text-[#3D3D3D] hover:text-[#8B9D83] hover:bg-[#F2F5F0]'
                     }`}
                     style={{
-                      fontFamily: '"Playfair Display", "Georgia", serif',
-                      borderLeft: isActive(item.href) ? '3px solid #EE4275' : 'none',
-                      paddingLeft: isActive(item.href) ? '17px' : '20px',
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+
+                      borderLeft:
+                        isActive(
+                          item.href
+                        )
+                          ? '3px solid #8B9D83'
+                          : 'none',
+
+                      paddingLeft:
+                        isActive(
+                          item.href
+                        )
+                          ? '17px'
+                          : '20px',
                     }}
                   >
-                    <Icon className={`w-4.5 h-4.5 ${isActive(item.href) ? 'text-[#EE4275]' : 'text-gray-400'}`} />
-                    <span>{item.name}</span>
+
+                    <Icon
+                      className={`w-4.5 h-4.5 ${
+                        isActive(
+                          item.href
+                        )
+                          ? 'text-[#8B9D83]'
+                          : 'text-[#6B6B6B]'
+                      }`}
+                    />
+
+                    <span>
+                      {item.name}
+                    </span>
+
                   </Link>
                 );
               })}
 
-              <div className="my-3 mx-5 h-px bg-gradient-to-r from-[#EE4275]/20 via-[#EE4275]/40 to-[#EE4275]/20"></div>
+              <div className="my-3 mx-5 h-px bg-gradient-to-r from-[#8B9D83]/20 via-[#8B9D83]/40 to-[#8B9D83]/20" />
 
-              {/* Auth Section for Mobile */}
+              {/* ==================================================
+                  MOBILE AUTH
+              ================================================== */}
+
               {!user ? (
+
                 <div className="px-5 mt-3">
+
                   <Link
                     href="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-[#EE4275] text-white hover:bg-[#EE4275]/80 transition-all shadow-sm"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+                    onClick={() =>
+                      setIsMenuOpen(
+                        false
+                      )
+                    }
+                    className="flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-[#8B9D83] text-white hover:bg-[#6B7D63] transition-all shadow-sm"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
                   >
                     Sign In
                   </Link>
+
                 </div>
+
               ) : (
+
                 <div className="px-5 mt-3">
-                  <div className="flex items-center gap-3 p-3 bg-[#F7C7D3]/10 rounded-lg mb-3">
-                    {getProfilePicture() && !profileImageError ? (
-                      <img src={getProfilePicture()} alt={getDisplayName()} className="w-10 h-10 rounded-full object-cover border-2 border-[#EE4275]/30" />
+
+                  {/* Mobile User Info */}
+
+                  <div className="flex items-center gap-3 p-3 bg-[#F5EDE3] rounded-lg mb-3">
+
+                    {getProfilePicture() &&
+                    !profileImageError ? (
+
+                      <img
+                        src={getProfilePicture()}
+                        alt={getDisplayName()}
+                        onError={() =>
+                          setProfileImageError(
+                            true
+                          )
+                        }
+                        className="w-10 h-10 rounded-full object-cover border-2 border-[#8B9D83]/30"
+                      />
+
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-[#EE4275] flex items-center justify-center text-white font-semibold text-sm">
+
+                      <div className="w-10 h-10 rounded-full bg-[#8B9D83] flex items-center justify-center text-white font-semibold text-sm">
+
                         {getInitials()}
+
                       </div>
+
                     )}
+
                     <div className="flex-1">
-                      <p className="font-semibold text-gray-700 text-sm" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{getDisplayName()}</p>
-                      <p className="text-[#EE4275] text-xs truncate" style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}>{user.email}</p>
+
+                      <p
+                        className="font-semibold text-[#3D3D3D] text-sm"
+                        style={{
+                          fontFamily:
+                            '"Raleway", "Inter", sans-serif',
+                        }}
+                      >
+                        {getDisplayName()}
+                      </p>
+
+                      <p
+                        className="text-[#8B9D83] text-xs truncate"
+                        style={{
+                          fontFamily:
+                            '"Raleway", "Inter", sans-serif',
+                        }}
+                      >
+                        {user.email}
+                      </p>
+
                     </div>
-                  </div>
-                  
-                  {/* Dashboard in Mobile Menu - Force full page reload */}
-                  <div
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      window.location.href = getDashboardLink();
-                    }}
-                    className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-1 cursor-pointer"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
-                  >
-                    <LayoutDashboard className="w-4 h-4 text-[#EE4275]" />
-                    Dashboard
+
                   </div>
 
-                  {/* Settings in Mobile Menu - Force full page reload */}
+                  {/* Dashboard */}
+
                   <div
                     onClick={() => {
-                      setIsMenuOpen(false);
-                      window.location.href = getSettingsLink();
+                      setIsMenuOpen(
+                        false
+                      );
+
+                      window.location.href =
+                        getDashboardLink();
                     }}
-                    className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F7C7D3]/20 transition-colors mb-2 cursor-pointer"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+                    className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors mb-1 cursor-pointer"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
                   >
-                    <Settings className="w-4 h-4 text-[#EE4275]" />
-                    Settings
+
+                    <LayoutDashboard className="w-4 h-4 text-[#8B9D83]" />
+
+                    Dashboard
+
                   </div>
-                  
-                  <button
-                    onClick={() => { setIsMenuOpen(false); logout(); }}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-all"
-                    style={{ fontFamily: '"Playfair Display", "Georgia", serif' }}
+
+                  {/* Settings */}
+
+                  <div
+                    onClick={() => {
+                      setIsMenuOpen(
+                        false
+                      );
+
+                      window.location.href =
+                        getSettingsLink();
+                    }}
+                    className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-[#3D3D3D] hover:bg-[#F2F5F0] transition-colors mb-2 cursor-pointer"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
                   >
+
+                    <Settings className="w-4 h-4 text-[#8B9D83]" />
+
+                    Settings
+
+                  </div>
+
+                  {/* Logout */}
+
+                  <button
+                    onClick={() => {
+                      setIsMenuOpen(
+                        false
+                      );
+
+                      logout();
+                    }}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500 text-white hover:bg-red-600 transition-all"
+                    style={{
+                      fontFamily:
+                        '"Raleway", "Inter", sans-serif',
+                    }}
+                  >
+
                     <LogOut className="w-4 h-4" />
+
                     Logout
+
                   </button>
+
                 </div>
+
               )}
+
             </div>
+
           </div>
+
         </div>
+
       </div>
 
-      {/* Cart Sidebar */}
-      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      {/* ========================================================
+          CART SIDEBAR
+      ======================================================== */}
 
-      {/* Spacer */}
-      {/* <div className="h-16"></div> */}
+      <CartSidebar
+        isOpen={isCartOpen}
+        onClose={() =>
+          setIsCartOpen(false)
+        }
+      />
+
+      {/* ========================================================
+          ANIMATIONS
+      ======================================================== */}
 
       <style jsx>{`
+
         @keyframes slideLeft {
           from {
             opacity: 0;
             transform: translateX(20px);
           }
+
           to {
             opacity: 1;
             transform: translateX(0);
           }
         }
+
         .animate-slideLeft {
           animation: slideLeft 0.25s ease-out;
         }
-        
+
         @keyframes slideDown {
           from {
             opacity: 0;
             transform: translateY(-10px);
           }
+
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+
         .animate-slideDown {
           animation: slideDown 0.25s ease-out;
         }
-        
+
         @keyframes fadeIn {
           from {
             opacity: 0;
             transform: translateY(-10px);
           }
+
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+
         .animate-fadeIn {
           animation: fadeIn 0.2s ease-out;
         }
-        
+
         .w-4.5 {
           width: 1.125rem;
         }
+
         .h-4.5 {
           height: 1.125rem;
         }
+
       `}</style>
     </>
   );
