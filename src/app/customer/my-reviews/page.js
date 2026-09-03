@@ -137,45 +137,7 @@
 //     };
 //   }, []);
 
-//   // Upload to Cloudinary
-//   // const uploadToCloudinary = async (file, type, fileId) => {
-//   //   const formData = new FormData();
-//   //   formData.append('file', file);
-//   //   formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    
-//   //   const folder = type === 'image' ? 'reviews/images' : 'reviews/videos';
-//   //   formData.append('folder', folder);
-
-//   //   const abortController = new AbortController();
-//   //   uploadAbortControllers.current[fileId] = abortController;
-
-//   //   try {
-//   //     const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${type === 'image' ? 'image' : 'video'}/upload`, {
-//   //       method: 'POST',
-//   //       body: formData,
-//   //       signal: abortController.signal
-//   //     });
-
-//   //     if (!response.ok) {
-//   //       const errorData = await response.json();
-//   //       throw new Error(errorData.error?.message || 'Upload failed');
-//   //     }
-
-//   //     const data = await response.json();
-//   //     return {
-//   //       url: data.secure_url,
-//   //       publicId: data.public_id
-//   //     };
-//   //   } catch (error) {
-//   //     if (error.name === 'AbortError') {
-//   //       return null;
-//   //     }
-//   //     throw error;
-//   //   } finally {
-//   //     delete uploadAbortControllers.current[fileId];
-//   //   }
-//   // };
-// // Upload to Cloudinary with compression
+//   // Upload to Cloudinary with compression
 // const uploadToCloudinary = async (file, type, fileId) => {
 //   let fileToUpload = file;
   
@@ -497,9 +459,9 @@
 //               initial={{ opacity: 0, scale: 0.95, y: 20 }}
 //               animate={{ opacity: 1, scale: 1, y: 0 }}
 //               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-//               className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+//               className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#F7C7D3]/40"
 //             >
-//               <div className="sticky top-0 bg-black px-6 py-4 rounded-t-2xl z-10">
+//               <div className="sticky top-0 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-6 py-4 rounded-t-2xl z-10">
 //                 <div className="flex items-center justify-between">
 //                   <div>
 //                     <h2 className="text-xl font-bold text-white">Edit Your Review</h2>
@@ -513,209 +475,58 @@
               
 //               <div className="p-6 space-y-5">
 //                 {/* Product Info */}
-//                 <div className="bg-gray-50 rounded-xl p-3">
-//                   <p className="text-xs text-gray-500 mb-1">Product</p>
-//                   <p className="font-medium text-gray-800">{review.productName || 'N/A'}</p>
+//                 <div className="bg-[#FFF5F6] rounded-xl p-3 border border-[#F7C7D3]/40">
+//                   <p className="text-xs text-[#EE4275]/60 mb-1">Product</p>
+//                   <p className="font-medium text-[#2D1B2E]">{review.productName || 'N/A'}</p>
 //                 </div>
-                
-             
                 
 //                 {/* Rating */}
 //                 <div>
-//                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-//                     Rating <span className="text-red-500">*</span>
+//                   <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">
+//                     Rating <span className="text-[#EE4275]">*</span>
 //                   </label>
 //                   {renderStars(editForm.rating, true)}
 //                 </div>
                 
 //                 {/* Title */}
 //                 <div>
-//                   <label className="block text-sm font-semibold text-gray-700 mb-2">Review Title</label>
+//                   <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">Review Title</label>
 //                   <input
 //                     type="text"
 //                     value={editForm.title}
 //                     onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-//                     className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4A8A90] focus:border-transparent outline-none"
+//                     className="w-full px-4 py-2.5 border-2 border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
 //                     placeholder="Review title"
 //                     maxLength={100}
 //                   />
-//                   <p className="text-xs text-gray-400 mt-1">{editForm.title.length}/100 characters</p>
+//                   <p className="text-xs text-[#EE4275]/40 mt-1">{editForm.title.length}/100 characters</p>
 //                 </div>
                 
 //                 {/* Comment */}
 //                 <div>
-//                   <label className="block text-sm font-semibold text-gray-700 mb-2">Comment <span className="text-red-500">*</span></label>
+//                   <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">Comment <span className="text-[#EE4275]">*</span></label>
 //                   <textarea
 //                     value={editForm.comment}
 //                     onChange={(e) => setEditForm({ ...editForm, comment: e.target.value })}
 //                     rows={4}
-//                     className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4A8A90] focus:border-transparent outline-none resize-none"
+//                     className="w-full px-4 py-2.5 border-2 border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none resize-none bg-white hover:border-[#EE4275]/30"
 //                     placeholder="Share your experience..."
 //                   />
-//                   <p className="text-xs text-gray-400 mt-1">{editForm.comment.length}/500 characters (minimum 10)</p>
+//                   <p className="text-xs text-[#EE4275]/40 mt-1">{editForm.comment.length}/500 characters (minimum 10)</p>
 //                 </div>
-//                    {/* Media Attachments Section */}
-//                 {/* <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 bg-gray-50/30"> */}
-//                   {/* <label className="block text-sm font-semibold text-gray-700 mb-3">
-//                     Media Attachments ({totalImages}/4 images, {hasVideo ? '1/1' : '0/1'} video)
-//                   </label> */}
-                  
-//                   {/* Existing Images */}
-//                   {/* {editForm.existingImages.length > 0 && (
-//                     <div className="mb-4">
-//                       <p className="text-xs text-gray-500 mb-2">Current Images</p>
-//                       <div className="grid grid-cols-4 gap-3">
-//                         {editForm.existingImages.map((img, idx) => (
-//                           <div key={idx} className="relative group">
-//                             <img
-//                               src={img.url}
-//                               alt={`Review image ${idx + 1}`}
-//                               className="w-full h-20 object-cover rounded-lg"
-//                             />
-//                             <button
-//                               type="button"
-//                               onClick={() => removeExistingImage(idx)}
-//                               className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-//                             >
-//                               <Trash2 className="w-3 h-3" />
-//                             </button>
-//                           </div>
-//                         ))}
-//                       </div>
-//                     </div>
-//                   )} */}
-                  
-//                   {/* New Images */}
-//                   {/* {editForm.newImages.length > 0 && (
-//                     <div className="mb-4">
-//                       <p className="text-xs text-gray-500 mb-2">New Images</p>
-//                       <div className="grid grid-cols-4 gap-3">
-//                         {editForm.newImages.map((img) => (
-//                           <div key={img.id} className="relative group">
-//                             <div className="relative">
-//                               <img
-//                                 src={img.preview}
-//                                 alt="New review image"
-//                                 className="w-full h-20 object-cover rounded-lg"
-//                               />
-//                               {img.uploading && (
-//                                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-//                                   <Loader2 className="w-4 h-4 animate-spin text-white" />
-//                                 </div>
-//                               )}
-//                             </div>
-//                             <button
-//                               type="button"
-//                               onClick={() => removeNewImage(img.id)}
-//                               className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-//                             >
-//                               <Trash2 className="w-3 h-3" />
-//                             </button>
-//                           </div>
-//                         ))}
-//                       </div>
-//                     </div>
-//                   )} */}
-                  
-//                   {/* Add Image Button */}
-//                   {/* {totalImages < 4 && (
-//                     <div
-//                       onClick={() => imageInputRef.current?.click()}
-//                       className="border-2 border-dashed border-gray-300 rounded-xl p-3 text-center cursor-pointer hover:border-blue-600 hover:bg-gray-50 transition-all mb-4"
-//                     >
-//                       <input
-//                         ref={imageInputRef}
-//                         type="file"
-//                         accept="image/*"
-//                         multiple
-//                         onChange={handleImageUpload}
-//                         className="hidden"
-//                         disabled={uploading}
-//                       />
-//                       <Plus className="w-5 h-5 text-gray-400 mx-auto mb-1" />
-//                       <p className="text-xs text-gray-600">Add images (Max 4 total)</p>
-//                     </div>
-//                   )} */}
-                  
-//                   {/* Existing Video */}
-//                   {/* {editForm.existingVideo && (
-//                     <div className="mb-4">
-//                       <p className="text-xs text-gray-500 mb-2">Current Video</p>
-//                       <div className="relative group">
-//                         <video
-//                           src={editForm.existingVideo.url}
-//                           controls
-//                           className="w-full rounded-lg max-h-32"
-//                         />
-//                         <button
-//                           type="button"
-//                           onClick={removeExistingVideo}
-//                           className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-//                         >
-//                           <Trash2 className="w-3 h-3" />
-//                         </button>
-//                       </div>
-//                     </div>
-//                   )} */}
-                  
-//                   {/* New Video */}
-//                   {/* {editForm.newVideo && (
-//                     <div className="mb-4">
-//                       <p className="text-xs text-gray-500 mb-2">New Video</p>
-//                       <div className="relative group">
-//                         <video
-//                           src={editForm.newVideo.preview}
-//                           controls
-//                           className="w-full rounded-lg max-h-32"
-//                         />
-//                         {editForm.newVideo.uploading && (
-//                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
-//                             <Loader2 className="w-6 h-6 animate-spin text-white" />
-//                           </div>
-//                         )}
-//                         <button
-//                           type="button"
-//                           onClick={removeNewVideo}
-//                           className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-//                         >
-//                           <Trash2 className="w-3 h-3" />
-//                         </button>
-//                       </div>
-//                     </div>
-//                   )} */}
-                  
-//                   {/* Add Video Button */}
-//                   {/* {!hasVideo && (
-//                     <div
-//                       onClick={() => videoInputRef.current?.click()}
-//                       className="border-2 border-dashed border-gray-300 rounded-xl p-3 text-center cursor-pointer hover:border-blue-600 hover:bg-gray-50 transition-all"
-//                     >
-//                       <input
-//                         ref={videoInputRef}
-//                         type="file"
-//                         accept="video/*"
-//                         onChange={handleVideoUpload}
-//                         className="hidden"
-//                         disabled={uploading}
-//                       />
-//                       <Video className="w-5 h-5 text-gray-400 mx-auto mb-1" />
-//                       <p className="text-xs text-gray-600">Add video (Max 1)</p>
-//                     </div>
-//                   )} */}
-//                 {/* </div> */}
-                
+                 
 //                 {/* Actions */}
 //                 <div className="flex gap-3 pt-4">
 //                   <button
 //                     onClick={onClose}
-//                     className="flex-1 px-4 py-2.5 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all"
+//                     className="flex-1 px-4 py-2.5 border-2 border-[#F7C7D3]/50 text-[#2D1B2E] font-semibold rounded-xl hover:bg-[#FFF5F6] transition-all"
 //                   >
 //                     Cancel
 //                   </button>
 //                   <button
 //                     onClick={handleSave}
 //                     disabled={saving || uploading}
-//                     className="flex-1 px-4 py-2.5 bg-black text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50"
+//                     className="flex-1 px-4 py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all disabled:opacity-50"
 //                   >
 //                     {saving ? (
 //                       <div className="flex items-center justify-center gap-2">
@@ -790,9 +601,9 @@
 //               initial={{ opacity: 0, scale: 0.95, y: 20 }}
 //               animate={{ opacity: 1, scale: 1, y: 0 }}
 //               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-//               className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+//               className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#F7C7D3]/40"
 //             >
-//               <div className="sticky top-0 bg-black px-6 py-4 rounded-t-2xl">
+//               <div className="sticky top-0 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-6 py-4 rounded-t-2xl">
 //                 <div className="flex items-center justify-between">
 //                   <div>
 //                     <h2 className="text-xl font-bold text-white">Your Review</h2>
@@ -806,42 +617,42 @@
               
 //               <div className="p-6 space-y-4">
 //                 {/* Product Info */}
-//                 <div className="bg-gray-50 rounded-xl p-4">
-//                   <h3 className="font-semibold text-gray-700 mb-2">Product</h3>
+//                 <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
+//                   <h3 className="font-semibold text-[#2D1B2E] mb-2">Product</h3>
 //                   <Link
 //                     href={`/product/${review.product?.slug || review.product?._id}`}
 //                     target="_blank"
-//                     className="text-blue-600 hover:underline font-medium"
+//                     className="text-[#EE4275] hover:underline font-medium"
 //                   >
 //                     {review.productName || 'N/A'}
 //                   </Link>
 //                 </div>
                 
 //                 {/* Review Content */}
-//                 <div className="bg-gray-50 rounded-xl p-4">
-//                   <h3 className="font-semibold text-gray-700 mb-3">Review Content</h3>
+//                 <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
+//                   <h3 className="font-semibold text-[#2D1B2E] mb-3">Review Content</h3>
 //                   <div className="space-y-3">
 //                     <div className="flex items-center justify-between">
-//                       <span className="text-sm text-gray-500">Rating:</span>
+//                       <span className="text-sm text-[#EE4275]/60">Rating:</span>
 //                       {renderStars(review.rating)}
 //                     </div>
 //                     {review.title && (
 //                       <div>
-//                         <span className="text-sm text-gray-500">Title:</span>
-//                         <p className="font-medium text-gray-800 mt-1">{review.title}</p>
+//                         <span className="text-sm text-[#EE4275]/60">Title:</span>
+//                         <p className="font-medium text-[#2D1B2E] mt-1">{review.title}</p>
 //                       </div>
 //                     )}
 //                     <div>
-//                       <span className="text-sm text-gray-500">Comment:</span>
-//                       <p className="text-gray-700 mt-1 whitespace-pre-wrap">{review.comment}</p>
+//                       <span className="text-sm text-[#EE4275]/60">Comment:</span>
+//                       <p className="text-[#2D1B2E] mt-1 whitespace-pre-wrap">{review.comment}</p>
 //                     </div>
-//                     <div className="flex items-center justify-between pt-2 border-t border-gray-200">
-//                       <span className="text-sm text-gray-500">Status:</span>
+//                     <div className="flex items-center justify-between pt-2 border-t border-[#F7C7D3]/40">
+//                       <span className="text-sm text-[#EE4275]/60">Status:</span>
 //                       {getStatusBadge(review.status)}
 //                     </div>
 //                     <div className="flex items-center justify-between">
-//                       <span className="text-sm text-gray-500">Submitted:</span>
-//                       <span className="text-sm text-gray-600">
+//                       <span className="text-sm text-[#EE4275]/60">Submitted:</span>
+//                       <span className="text-sm text-[#2D1B2E]">
 //                         {new Date(review.createdAt).toLocaleDateString()}
 //                       </span>
 //                     </div>
@@ -850,18 +661,18 @@
                 
 //                 {/* Media */}
 //                 {(review.images?.length > 0 || review.video?.url) && (
-//                   <div className="bg-gray-50 rounded-xl p-4">
-//                     <h3 className="font-semibold text-gray-700 mb-3">Your Media</h3>
+//                   <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
+//                     <h3 className="font-semibold text-[#2D1B2E] mb-3">Your Media</h3>
 //                     {review.images?.length > 0 && (
 //                       <div className="mb-3">
-//                         <p className="text-xs text-gray-500 mb-2">Images ({review.images.length})</p>
+//                         <p className="text-xs text-[#EE4275]/60 mb-2">Images ({review.images.length})</p>
 //                         <div className="grid grid-cols-4 gap-2">
 //                           {review.images.slice(0, 4).map((img, idx) => (
 //                             <img
 //                               key={idx}
 //                               src={img.url}
 //                               alt={`Review image ${idx + 1}`}
-//                               className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+//                               className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border border-[#F7C7D3]/40"
 //                               onClick={() => window.open(img.url, '_blank')}
 //                             />
 //                           ))}
@@ -870,7 +681,7 @@
 //                     )}
 //                     {review.video?.url && (
 //                       <div>
-//                         <p className="text-xs text-gray-500 mb-2">Video</p>
+//                         <p className="text-xs text-[#EE4275]/60 mb-2">Video</p>
 //                         <video
 //                           src={review.video.url}
 //                           controls
@@ -883,10 +694,10 @@
                 
 //                 {/* Admin Reply */}
 //                 {review.reply?.text && (
-//                   <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
-//                     <h3 className="font-semibold text-blue-700 mb-2">Admin Response</h3>
-//                     <p className="text-blue-800">{review.reply.text}</p>
-//                     <p className="text-xs text-blue-600 mt-2">
+//                   <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#EE4275]/20">
+//                     <h3 className="font-semibold text-[#EE4275] mb-2">Admin Response</h3>
+//                     <p className="text-[#2D1B2E]">{review.reply.text}</p>
+//                     <p className="text-xs text-[#EE4275]/60 mt-2">
 //                       Replied on {new Date(review.reply.repliedAt).toLocaleString()}
 //                     </p>
 //                   </div>
@@ -989,7 +800,6 @@
 //   }, []);
 
 //   // Update review with media changes
-// // Update review with media changes
 // const handleUpdateReview = async (saveData) => {
 //   if (!selectedReview) return;
   
@@ -1077,28 +887,28 @@
 //   };
 
 //   return (
-//     <div className="min-h-screen bg-gray-50">
+//     <div className="min-h-screen bg-[#FFF5F6]">
 //       <div className="container mx-auto px-4 py-8">
 //         <div className="mb-8">
-//           <h1 className="text-3xl font-bold text-gray-900 mb-2">My Reviews</h1>
-//           <p className="text-gray-600">View and manage all the reviews you've written</p>
+//           <h1 className="text-3xl font-bold text-[#2D1B2E] mb-2">My Reviews</h1>
+//           <p className="text-[#EE4275]/60">View and manage all the reviews you've written</p>
 //         </div>
         
 //         {/* Stats Cards */}
 //         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-//           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+//           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-sm text-gray-500">Total Reviews</p>
-//                 <p className="text-2xl font-bold text-gray-900">{reviews.length}</p>
+//                 <p className="text-sm text-[#EE4275]/60">Total Reviews</p>
+//                 <p className="text-2xl font-bold text-[#2D1B2E]">{reviews.length}</p>
 //               </div>
-//               <MessageSquare className="w-8 h-8 text-[#4A8A90] opacity-50" />
+//               <MessageSquare className="w-8 h-8 text-[#EE4275] opacity-50" />
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+//           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-sm text-gray-500">Pending</p>
+//                 <p className="text-sm text-[#EE4275]/60">Pending</p>
 //                 <p className="text-2xl font-bold text-yellow-600">
 //                   {reviews.filter(r => r.status === 'pending').length}
 //                 </p>
@@ -1106,10 +916,10 @@
 //               <Clock className="w-8 h-8 text-yellow-500 opacity-50" />
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+//           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-sm text-gray-500">Approved</p>
+//                 <p className="text-sm text-[#EE4275]/60">Approved</p>
 //                 <p className="text-2xl font-bold text-green-600">
 //                   {reviews.filter(r => r.status === 'approved').length}
 //                 </p>
@@ -1117,10 +927,10 @@
 //               <CheckCircle className="w-8 h-8 text-green-500 opacity-50" />
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+//           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-sm text-gray-500">Avg Rating</p>
+//                 <p className="text-sm text-[#EE4275]/60">Avg Rating</p>
 //                 <p className="text-2xl font-bold text-[#FFD93D]">
 //                   {reviews.length > 0 
 //                     ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
@@ -1133,24 +943,24 @@
 //         </div>
         
 //         {/* Filters */}
-//         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-6">
+//         <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 p-4 mb-6">
 //           <div className="flex flex-wrap gap-4 items-center justify-between">
 //             <div className="flex flex-wrap gap-3">
 //               <div className="relative">
-//                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+//                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
 //                 <input
 //                   type="text"
 //                   placeholder="Search by product or review..."
 //                   value={searchTerm}
 //                   onChange={(e) => setSearchTerm(e.target.value)}
-//                   className="pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4A8A90] focus:border-transparent outline-none w-64"
+//                   className="pl-9 pr-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none w-64 bg-white hover:border-[#EE4275]/30"
 //                 />
 //               </div>
               
 //               <select
 //                 value={statusFilter}
 //                 onChange={(e) => setStatusFilter(e.target.value)}
-//                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4A8A90] focus:border-transparent outline-none"
+//                 className="px-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
 //               >
 //                 <option value="all">All Status</option>
 //                 <option value="pending">Pending</option>
@@ -1161,7 +971,7 @@
 //               <select
 //                 value={ratingFilter}
 //                 onChange={(e) => setRatingFilter(e.target.value)}
-//                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4A8A90] focus:border-transparent outline-none"
+//                 className="px-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
 //               >
 //                 <option value="all">All Ratings</option>
 //                 <option value="5">5 Stars</option>
@@ -1181,20 +991,19 @@
 //               )}
 //             </div>
             
-         
 //           </div>
 //         </div>
         
 //         {/* Reviews Table */}
-//         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+//         <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 overflow-hidden">
 //           {loading ? (
 //             <div className="flex items-center justify-center py-20">
-//               <Loader2 className="w-8 h-8 animate-spin text-[#4A8A90]" />
+//               <Loader2 className="w-8 h-8 animate-spin text-[#EE4275]" />
 //             </div>
 //           ) : filteredReviews.length === 0 ? (
 //             <div className="text-center py-20">
-//               <MessageSquare className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-//               <p className="text-gray-500 mb-2">
+//               <MessageSquare className="w-16 h-16 text-[#EE4275]/30 mx-auto mb-4" />
+//               <p className="text-[#EE4275]/60 mb-2">
 //                 {reviews.length === 0 
 //                   ? "You haven't written any reviews yet" 
 //                   : "No reviews match your filters"}
@@ -1202,14 +1011,14 @@
 //               {reviews.length === 0 ? (
 //                 <Link
 //                   href="/products"
-//                   className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+//                   className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all"
 //                 >
 //                   Browse Products
 //                 </Link>
 //               ) : (
 //                 <button
 //                   onClick={resetFilters}
-//                   className="inline-flex items-center gap-2 px-4 py-2 bg-[#004767] text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+//                   className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all"
 //                 >
 //                   Clear Filters
 //                 </button>
@@ -1219,24 +1028,24 @@
 //             <>
 //               <div className="overflow-x-auto">
 //                 <table className="w-full min-w-[800px]">
-//                   <thead className="bg-gray-50 border-b border-gray-200">
+//                   <thead className="bg-[#FFF5F6] border-b border-[#F7C7D3]/40">
 //                     <tr>
-//                       <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Product</th>
-//                       <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Rating</th>
-//                       <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Review</th>
-//                       <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Status</th>
-//                       <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Date</th>
-//                       <th className="px-4 py-3 text-right text-xs font-semibold text-gray-600 uppercase whitespace-nowrap">Actions</th>
+//                       <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Product</th>
+//                       <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Rating</th>
+//                       <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Review</th>
+//                       <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Status</th>
+//                       <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Date</th>
+//                       <th className="px-4 py-3 text-right text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Actions</th>
 //                     </tr>
 //                   </thead>
-//                   <tbody className="divide-y divide-gray-200">
+//                   <tbody className="divide-y divide-[#F7C7D3]/20">
 //                     {paginatedReviews.map((review) => (
-//                       <tr key={review._id} className="hover:bg-gray-50 transition-colors">
+//                       <tr key={review._id} className="hover:bg-[#FFF5F6] transition-colors">
 //                         <td className="px-4 py-3">
 //                           <Link
 //                             href={`/product/${review.product?.slug || review.product?._id}`}
 //                             target="_blank"
-//                             className="text-sm text-[#4A8A90] hover:underline font-medium truncate max-w-[200px] block"
+//                             className="text-sm text-[#EE4275] hover:underline font-medium truncate max-w-[200px] block"
 //                           >
 //                             {review.productName || 'N/A'}
 //                           </Link>
@@ -1245,7 +1054,7 @@
 //                           {renderStars(review.rating)}
 //                         </td>
 //                         <td className="px-4 py-3">
-//                           <p className="text-sm text-gray-700 truncate max-w-[250px]">
+//                           <p className="text-sm text-[#2D1B2E] truncate max-w-[250px]">
 //                             {review.title || review.comment}
 //                           </p>
 //                         </td>
@@ -1253,7 +1062,7 @@
 //                           {getStatusBadge(review.status)}
 //                         </td>
 //                         <td className="px-4 py-3">
-//                           <span className="text-sm text-gray-600 whitespace-nowrap">
+//                           <span className="text-sm text-[#EE4275]/60 whitespace-nowrap">
 //                             {new Date(review.createdAt).toLocaleDateString()}
 //                           </span>
 //                         </td>
@@ -1264,7 +1073,7 @@
 //                                 setSelectedReview(review);
 //                                 setIsViewModalOpen(true);
 //                               }}
-//                               className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+//                               className="p-1.5 text-[#EE4275] hover:bg-[#FFF5F6] rounded-lg transition-colors"
 //                               title="View"
 //                             >
 //                               <Eye className="w-4 h-4" />
@@ -1290,22 +1099,22 @@
 //               </div>
               
 //               {totalPages > 1 && (
-//                 <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
-//                   <div className="text-sm text-gray-600">
+//                 <div className="flex items-center justify-between px-6 py-4 border-t border-[#F7C7D3]/40">
+//                   <div className="text-sm text-[#EE4275]/60">
 //                     Showing {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, filteredReviews.length)} of {filteredReviews.length} reviews
 //                   </div>
 //                   <div className="flex gap-2">
 //                     <button
 //                       onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
 //                       disabled={currentPage === 1}
-//                       className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+//                       className="p-2 text-[#EE4275]/60 hover:bg-[#FFF5F6] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 //                     >
 //                       <ChevronLeft className="w-5 h-5" />
 //                     </button>
 //                     <button
 //                       onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
 //                       disabled={currentPage === totalPages}
-//                       className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+//                       className="p-2 text-[#EE4275]/60 hover:bg-[#FFF5F6] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 //                     >
 //                       <ChevronRight className="w-5 h-5" />
 //                     </button>
@@ -1391,62 +1200,57 @@ const EditReviewModal = ({
   const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'your_cloud_name';
   const CLOUDINARY_UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'your_upload_preset';
 
-  // Add this function after the Cloudinary configuration
-const compressImageSmart = async (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    
-    reader.onload = (event) => {
-      const img = new Image();
-      img.src = event.target.result;
+  const compressImageSmart = async (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
       
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
         
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          
+          let quality = 0.4;
+          
+          if (file.size > 5 * 1024 * 1024) {
+            quality = 0.25;
+          } else if (file.size > 2 * 1024 * 1024) {
+            quality = 0.3;
+          } else if (file.size > 1 * 1024 * 1024) {
+            quality = 0.35;
+          } else if (file.size > 500 * 1024) {
+            quality = 0.45;
+          } else {
+            quality = 0.55;
+          }
+          
+          canvas.toBlob(
+            (blob) => {
+              const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, '.jpg'), {
+                type: 'image/jpeg',
+                lastModified: Date.now(),
+              });
+              console.log(`📸 Review Image Compressed: ${(file.size / 1024).toFixed(0)}KB → ${(blob.size / 1024).toFixed(0)}KB`);              resolve(compressedFile);
+            },
+            'image/jpeg',
+            quality
+          );
+        };
         
-        // MORE AGGRESSIVE compression - target under 300KB
-        let quality = 0.4; // Default 40% quality
-        
-        if (file.size > 5 * 1024 * 1024) {
-          quality = 0.25; // 25% quality for 5MB+ files
-        } else if (file.size > 2 * 1024 * 1024) {
-          quality = 0.3; // 30% quality for 2-5MB files
-        } else if (file.size > 1 * 1024 * 1024) {
-          quality = 0.35; // 35% quality for 1-2MB files
-        } else if (file.size > 500 * 1024) {
-          quality = 0.45; // 45% quality for 500KB-1MB files
-        } else {
-          quality = 0.55; // 55% quality for smaller files
-        }
-        
-        canvas.toBlob(
-          (blob) => {
-            const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, '.jpg'), {
-              type: 'image/jpeg',
-              lastModified: Date.now(),
-            });
-            const reduction = ((file.size - blob.size) / file.size * 100).toFixed(1);
-            console.log(`📸 Review Image Compressed: ${(file.size / 1024).toFixed(0)}KB → ${(blob.size / 1024).toFixed(0)}KB (${reduction}% reduction)`);
-            resolve(compressedFile);
-          },
-          'image/jpeg',
-          quality
-        );
+        img.onerror = () => reject(new Error('Failed to load image'));
       };
       
-      img.onerror = () => reject(new Error('Failed to load image'));
-    };
-    
-    reader.onerror = () => reject(new Error('Failed to read file'));
-  });
-};
+      reader.onerror = () => reject(new Error('Failed to read file'));
+    });
+  };
 
-  // Initialize form when review changes
   useEffect(() => {
     if (review && isOpen) {
       setEditForm({
@@ -1463,7 +1267,6 @@ const compressImageSmart = async (file) => {
     }
   }, [review, isOpen]);
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
       editForm.newImages.forEach(img => {
@@ -1473,62 +1276,56 @@ const compressImageSmart = async (file) => {
     };
   }, []);
 
-  // Upload to Cloudinary with compression
-const uploadToCloudinary = async (file, type, fileId) => {
-  let fileToUpload = file;
-  
-  // Compress images before upload
-  if (type === 'image') {
+  const uploadToCloudinary = async (file, type, fileId) => {
+    let fileToUpload = file;
+    
+    if (type === 'image') {
+      try {
+        fileToUpload = await compressImageSmart(file);
+      } catch (error) {
+        console.error('Compression error, using original file:', error);
+        fileToUpload = file;
+      }
+    }
+    
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    
+    const folder = type === 'image' ? 'reviews/images' : 'reviews/videos';
+    formData.append('folder', folder);
+
+    const abortController = new AbortController();
+    uploadAbortControllers.current[fileId] = abortController;
+
     try {
-      fileToUpload = await compressImageSmart(file);
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${type === 'image' ? 'image' : 'video'}/upload`, {
+        method: 'POST',
+        body: formData,
+        signal: abortController.signal
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || 'Upload failed');
+      }
+
+      const data = await response.json();
+      
+      return {
+        url: data.secure_url,
+        publicId: data.public_id
+      };
     } catch (error) {
-      console.error('Compression error, using original file:', error);
-      fileToUpload = file;
+      if (error.name === 'AbortError') {
+        return null;
+      }
+      throw error;
+    } finally {
+      delete uploadAbortControllers.current[fileId];
     }
-  }
-  
-  const formData = new FormData();
-  formData.append('file', fileToUpload);
-  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-  
-  const folder = type === 'image' ? 'reviews/images' : 'reviews/videos';
-  formData.append('folder', folder);
+  };
 
-  const abortController = new AbortController();
-  uploadAbortControllers.current[fileId] = abortController;
-
-  try {
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${type === 'image' ? 'image' : 'video'}/upload`, {
-      method: 'POST',
-      body: formData,
-      signal: abortController.signal
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'Upload failed');
-    }
-
-    const data = await response.json();
-    
-    if (type === 'video') {
-      console.log(`🎥 Video uploaded successfully`);
-    }
-    
-    return {
-      url: data.secure_url,
-      publicId: data.public_id
-    };
-  } catch (error) {
-    if (error.name === 'AbortError') {
-      return null;
-    }
-    throw error;
-  } finally {
-    delete uploadAbortControllers.current[fileId];
-  }
-};
-  // Handle image upload
   const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
     
@@ -1615,7 +1412,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
     if (imageInputRef.current) imageInputRef.current.value = '';
   };
 
-  // Handle video upload
   const handleVideoUpload = async (e) => {
     const file = e.target.files[0];
     
@@ -1689,7 +1485,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
     if (videoInputRef.current) videoInputRef.current.value = '';
   };
 
-  // Remove existing image
   const removeExistingImage = (index) => {
     setEditForm(prev => ({
       ...prev,
@@ -1698,7 +1493,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
     }));
   };
 
-  // Remove new image
   const removeNewImage = (id) => {
     if (uploadAbortControllers.current[id]) {
       uploadAbortControllers.current[id].abort();
@@ -1711,7 +1505,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
     }));
   };
 
-  // Remove existing video
   const removeExistingVideo = () => {
     setEditForm(prev => ({
       ...prev,
@@ -1720,7 +1513,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
     }));
   };
 
-  // Remove new video
   const removeNewVideo = () => {
     if (uploadAbortControllers.current[editForm.newVideo?.id]) {
       uploadAbortControllers.current[editForm.newVideo.id].abort();
@@ -1735,7 +1527,6 @@ const uploadToCloudinary = async (file, type, fileId) => {
       return;
     }
     
-    // Prepare data for save
     const saveData = {
       rating: editForm.rating,
       title: editForm.title,
@@ -1795,12 +1586,12 @@ const uploadToCloudinary = async (file, type, fileId) => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#F7C7D3]/40"
+              className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#c5d5be]/40"
             >
-              <div className="sticky top-0 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-6 py-4 rounded-t-2xl z-10">
+              <div className="sticky top-0 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] px-6 py-4 rounded-t-2xl z-10">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-white">Edit Your Review</h2>
+                    <h2 className="text-xl font-light text-white">Edit Your Review</h2>
                     <p className="text-white/80 text-sm mt-1">Update your feedback</p>
                   </div>
                   <button onClick={onClose} className="text-white hover:bg-white/20 rounded-full p-1 transition-colors">
@@ -1811,58 +1602,58 @@ const uploadToCloudinary = async (file, type, fileId) => {
               
               <div className="p-6 space-y-5">
                 {/* Product Info */}
-                <div className="bg-[#FFF5F6] rounded-xl p-3 border border-[#F7C7D3]/40">
-                  <p className="text-xs text-[#EE4275]/60 mb-1">Product</p>
-                  <p className="font-medium text-[#2D1B2E]">{review.productName || 'N/A'}</p>
+                <div className="bg-[#f0f5ed] rounded-xl p-3 border border-[#c5d5be]/40">
+                  <p className="text-xs text-[#53645a] mb-1">Product</p>
+                  <p className="font-medium text-[#263b32]">{review.productName || 'N/A'}</p>
                 </div>
                 
                 {/* Rating */}
                 <div>
-                  <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">
-                    Rating <span className="text-[#EE4275]">*</span>
+                  <label className="block text-sm font-medium text-[#263b32] mb-2">
+                    Rating <span className="text-[#8B9D83]">*</span>
                   </label>
                   {renderStars(editForm.rating, true)}
                 </div>
                 
                 {/* Title */}
                 <div>
-                  <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">Review Title</label>
+                  <label className="block text-sm font-medium text-[#263b32] mb-2">Review Title</label>
                   <input
                     type="text"
                     value={editForm.title}
                     onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-                    className="w-full px-4 py-2.5 border-2 border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
+                    className="w-full px-4 py-2.5 border-2 border-[#c5d5be]/50 rounded-xl focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent outline-none bg-white hover:border-[#8B9D83]/30 text-[#263b32]"
                     placeholder="Review title"
                     maxLength={100}
                   />
-                  <p className="text-xs text-[#EE4275]/40 mt-1">{editForm.title.length}/100 characters</p>
+                  <p className="text-xs text-[#53645a] mt-1">{editForm.title.length}/100 characters</p>
                 </div>
                 
                 {/* Comment */}
                 <div>
-                  <label className="block text-sm font-semibold text-[#2D1B2E] mb-2">Comment <span className="text-[#EE4275]">*</span></label>
+                  <label className="block text-sm font-medium text-[#263b32] mb-2">Comment <span className="text-[#8B9D83]">*</span></label>
                   <textarea
                     value={editForm.comment}
                     onChange={(e) => setEditForm({ ...editForm, comment: e.target.value })}
                     rows={4}
-                    className="w-full px-4 py-2.5 border-2 border-[#F7C7D3]/50 rounded-xl focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none resize-none bg-white hover:border-[#EE4275]/30"
+                    className="w-full px-4 py-2.5 border-2 border-[#c5d5be]/50 rounded-xl focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent outline-none resize-none bg-white hover:border-[#8B9D83]/30 text-[#263b32]"
                     placeholder="Share your experience..."
                   />
-                  <p className="text-xs text-[#EE4275]/40 mt-1">{editForm.comment.length}/500 characters (minimum 10)</p>
+                  <p className="text-xs text-[#53645a] mt-1">{editForm.comment.length}/500 characters (minimum 10)</p>
                 </div>
                  
                 {/* Actions */}
                 <div className="flex gap-3 pt-4">
                   <button
                     onClick={onClose}
-                    className="flex-1 px-4 py-2.5 border-2 border-[#F7C7D3]/50 text-[#2D1B2E] font-semibold rounded-xl hover:bg-[#FFF5F6] transition-all"
+                    className="flex-1 px-4 py-2.5 border-2 border-[#c5d5be]/50 text-[#263b32] font-medium rounded-xl hover:bg-[#f0f5ed] transition-all"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSave}
                     disabled={saving || uploading}
-                    className="flex-1 px-4 py-2.5 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all disabled:opacity-50"
+                    className="flex-1 px-4 py-2.5 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white font-medium rounded-xl hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all disabled:opacity-50"
                   >
                     {saving ? (
                       <div className="flex items-center justify-center gap-2">
@@ -1937,12 +1728,12 @@ const ViewReviewModal = ({ isOpen, onClose, review }) => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#F7C7D3]/40"
+              className="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#c5d5be]/40"
             >
-              <div className="sticky top-0 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] px-6 py-4 rounded-t-2xl">
+              <div className="sticky top-0 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] px-6 py-4 rounded-t-2xl">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-white">Your Review</h2>
+                    <h2 className="text-xl font-light text-white">Your Review</h2>
                     <p className="text-white/80 text-sm mt-1">Review Details</p>
                   </div>
                   <button onClick={onClose} className="text-white hover:bg-white/20 rounded-full p-1 transition-colors">
@@ -1953,42 +1744,42 @@ const ViewReviewModal = ({ isOpen, onClose, review }) => {
               
               <div className="p-6 space-y-4">
                 {/* Product Info */}
-                <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
-                  <h3 className="font-semibold text-[#2D1B2E] mb-2">Product</h3>
+                <div className="bg-[#f0f5ed] rounded-xl p-4 border border-[#c5d5be]/40">
+                  <h3 className="font-medium text-[#263b32] mb-2">Product</h3>
                   <Link
                     href={`/product/${review.product?.slug || review.product?._id}`}
                     target="_blank"
-                    className="text-[#EE4275] hover:underline font-medium"
+                    className="text-[#8B9D83] hover:underline font-medium"
                   >
                     {review.productName || 'N/A'}
                   </Link>
                 </div>
                 
                 {/* Review Content */}
-                <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
-                  <h3 className="font-semibold text-[#2D1B2E] mb-3">Review Content</h3>
+                <div className="bg-[#f0f5ed] rounded-xl p-4 border border-[#c5d5be]/40">
+                  <h3 className="font-medium text-[#263b32] mb-3">Review Content</h3>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-[#EE4275]/60">Rating:</span>
+                      <span className="text-sm text-[#53645a]">Rating:</span>
                       {renderStars(review.rating)}
                     </div>
                     {review.title && (
                       <div>
-                        <span className="text-sm text-[#EE4275]/60">Title:</span>
-                        <p className="font-medium text-[#2D1B2E] mt-1">{review.title}</p>
+                        <span className="text-sm text-[#53645a]">Title:</span>
+                        <p className="font-medium text-[#263b32] mt-1">{review.title}</p>
                       </div>
                     )}
                     <div>
-                      <span className="text-sm text-[#EE4275]/60">Comment:</span>
-                      <p className="text-[#2D1B2E] mt-1 whitespace-pre-wrap">{review.comment}</p>
+                      <span className="text-sm text-[#53645a]">Comment:</span>
+                      <p className="text-[#263b32] mt-1 whitespace-pre-wrap">{review.comment}</p>
                     </div>
-                    <div className="flex items-center justify-between pt-2 border-t border-[#F7C7D3]/40">
-                      <span className="text-sm text-[#EE4275]/60">Status:</span>
+                    <div className="flex items-center justify-between pt-2 border-t border-[#c5d5be]/40">
+                      <span className="text-sm text-[#53645a]">Status:</span>
                       {getStatusBadge(review.status)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-[#EE4275]/60">Submitted:</span>
-                      <span className="text-sm text-[#2D1B2E]">
+                      <span className="text-sm text-[#53645a]">Submitted:</span>
+                      <span className="text-sm text-[#263b32]">
                         {new Date(review.createdAt).toLocaleDateString()}
                       </span>
                     </div>
@@ -1997,18 +1788,18 @@ const ViewReviewModal = ({ isOpen, onClose, review }) => {
                 
                 {/* Media */}
                 {(review.images?.length > 0 || review.video?.url) && (
-                  <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#F7C7D3]/40">
-                    <h3 className="font-semibold text-[#2D1B2E] mb-3">Your Media</h3>
+                  <div className="bg-[#f0f5ed] rounded-xl p-4 border border-[#c5d5be]/40">
+                    <h3 className="font-medium text-[#263b32] mb-3">Your Media</h3>
                     {review.images?.length > 0 && (
                       <div className="mb-3">
-                        <p className="text-xs text-[#EE4275]/60 mb-2">Images ({review.images.length})</p>
+                        <p className="text-xs text-[#53645a] mb-2">Images ({review.images.length})</p>
                         <div className="grid grid-cols-4 gap-2">
                           {review.images.slice(0, 4).map((img, idx) => (
                             <img
                               key={idx}
                               src={img.url}
                               alt={`Review image ${idx + 1}`}
-                              className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border border-[#F7C7D3]/40"
+                              className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border border-[#c5d5be]/40"
                               onClick={() => window.open(img.url, '_blank')}
                             />
                           ))}
@@ -2017,7 +1808,7 @@ const ViewReviewModal = ({ isOpen, onClose, review }) => {
                     )}
                     {review.video?.url && (
                       <div>
-                        <p className="text-xs text-[#EE4275]/60 mb-2">Video</p>
+                        <p className="text-xs text-[#53645a] mb-2">Video</p>
                         <video
                           src={review.video.url}
                           controls
@@ -2030,10 +1821,10 @@ const ViewReviewModal = ({ isOpen, onClose, review }) => {
                 
                 {/* Admin Reply */}
                 {review.reply?.text && (
-                  <div className="bg-[#FFF5F6] rounded-xl p-4 border border-[#EE4275]/20">
-                    <h3 className="font-semibold text-[#EE4275] mb-2">Admin Response</h3>
-                    <p className="text-[#2D1B2E]">{review.reply.text}</p>
-                    <p className="text-xs text-[#EE4275]/60 mt-2">
+                  <div className="bg-[#f0f5ed] rounded-xl p-4 border border-[#8B9D83]/20">
+                    <h3 className="font-medium text-[#8B9D83] mb-2">Admin Response</h3>
+                    <p className="text-[#263b32]">{review.reply.text}</p>
+                    <p className="text-xs text-[#53645a] mt-2">
                       Replied on {new Date(review.reply.repliedAt).toLocaleString()}
                     </p>
                   </div>
@@ -2135,42 +1926,38 @@ export default function CustomerMyReviews() {
     fetchMyReviews();
   }, []);
 
-  // Update review with media changes
-const handleUpdateReview = async (saveData) => {
-  if (!selectedReview) return;
-  
-  setSaving(true);
-  try {
-    const token = localStorage.getItem('token');
+  const handleUpdateReview = async (saveData) => {
+    if (!selectedReview) return;
     
-    console.log('Sending update data:', saveData); // Debug log
-    
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/reviews/${selectedReview._id}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(saveData)
-    });
-    
-    const data = await response.json();
-    console.log('Update response:', data); // Debug log
-    
-    if (data.success) {
-      toast.success('Review updated successfully');
-      setIsEditModalOpen(false);
-      fetchMyReviews(); // Refresh the list
-    } else {
-      toast.error(data.error || 'Failed to update review');
+    setSaving(true);
+    try {
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/reviews/${selectedReview._id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(saveData)
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        toast.success('Review updated successfully');
+        setIsEditModalOpen(false);
+        fetchMyReviews();
+      } else {
+        toast.error(data.error || 'Failed to update review');
+      }
+    } catch (error) {
+      console.error('Error updating review:', error);
+      toast.error('Failed to update review');
+    } finally {
+      setSaving(false);
     }
-  } catch (error) {
-    console.error('Error updating review:', error);
-    toast.error('Failed to update review');
-  } finally {
-    setSaving(false);
-  }
-};
+  };
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -2223,28 +2010,28 @@ const handleUpdateReview = async (saveData) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5F6]">
+    <div className="min-h-screen bg-[#f8f7f2]">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#2D1B2E] mb-2">My Reviews</h1>
-          <p className="text-[#EE4275]/60">View and manage all the reviews you've written</p>
+          <h1 className="text-3xl font-light text-[#263b32] mb-2">My Reviews</h1>
+          <p className="text-[#53645a]">View and manage all the reviews you've written</p>
         </div>
         
-        {/* Stats Cards */}
+        {/* Stats Cards - Green Theme */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#c5d5be]/40">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-[#EE4275]/60">Total Reviews</p>
-                <p className="text-2xl font-bold text-[#2D1B2E]">{reviews.length}</p>
+                <p className="text-sm text-[#53645a]">Total Reviews</p>
+                <p className="text-2xl font-bold text-[#263b32]">{reviews.length}</p>
               </div>
-              <MessageSquare className="w-8 h-8 text-[#EE4275] opacity-50" />
+              <MessageSquare className="w-8 h-8 text-[#8B9D83] opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#c5d5be]/40">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-[#EE4275]/60">Pending</p>
+                <p className="text-sm text-[#53645a]">Pending</p>
                 <p className="text-2xl font-bold text-yellow-600">
                   {reviews.filter(r => r.status === 'pending').length}
                 </p>
@@ -2252,10 +2039,10 @@ const handleUpdateReview = async (saveData) => {
               <Clock className="w-8 h-8 text-yellow-500 opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#c5d5be]/40">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-[#EE4275]/60">Approved</p>
+                <p className="text-sm text-[#53645a]">Approved</p>
                 <p className="text-2xl font-bold text-green-600">
                   {reviews.filter(r => r.status === 'approved').length}
                 </p>
@@ -2263,10 +2050,10 @@ const handleUpdateReview = async (saveData) => {
               <CheckCircle className="w-8 h-8 text-green-500 opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#F7C7D3]/40">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-[#c5d5be]/40">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-[#EE4275]/60">Avg Rating</p>
+                <p className="text-sm text-[#53645a]">Avg Rating</p>
                 <p className="text-2xl font-bold text-[#FFD93D]">
                   {reviews.length > 0 
                     ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
@@ -2278,25 +2065,25 @@ const handleUpdateReview = async (saveData) => {
           </div>
         </div>
         
-        {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 p-4 mb-6">
+        {/* Filters - Green Theme */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/40 p-4 mb-6">
           <div className="flex flex-wrap gap-4 items-center justify-between">
             <div className="flex flex-wrap gap-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#EE4275]/40" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#8B9D83]/40" />
                 <input
                   type="text"
                   placeholder="Search by product or review..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 pr-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none w-64 bg-white hover:border-[#EE4275]/30"
+                  className="pl-9 pr-4 py-2 border border-[#c5d5be]/50 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent outline-none w-64 bg-white hover:border-[#8B9D83]/30 text-[#263b32]"
                 />
               </div>
               
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
+                className="px-4 py-2 border border-[#c5d5be]/50 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent outline-none bg-white hover:border-[#8B9D83]/30 text-[#263b32]"
               >
                 <option value="all">All Status</option>
                 <option value="pending">Pending</option>
@@ -2307,7 +2094,7 @@ const handleUpdateReview = async (saveData) => {
               <select
                 value={ratingFilter}
                 onChange={(e) => setRatingFilter(e.target.value)}
-                className="px-4 py-2 border border-[#F7C7D3]/50 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent outline-none bg-white hover:border-[#EE4275]/30"
+                className="px-4 py-2 border border-[#c5d5be]/50 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent outline-none bg-white hover:border-[#8B9D83]/30 text-[#263b32]"
               >
                 <option value="all">All Ratings</option>
                 <option value="5">5 Stars</option>
@@ -2326,20 +2113,19 @@ const handleUpdateReview = async (saveData) => {
                 </button>
               )}
             </div>
-            
           </div>
         </div>
         
-        {/* Reviews Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/40 overflow-hidden">
+        {/* Reviews Table - Green Theme */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/40 overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-8 h-8 animate-spin text-[#EE4275]" />
+              <Loader2 className="w-8 h-8 animate-spin text-[#8B9D83]" />
             </div>
           ) : filteredReviews.length === 0 ? (
             <div className="text-center py-20">
-              <MessageSquare className="w-16 h-16 text-[#EE4275]/30 mx-auto mb-4" />
-              <p className="text-[#EE4275]/60 mb-2">
+              <MessageSquare className="w-16 h-16 text-[#8B9D83]/30 mx-auto mb-4" />
+              <p className="text-[#53645a] mb-2">
                 {reviews.length === 0 
                   ? "You haven't written any reviews yet" 
                   : "No reviews match your filters"}
@@ -2347,14 +2133,14 @@ const handleUpdateReview = async (saveData) => {
               {reviews.length === 0 ? (
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all"
                 >
                   Browse Products
                 </Link>
               ) : (
                 <button
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all"
                 >
                   Clear Filters
                 </button>
@@ -2364,24 +2150,24 @@ const handleUpdateReview = async (saveData) => {
             <>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[800px]">
-                  <thead className="bg-[#FFF5F6] border-b border-[#F7C7D3]/40">
+                  <thead className="bg-[#f0f5ed] border-b border-[#c5d5be]/40">
                     <tr>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Product</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Rating</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Review</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Status</th>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Date</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-[#EE4275]/60 uppercase whitespace-nowrap">Actions</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Product</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Rating</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Review</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Status</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Date</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-[#53645a] uppercase whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F7C7D3]/20">
+                  <tbody className="divide-y divide-[#c5d5be]/20">
                     {paginatedReviews.map((review) => (
-                      <tr key={review._id} className="hover:bg-[#FFF5F6] transition-colors">
+                      <tr key={review._id} className="hover:bg-[#f0f5ed] transition-colors">
                         <td className="px-4 py-3">
                           <Link
                             href={`/product/${review.product?.slug || review.product?._id}`}
                             target="_blank"
-                            className="text-sm text-[#EE4275] hover:underline font-medium truncate max-w-[200px] block"
+                            className="text-sm text-[#8B9D83] hover:underline font-medium truncate max-w-[200px] block"
                           >
                             {review.productName || 'N/A'}
                           </Link>
@@ -2390,7 +2176,7 @@ const handleUpdateReview = async (saveData) => {
                           {renderStars(review.rating)}
                         </td>
                         <td className="px-4 py-3">
-                          <p className="text-sm text-[#2D1B2E] truncate max-w-[250px]">
+                          <p className="text-sm text-[#263b32] truncate max-w-[250px]">
                             {review.title || review.comment}
                           </p>
                         </td>
@@ -2398,7 +2184,7 @@ const handleUpdateReview = async (saveData) => {
                           {getStatusBadge(review.status)}
                         </td>
                         <td className="px-4 py-3">
-                          <span className="text-sm text-[#EE4275]/60 whitespace-nowrap">
+                          <span className="text-sm text-[#53645a] whitespace-nowrap">
                             {new Date(review.createdAt).toLocaleDateString()}
                           </span>
                         </td>
@@ -2409,7 +2195,7 @@ const handleUpdateReview = async (saveData) => {
                                 setSelectedReview(review);
                                 setIsViewModalOpen(true);
                               }}
-                              className="p-1.5 text-[#EE4275] hover:bg-[#FFF5F6] rounded-lg transition-colors"
+                              className="p-1.5 text-[#8B9D83] hover:bg-[#f0f5ed] rounded-lg transition-colors"
                               title="View"
                             >
                               <Eye className="w-4 h-4" />
@@ -2435,22 +2221,22 @@ const handleUpdateReview = async (saveData) => {
               </div>
               
               {totalPages > 1 && (
-                <div className="flex items-center justify-between px-6 py-4 border-t border-[#F7C7D3]/40">
-                  <div className="text-sm text-[#EE4275]/60">
+                <div className="flex items-center justify-between px-6 py-4 border-t border-[#c5d5be]/40">
+                  <div className="text-sm text-[#53645a]">
                     Showing {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, filteredReviews.length)} of {filteredReviews.length} reviews
                   </div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                       disabled={currentPage === 1}
-                      className="p-2 text-[#EE4275]/60 hover:bg-[#FFF5F6] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-[#53645a] hover:bg-[#f0f5ed] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                       disabled={currentPage === totalPages}
-                      className="p-2 text-[#EE4275]/60 hover:bg-[#FFF5F6] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-[#53645a] hover:bg-[#f0f5ed] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>

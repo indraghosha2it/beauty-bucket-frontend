@@ -2053,28 +2053,35 @@ const ImageUpload = ({ imageUrl, onImageChange, onImageRemove, label = 'Image', 
         </div>
       ) : (
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={isUploading}
-            className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm disabled:opacity-50"
-          >
-            {isUploading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Upload className="w-4 h-4" />
-            )}
-            {isUploading ? 'Uploading...' : 'Upload Image'}
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/jpeg,image/jpg,image/png,image/webp"
-            className="hidden"
-            onChange={handleFileSelect}
-            disabled={isUploading}
-          />
-          <span className="text-xs text-gray-400">JPG, PNG, WebP (max 5MB)</span>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors text-sm disabled:opacity-50"
+            >
+              {isUploading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Upload className="w-4 h-4" />
+              )}
+              {isUploading ? 'Uploading...' : 'Upload Image'}
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,image/webp"
+              className="hidden"
+              onChange={handleFileSelect}
+              disabled={isUploading}
+            />
+            <span className="text-xs text-gray-400">JPG, PNG, WebP (max 5MB)</span>
+          </div>
+          {!preview && (
+            <div className="text-xs text-gray-400">
+              <p>No image uploaded. The footer will use a solid color background.</p>
+            </div>
+          )}
         </div>
       )}
       {error && <p className="text-xs text-red-500">{error}</p>}
@@ -2256,7 +2263,7 @@ const PAYMENT_METHODS = [
 // ============================================================
 
 const DEFAULT_FOOTER = {
-  backgroundImage: '/images/footer.png',
+  backgroundImage: '',
   backgroundPublicId: '',
   company: {
     name: 'Beauty Bucket',

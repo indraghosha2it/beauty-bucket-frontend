@@ -465,7 +465,7 @@ const DEFAULT_DATA = {
         beforeImage: '/images/results-before.jpg',
         afterImage: '/images/results-after.jpg',
         beforeLabel: 'BEFORE',
-        afterLabel: 'AFTER 4 WEEKS'
+        afterLabel: 'AFTER'
       },
       displayOrder: 0,
       isActive: true
@@ -485,7 +485,7 @@ const DEFAULT_DATA = {
         beforeImage: '/images/results-before-2.jpg',
         afterImage: '/images/results-after-2.jpg',
         beforeLabel: 'BEFORE',
-        afterLabel: 'AFTER 4 WEEKS'
+        afterLabel: 'AFTER'
       },
       displayOrder: 1,
       isActive: true
@@ -505,7 +505,7 @@ const DEFAULT_DATA = {
         beforeImage: '/images/results-before-3.jpg',
         afterImage: '/images/results-after-3.jpg',
         beforeLabel: 'BEFORE',
-        afterLabel: 'AFTER 4 WEEKS'
+        afterLabel: 'AFTER'
       },
       displayOrder: 2,
       isActive: true
@@ -924,7 +924,7 @@ export default function TrustResultsManagement() {
                             beforeImage: '',
                             afterImage: '',
                             beforeLabel: 'BEFORE',
-                            afterLabel: 'AFTER 4 WEEKS'
+                            afterLabel: 'AFTER'
                           },
                           displayOrder: (currentData.featuredProducts || []).length,
                           isActive: true
@@ -1214,7 +1214,7 @@ export default function TrustResultsManagement() {
                                 />
                                 <input
                                   type="text"
-                                  value={product.beforeAfter?.afterLabel || 'AFTER 4 WEEKS'}
+                                  value={product.beforeAfter?.afterLabel || 'AFTER'}
                                   onChange={(e) => {
                                     setData(prev => {
                                       const items = [...(prev.featuredProducts || [])];
@@ -1226,7 +1226,7 @@ export default function TrustResultsManagement() {
                                     });
                                   }}
                                   className="w-full px-2 py-1 border border-pink-200/50 rounded text-sm focus:ring-2 focus:ring-pink-600 focus:border-transparent outline-none"
-                                  placeholder="AFTER 4 WEEKS"
+                                  placeholder="AFTER"
                                 />
                               </div>
                             </div>

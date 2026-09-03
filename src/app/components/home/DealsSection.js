@@ -495,14 +495,14 @@ export default function DealsSection() {
                   )}
 
                   {/* Date Range - More compact */}
-                  {deal.startDate && deal.endDate && (
+                  {/* {deal.startDate && deal.endDate && (
                     <p className="text-[8px] md:text-[10px] text-white/60 mt-0.5 flex items-center gap-1">
                       <span className="opacity-70">📅</span>
                       {new Date(deal.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} 
                       <span className="opacity-40 mx-0.5">—</span> 
                       {new Date(deal.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                     </p>
-                  )}
+                  )} */}
                 </div>
 
                 {/* Shop Now Button - Smaller */}

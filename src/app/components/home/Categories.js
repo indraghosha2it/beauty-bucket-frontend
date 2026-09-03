@@ -11,8 +11,8 @@
 //   ArrowRight,
 // } from 'lucide-react';
 
-// // Font family constants
-// const FONT_FAMILY = "'Courgette', cursive";
+// // Font family constants - Updated to match site theme
+// const FONT_FAMILY = "'Raleway', 'Inter', sans-serif";
 // const FONT_FAMILY_PLAYFAIR = "'Playfair Display', 'Georgia', serif";
 
 // export default function Categories() {
@@ -25,863 +25,7 @@
 //   const scrollContainerRef = useRef(null);
 //   const wrapperRef = useRef(null);
 
-//   const CARDS_PER_VIEW = 7;
-
-//   // Fetch categories
-//   useEffect(() => {
-//     fetchCategories();
-//   }, []);
-
-//   const fetchCategories = async () => {
-//     setIsLoading(true);
-
-//     try {
-//       const response = await fetch(
-//         'http://localhost:5000/api/categories/light'
-//       );
-
-//       const data = await response.json();
-
-//       if (data.success) {
-//         const formattedCategories = data.data.map((cat, index) => ({
-//           _id: cat._id,
-//           name: cat.name,
-//           image: cat.image?.url || getDefaultImage(index),
-//           slug: cat.slug,
-//           productCount:
-//             cat.productCount ||
-//             Math.floor(Math.random() * 50) + 10,
-//         }));
-
-//         setCategories(formattedCategories);
-
-//         setTimeout(() => {
-//           calculatePageWidth();
-//           checkScroll();
-//         }, 150);
-//       }
-//     } catch (error) {
-//       console.error('Error fetching categories:', error);
-
-//       const fallbackCategories = [
-//         {
-//           _id: '1',
-//           name: 'Smartphones',
-//           image:
-//             'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
-//           productCount: 42,
-//         },
-//         {
-//           _id: '2',
-//           name: 'Laptops',
-//           image:
-//             'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop',
-//           productCount: 38,
-//         },
-//         {
-//           _id: '3',
-//           name: 'Smartwatches',
-//           image:
-//             'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-//           productCount: 25,
-//         },
-//         {
-//           _id: '4',
-//           name: 'Headphones',
-//           image:
-//             'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-//           productCount: 31,
-//         },
-//         {
-//           _id: '5',
-//           name: 'Cameras',
-//           image:
-//             'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop',
-//           productCount: 19,
-//         },
-//         {
-//           _id: '6',
-//           name: 'Gaming Gear',
-//           image:
-//             'https://images.unsplash.com/photo-1592155931584-901ac15763e3?w=400&h=400&fit=crop',
-//           productCount: 27,
-//         },
-//         {
-//           _id: '7',
-//           name: 'Audio Speakers',
-//           image:
-//             'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop',
-//           productCount: 22,
-//         },
-//         {
-//           _id: '8',
-//           name: 'Accessories',
-//           image:
-//             'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop',
-//           productCount: 45,
-//         },
-//         {
-//           _id: '9',
-//           name: 'Tablets',
-//           image:
-//             'https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400&h=400&fit=crop',
-//           productCount: 30,
-//         },
-//       ];
-
-//       setCategories(fallbackCategories);
-
-//       setTimeout(() => {
-//         calculatePageWidth();
-//         checkScroll();
-//       }, 150);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   const getDefaultImage = (index) => {
-//     const images = [
-//       'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
-//       'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop',
-//       'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-//       'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-//     ];
-
-//     return images[index % images.length];
-//   };
-
-//   // Calculate page width
-//   const calculatePageWidth = () => {
-//     if (!scrollContainerRef.current || !wrapperRef.current) {
-//       return;
-//     }
-
-//     const isMobile = window.innerWidth < 640;
-
-//     const wrapperParent = wrapperRef.current.parentElement;
-
-//     if (!wrapperParent) return;
-
-//     const parentWidth = wrapperParent.clientWidth;
-
-//     const style = window.getComputedStyle(
-//       scrollContainerRef.current
-//     );
-
-//     const gap =
-//       parseFloat(style.columnGap || style.gap) || 16;
-
-//     // MOBILE = EXACTLY 3 CARDS
-//     if (isMobile) {
-//       setPageWidth(parentWidth);
-//       return;
-//     }
-
-//     const firstCard =
-//       scrollContainerRef.current.children[0];
-
-//     if (!firstCard) return;
-
-//     const cardWidth = firstCard.offsetWidth;
-
-//     const maxFit = Math.floor(
-//       (parentWidth + gap) / (cardWidth + gap)
-//     );
-
-//     const cardsToShow = Math.max(
-//       1,
-//       Math.min(CARDS_PER_VIEW, maxFit)
-//     );
-
-//     const width =
-//       cardsToShow * cardWidth +
-//       (cardsToShow - 1) * gap;
-
-//     setPageWidth(width);
-//   };
-
-//   // Check arrows
-//   const checkScroll = () => {
-//     if (!scrollContainerRef.current) return;
-
-//     const {
-//       scrollLeft,
-//       scrollWidth,
-//       clientWidth,
-//     } = scrollContainerRef.current;
-
-//     setShowLeftArrow(scrollLeft > 20);
-
-//     setShowRightArrow(
-//       scrollLeft <
-//         scrollWidth - clientWidth - 20
-//     );
-//   };
-
-//   // Scroll
-//   const scroll = (direction) => {
-//     if (
-//       !scrollContainerRef.current ||
-//       !pageWidth
-//     ) {
-//       return;
-//     }
-
-//     const container =
-//       scrollContainerRef.current;
-
-//     const newScrollLeft =
-//       direction === 'left'
-//         ? container.scrollLeft - pageWidth
-//         : container.scrollLeft + pageWidth;
-
-//     container.scrollTo({
-//       left: newScrollLeft,
-//       behavior: 'smooth',
-//     });
-//   };
-
-//   // Resize + scroll listeners
-//   useEffect(() => {
-//     const container =
-//       scrollContainerRef.current;
-
-//     if (!container) return;
-
-//     calculatePageWidth();
-
-//     container.addEventListener(
-//       'scroll',
-//       checkScroll
-//     );
-
-//     checkScroll();
-
-//     const handleResize = () => {
-//       calculatePageWidth();
-//       checkScroll();
-//     };
-
-//     window.addEventListener(
-//       'resize',
-//       handleResize
-//     );
-
-//     return () => {
-//       container.removeEventListener(
-//         'scroll',
-//         checkScroll
-//       );
-
-//       window.removeEventListener(
-//         'resize',
-//         handleResize
-//       );
-//     };
-//   }, [categories]);
-
-//   // Loading state
-//   if (isLoading) {
-//     return (
-//       <section className="py-10 md:py-14 bg-gradient-to-b from-[#F7C7D3]/5 to-white">
-//         <div className="container mx-auto px-4 max-w-7xl">
-
-//           <div className="text-center mb-8">
-//             <div className="h-8 w-48 bg-[#F7C7D3]/30 rounded animate-pulse mx-auto" />
-
-//             <div className="h-4 w-64 bg-[#F7C7D3]/20 rounded animate-pulse mt-2 mx-auto" />
-//           </div>
-
-//           <div className="flex gap-4 overflow-hidden justify-center">
-//             {[...Array(7)].map((_, i) => (
-//               <div
-//                 key={i}
-//                 className="animate-pulse flex-shrink-0"
-//               >
-//                 <div className="w-32 h-32 md:w-36 md:h-36 rounded-[8px] bg-[#F7C7D3]/30" />
-
-//                 <div className="h-4 w-20 bg-[#F7C7D3]/20 rounded mx-auto mt-2" />
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-//     );
-//   }
-
-//   return (
-//     <section className="py-3 md:py-14 lg:py-16 bg-gradient-to-b from-[#F7C7D3]/5 via-white to-white overflow-hidden relative">
-
-//       {/* Background */}
-//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-//         <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#EE4275]/5 rounded-full blur-3xl" />
-
-//         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#EE4275]/5 rounded-full blur-3xl" />
-//       </div>
-
-//       <div className="container mx-auto px-0 max-w-7xl relative z-10 lg:-mt-8">
-
-//         {/* Header */}
-//         <div className="mb-5 sm:mb-8 md:mb-10 px-3 sm:px-4 text-center">
-
-//           {/* Category Badge */}
-//           <motion.div
-//             initial={{
-//               opacity: 0,
-//               y: -10,
-//             }}
-//             whileInView={{
-//               opacity: 1,
-//               y: 0,
-//             }}
-//             viewport={{
-//               once: true,
-//             }}
-//             className="
-//               inline-flex
-//               items-center
-//               gap-1.5
-//               sm:gap-2
-//               px-2.5
-//               sm:px-3
-//               py-0.5
-//               sm:py-1
-//               bg-[#EE4275]/10
-//               rounded-full
-//               mb-2
-//               sm:mb-3
-//               mx-auto
-//             "
-//           >
-//             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#EE4275]" />
-
-//             <span
-//               className="
-//                 text-[10px]
-//                 sm:text-xs
-//                 font-medium
-//                 text-[#EE4275]
-//                 tracking-wider
-//                 uppercase
-//               "
-//               style={{
-//                 fontFamily: FONT_FAMILY,
-//               }}
-//             >
-//               Categories
-//             </span>
-
-//             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#EE4275]" />
-//           </motion.div>
-
-//           {/* Heading */}
-//           <motion.h2
-//             initial={{
-//               opacity: 0,
-//               y: -20,
-//             }}
-//             whileInView={{
-//               opacity: 1,
-//               y: 0,
-//             }}
-//             viewport={{
-//               once: true,
-//             }}
-//             transition={{
-//               delay: 0.1,
-//             }}
-//             className="
-//               text-xl
-//               sm:text-3xl
-//               md:text-4xl
-//               font-bold
-//               text-gray-900
-//               leading-tight
-//             "
-//             style={{
-//               fontFamily: FONT_FAMILY,
-//             }}
-//           >
-//             Popular{' '}
-//             <span className="text-[#EE4275]">
-//               Categories
-//             </span>
-//           </motion.h2>
-
-//           {/* Description */}
-//           <motion.p
-//             initial={{
-//               opacity: 0,
-//               y: -20,
-//             }}
-//             whileInView={{
-//               opacity: 1,
-//               y: 0,
-//             }}
-//             viewport={{
-//               once: true,
-//             }}
-//             transition={{
-//               delay: 0.2,
-//             }}
-//             className="
-//               text-gray-500
-//               mt-1
-//               sm:mt-1.5
-//               text-[11px]
-//               sm:text-sm
-//               max-w-[280px]
-//               sm:max-w-2xl
-//               mx-auto
-//               leading-relaxed
-//             "
-//             style={{
-//               fontFamily: FONT_FAMILY,
-//             }}
-//           >
-//             Discover cutting-edge gadgets and tech accessories
-//           </motion.p>
-//         </div>
-
-//         {/* Categories */}
-//         <div className="relative group px-3 sm:px-6 md:px-6">
-
-//           {/* Left Arrow */}
-//           <AnimatedArrow
-//             show={showLeftArrow}
-//             direction="left"
-//             onClick={() => scroll('left')}
-//             Icon={ChevronLeft}
-//           />
-
-//           {/* Right Arrow */}
-//           <AnimatedArrow
-//             show={showRightArrow}
-//             direction="right"
-//             onClick={() => scroll('right')}
-//             Icon={ChevronRight}
-//           />
-
-//           {/* Wrapper */}
-//           <div
-//             ref={wrapperRef}
-//             className="mx-auto overflow-hidden"
-//             style={{
-//               width: pageWidth
-//                 ? `${pageWidth}px`
-//                 : '100%',
-//               maxWidth: '100%',
-//             }}
-//           >
-//             {/* Scroll Container */}
-//             <div
-//               ref={scrollContainerRef}
-//               className="
-//                 flex
-//                 gap-4
-//                 md:gap-5
-//                 pb-4
-//                 overflow-x-auto
-//                 scroll-smooth
-//                 snap-x
-//                 snap-mandatory
-//               "
-//               style={{
-//                 scrollbarWidth: 'none',
-//                 msOverflowStyle: 'none',
-//                 WebkitOverflowScrolling:
-//                   'touch',
-//               }}
-//             >
-//               {categories.map(
-//                 (category, index) => (
-//                   <CategoryCard
-//                     key={
-//                       category._id || index
-//                     }
-//                     category={category}
-//                     index={index}
-//                   />
-//                 )
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// // ============================================================
-// // Animated Arrow
-// // ============================================================
-
-// function AnimatedArrow({
-//   show,
-//   direction,
-//   onClick,
-//   Icon,
-// }) {
-//   if (!show) return null;
-
-//   return (
-//     <motion.button
-//       initial={{
-//         opacity: 0,
-//         scale: 0.8,
-//       }}
-//       animate={{
-//         opacity: 1,
-//         scale: 1,
-//       }}
-//       onClick={onClick}
-//       aria-label={
-//         direction === 'left'
-//           ? 'Previous categories'
-//           : 'Next categories'
-//       }
-//       className={`
-//         absolute
-//         top-[calc(50%-18px)]
-//         -translate-y-1/2
-//         z-30
-
-//         bg-transparent
-//         border-0
-//         shadow-none
-
-//         lg:bg-white
-//         lg:shadow-lg
-//         lg:rounded-full
-//         lg:p-2.5
-//         lg:border-2
-//         lg:border-[#EE4275]/20
-//         lg:hover:border-[#EE4275]
-
-//         p-0
-//         md:p-0
-
-//         transition-all
-//         duration-300
-
-//         ${
-//           direction === 'left'
-//             ? 'left-0 lg:left-5 -ml-1 lg:-ml-3'
-//             : 'right-0 lg:right-5 -mr-1 lg:-mr-3'
-//         }
-//       `}
-//       whileHover={{
-//         scale: 1.1,
-//         backgroundColor: '#EE4275',
-//       }}
-//       whileTap={{
-//         scale: 0.95,
-//       }}
-//     >
-//       <Icon
-//         className="
-//           w-5
-//           h-5
-//           md:w-5
-//           md:h-5
-//           text-[#EE4275]
-
-//           lg:w-4
-//           lg:h-4
-//           lg:hover:text-white
-//         "
-//       />
-//     </motion.button>
-//   );
-// }
-
-// // ============================================================
-// // Category Card
-// // ============================================================
-
-// function CategoryCard({
-//   category,
-//   index,
-// }) {
-//   const [isHovered, setIsHovered] =
-//     useState(false);
-
-//   return (
-//     <motion.div
-//       initial={{
-//         opacity: 0,
-//         y: 20,
-//       }}
-//       whileInView={{
-//         opacity: 1,
-//         y: 0,
-//       }}
-//       viewport={{
-//         once: true,
-//       }}
-//       transition={{
-//         duration: 0.4,
-//         delay: Math.min(
-//           index * 0.05,
-//           0.4
-//         ),
-//       }}
-//       onHoverStart={() =>
-//         setIsHovered(true)
-//       }
-//       onHoverEnd={() =>
-//         setIsHovered(false)
-//       }
-//       className="
-//         shrink-0
-//         snap-start
-//         w-[calc((100%-2rem)/3)]
-//         sm:w-36
-//         md:w-40
-//         lg:w-44
-//       "
-//     >
-//       <Link
-//         href={`/products?category=${category._id}`}
-//       >
-//         <div className="cursor-pointer group/card w-full">
-
-//           {/* Category Image */}
-//           <motion.div
-//             className="
-//               relative
-//               w-full
-//               aspect-square
-//               rounded-[8px]
-//               overflow-hidden
-//               bg-[#F7C7D3]/10
-//             "
-//             style={{
-//               boxShadow: isHovered
-//                 ? '0 8px 30px rgba(238, 66, 117, 0.15)'
-//                 : '0 4px 12px rgba(0, 0, 0, 0.06)',
-
-//               border: isHovered
-//                 ? '2.5px solid #EE4275'
-//                 : '2.5px solid transparent',
-
-//               transition:
-//                 'border 0.3s ease, box-shadow 0.3s ease',
-//             }}
-//           >
-
-//             {/* Image */}
-//             <img
-//               src={category.image}
-//               alt={category.name}
-//               className="
-//                 w-full
-//                 h-full
-//                 object-cover
-//                 transition-transform
-//                 duration-700
-//                 ease-out
-//                 group-hover/card:scale-105
-//               "
-//               loading="lazy"
-//               onError={(e) => {
-//                 e.target.onerror = null;
-//                 e.target.src =
-//                   'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop';
-//               }}
-//             />
-
-//             {/* Dark Gradient */}
-//             <div
-//               className="
-//                 absolute
-//                 inset-0
-//                 bg-gradient-to-t
-//                 from-black/70
-//                 via-black/30
-//                 to-transparent
-//               "
-//             />
-
-//             {/* Pink Hover Overlay */}
-//             <motion.div
-//               className="
-//                 absolute
-//                 inset-0
-//                 bg-gradient-to-t
-//                 from-[#EE4275]/60
-//                 via-[#EE4275]/30
-//                 to-[#EE4275]/10
-//               "
-//               initial={{
-//                 opacity: 0,
-//               }}
-//               animate={{
-//                 opacity: isHovered
-//                   ? 1
-//                   : 0,
-//               }}
-//               transition={{
-//                 duration: 0.3,
-//               }}
-//             />
-
-//             {/* Explore Button */}
-//             <motion.div
-//               className="
-//                 absolute
-//                 inset-0
-//                 flex
-//                 items-center
-//                 justify-center
-//                 z-20
-//               "
-//               initial={{
-//                 opacity: 0,
-//               }}
-//               animate={{
-//                 opacity: isHovered
-//                   ? 1
-//                   : 0,
-//               }}
-//               transition={{
-//                 duration: 0.3,
-//               }}
-//             >
-//               <div
-//                 className="
-//                   bg-white/95
-//                   backdrop-blur-sm
-//                   px-3.5
-//                   py-1.5
-//                   rounded-full
-//                   shadow-lg
-//                   flex
-//                   items-center
-//                   gap-1.5
-//                   border
-//                   border-[#EE4275]/20
-//                 "
-//               >
-//                 <span
-//                   className="
-//                     text-xs
-//                     font-medium
-//                     text-[#EE4275]
-//                   "
-//                   style={{
-//                     fontFamily:
-//                       FONT_FAMILY_PLAYFAIR,
-//                   }}
-//                 >
-//                   Explore
-//                 </span>
-
-//                 <ArrowRight
-//                   className="
-//                     w-3.5
-//                     h-3.5
-//                     text-[#EE4275]
-//                   "
-//                 />
-//               </div>
-//             </motion.div>
-//           </motion.div>
-
-//           {/* Category Name */}
-//           <motion.div className="mt-2.5 text-center">
-
-//             <motion.h3
-//               className="
-//                 text-xs
-//                 sm:text-sm
-//                 font-semibold
-//                 text-gray-800
-//                 px-1
-//                 truncate
-//               "
-//               style={{
-//                 fontFamily:
-//                   FONT_FAMILY_PLAYFAIR,
-//               }}
-//               animate={{
-//                 color: isHovered
-//                   ? '#EE4275'
-//                   : '#1F2937',
-//               }}
-//               transition={{
-//                 duration: 0.2,
-//               }}
-//             >
-//               {category.name}
-//             </motion.h3>
-
-//             {/* Pink Underline */}
-//             <motion.div
-//               className="
-//                 h-0.5
-//                 bg-gradient-to-r
-//                 from-[#EE4275]
-//                 to-[#F7C7D3]
-//                 rounded-full
-//                 mx-auto
-//                 mt-1
-//               "
-//               initial={{
-//                 width: 0,
-//                 opacity: 0,
-//               }}
-//               animate={{
-//                 width: isHovered
-//                   ? '50%'
-//                   : 0,
-//                 opacity: isHovered
-//                   ? 1
-//                   : 0,
-//               }}
-//               transition={{
-//                 duration: 0.3,
-//               }}
-//             />
-
-//           </motion.div>
-//         </div>
-//       </Link>
-//     </motion.div>
-//   );
-// }
-
-
-
-// code 2
-
-// 'use client';
-
-// import Link from 'next/link';
-// import { motion } from 'framer-motion';
-// import { useState, useEffect, useRef } from 'react';
-// import {
-//   ChevronLeft,
-//   ChevronRight,
-//   Sparkles,
-//   ArrowRight,
-// } from 'lucide-react';
-
-// // Font family constants
-// const FONT_FAMILY = "'Raleway', 'Inter', sans-serif";
-
-// export default function Categories() {
-//   const [categories, setCategories] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [showLeftArrow, setShowLeftArrow] = useState(false);
-//   const [showRightArrow, setShowRightArrow] = useState(false);
-//   const [pageWidth, setPageWidth] = useState(0);
-
-//   const scrollContainerRef = useRef(null);
-//   const wrapperRef = useRef(null);
-
-//   const CARDS_PER_VIEW = 5;
+//   const CARDS_PER_VIEW = 8;
 
 //   // Fetch categories
 //   useEffect(() => {
@@ -1007,7 +151,7 @@
 //     return images[index % images.length];
 //   };
 
-//   // Calculate page width - deterministic 5 cards per view
+//   // Calculate page width
 //   const calculatePageWidth = () => {
 //     if (!scrollContainerRef.current || !wrapperRef.current) {
 //       return;
@@ -1015,23 +159,56 @@
 
 //     const isMobile = window.innerWidth < 640;
 
-//     // On mobile, we show 3 cards, not 5
+//     const wrapperParent = wrapperRef.current.parentElement;
+
+//     if (!wrapperParent) return;
+
+//     const parentWidth = wrapperParent.clientWidth;
+
+//     const style = window.getComputedStyle(
+//       scrollContainerRef.current
+//     );
+
+//     const gap =
+//       parseFloat(style.columnGap || style.gap) || 12;
+
+//     // MOBILE = EXACTLY 4 CARDS
 //     if (isMobile) {
-//       const wrapperParent = wrapperRef.current.parentElement;
-//       if (!wrapperParent) return;
-//       setPageWidth(wrapperParent.clientWidth);
+//       // For mobile, we want 4 cards per view
+//       const firstCard = scrollContainerRef.current.children[0];
+//       if (!firstCard) {
+//         setPageWidth(parentWidth);
+//         return;
+//       }
+      
+//       // Recalculate with 4 cards for mobile
+//       const cardWidth = firstCard.offsetWidth;
+//       const mobileCardsToShow = 4;
+//       const mobileWidth = mobileCardsToShow * cardWidth + (mobileCardsToShow - 1) * gap;
+//       setPageWidth(Math.min(mobileWidth, parentWidth));
 //       return;
 //     }
 
-//     // Desktop: exactly 5 cards per view
-//     const firstCard = scrollContainerRef.current.children[0];
+//     const firstCard =
+//       scrollContainerRef.current.children[0];
+
 //     if (!firstCard) return;
 
 //     const cardWidth = firstCard.offsetWidth;
-//     const gap = 16; // gap-4 = 16px
 
-//     // Calculate width for exactly 5 cards
-//     const width = cardWidth * 5 + gap * 4;
+//     const maxFit = Math.floor(
+//       (parentWidth + gap) / (cardWidth + gap)
+//     );
+
+//     const cardsToShow = Math.max(
+//       1,
+//       Math.min(CARDS_PER_VIEW, maxFit)
+//     );
+
+//     const width =
+//       cardsToShow * cardWidth +
+//       (cardsToShow - 1) * gap;
+
 //     setPageWidth(width);
 //   };
 
@@ -1046,14 +223,24 @@
 //     } = scrollContainerRef.current;
 
 //     setShowLeftArrow(scrollLeft > 20);
-//     setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 20);
+
+//     setShowRightArrow(
+//       scrollLeft <
+//         scrollWidth - clientWidth - 20
+//     );
 //   };
 
 //   // Scroll
 //   const scroll = (direction) => {
-//     if (!scrollContainerRef.current || !pageWidth) return;
+//     if (
+//       !scrollContainerRef.current ||
+//       !pageWidth
+//     ) {
+//       return;
+//     }
 
-//     const container = scrollContainerRef.current;
+//     const container =
+//       scrollContainerRef.current;
 
 //     const newScrollLeft =
 //       direction === 'left'
@@ -1068,11 +255,18 @@
 
 //   // Resize + scroll listeners
 //   useEffect(() => {
-//     const container = scrollContainerRef.current;
+//     const container =
+//       scrollContainerRef.current;
+
 //     if (!container) return;
 
 //     calculatePageWidth();
-//     container.addEventListener('scroll', checkScroll);
+
+//     container.addEventListener(
+//       'scroll',
+//       checkScroll
+//     );
+
 //     checkScroll();
 
 //     const handleResize = () => {
@@ -1080,33 +274,36 @@
 //       checkScroll();
 //     };
 
-//     window.addEventListener('resize', handleResize);
+//     window.addEventListener(
+//       'resize',
+//       handleResize
+//     );
 
 //     return () => {
-//       container.removeEventListener('scroll', checkScroll);
-//       window.removeEventListener('resize', handleResize);
+//       container.removeEventListener(
+//         'scroll',
+//         checkScroll
+//       );
+
+//       window.removeEventListener(
+//         'resize',
+//         handleResize
+//       );
 //     };
 //   }, [categories]);
 
 //   // Loading state
 //   if (isLoading) {
 //     return (
-//       <section className="py-10 md:py-14 bg-[#f8f7f2]">
+//       <section className="py-6 md:py-10 bg-[#f8f7f2]">
 //         <div className="container mx-auto px-4 max-w-7xl">
-//           <div className="flex flex-col md:flex-row md:items-start md:gap-8">
-//             <div className="md:w-[190px] flex-shrink-0">
-//               <div className="h-8 w-32 bg-[#e5e3da] rounded animate-pulse" />
-//               <div className="h-4 w-48 bg-[#e5e3da] rounded animate-pulse mt-2" />
-//               <div className="h-10 w-36 bg-[#e5e3da] rounded animate-pulse mt-4" />
-//             </div>
-//             <div className="flex-1 flex gap-4 overflow-hidden">
-//               {[...Array(5)].map((_, i) => (
-//                 <div key={i} className="animate-pulse flex-shrink-0">
-//                   <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-[#e5e3da]" />
-//                   <div className="h-4 w-20 bg-[#e5e3da] rounded mx-auto mt-2" />
-//                 </div>
-//               ))}
-//             </div>
+//           <div className="flex gap-3 overflow-hidden justify-center">
+//             {[...Array(8)].map((_, i) => (
+//               <div key={i} className="animate-pulse flex-shrink-0">
+//                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full bg-[#e5e3da]" />
+//                 <div className="h-3 w-12 bg-[#e5e3da] rounded mx-auto mt-1.5" />
+//               </div>
+//             ))}
 //           </div>
 //         </div>
 //       </section>
@@ -1114,178 +311,58 @@
 //   }
 
 //   return (
-//     <section className="py-10 md:py-14 lg:py-16 bg-[#f8f7f2] overflow-hidden relative">
-//       {/* Background Effects - Subtle warm tones */}
+//     <section className="pt-4 md:pt-8 lg:pt-8 pb-1 md:pb-2 lg:pb-2 bg-[#f8f7f2] overflow-hidden relative">
+//       {/* Background Effects */}
 //       <div className="absolute inset-0 pointer-events-none overflow-hidden">
 //         <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#8B9D83]/5 rounded-full blur-3xl" />
 //         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#8B9D83]/5 rounded-full blur-3xl" />
-
-//         {/* Decorative botanical line art */}
-//         <svg
-//           className="absolute left-[24%] top-[-40px] h-[700px] w-[430px] opacity-[0.04]"
-//           viewBox="0 0 430 700"
-//           fill="none"
-//           xmlns="http://www.w3.org/2000/svg"
-//         >
-//           <path
-//             d="M240 690C238 560 246 450 235 345C226 255 210 165 185 85"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M235 380C190 335 145 320 100 325C150 350 190 375 235 380Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M238 300C280 260 322 248 370 255C320 275 280 295 238 300Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M225 245C180 205 145 185 102 188C145 215 185 235 225 245Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M218 190C252 145 286 125 330 126C295 155 258 177 218 190Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M204 140C175 95 160 62 165 25C192 62 205 100 204 140Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M236 430C285 390 330 380 380 392C330 410 285 425 236 430Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//           <path
-//             d="M240 510C195 465 155 450 112 456C158 480 195 500 240 510Z"
-//             stroke="#24352d"
-//             strokeWidth="2"
-//           />
-//         </svg>
 //       </div>
 
-//       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
-//         {/* Layout: Left Header + Right Categories */}
-//         <div className="flex flex-col lg:flex-row lg:items-start lg:gap-3">
-          
-//           {/* LEFT SIDE - Header */}
-//           <motion.div
-//             initial={{ opacity: 0, x: -20 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             viewport={{ once: true }}
-//             className="lg:w-[250px] xl:w-[250px] flex-shrink-0 mb-6 lg:mb-0"
+//       <div className="container mx-auto px-0 max-w-7xl relative z-10">
+//         {/* Categories */}
+//         <div className="relative group px-2 sm:px-4 md:px-6">
+//           {/* Left Arrow */}
+//           <AnimatedArrow
+//             show={showLeftArrow}
+//             direction="left"
+//             onClick={() => scroll('left')}
+//             Icon={ChevronLeft}
+//           />
+
+//           {/* Right Arrow */}
+//           <AnimatedArrow
+//             show={showRightArrow}
+//             direction="right"
+//             onClick={() => scroll('right')}
+//             Icon={ChevronRight}
+//           />
+
+//           {/* Wrapper */}
+//           <div
+//             ref={wrapperRef}
+//             className="mx-auto overflow-hidden"
+//             style={{
+//               width: pageWidth ? `${pageWidth}px` : '100%',
+//               maxWidth: '100%',
+//             }}
 //           >
-//             {/* Category Badge */}
-//             <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#8B9D83]/10 rounded-full mb-3 border border-[#8B9D83]/20">
-//               <Sparkles className="w-3.5 h-3.5 text-[#8B9D83]" />
-//               <span
-//                 className="text-[10px] font-medium text-[#8B9D83] tracking-wider uppercase"
-//                 style={{ fontFamily: FONT_FAMILY }}
-//               >
-//                 Shop by Category
-//               </span>
-//             </div>
-
-//             {/* Heading */}
-//             <motion.h2
-//               initial={{ opacity: 0, y: -10 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ delay: 0.1 }}
-//               className="text-2xl sm:text-3xl font-light text-[#263b32] leading-tight tracking-tight"
-//               style={{ fontFamily: FONT_FAMILY }}
+//             {/* Scroll Container */}
+//             <div
+//               ref={scrollContainerRef}
+//               className="flex gap-2 sm:gap-3 md:gap-4 pb-3 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+//               style={{
+//                 scrollbarWidth: 'none',
+//                 msOverflowStyle: 'none',
+//                 WebkitOverflowScrolling: 'touch',
+//               }}
 //             >
-//               Find your{' '}
-//               <span className="text-[#8B9D83] font-semibold">
-//                 perfect beauty
-//               </span>
-//             </motion.h2>
-
-//             {/* Description */}
-//             <motion.p
-//               initial={{ opacity: 0, y: -10 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ delay: 0.15 }}
-//               className="text-sm text-[#53645a] mt-2 leading-relaxed"
-//               style={{ fontFamily: FONT_FAMILY }}
-//             >
-//               Explore our curated collection of premium beauty products
-//             </motion.p>
-
-//             {/* Explore All Link */}
-//             <motion.div
-//               initial={{ opacity: 0, y: -10 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ delay: 0.2 }}
-//               className="mt-4"
-//             >
-//               <Link
-//                 href="/categories"
-//                 className="inline-flex items-center gap-2 text-[#8B9D83] font-semibold text-sm hover:gap-3 transition-all duration-300 group"
-//                 style={{ fontFamily: FONT_FAMILY }}
-//               >
-//                 Explore all
-//                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-//               </Link>
-//             </motion.div>
-//           </motion.div>
-
-//           {/* RIGHT SIDE - Categories Carousel with Top-Right Arrows */}
-//           <div className="flex-1 min-w-0">
-//             {/* Arrow Controls - Top Right */}
-//             <div className="flex items-center justify-end gap-2 mb-3 sm:mb-4">
-//               <ArrowButton
-//                 direction="left"
-//                 onClick={() => scroll('left')}
-//                 disabled={!showLeftArrow}
-//                 Icon={ChevronLeft}
-//               />
-//               <ArrowButton
-//                 direction="right"
-//                 onClick={() => scroll('right')}
-//                 disabled={!showRightArrow}
-//                 Icon={ChevronRight}
-//               />
-//             </div>
-
-//             {/* Carousel */}
-//             <div className="relative">
-//               {/* Wrapper */}
-//               <div
-//                 ref={wrapperRef}
-//                 className="mx-auto overflow-hidden"
-//                 style={{
-//                   width: pageWidth ? `${pageWidth}px` : '100%',
-//                   maxWidth: '100%',
-//                 }}
-//               >
-//                 {/* Scroll Container */}
-//                 <div
-//                   ref={scrollContainerRef}
-//                   className="flex gap-4 md:gap-4 pb-2 overflow-x-auto scroll-smooth snap-x snap-mandatory"
-//                   style={{
-//                     scrollbarWidth: 'none',
-//                     msOverflowStyle: 'none',
-//                     WebkitOverflowScrolling: 'touch',
-//                   }}
-//                 >
-//                   {categories.map((category, index) => (
-//                     <CategoryCard
-//                       key={category._id || index}
-//                       category={category}
-//                       index={index}
-//                     />
-//                   ))}
-//                 </div>
-//               </div>
+//               {categories.map((category, index) => (
+//                 <CategoryCard
+//                   key={category._id || index}
+//                   category={category}
+//                   index={index}
+//                 />
+//               ))}
 //             </div>
 //           </div>
 //         </div>
@@ -1295,140 +372,37 @@
 // }
 
 // // ============================================================
-// // Arrow Button Component
+// // Animated Arrow
 // // ============================================================
 
-// function ArrowButton({ direction, onClick, disabled, Icon }) {
+// function AnimatedArrow({ show, direction, onClick, Icon }) {
+//   if (!show) return null;
+
 //   return (
-//     <button
+//     <motion.button
+//       initial={{ opacity: 0, scale: 0.8 }}
+//       animate={{ opacity: 1, scale: 1 }}
 //       onClick={onClick}
-//       disabled={disabled}
 //       aria-label={direction === 'left' ? 'Previous categories' : 'Next categories'}
 //       className={`
-//         flex items-center justify-center
-//         w-8 h-8 md:w-9 md:h-9
-//         rounded-full
+//         absolute top-[calc(50%-14px)] -translate-y-1/2 z-30
+//         bg-white shadow-lg rounded-full p-1.5 sm:p-2
+//         border border-[#8B9D83]/30
+//         hover:border-[#8B9D83] hover:bg-[#8B9D83]
 //         transition-all duration-300
-//         border
-//         ${
-//           disabled
-//             ? 'bg-[#f0efea] border-[#e0ded8] text-[#c5c2b8] cursor-not-allowed'
-//             : 'bg-white border-[#e0ded8] text-[#8B9D83] hover:bg-[#8B9D83] hover:text-white hover:border-[#8B9D83] hover:shadow-md cursor-pointer'
-//         }
+//         ${direction === 'left' ? 'left-0 lg:left-3 -ml-1 lg:-ml-2' : 'right-0 lg:right-3 -mr-1 lg:-mr-2'}
 //       `}
+//       whileHover={{ scale: 1.1 }}
+//       whileTap={{ scale: 0.95 }}
 //     >
-//       <Icon className="w-4 h-4" strokeWidth={2} />
-//     </button>
+//       <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8B9D83] hover:text-white transition-colors" />
+//     </motion.button>
 //   );
 // }
 
 // // ============================================================
-// // Category Card
+// // Category Card - Circular - Reduced Size
 // // ============================================================
-
-// // function CategoryCard({ category, index }) {
-// //   const [isHovered, setIsHovered] = useState(false);
-
-// //   return (
-// //     <motion.div
-// //       initial={{ opacity: 0, y: 20 }}
-// //       whileInView={{ opacity: 1, y: 0 }}
-// //       viewport={{ once: true }}
-// //       transition={{
-// //         duration: 0.4,
-// //         delay: Math.min(index * 0.05, 0.4),
-// //       }}
-// //       onHoverStart={() => setIsHovered(true)}
-// //       onHoverEnd={() => setIsHovered(false)}
-// //       className="shrink-0 snap-start w-[calc((100%-4rem)/3)] sm:w-[calc((100%-4rem)/5)]"
-// //     >
-// //       <Link href={`/products?category=${category._id}`}>
-// //         <div className="cursor-pointer group/card w-full">
-// //           {/* Category Image */}
-// //           <motion.div
-// //             className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#e8e6dd]"
-// //             style={{
-// //               boxShadow: isHovered
-// //                 ? '0 10px 28px rgba(139, 157, 131, 0.18)'
-// //                 : '0 2px 8px rgba(0, 0, 0, 0.05)',
-// //               border: isHovered
-// //                 ? '2px solid #8B9D83'
-// //                 : '2px solid transparent',
-// //               transition: 'border 0.3s ease, box-shadow 0.3s ease',
-// //             }}
-// //           >
-// //             {/* Image */}
-// //             <img
-// //               src={category.image}
-// //               alt={category.name}
-// //               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105"
-// //               loading="lazy"
-// //               onError={(e) => {
-// //                 e.target.onerror = null;
-// //                 e.target.src =
-// //                   'https://images.unsplash.com/photo-1596462502278-27bfdc6e3b6f?w=400&h=400&fit=crop';
-// //               }}
-// //             />
-
-// //             {/* Dark Gradient */}
-// //             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
-
-// //             {/* Green Hover Overlay */}
-// //             <motion.div
-// //               className="absolute inset-0 bg-gradient-to-t from-[#8B9D83]/55 via-[#8B9D83]/25 to-transparent"
-// //               initial={{ opacity: 0 }}
-// //               animate={{ opacity: isHovered ? 1 : 0 }}
-// //               transition={{ duration: 0.3 }}
-// //             />
-
-// //             {/* Explore Button */}
-// //             <motion.div
-// //               className="absolute inset-0 flex items-center justify-center z-20"
-// //               initial={{ opacity: 0 }}
-// //               animate={{ opacity: isHovered ? 1 : 0 }}
-// //               transition={{ duration: 0.3 }}
-// //             >
-// //               <div className="bg-white/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5 border border-[#8B9D83]/30">
-// //                 <span
-// //                   className="text-xs font-semibold text-[#8B9D83]"
-// //                   style={{ fontFamily: FONT_FAMILY }}
-// //                 >
-// //                   Explore
-// //                 </span>
-// //                 <ArrowRight className="w-3.5 h-3.5 text-[#8B9D83]" />
-// //               </div>
-// //             </motion.div>
-// //           </motion.div>
-
-// //           {/* Category Name */}
-// //           <div className="mt-2.5 text-center">
-// //             <motion.h3
-// //               className="text-xs sm:text-sm font-semibold text-[#263b32] px-1 truncate"
-// //               style={{ fontFamily: FONT_FAMILY }}
-// //               animate={{
-// //                 color: isHovered ? '#8B9D83' : '#263b32',
-// //               }}
-// //               transition={{ duration: 0.2 }}
-// //             >
-// //               {category.name}
-// //             </motion.h3>
-
-// //             {/* Green Underline */}
-// //             <motion.div
-// //               className="h-0.5 bg-gradient-to-r from-[#8B9D83] to-[#8B9D83]/30 rounded-full mx-auto mt-1"
-// //               initial={{ width: 0, opacity: 0 }}
-// //               animate={{
-// //                 width: isHovered ? '50%' : 0,
-// //                 opacity: isHovered ? 1 : 0,
-// //               }}
-// //               transition={{ duration: 0.3 }}
-// //             />
-// //           </div>
-// //         </div>
-// //       </Link>
-// //     </motion.div>
-// //   );
-// // }
 
 // function CategoryCard({ category, index }) {
 //   const [isHovered, setIsHovered] = useState(false);
@@ -1440,11 +414,11 @@
 //       viewport={{ once: true }}
 //       transition={{
 //         duration: 0.4,
-//         delay: Math.min(index * 0.05, 0.4),
+//         delay: Math.min(index * 0.03, 0.4),
 //       }}
 //       onHoverStart={() => setIsHovered(true)}
 //       onHoverEnd={() => setIsHovered(false)}
-//       className="shrink-0 snap-start w-[calc((100%-4rem)/3)] sm:w-[calc((100%-4rem)/5)]"
+//       className="shrink-0 snap-start w-[calc((100%-2rem)/4)] sm:w-20 md:w-24 lg:w-28 xl:w-32"
 //     >
 //       <Link href={`/products?category=${category._id}`}>
 //         <div className="cursor-pointer group/card w-full">
@@ -1453,11 +427,11 @@
 //             className="relative w-full aspect-square rounded-full overflow-hidden bg-[#e8e6dd]"
 //             style={{
 //               boxShadow: isHovered
-//                 ? '0 10px 28px rgba(139, 157, 131, 0.18)'
-//                 : '0 2px 8px rgba(0, 0, 0, 0.05)',
+//                 ? '0 6px 20px rgba(139, 157, 131, 0.2)'
+//                 : '0 3px 8px rgba(0, 0, 0, 0.06)',
 //               border: isHovered
-//                 ? '3px solid #8B9D83'
-//                 : '3px solid transparent',
+//                 ? '2.5px solid #8B9D83'
+//                 : '2.5px solid transparent',
 //               transition: 'border 0.3s ease, box-shadow 0.3s ease',
 //             }}
 //           >
@@ -1475,39 +449,39 @@
 //             />
 
 //             {/* Dark Gradient - Circular */}
-//             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent rounded-full" />
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent rounded-full" />
 
 //             {/* Green Hover Overlay - Circular */}
 //             <motion.div
-//               className="absolute inset-0 bg-gradient-to-t from-[#8B9D83]/55 via-[#8B9D83]/25 to-transparent rounded-full"
+//               className="absolute inset-0 bg-gradient-to-t from-[#8B9D83]/60 via-[#8B9D83]/30 to-[#8B9D83]/10 rounded-full"
 //               initial={{ opacity: 0 }}
 //               animate={{ opacity: isHovered ? 1 : 0 }}
 //               transition={{ duration: 0.3 }}
 //             />
 
-//             {/* Explore Button */}
+//             {/* Explore Button - Smaller */}
 //             <motion.div
 //               className="absolute inset-0 flex items-center justify-center z-20"
 //               initial={{ opacity: 0 }}
 //               animate={{ opacity: isHovered ? 1 : 0 }}
 //               transition={{ duration: 0.3 }}
 //             >
-//               <div className="bg-white/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5 border border-[#8B9D83]/30">
+//               <div className="bg-white/95 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-lg flex items-center gap-0.5 sm:gap-1 border border-[#8B9D83]/30">
 //                 <span
-//                   className="text-xs font-semibold text-[#8B9D83]"
+//                   className="text-[7px] sm:text-[9px] font-medium text-[#8B9D83]"
 //                   style={{ fontFamily: FONT_FAMILY }}
 //                 >
 //                   Explore
 //                 </span>
-//                 <ArrowRight className="w-3.5 h-3.5 text-[#8B9D83]" />
+//                 <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#8B9D83]" />
 //               </div>
 //             </motion.div>
 //           </motion.div>
 
-//           {/* Category Name */}
-//           <div className="mt-2.5 text-center">
+//           {/* Category Name - Smaller */}
+//           <motion.div className="mt-1.5 text-center">
 //             <motion.h3
-//               className="text-xs sm:text-sm font-semibold text-[#263b32] px-1 truncate"
+//               className="text-[8px] sm:text-[10px] md:text-xs font-medium text-[#263b32] px-1 truncate"
 //               style={{ fontFamily: FONT_FAMILY }}
 //               animate={{
 //                 color: isHovered ? '#8B9D83' : '#263b32',
@@ -1517,26 +491,22 @@
 //               {category.name}
 //             </motion.h3>
 
-//             {/* Green Underline */}
+//             {/* Green Underline - Smaller */}
 //             <motion.div
-//               className="h-0.5 bg-gradient-to-r from-[#8B9D83] to-[#8B9D83]/30 rounded-full mx-auto mt-1"
+//               className="h-0.5 bg-gradient-to-r from-[#8B9D83] to-[#8B9D83]/30 rounded-full mx-auto mt-0.5"
 //               initial={{ width: 0, opacity: 0 }}
 //               animate={{
-//                 width: isHovered ? '50%' : 0,
+//                 width: isHovered ? '30%' : 0,
 //                 opacity: isHovered ? 1 : 0,
 //               }}
 //               transition={{ duration: 0.3 }}
 //             />
-//           </div>
+//           </motion.div>
 //         </div>
 //       </Link>
 //     </motion.div>
 //   );
 // }
-
-
-
-
 
 'use client';
 
@@ -1560,11 +530,22 @@ export default function Categories() {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [pageWidth, setPageWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const scrollContainerRef = useRef(null);
   const wrapperRef = useRef(null);
 
   const CARDS_PER_VIEW = 8;
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Fetch categories
   useEffect(() => {
@@ -1690,64 +671,34 @@ export default function Categories() {
     return images[index % images.length];
   };
 
-  // Calculate page width
+  // Calculate page width - FIXED
   const calculatePageWidth = () => {
     if (!scrollContainerRef.current || !wrapperRef.current) {
       return;
     }
 
-    const isMobile = window.innerWidth < 640;
-
     const wrapperParent = wrapperRef.current.parentElement;
-
     if (!wrapperParent) return;
 
     const parentWidth = wrapperParent.clientWidth;
 
-    const style = window.getComputedStyle(
-      scrollContainerRef.current
-    );
+    const style = window.getComputedStyle(scrollContainerRef.current);
+    const gap = parseFloat(style.columnGap || style.gap) || 12;
 
-    const gap =
-      parseFloat(style.columnGap || style.gap) || 12;
-
-    // MOBILE = EXACTLY 4 CARDS
-    if (isMobile) {
-      // For mobile, we want 4 cards per view
-      const firstCard = scrollContainerRef.current.children[0];
-      if (!firstCard) {
-        setPageWidth(parentWidth);
-        return;
-      }
-      
-      // Recalculate with 4 cards for mobile
-      const cardWidth = firstCard.offsetWidth;
-      const mobileCardsToShow = 4;
-      const mobileWidth = mobileCardsToShow * cardWidth + (mobileCardsToShow - 1) * gap;
-      setPageWidth(Math.min(mobileWidth, parentWidth));
+    // Get the first card to measure
+    const firstCard = scrollContainerRef.current.children[0];
+    if (!firstCard) {
+      setPageWidth(parentWidth);
       return;
     }
 
-    const firstCard =
-      scrollContainerRef.current.children[0];
-
-    if (!firstCard) return;
-
     const cardWidth = firstCard.offsetWidth;
 
-    const maxFit = Math.floor(
-      (parentWidth + gap) / (cardWidth + gap)
-    );
+    // Determine how many cards to show based on screen size
+    const isMobileDevice = window.innerWidth < 640;
+    const cardsToShow = isMobileDevice ? 4 : Math.min(CARDS_PER_VIEW, Math.floor((parentWidth + gap) / (cardWidth + gap)));
 
-    const cardsToShow = Math.max(
-      1,
-      Math.min(CARDS_PER_VIEW, maxFit)
-    );
-
-    const width =
-      cardsToShow * cardWidth +
-      (cardsToShow - 1) * gap;
-
+    const width = cardsToShow * cardWidth + (cardsToShow - 1) * gap;
     setPageWidth(width);
   };
 
@@ -1792,44 +743,48 @@ export default function Categories() {
     });
   };
 
-  // Resize + scroll listeners
+  // Resize + scroll listeners - FIXED
   useEffect(() => {
-    const container =
-      scrollContainerRef.current;
+    if (!scrollContainerRef.current) return;
 
-    if (!container) return;
-
-    calculatePageWidth();
-
-    container.addEventListener(
-      'scroll',
-      checkScroll
-    );
-
-    checkScroll();
-
-    const handleResize = () => {
+    // Initial calculations
+    const timeoutId = setTimeout(() => {
       calculatePageWidth();
       checkScroll();
+    }, 100);
+
+    // Debounced resize handler
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        calculatePageWidth();
+        checkScroll();
+      }, 150);
     };
 
-    window.addEventListener(
-      'resize',
-      handleResize
-    );
+    const container = scrollContainerRef.current;
+    container.addEventListener('scroll', checkScroll);
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      container.removeEventListener(
-        'scroll',
-        checkScroll
-      );
-
-      window.removeEventListener(
-        'resize',
-        handleResize
-      );
+      clearTimeout(timeoutId);
+      clearTimeout(resizeTimeout);
+      container.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, [categories]);
+
+  // Recalculate when isMobile changes
+  useEffect(() => {
+    if (!isLoading && categories.length > 0) {
+      setTimeout(() => {
+        calculatePageWidth();
+        checkScroll();
+      }, 50);
+    }
+  }, [isMobile, isLoading, categories.length]);
 
   // Loading state
   if (isLoading) {

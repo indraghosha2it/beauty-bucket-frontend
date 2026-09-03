@@ -1,4 +1,5 @@
 
+
 // 'use client';
 
 // import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -38,6 +39,10 @@
 // } from 'lucide-react';
 // import { toast } from 'sonner';
 
+// // ========== FONT CONSTANTS - BEAUTY BUCKET STYLE ==========
+// const FONT_FAMILY_SERIF = "'Playfair Display', Georgia, serif";
+// const FONT_FAMILY_CURSIVE = "'Courgette', cursive";
+
 // // Helper functions
 // const formatCurrency = (amount) => {
 //   return new Intl.NumberFormat('en-US', {
@@ -55,17 +60,18 @@
 //   });
 // };
 
+// // ========== UPDATED: GET STATUS COLOR - BEAUTY BUCKET STYLE ==========
 // const getStatusColor = (status) => {
 //   const colors = {
-//     placed: 'bg-blue-50 text-blue-700',
-//     follow_up: 'bg-yellow-100 text-yellow-800',
-//     accepted: 'bg-blue-100 text-blue-800',
-//     processing: 'bg-indigo-100 text-indigo-800',
-//     shipped: 'bg-purple-100 text-purple-800',
-//     delivered: 'bg-green-100 text-green-800',
-//     cancelled: 'bg-rose-100 text-rose-800'
+//     placed: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
+//     follow_up: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
+//     accepted: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
+//     processing: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
+//     shipped: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
+//     delivered: 'bg-[#EE4275]/10 text-[#EE4275] border border-[#EE4275]/20',
+//     cancelled: 'bg-red-50 text-red-600 border border-red-200'
 //   };
-//   return colors[status] || 'bg-gray-100 text-gray-800';
+//   return colors[status] || 'bg-gray-100 text-gray-800 border border-gray-200';
 // };
 
 // const getStatusLabel = (status) => {
@@ -83,11 +89,11 @@
 
 // const getReviewStatusBadge = (status) => {
 //   if (status === 'approved') {
-//     return <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">Approved</span>;
+//     return <span className="text-xs px-2 py-1 rounded-full bg-[#EE4275]/10 text-[#EE4275] border border-[#F7C7D3]/30">Approved</span>;
 //   } else if (status === 'pending') {
-//     return <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">Pending</span>;
+//     return <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 border border-yellow-200">Pending</span>;
 //   } else if (status === 'rejected') {
-//     return <span className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Rejected</span>;
+//     return <span className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700 border border-red-200">Rejected</span>;
 //   }
 //   return null;
 // };
@@ -98,57 +104,57 @@
 //   return text.substring(0, limit) + '...';
 // };
 
-// // Order Card Component
+// // Order Card Component - Beauty Bucket Style
 // const OrderCard = ({ order, copyOrderId }) => (
-//   <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-300">
-//     <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+//   <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-[#F7C7D3]/30 hover:shadow-[0_8px_25px_rgba(238,66,117,0.12)] hover:border-[#EE4275]/50 transition-all duration-300">
+//     <div className="bg-[#FFF5F6] px-4 py-3 border-b border-[#F7C7D3]/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
 //       <div className="flex items-center gap-4 flex-wrap">
 //         <div>
-//           <p className="text-xs text-gray-500">Order ID</p>
+//           <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Order ID</p>
 //           <div className="flex items-center gap-2">
-//             <p className="text-sm font-medium text-gray-900">{order.orderNumber}</p>
-//             <button onClick={() => copyOrderId(order.orderNumber)} className="text-blue-600 hover:text-blue-700 transition-colors">
+//             <p className="text-sm font-medium text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{order.orderNumber}</p>
+//             <button onClick={() => copyOrderId(order.orderNumber)} className="text-[#EE4275] hover:text-[#ca4f74] transition-colors">
 //               <Copy className="h-3 w-3" />
 //             </button>
 //           </div>
 //         </div>
 //         <div>
-//           <p className="text-xs text-gray-500">Order Date</p>
-//           <p className="text-sm text-gray-900">{formatDate(order.createdAt)}</p>
+//           <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Order Date</p>
+//           <p className="text-sm text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatDate(order.createdAt)}</p>
 //         </div>
 //         <div>
-//           <p className="text-xs text-gray-500">Total Amount</p>
-//           <p className="text-sm font-semibold text-blue-600">{formatCurrency(order.total)}</p>
+//           <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Amount</p>
+//           <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatCurrency(order.total)}</p>
 //         </div>
 //       </div>
 //       <div className="flex items-center gap-2">
-//         <span className={`text-xs px-2 py-1 rounded-full flex items-center gap-1 ${getStatusColor(order.orderStatus)}`}>
+//         <span className={`text-xs px-2 py-1 rounded-full flex items-center gap-1 ${getStatusColor(order.orderStatus)}`} style={{ fontFamily: FONT_FAMILY_SERIF }}>
 //           {getStatusLabel(order.orderStatus)}
 //         </span>
 //       </div>
 //     </div>
     
-//     <div className="divide-y divide-gray-100">
+//     <div className="divide-y divide-[#F7C7D3]/20">
 //       {order.items?.slice(0, 3).map((item, idx) => (
-//         <div key={idx} className="px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors">
+//         <div key={idx} className="px-4 py-3 flex items-center gap-3 hover:bg-[#FFF5F6] transition-colors">
 //           {item.image ? (
-//             <img src={item.image} alt={item.productName} className="w-12 h-12 rounded-lg object-cover border border-gray-200" />
+//             <img src={item.image} alt={item.productName} className="w-12 h-12 rounded-lg object-cover border border-[#F7C7D3]/30" />
 //           ) : (
-//             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center border border-gray-200">
-//               <Package className="h-6 w-6 text-blue-600" />
+//             <div className="w-12 h-12 bg-[#FFF5F6] rounded-lg flex items-center justify-center border border-[#F7C7D3]/30">
+//               <Package className="h-6 w-6 text-[#EE4275]" />
 //             </div>
 //           )}
 //           <div className="flex-1">
-//             <p className="font-medium text-gray-800 text-sm">{item.productName}</p>
-//             <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
+//             <p className="font-medium text-[#2D1B2E] text-sm" style={{ fontFamily: FONT_FAMILY_SERIF }}>{item.productName}</p>
+//             <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Qty: {item.quantity}</p>
 //           </div>
 //           <div className="text-right">
-//             <p className="font-semibold text-blue-600 text-sm">{formatCurrency(item.discountPrice || item.regularPrice)}</p>
+//             <p className="font-semibold text-[#EE4275] text-sm" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatCurrency(item.discountPrice || item.regularPrice)}</p>
 //           </div>
 //         </div>
 //       ))}
 //       {order.items?.length > 3 && (
-//         <div className="px-4 py-2 text-center text-xs text-blue-600 bg-gray-50">
+//         <div className="px-4 py-2 text-center text-xs text-[#EE4275] bg-[#FFF5F6]">
 //           +{order.items.length - 3} more items
 //         </div>
 //       )}
@@ -156,27 +162,27 @@
 //   </div>
 // );
 
-// // Review Card Component
+// // Review Card Component - Beauty Bucket Style
 // const ReviewCard = ({ review }) => (
-//   <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-200 hover:shadow-md hover:border-blue-300 transition-all duration-300">
+//   <div className="bg-white rounded-xl shadow-sm p-4 border border-[#F7C7D3]/30 hover:shadow-[0_8px_25px_rgba(238,66,117,0.12)] hover:border-[#EE4275]/50 transition-all duration-300">
 //     <div className="flex justify-between items-start mb-3 flex-wrap gap-2">
 //       <div>
-//         <h3 className="font-semibold text-gray-900">{review.productName}</h3>
-//         <p className="text-xs text-gray-500">{formatDate(review.createdAt)}</p>
+//         <h3 className="font-semibold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.productName}</h3>
+//         <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatDate(review.createdAt)}</p>
 //       </div>
 //       <div className="flex items-center gap-2">
 //         <div className="flex gap-0.5">
 //           {[...Array(5)].map((_, i) => (
-//             <Star key={i} className={`h-3.5 w-3.5 ${i < review.rating ? 'text-blue-600 fill-blue-600' : 'text-gray-300'}`} />
+//             <Star key={i} className={`h-3.5 w-3.5 ${i < review.rating ? 'text-[#EE4275] fill-[#EE4275]' : 'text-gray-300'}`} />
 //           ))}
 //         </div>
 //         {getReviewStatusBadge(review.status)}
 //       </div>
 //     </div>
 //     {review.title && (
-//       <p className="font-medium text-gray-700 text-sm mb-1">{review.title}</p>
+//       <p className="font-medium text-gray-700 text-sm mb-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.title}</p>
 //     )}
-//     <p className="text-gray-600 text-sm line-clamp-2">{review.comment}</p>
+//     <p className="text-gray-600 text-sm line-clamp-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.comment}</p>
 //   </div>
 // );
 
@@ -457,14 +463,14 @@
 //     }
 //   };
 
-//   // ✅ Run filter whenever data is loaded OR filter settings change
+//   // Run filter whenever data is loaded OR filter settings change
 //   useEffect(() => {
 //     if (dataLoaded) {
 //       filterOrdersAndReviews();
 //     }
 //   }, [dataLoaded, filterOrdersAndReviews]);
 
-//   // ✅ Also run filter when filter settings change (after initial load)
+//   // Also run filter when filter settings change (after initial load)
 //   useEffect(() => {
 //     if (dataLoaded) {
 //       filterOrdersAndReviews();
@@ -521,9 +527,9 @@
 //     return (
 //       <div className="flex items-center justify-center min-h-screen bg-white">
 //         <div className="text-center">
-//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-//           <p className="mt-4 text-gray-600 font-medium">Loading your dashboard...</p>
-//           <Sparkles className="w-5 h-5 text-blue-600 mx-auto mt-2 animate-pulse" />
+//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#EE4275] mx-auto"></div>
+//           <p className="mt-4 text-gray-600 font-medium" style={{ fontFamily: FONT_FAMILY_SERIF }}>Loading your dashboard...</p>
+//           <Sparkles className="w-5 h-5 text-[#EE4275] mx-auto mt-2 animate-pulse" />
 //         </div>
 //       </div>
 //     );
@@ -532,12 +538,12 @@
 //   if (error) {
 //     return (
 //       <div className="flex items-center justify-center min-h-screen bg-white px-4">
-//         <div className="text-center bg-white p-6 rounded-xl max-w-md w-full shadow-lg border border-gray-200">
+//         <div className="text-center bg-white p-6 rounded-xl max-w-md w-full shadow-lg border border-[#F7C7D3]/30">
 //           <XCircle className="h-12 w-12 text-rose-500 mx-auto mb-4" />
-//           <p className="text-rose-600">{error}</p>
+//           <p className="text-rose-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{error}</p>
 //           <button
 //             onClick={loadDashboardData}
-//             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg"
+//             className="mt-4 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300"
 //           >
 //             Try Again
 //           </button>
@@ -550,22 +556,22 @@
 //   const displayStats = filteredStats;
 
 //   return (
-//     <div className="min-h-screen bg-white">
+//     <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF5F6]/30 to-white">
 //       {/* Header */}
-//       <div className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+//       <div className="bg-white border-b border-[#F7C7D3]/30 sticky top-0 z-10 shadow-sm">
 //         <div className="px-4 sm:px-6 py-4">
 //           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 //             <div>
 //               <div className="flex items-center gap-3">
-//                 <div className="p-2 bg-blue-600 rounded-xl shadow-md shadow-blue-200">
+//                 <div className="p-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl shadow-md shadow-[#EE4275]/20">
 //                   <Zap className="w-5 h-5 text-white" />
 //                 </div>
-//                 <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+//                 <h1 className="text-xl sm:text-2xl font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>
 //                   My Dashboard
 //                 </h1>
 //               </div>
-//               <p className="text-gray-500 text-sm mt-1 ml-11">
-//                 Welcome back, <span className="font-semibold text-blue-600">{user?.contactPerson || 'Customer'}</span>! Here's your activity summary.
+//               <p className="text-gray-500 text-sm mt-1 ml-11" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+//                 Welcome back, <span className="font-semibold text-[#EE4275]">{user?.contactPerson || 'Customer'}</span>! Here's your activity summary.
 //               </p>
 //             </div>
 //           </div>
@@ -574,17 +580,18 @@
 
 //       <div className="p-4 sm:p-6">
 //         {/* Filter Section */}
-//         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 mb-6">
+//         <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-4 mb-6">
 //           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 //             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
-//               <div className="flex gap-2 bg-gray-50 rounded-lg p-1 w-full sm:w-auto border border-gray-200">
+//               <div className="flex gap-2 bg-[#FFF5F6] rounded-lg p-1 w-full sm:w-auto border border-[#F7C7D3]/30">
 //                 <button
 //                   onClick={() => setFilterType('month')}
 //                   className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
 //                     filterType === 'month' 
-//                       ? 'bg-blue-600 text-white shadow-md shadow-blue-200' 
-//                       : 'text-gray-600 hover:bg-gray-100'
+//                       ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' 
+//                       : 'text-gray-600 hover:bg-[#F7C7D3]/20'
 //                   }`}
+//                   style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                 >
 //                   Monthly
 //                 </button>
@@ -592,9 +599,10 @@
 //                   onClick={() => setFilterType('year')}
 //                   className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
 //                     filterType === 'year' 
-//                       ? 'bg-blue-600 text-white shadow-md shadow-blue-200' 
-//                       : 'text-gray-600 hover:bg-gray-100'
+//                       ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' 
+//                       : 'text-gray-600 hover:bg-[#F7C7D3]/20'
 //                   }`}
+//                   style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                 >
 //                   Yearly
 //                 </button>
@@ -605,7 +613,8 @@
 //                   <select
 //                     value={selectedMonth}
 //                     onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-//                     className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-sm"
+//                     className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
+//                     style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                   >
 //                     {months.map(month => (
 //                       <option key={month.value} value={month.value}>{month.name}</option>
@@ -614,7 +623,8 @@
 //                   <select
 //                     value={selectedYear}
 //                     onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                     className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-sm"
+//                     className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
+//                     style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                   >
 //                     {availableYears.map(year => (
 //                       <option key={year} value={year}>{year}</option>
@@ -627,7 +637,8 @@
 //                 <select
 //                   value={selectedYear}
 //                   onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-//                   className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white text-sm"
+//                   className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
+//                   style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                 >
 //                   {availableYears.map(year => (
 //                     <option key={year} value={year}>{year}</option>
@@ -637,22 +648,22 @@
 //             </div>
 
 //             <div className="flex items-center gap-2 w-full sm:w-auto justify-start sm:justify-end">
-//               <Calendar className="h-5 w-5 text-blue-600 flex-shrink-0" />
-//               <span className="text-sm text-gray-600">
-//                 Showing for: <strong className="text-blue-600">{getFilterLabel()}</strong>
+//               <Calendar className="h-5 w-5 text-[#EE4275] flex-shrink-0" />
+//               <span className="text-sm text-gray-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+//                 Showing for: <strong className="text-[#EE4275]">{getFilterLabel()}</strong>
 //               </span>
 //             </div>
 //           </div>
 //         </div>
 
-//         {/* Stats Cards */}
+//         {/* Stats Cards - Beauty Bucket Style */}
 //         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-//           <div className="bg-blue-600 rounded-xl shadow-lg shadow-blue-200 p-4 text-white transform hover:scale-105 transition-all duration-300">
+//           <div className="bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl shadow-lg shadow-[#EE4275]/20 p-4 text-white transform hover:scale-105 transition-all duration-300">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-blue-100 text-xs">Total Orders</p>
-//                 <p className="text-2xl font-bold">{displayStats.totalOrders}</p>
-//                 <p className="text-blue-200 text-[10px] mt-1">in {getFilterLabel()}</p>
+//                 <p className="text-white/80 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Orders</p>
+//                 <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.totalOrders}</p>
+//                 <p className="text-white/70 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //               <ShoppingBag className="h-8 w-8 opacity-80" />
 //             </div>
@@ -661,9 +672,9 @@
 //           <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-lg shadow-yellow-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-yellow-100 text-xs">Placed</p>
-//                 <p className="text-2xl font-bold">{displayStats.placedOrders}</p>
-//                 <p className="text-yellow-100 text-[10px] mt-1">in {getFilterLabel()}</p>
+//                 <p className="text-yellow-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Placed</p>
+//                 <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.placedOrders}</p>
+//                 <p className="text-yellow-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //               <Clock className="h-8 w-8 opacity-80" />
 //             </div>
@@ -672,9 +683,9 @@
 //           <div className="bg-gradient-to-r from-indigo-400 to-indigo-500 rounded-xl shadow-lg shadow-indigo-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-indigo-100 text-xs">In Progress</p>
-//                 <p className="text-2xl font-bold">{displayStats.processingOrders}</p>
-//                 <p className="text-indigo-100 text-[10px] mt-1">in {getFilterLabel()}</p>
+//                 <p className="text-indigo-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>In Progress</p>
+//                 <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.processingOrders}</p>
+//                 <p className="text-indigo-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //               <Truck className="h-8 w-8 opacity-80" />
 //             </div>
@@ -683,81 +694,82 @@
 //           <div className="bg-gradient-to-r from-rose-400 to-rose-500 rounded-xl shadow-lg shadow-rose-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
 //             <div className="flex items-center justify-between">
 //               <div>
-//                 <p className="text-rose-100 text-xs">Cancelled</p>
-//                 <p className="text-2xl font-bold">{displayStats.cancelledOrders}</p>
-//                 <p className="text-rose-100 text-[10px] mt-1">in {getFilterLabel()}</p>
+//                 <p className="text-rose-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Cancelled</p>
+//                 <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.cancelledOrders}</p>
+//                 <p className="text-rose-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //               <XCircle className="h-8 w-8 opacity-80" />
 //             </div>
 //           </div>
 //         </div>
 
-//         {/* Review Stats Summary */}
+//         {/* Review Stats Summary - Beauty Bucket Style */}
 //         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-//           <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
+//           <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-4">
 //             <div className="flex items-center gap-3">
-//               <div className="p-2 bg-blue-50 rounded-lg">
-//                 <MessageSquare className="h-5 w-5 text-blue-600" />
+//               <div className="p-2 bg-[#FFF5F6] rounded-lg">
+//                 <MessageSquare className="h-5 w-5 text-[#EE4275]" />
 //               </div>
 //               <div>
-//                 <p className="text-xs text-gray-500">Total Reviews</p>
-//                 <p className="text-xl font-bold text-gray-900">{displayStats.totalReviews}</p>
-//                 <p className="text-[10px] text-gray-400">in {getFilterLabel()}</p>
+//                 <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Reviews</p>
+//                 <p className="text-xl font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.totalReviews}</p>
+//                 <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl shadow-lg border border-green-200 p-4">
+//           <div className="bg-white rounded-xl shadow-sm border border-[#EE4275]/20 p-4">
 //             <div className="flex items-center gap-3">
-//               <div className="p-2 bg-green-100 rounded-lg">
-//                 <CheckCircle className="h-5 w-5 text-green-600" />
+//               <div className="p-2 bg-[#EE4275]/10 rounded-lg">
+//                 <CheckCircle className="h-5 w-5 text-[#EE4275]" />
 //               </div>
 //               <div>
-//                 <p className="text-xs text-gray-500">Approved</p>
-//                 <p className="text-xl font-bold text-green-600">{displayStats.approvedReviews}</p>
-//                 <p className="text-[10px] text-gray-400">in {getFilterLabel()}</p>
+//                 <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Approved</p>
+//                 <p className="text-xl font-bold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.approvedReviews}</p>
+//                 <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl shadow-lg border border-yellow-200 p-4">
+//           <div className="bg-white rounded-xl shadow-sm border border-yellow-200 p-4">
 //             <div className="flex items-center gap-3">
 //               <div className="p-2 bg-yellow-100 rounded-lg">
 //                 <Clock className="h-5 w-5 text-yellow-600" />
 //               </div>
 //               <div>
-//                 <p className="text-xs text-gray-500">Pending</p>
-//                 <p className="text-xl font-bold text-yellow-600">{displayStats.pendingReviews}</p>
-//                 <p className="text-[10px] text-gray-400">in {getFilterLabel()}</p>
+//                 <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Pending</p>
+//                 <p className="text-xl font-bold text-yellow-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.pendingReviews}</p>
+//                 <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //             </div>
 //           </div>
-//           <div className="bg-white rounded-xl shadow-lg border border-rose-200 p-4">
+//           <div className="bg-white rounded-xl shadow-sm border border-rose-200 p-4">
 //             <div className="flex items-center gap-3">
 //               <div className="p-2 bg-rose-100 rounded-lg">
 //                 <XCircle className="h-5 w-5 text-rose-600" />
 //               </div>
 //               <div>
-//                 <p className="text-xs text-gray-500">Rejected</p>
-//                 <p className="text-xl font-bold text-rose-600">{displayStats.rejectedReviews}</p>
-//                 <p className="text-[10px] text-gray-400">in {getFilterLabel()}</p>
+//                 <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Rejected</p>
+//                 <p className="text-xl font-bold text-rose-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.rejectedReviews}</p>
+//                 <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
 //               </div>
 //             </div>
 //           </div>
 //         </div>
 
 //         {/* Tabs */}
-//         <div className="bg-white rounded-xl shadow-lg border border-gray-200 mb-6">
-//           <div className="border-b border-gray-200">
+//         <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 mb-6">
+//           <div className="border-b border-[#F7C7D3]/30">
 //             <nav className="flex flex-wrap gap-2 px-4">
 //               <button
 //                 onClick={() => setActiveTab('orders')}
 //                 className={`px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 ${
 //                   activeTab === 'orders'
-//                     ? 'text-blue-600 border-blue-600'
-//                     : 'text-gray-500 border-transparent hover:text-blue-600 hover:border-blue-300'
+//                     ? 'text-[#EE4275] border-[#EE4275]'
+//                     : 'text-gray-500 border-transparent hover:text-[#EE4275] hover:border-[#F7C7D3]/50'
 //                 }`}
+//                 style={{ fontFamily: FONT_FAMILY_SERIF }}
 //               >
 //                 <div className="flex items-center gap-2">
-//                   <ShoppingBag className={`h-4 w-4 ${activeTab === 'orders' ? 'text-blue-600' : 'text-gray-400'}`} />
+//                   <ShoppingBag className={`h-4 w-4 ${activeTab === 'orders' ? 'text-[#EE4275]' : 'text-gray-400'}`} />
 //                   My Orders 
 //                 </div>
 //               </button>
@@ -765,12 +777,13 @@
 //                 onClick={() => setActiveTab('reviews')}
 //                 className={`px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 ${
 //                   activeTab === 'reviews'
-//                     ? 'text-blue-600 border-blue-600'
-//                     : 'text-gray-500 border-transparent hover:text-blue-600 hover:border-blue-300'
+//                     ? 'text-[#EE4275] border-[#EE4275]'
+//                     : 'text-gray-500 border-transparent hover:text-[#EE4275] hover:border-[#F7C7D3]/50'
 //                 }`}
+//                 style={{ fontFamily: FONT_FAMILY_SERIF }}
 //               >
 //                 <div className="flex items-center gap-2">
-//                   <MessageSquare className={`h-4 w-4 ${activeTab === 'reviews' ? 'text-blue-600' : 'text-gray-400'}`} />
+//                   <MessageSquare className={`h-4 w-4 ${activeTab === 'reviews' ? 'text-[#EE4275]' : 'text-gray-400'}`} />
 //                   My Reviews ({displayStats.totalReviews})
 //                 </div>
 //               </button>
@@ -782,14 +795,15 @@
 //         {activeTab === 'orders' && (
 //           <div>
 //             <div className="flex justify-between items-center mb-4">
-//               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-//                 <ShoppingBag className="h-5 w-5 text-blue-600" />
+//               <h2 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+//                 <ShoppingBag className="h-5 w-5 text-[#EE4275]" />
 //                 Recent Orders ({getFilterLabel()})
 //               </h2>
 //               {filteredOrders.length > 0 && (
 //                 <button 
 //                   onClick={() => router.push('/customer/orders')}
-//                   className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-200"
+//                   className="text-[#EE4275] hover:text-[#ca4f74] text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-200"
+//                   style={{ fontFamily: FONT_FAMILY_SERIF }}
 //                 >
 //                   View All Orders →
 //                 </button>
@@ -797,11 +811,11 @@
 //             </div>
 //             <div className="space-y-4">
 //               {filteredOrders.length === 0 ? (
-//                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-12 text-center">
-//                   <ShoppingBag className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-//                   <h3 className="text-lg font-medium text-gray-900 mb-2">No orders found</h3>
-//                   <p className="text-gray-500 mb-4">You haven't placed any orders in {getFilterLabel()}.</p>
-//                   <button onClick={() => router.push('/products')} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg">
+//                 <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-12 text-center">
+//                   <ShoppingBag className="h-16 w-16 text-[#F7C7D3] mx-auto mb-4" />
+//                   <h3 className="text-lg font-medium text-[#2D1B2E] mb-2" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>No orders found</h3>
+//                   <p className="text-gray-500 mb-4" style={{ fontFamily: FONT_FAMILY_SERIF }}>You haven't placed any orders in {getFilterLabel()}.</p>
+//                   <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300">
 //                     Start Shopping
 //                   </button>
 //                 </div>
@@ -822,23 +836,23 @@
 //         {activeTab === 'reviews' && (
 //           <div>
 //             <div className="flex justify-between items-center mb-4">
-//               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-//                 <MessageSquare className="h-5 w-5 text-blue-600" />
+//               <h2 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+//                 <MessageSquare className="h-5 w-5 text-[#EE4275]" />
 //                 My Reviews ({getFilterLabel()})
 //               </h2>
 //               {filteredReviews.length > 0 && (
-//                 <span className="text-sm text-gray-500">
+//                 <span className="text-sm text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>
 //                   {displayStats.approvedReviews} approved • {displayStats.pendingReviews} pending
 //                 </span>
 //               )}
 //             </div>
 //             <div className="space-y-4">
 //               {filteredReviews.length === 0 ? (
-//                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-12 text-center">
-//                   <MessageSquare className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-//                   <h3 className="text-lg font-medium text-gray-900 mb-2">No reviews found</h3>
-//                   <p className="text-gray-500 mb-4">You haven't written any reviews in {getFilterLabel()}.</p>
-//                   <button onClick={() => router.push('/products')} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg">
+//                 <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-12 text-center">
+//                   <MessageSquare className="h-16 w-16 text-[#F7C7D3] mx-auto mb-4" />
+//                   <h3 className="text-lg font-medium text-[#2D1B2E] mb-2" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>No reviews found</h3>
+//                   <p className="text-gray-500 mb-4" style={{ fontFamily: FONT_FAMILY_SERIF }}>You haven't written any reviews in {getFilterLabel()}.</p>
+//                   <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300">
 //                     Browse Products
 //                   </button>
 //                 </div>
@@ -854,6 +868,7 @@
 //     </div>
 //   );
 // }
+
 
 'use client';
 
@@ -895,8 +910,8 @@ import {
 import { toast } from 'sonner';
 
 // ========== FONT CONSTANTS - BEAUTY BUCKET STYLE ==========
-const FONT_FAMILY_SERIF = "'Playfair Display', Georgia, serif";
-const FONT_FAMILY_CURSIVE = "'Courgette', cursive";
+const FONT_FAMILY = "'Raleway', 'Inter', sans-serif";
+const FONT_FAMILY_PLAYFAIR = "'Playfair Display', 'Georgia', serif";
 
 // Helper functions
 const formatCurrency = (amount) => {
@@ -915,15 +930,15 @@ const formatDate = (date) => {
   });
 };
 
-// ========== UPDATED: GET STATUS COLOR - BEAUTY BUCKET STYLE ==========
+// ========== UPDATED: GET STATUS COLOR - GREEN THEME ==========
 const getStatusColor = (status) => {
   const colors = {
-    placed: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
-    follow_up: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
-    accepted: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
-    processing: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
-    shipped: 'bg-[#FFF5F6] text-[#EE4275] border border-[#F7C7D3]/30',
-    delivered: 'bg-[#EE4275]/10 text-[#EE4275] border border-[#EE4275]/20',
+    placed: 'bg-[#f0f5ed] text-[#8B9D83] border border-[#c5d5be]/30',
+    follow_up: 'bg-[#f0f5ed] text-[#8B9D83] border border-[#c5d5be]/30',
+    accepted: 'bg-[#f0f5ed] text-[#8B9D83] border border-[#c5d5be]/30',
+    processing: 'bg-[#f0f5ed] text-[#8B9D83] border border-[#c5d5be]/30',
+    shipped: 'bg-[#f0f5ed] text-[#8B9D83] border border-[#c5d5be]/30',
+    delivered: 'bg-[#8B9D83]/10 text-[#8B9D83] border border-[#8B9D83]/20',
     cancelled: 'bg-red-50 text-red-600 border border-red-200'
   };
   return colors[status] || 'bg-gray-100 text-gray-800 border border-gray-200';
@@ -944,7 +959,7 @@ const getStatusLabel = (status) => {
 
 const getReviewStatusBadge = (status) => {
   if (status === 'approved') {
-    return <span className="text-xs px-2 py-1 rounded-full bg-[#EE4275]/10 text-[#EE4275] border border-[#F7C7D3]/30">Approved</span>;
+    return <span className="text-xs px-2 py-1 rounded-full bg-[#8B9D83]/10 text-[#8B9D83] border border-[#c5d5be]/30">Approved</span>;
   } else if (status === 'pending') {
     return <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 border border-yellow-200">Pending</span>;
   } else if (status === 'rejected') {
@@ -959,57 +974,57 @@ const truncateText = (text, limit = 25) => {
   return text.substring(0, limit) + '...';
 };
 
-// Order Card Component - Beauty Bucket Style
+// Order Card Component - Green Theme
 const OrderCard = ({ order, copyOrderId }) => (
-  <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-[#F7C7D3]/30 hover:shadow-[0_8px_25px_rgba(238,66,117,0.12)] hover:border-[#EE4275]/50 transition-all duration-300">
-    <div className="bg-[#FFF5F6] px-4 py-3 border-b border-[#F7C7D3]/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+  <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-[#c5d5be]/30 hover:shadow-[0_8px_25px_rgba(139,157,131,0.12)] hover:border-[#8B9D83]/50 transition-all duration-300">
+    <div className="bg-[#f0f5ed] px-4 py-3 border-b border-[#c5d5be]/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
       <div className="flex items-center gap-4 flex-wrap">
         <div>
-          <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Order ID</p>
+          <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Order ID</p>
           <div className="flex items-center gap-2">
-            <p className="text-sm font-medium text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{order.orderNumber}</p>
-            <button onClick={() => copyOrderId(order.orderNumber)} className="text-[#EE4275] hover:text-[#ca4f74] transition-colors">
+            <p className="text-sm font-medium text-[#263b32]" style={{ fontFamily: FONT_FAMILY }}>{order.orderNumber}</p>
+            <button onClick={() => copyOrderId(order.orderNumber)} className="text-[#8B9D83] hover:text-[#6b7d63] transition-colors">
               <Copy className="h-3 w-3" />
             </button>
           </div>
         </div>
         <div>
-          <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Order Date</p>
-          <p className="text-sm text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatDate(order.createdAt)}</p>
+          <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Order Date</p>
+          <p className="text-sm text-[#263b32]" style={{ fontFamily: FONT_FAMILY }}>{formatDate(order.createdAt)}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Amount</p>
-          <p className="text-sm font-semibold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatCurrency(order.total)}</p>
+          <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Total Amount</p>
+          <p className="text-sm font-semibold text-[#8B9D83]" style={{ fontFamily: FONT_FAMILY }}>{formatCurrency(order.total)}</p>
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <span className={`text-xs px-2 py-1 rounded-full flex items-center gap-1 ${getStatusColor(order.orderStatus)}`} style={{ fontFamily: FONT_FAMILY_SERIF }}>
+        <span className={`text-xs px-2 py-1 rounded-full flex items-center gap-1 ${getStatusColor(order.orderStatus)}`} style={{ fontFamily: FONT_FAMILY }}>
           {getStatusLabel(order.orderStatus)}
         </span>
       </div>
     </div>
     
-    <div className="divide-y divide-[#F7C7D3]/20">
+    <div className="divide-y divide-[#c5d5be]/20">
       {order.items?.slice(0, 3).map((item, idx) => (
-        <div key={idx} className="px-4 py-3 flex items-center gap-3 hover:bg-[#FFF5F6] transition-colors">
+        <div key={idx} className="px-4 py-3 flex items-center gap-3 hover:bg-[#f0f5ed] transition-colors">
           {item.image ? (
-            <img src={item.image} alt={item.productName} className="w-12 h-12 rounded-lg object-cover border border-[#F7C7D3]/30" />
+            <img src={item.image} alt={item.productName} className="w-12 h-12 rounded-lg object-cover border border-[#c5d5be]/30" />
           ) : (
-            <div className="w-12 h-12 bg-[#FFF5F6] rounded-lg flex items-center justify-center border border-[#F7C7D3]/30">
-              <Package className="h-6 w-6 text-[#EE4275]" />
+            <div className="w-12 h-12 bg-[#f0f5ed] rounded-lg flex items-center justify-center border border-[#c5d5be]/30">
+              <Package className="h-6 w-6 text-[#8B9D83]" />
             </div>
           )}
           <div className="flex-1">
-            <p className="font-medium text-[#2D1B2E] text-sm" style={{ fontFamily: FONT_FAMILY_SERIF }}>{item.productName}</p>
-            <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Qty: {item.quantity}</p>
+            <p className="font-medium text-[#263b32] text-sm" style={{ fontFamily: FONT_FAMILY }}>{item.productName}</p>
+            <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Qty: {item.quantity}</p>
           </div>
           <div className="text-right">
-            <p className="font-semibold text-[#EE4275] text-sm" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatCurrency(item.discountPrice || item.regularPrice)}</p>
+            <p className="font-semibold text-[#8B9D83] text-sm" style={{ fontFamily: FONT_FAMILY }}>{formatCurrency(item.discountPrice || item.regularPrice)}</p>
           </div>
         </div>
       ))}
       {order.items?.length > 3 && (
-        <div className="px-4 py-2 text-center text-xs text-[#EE4275] bg-[#FFF5F6]">
+        <div className="px-4 py-2 text-center text-xs text-[#8B9D83] bg-[#f0f5ed]">
           +{order.items.length - 3} more items
         </div>
       )}
@@ -1017,27 +1032,27 @@ const OrderCard = ({ order, copyOrderId }) => (
   </div>
 );
 
-// Review Card Component - Beauty Bucket Style
+// Review Card Component - Green Theme
 const ReviewCard = ({ review }) => (
-  <div className="bg-white rounded-xl shadow-sm p-4 border border-[#F7C7D3]/30 hover:shadow-[0_8px_25px_rgba(238,66,117,0.12)] hover:border-[#EE4275]/50 transition-all duration-300">
+  <div className="bg-white rounded-xl shadow-sm p-4 border border-[#c5d5be]/30 hover:shadow-[0_8px_25px_rgba(139,157,131,0.12)] hover:border-[#8B9D83]/50 transition-all duration-300">
     <div className="flex justify-between items-start mb-3 flex-wrap gap-2">
       <div>
-        <h3 className="font-semibold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.productName}</h3>
-        <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>{formatDate(review.createdAt)}</p>
+        <h3 className="font-medium text-[#263b32]" style={{ fontFamily: FONT_FAMILY }}>{review.productName}</h3>
+        <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>{formatDate(review.createdAt)}</p>
       </div>
       <div className="flex items-center gap-2">
         <div className="flex gap-0.5">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className={`h-3.5 w-3.5 ${i < review.rating ? 'text-[#EE4275] fill-[#EE4275]' : 'text-gray-300'}`} />
+            <Star key={i} className={`h-3.5 w-3.5 ${i < review.rating ? 'text-[#8B9D83] fill-[#8B9D83]' : 'text-gray-300'}`} />
           ))}
         </div>
         {getReviewStatusBadge(review.status)}
       </div>
     </div>
     {review.title && (
-      <p className="font-medium text-gray-700 text-sm mb-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.title}</p>
+      <p className="font-medium text-gray-700 text-sm mb-1" style={{ fontFamily: FONT_FAMILY }}>{review.title}</p>
     )}
-    <p className="text-gray-600 text-sm line-clamp-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>{review.comment}</p>
+    <p className="text-gray-600 text-sm line-clamp-2" style={{ fontFamily: FONT_FAMILY }}>{review.comment}</p>
   </div>
 );
 
@@ -1052,10 +1067,8 @@ export default function CustomerDashboard() {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [removingItems, setRemovingItems] = useState({});
   
-  // Track if initial data load is complete
   const [dataLoaded, setDataLoaded] = useState(false);
   
-  // Total stats (unfiltered - all time)
   const [stats, setStats] = useState({
     totalOrders: 0,
     placedOrders: 0,
@@ -1069,7 +1082,6 @@ export default function CustomerDashboard() {
     rejectedReviews: 0
   });
   
-  // Filtered stats (filtered by month/year)
   const [filteredStats, setFilteredStats] = useState({
     totalOrders: 0,
     placedOrders: 0,
@@ -1087,13 +1099,11 @@ export default function CustomerDashboard() {
   const [activeTab, setActiveTab] = useState('orders');
   const [error, setError] = useState(null);
   
-  // Filter states
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [filterType, setFilterType] = useState('month');
   const [availableYears, setAvailableYears] = useState([]);
   
-  // Ref to track if initial filter has been applied
   const initialFilterApplied = useRef(false);
 
   const months = [
@@ -1105,8 +1115,6 @@ export default function CustomerDashboard() {
     { value: 11, name: 'November' }, { value: 12, name: 'December' }
   ];
 
-  // ========== FETCH FUNCTIONS ==========
-  
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -1142,12 +1150,10 @@ export default function CustomerDashboard() {
         const userOrders = Array.isArray(response.data.data) ? response.data.data : [];
         setOrders(userOrders);
         
-        // Extract available years from orders
         const years = [...new Set(userOrders.map(order => new Date(order.createdAt).getFullYear()))];
         years.sort((a, b) => b - a);
         setAvailableYears(years.length ? years : [new Date().getFullYear()]);
         
-        // Calculate total order stats (unfiltered)
         const placed = userOrders.filter(o => o.orderStatus === 'placed').length;
         const processing = userOrders.filter(o => ['processing', 'shipped', 'out_for_delivery'].includes(o.orderStatus)).length;
         const delivered = userOrders.filter(o => o.orderStatus === 'delivered').length;
@@ -1184,7 +1190,6 @@ export default function CustomerDashboard() {
         const userReviews = Array.isArray(response.data.data) ? response.data.data : [];
         setReviews(userReviews);
         
-        // Calculate total review stats (unfiltered)
         const totalReviews = userReviews.length;
         const approvedReviews = userReviews.filter(r => r.status === 'approved').length;
         const pendingReviews = userReviews.filter(r => r.status === 'pending').length;
@@ -1233,13 +1238,9 @@ export default function CustomerDashboard() {
     }
   };
 
-  // ========== FILTER FUNCTION ==========
-  
   const filterOrdersAndReviews = useCallback(() => {
-    // If no data loaded yet, skip filtering
     if (!dataLoaded) return;
     
-    // Filter orders
     let filteredOrderList = [...orders];
     let filteredReviewList = [...reviews];
 
@@ -1253,14 +1254,12 @@ export default function CustomerDashboard() {
       }
     };
 
-    // Apply date filter
     filteredOrderList = filteredOrderList.filter(o => matchesFilter(o.createdAt));
     filteredReviewList = filteredReviewList.filter(r => matchesFilter(r.createdAt));
 
     setFilteredOrders(filteredOrderList);
     setFilteredReviews(filteredReviewList);
 
-    // Calculate filtered stats
     const placed = filteredOrderList.filter(o => o.orderStatus === 'placed').length;
     const processing = filteredOrderList.filter(o => ['processing', 'shipped', 'out_for_delivery'].includes(o.orderStatus)).length;
     const delivered = filteredOrderList.filter(o => o.orderStatus === 'delivered').length;
@@ -1269,7 +1268,6 @@ export default function CustomerDashboard() {
       .filter(o => o.paymentStatus === 'paid' && o.orderStatus === 'delivered')
       .reduce((sum, o) => sum + (o.total || 0), 0);
 
-    // Review stats
     const filteredTotalReviews = filteredReviewList.length;
     const filteredApproved = filteredReviewList.filter(r => r.status === 'approved').length;
     const filteredPending = filteredReviewList.filter(r => r.status === 'pending').length;
@@ -1289,9 +1287,6 @@ export default function CustomerDashboard() {
     });
   }, [orders, reviews, selectedYear, selectedMonth, filterType, dataLoaded]);
 
-  // ========== EFFECTS ==========
-  
-  // Load all data
   const loadDashboardData = async () => {
     setLoading(true);
     setError(null);
@@ -1300,14 +1295,12 @@ export default function CustomerDashboard() {
     try {
       await fetchUserProfile();
       
-      // Fetch all data concurrently
       await Promise.all([
         fetchUserOrders(),
         fetchUserReviews(),
         fetchWishlist()
       ]);
       
-      // Mark data as loaded - this will trigger the filter
       setDataLoaded(true);
       
     } catch (err) {
@@ -1318,27 +1311,22 @@ export default function CustomerDashboard() {
     }
   };
 
-  // Run filter whenever data is loaded OR filter settings change
   useEffect(() => {
     if (dataLoaded) {
       filterOrdersAndReviews();
     }
   }, [dataLoaded, filterOrdersAndReviews]);
 
-  // Also run filter when filter settings change (after initial load)
   useEffect(() => {
     if (dataLoaded) {
       filterOrdersAndReviews();
     }
   }, [selectedYear, selectedMonth, filterType, dataLoaded, filterOrdersAndReviews]);
 
-  // Initial load
   useEffect(() => {
     loadDashboardData();
   }, []);
 
-  // ========== HANDLERS ==========
-  
   const copyOrderId = (orderId) => {
     navigator.clipboard.writeText(orderId);
     toast.success('Order ID copied!');
@@ -1376,15 +1364,13 @@ export default function CustomerDashboard() {
     router.push('/');
   };
 
-  // ========== RENDER ==========
-  
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="flex items-center justify-center min-h-screen bg-[#f8f7f2]">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#EE4275] mx-auto"></div>
-          <p className="mt-4 text-gray-600 font-medium" style={{ fontFamily: FONT_FAMILY_SERIF }}>Loading your dashboard...</p>
-          <Sparkles className="w-5 h-5 text-[#EE4275] mx-auto mt-2 animate-pulse" />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B9D83] mx-auto"></div>
+          <p className="mt-4 text-[#53645a] font-medium" style={{ fontFamily: FONT_FAMILY }}>Loading your dashboard...</p>
+          <Sparkles className="w-5 h-5 text-[#8B9D83] mx-auto mt-2 animate-pulse" />
         </div>
       </div>
     );
@@ -1392,13 +1378,13 @@ export default function CustomerDashboard() {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white px-4">
-        <div className="text-center bg-white p-6 rounded-xl max-w-md w-full shadow-lg border border-[#F7C7D3]/30">
+      <div className="flex items-center justify-center min-h-screen bg-[#f8f7f2] px-4">
+        <div className="text-center bg-white p-6 rounded-xl max-w-md w-full shadow-lg border border-[#c5d5be]/30">
           <XCircle className="h-12 w-12 text-rose-500 mx-auto mb-4" />
-          <p className="text-rose-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{error}</p>
+          <p className="text-rose-600" style={{ fontFamily: FONT_FAMILY }}>{error}</p>
           <button
             onClick={loadDashboardData}
-            className="mt-4 px-4 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300"
+            className="mt-4 px-4 py-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white rounded-lg hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all duration-300"
           >
             Try Again
           </button>
@@ -1407,26 +1393,25 @@ export default function CustomerDashboard() {
     );
   }
 
-  // Use filteredStats directly
   const displayStats = filteredStats;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-[#FFF5F6]/30 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#f8f7f2] via-white to-[#f8f7f2]">
       {/* Header */}
-      <div className="bg-white border-b border-[#F7C7D3]/30 sticky top-0 z-10 shadow-sm">
+      <div className="bg-white border-b border-[#c5d5be]/30 sticky top-0 z-10 shadow-sm">
         <div className="px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl shadow-md shadow-[#EE4275]/20">
+                <div className="p-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] rounded-xl shadow-md shadow-[#8B9D83]/20">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
-                <h1 className="text-xl sm:text-2xl font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                <h1 className="text-xl sm:text-2xl font-light text-[#263b32]" style={{ fontFamily: FONT_FAMILY }}>
                   My Dashboard
                 </h1>
               </div>
-              <p className="text-gray-500 text-sm mt-1 ml-11" style={{ fontFamily: FONT_FAMILY_SERIF }}>
-                Welcome back, <span className="font-semibold text-[#EE4275]">{user?.contactPerson || 'Customer'}</span>! Here's your activity summary.
+              <p className="text-[#53645a] text-sm mt-1 ml-11" style={{ fontFamily: FONT_FAMILY }}>
+                Welcome back, <span className="font-medium text-[#8B9D83]">{user?.contactPerson || 'Customer'}</span>! Here's your activity summary.
               </p>
             </div>
           </div>
@@ -1434,19 +1419,19 @@ export default function CustomerDashboard() {
       </div>
 
       <div className="p-4 sm:p-6">
-        {/* Filter Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-4 mb-6">
+        {/* Filter Section - Green Theme */}
+        <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/30 p-4 mb-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
-              <div className="flex gap-2 bg-[#FFF5F6] rounded-lg p-1 w-full sm:w-auto border border-[#F7C7D3]/30">
+              <div className="flex gap-2 bg-[#f0f5ed] rounded-lg p-1 w-full sm:w-auto border border-[#c5d5be]/30">
                 <button
                   onClick={() => setFilterType('month')}
                   className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     filterType === 'month' 
-                      ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' 
-                      : 'text-gray-600 hover:bg-[#F7C7D3]/20'
+                      ? 'bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white shadow-md shadow-[#8B9D83]/20' 
+                      : 'text-[#53645a] hover:bg-[#c5d5be]/20'
                   }`}
-                  style={{ fontFamily: FONT_FAMILY_SERIF }}
+                  style={{ fontFamily: FONT_FAMILY }}
                 >
                   Monthly
                 </button>
@@ -1454,10 +1439,10 @@ export default function CustomerDashboard() {
                   onClick={() => setFilterType('year')}
                   className={`flex-1 sm:flex-none px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     filterType === 'year' 
-                      ? 'bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white shadow-md shadow-[#EE4275]/20' 
-                      : 'text-gray-600 hover:bg-[#F7C7D3]/20'
+                      ? 'bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white shadow-md shadow-[#8B9D83]/20' 
+                      : 'text-[#53645a] hover:bg-[#c5d5be]/20'
                   }`}
-                  style={{ fontFamily: FONT_FAMILY_SERIF }}
+                  style={{ fontFamily: FONT_FAMILY }}
                 >
                   Yearly
                 </button>
@@ -1468,8 +1453,8 @@ export default function CustomerDashboard() {
                   <select
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                    className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
-                    style={{ fontFamily: FONT_FAMILY_SERIF }}
+                    className="px-3 py-2 border border-[#c5d5be]/30 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent bg-white text-sm text-[#263b32]"
+                    style={{ fontFamily: FONT_FAMILY }}
                   >
                     {months.map(month => (
                       <option key={month.value} value={month.value}>{month.name}</option>
@@ -1478,8 +1463,8 @@ export default function CustomerDashboard() {
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                    className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
-                    style={{ fontFamily: FONT_FAMILY_SERIF }}
+                    className="px-3 py-2 border border-[#c5d5be]/30 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent bg-white text-sm text-[#263b32]"
+                    style={{ fontFamily: FONT_FAMILY }}
                   >
                     {availableYears.map(year => (
                       <option key={year} value={year}>{year}</option>
@@ -1492,8 +1477,8 @@ export default function CustomerDashboard() {
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                  className="px-3 py-2 border border-[#F7C7D3]/30 rounded-lg focus:ring-2 focus:ring-[#EE4275] focus:border-transparent bg-white text-sm text-[#2D1B2E]"
-                  style={{ fontFamily: FONT_FAMILY_SERIF }}
+                  className="px-3 py-2 border border-[#c5d5be]/30 rounded-lg focus:ring-2 focus:ring-[#8B9D83] focus:border-transparent bg-white text-sm text-[#263b32]"
+                  style={{ fontFamily: FONT_FAMILY }}
                 >
                   {availableYears.map(year => (
                     <option key={year} value={year}>{year}</option>
@@ -1503,22 +1488,22 @@ export default function CustomerDashboard() {
             </div>
 
             <div className="flex items-center gap-2 w-full sm:w-auto justify-start sm:justify-end">
-              <Calendar className="h-5 w-5 text-[#EE4275] flex-shrink-0" />
-              <span className="text-sm text-gray-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>
-                Showing for: <strong className="text-[#EE4275]">{getFilterLabel()}</strong>
+              <Calendar className="h-5 w-5 text-[#8B9D83] flex-shrink-0" />
+              <span className="text-sm text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>
+                Showing for: <strong className="text-[#8B9D83]">{getFilterLabel()}</strong>
               </span>
             </div>
           </div>
         </div>
 
-        {/* Stats Cards - Beauty Bucket Style */}
+        {/* Stats Cards - Green Theme */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] rounded-xl shadow-lg shadow-[#EE4275]/20 p-4 text-white transform hover:scale-105 transition-all duration-300">
+          <div className="bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] rounded-xl shadow-lg shadow-[#8B9D83]/20 p-4 text-white transform hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/80 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Orders</p>
-                <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.totalOrders}</p>
-                <p className="text-white/70 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-white/80 text-xs" style={{ fontFamily: FONT_FAMILY }}>Total Orders</p>
+                <p className="text-2xl font-light" style={{ fontFamily: FONT_FAMILY }}>{displayStats.totalOrders}</p>
+                <p className="text-white/70 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
               <ShoppingBag className="h-8 w-8 opacity-80" />
             </div>
@@ -1527,9 +1512,9 @@ export default function CustomerDashboard() {
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-lg shadow-yellow-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-yellow-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Placed</p>
-                <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.placedOrders}</p>
-                <p className="text-yellow-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-yellow-100 text-xs" style={{ fontFamily: FONT_FAMILY }}>Placed</p>
+                <p className="text-2xl font-light" style={{ fontFamily: FONT_FAMILY }}>{displayStats.placedOrders}</p>
+                <p className="text-yellow-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
               <Clock className="h-8 w-8 opacity-80" />
             </div>
@@ -1538,9 +1523,9 @@ export default function CustomerDashboard() {
           <div className="bg-gradient-to-r from-indigo-400 to-indigo-500 rounded-xl shadow-lg shadow-indigo-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-indigo-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>In Progress</p>
-                <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.processingOrders}</p>
-                <p className="text-indigo-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-indigo-100 text-xs" style={{ fontFamily: FONT_FAMILY }}>In Progress</p>
+                <p className="text-2xl font-light" style={{ fontFamily: FONT_FAMILY }}>{displayStats.processingOrders}</p>
+                <p className="text-indigo-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
               <Truck className="h-8 w-8 opacity-80" />
             </div>
@@ -1549,38 +1534,38 @@ export default function CustomerDashboard() {
           <div className="bg-gradient-to-r from-rose-400 to-rose-500 rounded-xl shadow-lg shadow-rose-200/50 p-4 text-white transform hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-rose-100 text-xs" style={{ fontFamily: FONT_FAMILY_SERIF }}>Cancelled</p>
-                <p className="text-2xl font-bold" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.cancelledOrders}</p>
-                <p className="text-rose-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-rose-100 text-xs" style={{ fontFamily: FONT_FAMILY }}>Cancelled</p>
+                <p className="text-2xl font-light" style={{ fontFamily: FONT_FAMILY }}>{displayStats.cancelledOrders}</p>
+                <p className="text-rose-100 text-[10px] mt-1" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
               <XCircle className="h-8 w-8 opacity-80" />
             </div>
           </div>
         </div>
 
-        {/* Review Stats Summary - Beauty Bucket Style */}
+        {/* Review Stats Summary - Green Theme */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-4">
+          <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/30 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-[#FFF5F6] rounded-lg">
-                <MessageSquare className="h-5 w-5 text-[#EE4275]" />
+              <div className="p-2 bg-[#f0f5ed] rounded-lg">
+                <MessageSquare className="h-5 w-5 text-[#8B9D83]" />
               </div>
               <div>
-                <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Total Reviews</p>
-                <p className="text-xl font-bold text-[#2D1B2E]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.totalReviews}</p>
-                <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Total Reviews</p>
+                <p className="text-xl font-light text-[#263b32]" style={{ fontFamily: FONT_FAMILY }}>{displayStats.totalReviews}</p>
+                <p className="text-[10px] text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-sm border border-[#EE4275]/20 p-4">
+          <div className="bg-white rounded-xl shadow-sm border border-[#8B9D83]/20 p-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-[#EE4275]/10 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-[#EE4275]" />
+              <div className="p-2 bg-[#8B9D83]/10 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-[#8B9D83]" />
               </div>
               <div>
-                <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Approved</p>
-                <p className="text-xl font-bold text-[#EE4275]" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.approvedReviews}</p>
-                <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Approved</p>
+                <p className="text-xl font-light text-[#8B9D83]" style={{ fontFamily: FONT_FAMILY }}>{displayStats.approvedReviews}</p>
+                <p className="text-[10px] text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
             </div>
           </div>
@@ -1590,9 +1575,9 @@ export default function CustomerDashboard() {
                 <Clock className="h-5 w-5 text-yellow-600" />
               </div>
               <div>
-                <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Pending</p>
-                <p className="text-xl font-bold text-yellow-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.pendingReviews}</p>
-                <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Pending</p>
+                <p className="text-xl font-light text-yellow-600" style={{ fontFamily: FONT_FAMILY }}>{displayStats.pendingReviews}</p>
+                <p className="text-[10px] text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
             </div>
           </div>
@@ -1602,29 +1587,29 @@ export default function CustomerDashboard() {
                 <XCircle className="h-5 w-5 text-rose-600" />
               </div>
               <div>
-                <p className="text-xs text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>Rejected</p>
-                <p className="text-xl font-bold text-rose-600" style={{ fontFamily: FONT_FAMILY_SERIF }}>{displayStats.rejectedReviews}</p>
-                <p className="text-[10px] text-gray-400" style={{ fontFamily: FONT_FAMILY_SERIF }}>in {getFilterLabel()}</p>
+                <p className="text-xs text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>Rejected</p>
+                <p className="text-xl font-light text-rose-600" style={{ fontFamily: FONT_FAMILY }}>{displayStats.rejectedReviews}</p>
+                <p className="text-[10px] text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>in {getFilterLabel()}</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 mb-6">
-          <div className="border-b border-[#F7C7D3]/30">
+        <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/30 mb-6">
+          <div className="border-b border-[#c5d5be]/30">
             <nav className="flex flex-wrap gap-2 px-4">
               <button
                 onClick={() => setActiveTab('orders')}
                 className={`px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 ${
                   activeTab === 'orders'
-                    ? 'text-[#EE4275] border-[#EE4275]'
-                    : 'text-gray-500 border-transparent hover:text-[#EE4275] hover:border-[#F7C7D3]/50'
+                    ? 'text-[#8B9D83] border-[#8B9D83]'
+                    : 'text-[#53645a] border-transparent hover:text-[#8B9D83] hover:border-[#c5d5be]/50'
                 }`}
-                style={{ fontFamily: FONT_FAMILY_SERIF }}
+                style={{ fontFamily: FONT_FAMILY }}
               >
                 <div className="flex items-center gap-2">
-                  <ShoppingBag className={`h-4 w-4 ${activeTab === 'orders' ? 'text-[#EE4275]' : 'text-gray-400'}`} />
+                  <ShoppingBag className={`h-4 w-4 ${activeTab === 'orders' ? 'text-[#8B9D83]' : 'text-gray-400'}`} />
                   My Orders 
                 </div>
               </button>
@@ -1632,13 +1617,13 @@ export default function CustomerDashboard() {
                 onClick={() => setActiveTab('reviews')}
                 className={`px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 ${
                   activeTab === 'reviews'
-                    ? 'text-[#EE4275] border-[#EE4275]'
-                    : 'text-gray-500 border-transparent hover:text-[#EE4275] hover:border-[#F7C7D3]/50'
+                    ? 'text-[#8B9D83] border-[#8B9D83]'
+                    : 'text-[#53645a] border-transparent hover:text-[#8B9D83] hover:border-[#c5d5be]/50'
                 }`}
-                style={{ fontFamily: FONT_FAMILY_SERIF }}
+                style={{ fontFamily: FONT_FAMILY }}
               >
                 <div className="flex items-center gap-2">
-                  <MessageSquare className={`h-4 w-4 ${activeTab === 'reviews' ? 'text-[#EE4275]' : 'text-gray-400'}`} />
+                  <MessageSquare className={`h-4 w-4 ${activeTab === 'reviews' ? 'text-[#8B9D83]' : 'text-gray-400'}`} />
                   My Reviews ({displayStats.totalReviews})
                 </div>
               </button>
@@ -1650,15 +1635,15 @@ export default function CustomerDashboard() {
         {activeTab === 'orders' && (
           <div>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>
-                <ShoppingBag className="h-5 w-5 text-[#EE4275]" />
+              <h2 className="text-lg font-light text-[#263b32] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+                <ShoppingBag className="h-5 w-5 text-[#8B9D83]" />
                 Recent Orders ({getFilterLabel()})
               </h2>
               {filteredOrders.length > 0 && (
                 <button 
                   onClick={() => router.push('/customer/orders')}
-                  className="text-[#EE4275] hover:text-[#ca4f74] text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-200"
-                  style={{ fontFamily: FONT_FAMILY_SERIF }}
+                  className="text-[#8B9D83] hover:text-[#6b7d63] text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all duration-200"
+                  style={{ fontFamily: FONT_FAMILY }}
                 >
                   View All Orders →
                 </button>
@@ -1666,11 +1651,11 @@ export default function CustomerDashboard() {
             </div>
             <div className="space-y-4">
               {filteredOrders.length === 0 ? (
-                <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-12 text-center">
-                  <ShoppingBag className="h-16 w-16 text-[#F7C7D3] mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-[#2D1B2E] mb-2" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>No orders found</h3>
-                  <p className="text-gray-500 mb-4" style={{ fontFamily: FONT_FAMILY_SERIF }}>You haven't placed any orders in {getFilterLabel()}.</p>
-                  <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300">
+                <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/30 p-12 text-center">
+                  <ShoppingBag className="h-16 w-16 text-[#c5d5be] mx-auto mb-4" />
+                  <h3 className="text-lg font-light text-[#263b32] mb-2" style={{ fontFamily: FONT_FAMILY }}>No orders found</h3>
+                  <p className="text-[#53645a] mb-4" style={{ fontFamily: FONT_FAMILY }}>You haven't placed any orders in {getFilterLabel()}.</p>
+                  <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white rounded-lg hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all duration-300">
                     Start Shopping
                   </button>
                 </div>
@@ -1691,23 +1676,23 @@ export default function CustomerDashboard() {
         {activeTab === 'reviews' && (
           <div>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-[#2D1B2E] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY_SERIF }}>
-                <MessageSquare className="h-5 w-5 text-[#EE4275]" />
+              <h2 className="text-lg font-light text-[#263b32] flex items-center gap-2" style={{ fontFamily: FONT_FAMILY }}>
+                <MessageSquare className="h-5 w-5 text-[#8B9D83]" />
                 My Reviews ({getFilterLabel()})
               </h2>
               {filteredReviews.length > 0 && (
-                <span className="text-sm text-gray-500" style={{ fontFamily: FONT_FAMILY_SERIF }}>
+                <span className="text-sm text-[#53645a]" style={{ fontFamily: FONT_FAMILY }}>
                   {displayStats.approvedReviews} approved • {displayStats.pendingReviews} pending
                 </span>
               )}
             </div>
             <div className="space-y-4">
               {filteredReviews.length === 0 ? (
-                <div className="bg-white rounded-xl shadow-sm border border-[#F7C7D3]/30 p-12 text-center">
-                  <MessageSquare className="h-16 w-16 text-[#F7C7D3] mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-[#2D1B2E] mb-2" style={{ fontFamily: FONT_FAMILY_CURSIVE }}>No reviews found</h3>
-                  <p className="text-gray-500 mb-4" style={{ fontFamily: FONT_FAMILY_SERIF }}>You haven't written any reviews in {getFilterLabel()}.</p>
-                  <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#EE4275] to-[#FF6B9D] text-white rounded-lg hover:shadow-lg hover:shadow-[#EE4275]/25 transition-all duration-300">
+                <div className="bg-white rounded-xl shadow-sm border border-[#c5d5be]/30 p-12 text-center">
+                  <MessageSquare className="h-16 w-16 text-[#c5d5be] mx-auto mb-4" />
+                  <h3 className="text-lg font-light text-[#263b32] mb-2" style={{ fontFamily: FONT_FAMILY }}>No reviews found</h3>
+                  <p className="text-[#53645a] mb-4" style={{ fontFamily: FONT_FAMILY }}>You haven't written any reviews in {getFilterLabel()}.</p>
+                  <button onClick={() => router.push('/products')} className="px-6 py-2 bg-gradient-to-r from-[#8B9D83] to-[#6b7d63] text-white rounded-lg hover:shadow-lg hover:shadow-[#8B9D83]/25 transition-all duration-300">
                     Browse Products
                   </button>
                 </div>

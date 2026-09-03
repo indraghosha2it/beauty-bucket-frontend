@@ -29,6 +29,7 @@ import {
   ChevronDown,
   ChevronUp,
   Shield,
+  ShieldCheck,
   Bug,
 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -45,7 +46,8 @@ const SYSTEM_SECTION_TYPES = [
    { value: 'deals', label: 'Deals You Can\'t Miss', icon: Zap, deletable: false, hasProducts: false },
      { value: 'big_sale', label: 'Big Sale', icon: Car, deletable: false, hasProducts: false },
   { value: 'featured', label: 'Featured Products', icon: Zap, deletable: false, hasProducts: false },
-   { value: 'why_choose_us', label: 'Why Choose Us', icon: Shield, deletable: false, hasProducts: false }, // ✅ ADDED
+  
+    { value: 'trust_results', label: 'Trust & Results', icon: ShieldCheck, deletable: false, hasProducts: false },  // ✅ ADDED
    
 ];
 
@@ -1035,11 +1037,11 @@ const getDefaultSections = () => [
     displayOrder: 4,
     items: []
   },
-  // ✅ ADD WHY CHOOSE US
+
   {
     id: generateId(),
-    name: 'Why Choose Us',
-    type: 'why_choose_us',
+    name: 'Trust & Results',
+    type: 'trust_results',
     isActive: true,
     displayOrder: 5,
     items: []

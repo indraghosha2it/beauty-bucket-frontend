@@ -1483,7 +1483,7 @@ const FeaturedProductCard = ({
                   {cartStatusLoading ? (
                     <Loader2 className={isMobile ? 'h-2.5 w-2.5 animate-spin' : 'h-3.5 w-3.5 animate-spin'} />
                   ) : (
-                    <ShoppingCart className={isMobile ? 'h-2.5 w-2.5' : 'h-3.5 w-3.5'} />
+                    <ShoppingBag className={isMobile ? 'h-2.5 w-2.5' : 'h-3.5 w-3.5'} />
                   )}
                 </motion.button>
               </div>
@@ -1582,7 +1582,7 @@ const FeaturedProductCard = ({
             </div>
 
             <h3
-              className={`line-clamp-2 font-semibold leading-[1.2] sm:leading-[1.3] text-gray-800 transition-colors group-hover:text-[#8B9D83] ${
+              className={`line-clamp-2 font-semibold leading-[1.2] sm:leading-[1.3] text-gray-800 transition-colors group-hover:text-[#616b5d] ${
                 featured
                   ? 'min-h-[30px] sm:min-h-[40px] text-[13px] sm:text-[15px]'
                   : 'min-h-[26px] sm:min-h-[34px] text-[11px] sm:text-[13px]'
@@ -1647,9 +1647,9 @@ const FeaturedProductCard = ({
                   {cartStatusLoading ? (
                     <Loader2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 animate-spin" />
                   ) : (
-                    <ShoppingCart className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                    <ShoppingBag className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                   )}
-                  <span>{isInCart ? 'In Cart' : 'Add to Cart'}</span>
+                  <span>{isInCart ? 'In Bag' : 'Add to Bag'}</span>
                 </motion.button>
               ) : (
                 <motion.button
@@ -1674,7 +1674,7 @@ const FeaturedProductCard = ({
                   {cartStatusLoading ? (
                     <Loader2 className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5 animate-spin" />
                   ) : (
-                    <ShoppingCart className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
+                    <ShoppingBag className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
                   )}
                 </motion.button>
               )}
@@ -2209,7 +2209,7 @@ export default function FeaturedProducts() {
                       type="button"
                       onClick={prevSlide}
                       aria-label="Previous product"
-                      className="absolute left-0 sm:-left-2 top-1/2 -translate-y-1/2 z-40 flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 sm:bg-white border border-[#8B9D83]/30 shadow-md sm:shadow-lg hover:bg-[#8B9D83] hover:border-[#8B9D83] transition-colors group"
+                      className="absolute left-0 sm:-left-2 top-1/2 md:-ml-6 -translate-y-1/2 z-40 flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 sm:bg-white border border-[#8B9D83]/30 shadow-md sm:shadow-lg hover:bg-[#8B9D83] hover:border-[#8B9D83] transition-colors group"
                     >
                       <ChevronLeft className="h-3 w-3 sm:h-5 sm:w-5 text-[#8B9D83] group-hover:text-white" />
                     </button>
@@ -2221,7 +2221,7 @@ export default function FeaturedProducts() {
                       type="button"
                       onClick={nextSlide}
                       aria-label="Next product"
-                      className="absolute right-0 sm:-right-2 top-1/2 -translate-y-1/2 z-40 flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 sm:bg-white border border-[#8B9D83]/30 shadow-md sm:shadow-lg hover:bg-[#8B9D83] hover:border-[#8B9D83] transition-colors group"
+                      className="absolute right-0 md:-mr-6 sm:-right-2 top-1/2 -translate-y-1/2 z-40 flex h-6 w-6 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 sm:bg-white border border-[#8B9D83]/30 shadow-md sm:shadow-lg hover:bg-[#8B9D83] hover:border-[#8B9D83] transition-colors group"
                     >
                       <ChevronRight className="h-3 w-3 sm:h-5 sm:w-5 text-[#8B9D83] group-hover:text-white" />
                     </button>

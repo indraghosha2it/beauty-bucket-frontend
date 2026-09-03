@@ -577,7 +577,7 @@ export default function RootLayout({ children }) {
         
         {/* UI Components */}
         <ScrollToTop />
-         <ChatWrapper />
+         {/* <ChatWrapper /> */}
 
         {/* Optional Popup Components - Uncomment when ready */}
         {/* <PromotionalModalWrapper /> */}
